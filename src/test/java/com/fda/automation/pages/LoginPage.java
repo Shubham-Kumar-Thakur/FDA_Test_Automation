@@ -10,7 +10,6 @@ public class LoginPage extends BasePage {
     private static final By PASSWORD_INPUT = By.id("password");
     private static final By LOGIN_BUTTON   = By.cssSelector("button[type='submit']");
     private static final By ERROR_MESSAGE  = By.id("flash");
-    private static final By SUCCESS_MESSAGE = By.id("flash");
 
     private static final String LOGIN_PATH = "/login";
 
@@ -47,7 +46,7 @@ public class LoginPage extends BasePage {
     }
 
     public boolean isErrorDisplayed() {
-        return isDisplayed(ERROR_MESSAGE) && getFlashMessage().contains("invalid");
+        return getFlashMessage().toLowerCase().contains("invalid");
     }
 
     public boolean isLoginSuccessful() {

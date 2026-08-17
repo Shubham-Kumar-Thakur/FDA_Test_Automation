@@ -25,11 +25,13 @@ public class ConfigManager {
     }
 
     public String get(String key) {
-        return props.getProperty(key);
+        String sysProp = System.getProperty(key);
+        return sysProp != null ? sysProp : props.getProperty(key);
     }
 
     public String get(String key, String defaultValue) {
-        return props.getProperty(key, defaultValue);
+        String sysProp = System.getProperty(key);
+        return sysProp != null ? sysProp : props.getProperty(key, defaultValue);
     }
 
     public String getBrowser() {
