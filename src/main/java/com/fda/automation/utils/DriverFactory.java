@@ -48,5 +48,6 @@ public class DriverFactory {
         EdgeOptions opts = new EdgeOptions();
         if (headless) opts.addArguments("--headless=new");
         return new EdgeDriver(opts);
+        dfghjkghjk
     }
 }
