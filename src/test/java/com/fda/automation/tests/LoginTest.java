@@ -32,5 +32,6 @@ public class LoginTest extends BaseTest {
         loginPage.login("", "");
         String flash = loginPage.getFlashMessage();
         Assert.assertFalse(flash.isEmpty(), "Expected a flash message for empty credentials");
+        
     }
 }
