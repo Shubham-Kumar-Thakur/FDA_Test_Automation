@@ -52,5 +52,5 @@ public class LoginPage extends BasePage {
     public boolean isLoginSuccessful() {
         return getCurrentUrl().contains("/secure");
     }
-    knxoisad
+   
 }
