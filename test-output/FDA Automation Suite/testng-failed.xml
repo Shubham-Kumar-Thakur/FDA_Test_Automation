@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [FDA Automation Suite]">
+  <listeners>
+    <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener"/>
+  </listeners>
+  <test thread-count="1" name="TC_FBO_004 - 2 Products Qty 2 Each Full Fulfillment(failed)">
+    <classes>
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_004_Test">
+        <methods>
+          <include name="restoreOriginalFdaSession"/>
+          <include name="tearDownSuite"/>
+          <include name="tc_fbo_004_dual_product_qty2_each_full_fulfillment"/>
+          <include name="initAndLogin"/>
+          <include name="setupSuite"/>
+          <include name="navigateToHomePage"/>
+        </methods>
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_004_Test -->
+    </classes>
+  </test> <!-- TC_FBO_004 - 2 Products Qty 2 Each Full Fulfillment(failed) -->
+  <test thread-count="1" name="TC_FBO_005 - 2 Products Diff Sellers Qty 1 Each Full Fulfillment(failed)">
+    <classes>
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_005_Test">
+        <methods>
+          <include name="initAndLogin"/>
+          <include name="tearDownSuite"/>
+          <include name="tc_fbo_005_dual_product_diff_sellers_qty1_full_fulfillment"/>
+          <include name="restoreOriginalFdaSession"/>
+          <include name="navigateToHomePage"/>
+          <include name="setupSuite"/>
+        </methods>
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_005_Test -->
+    </classes>
+  </test> <!-- TC_FBO_005 - 2 Products Diff Sellers Qty 1 Each Full Fulfillment(failed) -->
+  <test thread-count="1" name="TC_FBO_SPLIT_01 - Order Split 6 Shipments Full Fulfillment(failed)">
+    <classes>
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_SPLIT_01_Test">
+        <methods>
+          <include name="initPageObjects"/>
+          <include name="tearDownSuite"/>
+          <include name="tc_fbo_split_01_verify_order_split"/>
+          <include name="setupSuite"/>
+          <include name="navigateToHomePage"/>
+        </methods>
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_SPLIT_01_Test -->
+    </classes>
+  </test> <!-- TC_FBO_SPLIT_01 - Order Split 6 Shipments Full Fulfillment(failed) -->
+  <test thread-count="1" name="TC_FBO_021 - Dual Product Return Full Refund Closed(failed)">
+    <classes>
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_021_Test">
+        <methods>
+          <include name="tearDownSuite"/>
+          <include name="initPageObjects"/>
+          <include name="tc_fbo_021_dual_product_return_refund"/>
+          <include name="navigateToHomePage"/>
+          <include name="setupSuite"/>
+        </methods>
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_021_Test -->
+    </classes>
+  </test> <!-- TC_FBO_021 - Dual Product Return Full Refund Closed(failed) -->
+</suite> <!-- Failed suite [FDA Automation Suite] -->

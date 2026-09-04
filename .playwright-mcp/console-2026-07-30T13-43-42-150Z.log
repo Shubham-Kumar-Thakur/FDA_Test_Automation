@@ -1,0 +1,30 @@
+[    2266ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/:863
+[    2267ms] [LOG] undefined @ https://mcstaging.fahorro.com/:863
+[    4737ms] Uncaught TypeError: Cannot read properties of null (reading 'cancelled')
+    at a.finish (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:29558)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:2400)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4336)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:17448)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4260)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4473)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:5506)
+    at <anonymous> (https://bam.nr-data.net/1/NRJS-df86b166cb1c30a043b?a=1036878683&v=1216.487a282&to=YFNbNhRSV0pSVUdQX1kZeAESWlZXHFVeSh9eWF0HHhxQV1dTSw%3D%3D&rst=4040&ck=1&ref=https://mcstaging.fahorro.com/&ap=11085&be=1486&fe=2331&dc=1511&af=err,xhr,stn,ins,spa&perf=%7B%22timing%22:%7B%22of%22:1785419022158,%22n%22:0,%22f%22:1,%22dn%22:2,%22dne%22:1056,%22c%22:1057,%22s%22:1077,%22ce%22:1102,%22rq%22:1103,%22rp%22:1128,%22rpe%22:1180,%22dl%22:1140,%22di%22:1510,%22ds%22:1511,%22de%22:1512,%22dc%22:2328,%22l%22:2328,%22le%22:2331%7D,%22navigation%22:%7B%7D%7D&fp=1420&at=TBRYQFxIREQ%3D&jsonp=NREUM.setToken:0:6)
+[   69749ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/customer/account/login/:598
+[   69749ms] [LOG] undefined @ https://mcstaging.fahorro.com/customer/account/login/:598
+[   71368ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/customer/account/login/:598
+[   71369ms] [LOG]  @ https://mcstaging.fahorro.com/customer/account/login/:598
+[   71489ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/customer/account/login/:598
+[   71489ms] [LOG]  @ https://mcstaging.fahorro.com/customer/account/login/:598
+[  228138ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/:863
+[  228139ms] [LOG] undefined @ https://mcstaging.fahorro.com/:863
+[  231045ms] [LOG] Sending fingerprint... @ https://mcstaging.fahorro.com/:863
+[  231659ms] Uncaught TypeError: Cannot read properties of null (reading 'cancelled')
+    at a.finish (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:29558)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:2400)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4336)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:17448)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4260)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4473)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:5506)
+    at <anonymous> (https://bam.nr-data.net/1/NRJS-df86b166cb1c30a043b?a=1036878683&v=1216.487a282&to=YFNbNhRSV0pSVUdQX1kZeAESWlZXHFVeSh9eWF0HHhxQV1dTSw%3D%3D&rst=7185&ck=1&ref=https://mcstaging.fahorro.com/&ap=2139&be=4012&fe=7138&dc=4069&af=err,xhr,stn,ins,spa&perf=%7B%22timing%22:%7B%22of%22:1785419245923,%22n%22:0,%22u%22:3630,%22r%22:13,%22ue%22:3630,%22re%22:1093,%22f%22:1093,%22dn%22:1093,%22dne%22:1093,%22c%22:1093,%22ce%22:1093,%22rq%22:1097,%22rp%22:3564,%22rpe%22:3593,%22dl%22:3639,%22di%22:4052,%22ds%22:4052,%22de%22:4070,%22dc%22:7132,%22l%22:7133,%22le%22:7144%7D,%22navigation%22:%7B%22rc%22:1%7D%7D&fp=3796&at=TBRYQFxIREQ%3D&jsonp=NREUM.setToken:0:6)
+[  237148ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://cdn-scripts.signifyd.com/o/lite.js?sessionId=M2aHR0cHM6Ly9tY3N0YWdpbmcuZmFob3Jyby5jb20v2280745&ping=false&profile=true&pageURL=https%253A%252F%252Fmcstaging.fahorro.com%252F&referrer=https%253A%252F%252Fmcstaging.fahorro.com%252Fcustomer%252Faccount%252Flogin%252F:34

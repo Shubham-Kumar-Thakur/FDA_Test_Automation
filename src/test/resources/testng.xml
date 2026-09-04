@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  FDA Automation Suite — Sequential Execution (one by one)
+  =========================================================
+  @BeforeSuite : Opens browser once before TC_FBO_001
+  @AfterSuite  : Closes browser once after TC_FBO_SPLIT_01
+
+  To run only TC_FBO_001  : comment out the second <test> block
+  To run only TC_FBO_SPLIT_01 : comment out the first  <test> block
+
+  Execution order: TC_FBO_001_Test → TC_FBO_SPLIT_01_Test
+-->
+
+<suite name="FDA Automation Suite" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 1 — TC_FBO_001: 3P Seller Full Order Lifecycle
+         FDA → Mirakl Accept → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_001 - 3P Seller Order Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 2 — TC_FBO_002: Dual-Product 3P Seller Order (2 SKUs → WEB-A + WEB-B)
+         FDA 2 SKUs → Mirakl Accept 2 Shipments → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_002 - Dual-Product 3P Seller Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_002_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 3 — TC_FBO_003: 1 Product Quantity 2 Full Fulfillment
+         FDA 1 SKU qty=2 → Mirakl Accept WEB-A → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_003 - 1 Product Qty 2 Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_003_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 4 — TC_FBO_004: 2 Products Qty 2 Each Full Fulfillment
+         FDA 2 SKUs qty=2 each → Mirakl Accept WEB-A + WEB-B → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_004 - 2 Products Qty 2 Each Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_004_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 5 — TC_FBO_005: 2 Products Qty 1 Each from 2 Different 3P Sellers
+         FDA 2 SKUs (diff sellers) qty=1 each → Mirakl Accept WEB-A + WEB-B → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_005 - 2 Products Diff Sellers Qty 1 Each Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_005_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 6 — TC_FBO_006: 2 Products Qty 2 Each from 2 Different 3P Sellers
+         FDA 2 SKUs (diff sellers) qty=2 each → Mirakl Accept WEB-A + WEB-B → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_006 - 2 Products Diff Sellers Qty 2 Each Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_006_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 7 — TC_FBO_007: 1 Product Qty 1 by 1 3P Seller with PayPal Payment
+         FDA 1 SKU qty=1 (mgowda) → PayPal → Mirakl Accept WEB-A → Kibo API → Envioclick/Skydropx → Received
+         NOTE: Test will halt at PayPal login step — PayPal password is BLANK in test data.
+               Update TC_PAYPAL_PASS constant in TC_FBO_007_Test.java before running.
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_007 - 1 Product Qty 1 PayPal Payment Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_007_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 8 — TC_FBO_008: 2 Products Qty 1 Each by 1 3P Seller with PayPal Payment
+         FDA 2 SKUs qty=1 each (mgowda) → PayPal → Mirakl Accept WEB-A + WEB-B
+         → Kibo API → Envioclick/Skydropx → Both Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_008 - 2 Products Qty 1 Each PayPal Payment Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_008_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 9 — TC_FBO_009: 1 Product Qty 2 by 1 3P Seller with PayPal Payment
+         FDA 1 SKU qty=2 (mgowda) → PayPal → Mirakl Accept WEB-A
+         → Kibo API → Envioclick/Skydropx → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_009 - 1 Product Qty 2 PayPal Payment Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_009_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 10 — TC_FBO_010: 2 Products Qty 2 Each by 1 3P Seller with PayPal Payment
+         FDA 2 SKUs qty=2 each (mgowda) → PayPal → Mirakl Accept WEB-A + WEB-B
+         → Kibo API → Envioclick/Skydropx → Both Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_010 - 2 Products Qty 2 Each PayPal Payment Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_010_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 11 — TC_FBO_011: 2 Products Qty 1 Each from 2 Different 3P Sellers with PayPal
+         FDA 2 SKUs qty=1 each (mgowda, diff sellers) → PayPal → Mirakl Accept WEB-A + WEB-B
+         → Kibo API → Envioclick/Skydropx → Both Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_011 - 2 Products Diff Sellers Qty 1 Each PayPal Payment Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_011_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 12 — TC_FBO_012: 2 Products Qty 2 Each from 2 Different 3P Sellers with PayPal
+         FDA 2 SKUs qty=2 each (mgowda, diff sellers) → PayPal → Mirakl Accept WEB-A + WEB-B
+         → Kibo API → Envioclick/Skydropx → Both Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_012 - 2 Products Diff Sellers Qty 2 Each PayPal Payment Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_012_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 13 — TC_FBO_SPLIT_01: Order Split into 6 Shipments
+         8 SKUs → FDA → Mirakl 6 Rows → Kibo 6 Shipments → All Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_SPLIT_01 - Order Split 6 Shipments Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_SPLIT_01_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 7 — TC_FBO_020: 1 Product Qty 1 Return, Compliance, Full Refund, Closed
+         FDA 1 SKU qty=1 → Mirakl Accept WEB-A → Kibo API → Envioclick/Skydropx → Received
+         → Return API → Mark Received → Compliance → Full Refund → Closed
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_020 - 1 Product Qty 1 Return Full Refund Closed" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_020_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 9 — TC_FBO_021: Dual-Product Return, Compliance, Full Refund, Closed
+         2 SKUs → Mirakl WEB-A + WEB-B → Received → Return → Mark Received
+         → Check Compliance → Full Refund → Shipment 1 Closed
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_021 - Dual Product Return Full Refund Closed" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_021_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 10 — TC_FBO_022: 1 Product Qty 2 Return, Compliance, Full Refund, Closed
+         FDA 1 SKU qty=2 → Mirakl Accept WEB-A → Kibo API → Envioclick/Skydropx → Received
+         → Return API → Mark Received → Compliance → Full Refund → Closed
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_022 - 1 Product Qty 2 Return Full Refund Closed" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_022_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 11 — TC_FBO_023: 2 Products Qty 2 Each Return Full Refund Closed
+         FDA 2 SKUs qty=2 each (1 3P seller) → Mirakl Accept WEB-A + WEB-B → Kibo API
+         → Envioclick/Skydropx → Received → Return API qty=2 → Compliance → Full Refund → Closed
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_023 - 2 Products Qty 2 Each Return Full Refund Closed" preserve-order="true">
+        <classes>
+            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_023_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 12 — TC_FBO_026: 1 Product Qty 2 Partial Return (qty=1) Refund
+         FDA 1 SKU qty=2 → Mirakl Accept WEB-A → Kibo API → Envioclick/Skydropx → Received
+         → Return API qty=1 → Compliance → Partial Refund → Kibo return status = closed
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_026 - 1 Product Qty 2 Partial Return Refund Closed" preserve-order="true">
+        <classes>
+            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_026_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 13 — TC_FBO_027: 1-Product 3P Seller Order Cancel
+         FDA 1 SKU → Mirakl Accept → Cancel Full Order API → Canceled
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_027 - 1 Product 3P Seller Order Cancel" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_027_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 12 — TC_FBO_028: 2-Product 3P Seller Order, Cancel One Shipment
+         FDA 2 SKUs → Mirakl Accept WEB-A + WEB-B → Cancel Shipment WEB-A API
+         → WEB-A = Canceled, WEB-B = Awaiting shipment
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_028 - 2 Product 3P Seller Order Cancel One Shipment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_028_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 15 — TC_FBO_029: 1 Product Qty=2 by 1 3P Seller, Seller Cancel Order
+         FDA 1 SKU qty=2 (mgowda) → Mirakl Accept WEB-A → Wait 1 min
+         → Cancel Full Order API → WEB-A = Canceled
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_029 - 1 Product Qty 2 by 1 3P Seller Order Cancel" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_029_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 16 — TC_FBO_030: 2 Products Qty=2 Each by 1 3P Seller, Cancel 1 Shipment
+         FDA 2 SKUs qty=2 each (mgowda) → Mirakl Accept WEB-A + WEB-B → Wait 1 min
+         → Cancel Shipment WEB-A API → WEB-A = Canceled, WEB-B = Awaiting shipment
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_030 - 2 Products Qty 2 Each by 1 3P Seller Cancel 1 Shipment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_030_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 17 — TC_FBO_031: 2 Products Qty=1 Each from 2 Different 3P Sellers, Cancel 1 Shipment
+         FDA 2 SKUs qty=1 each (mgowda, diff sellers) → Mirakl Accept WEB-A + WEB-B → Wait 1 min
+         → Cancel Shipment WEB-A API → WEB-A = Canceled, WEB-B = Awaiting shipment
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_031 - 2 Products Diff Sellers Qty 1 Each Cancel 1 Shipment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_031_Test" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 18 — TC_FBO_032: 2 Products Qty=2 Each from 2 Different 3P Sellers, Cancel 1 Shipment
+         FDA 2 SKUs qty=2 each (mgowda, diff sellers) → Mirakl Accept WEB-A + WEB-B → Wait 1 min
+         → Cancel Shipment WEB-A API → WEB-A = Canceled, WEB-B = Awaiting shipment
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBO_032 - 2 Products Diff Sellers Qty 2 Each Cancel 1 Shipment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_032_Test" />
+        </classes>
+    </test>
+
+</suite>

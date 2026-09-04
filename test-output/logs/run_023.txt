@@ -1,0 +1,267 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\ShubhamKumarThakur\git\FDA_Mirakl_and_API_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 3 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 40 source files with javac [debug release 17] to target\test-classes
+[INFO] Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_023_Test
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+Aug 12, 2026 3:42:17 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 151
+Aug 12, 2026 3:42:17 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 151.0.7922.108. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-08-12 15:42:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-08-12 15:42:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched. FDA tab handle: 455D4FF3E1315D5B06856C3CACBCAB1F
+2026-08-12 15:42:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Navigating to FDA and logging in
+2026-08-12 15:42:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-08-12 15:42:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Mi cuenta profile icon
+2026-08-12 15:42:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesion link
+2026-08-12 15:42:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: mgowda@kognivera.com
+2026-08-12 15:42:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-08-12 15:42:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesi�n button
+2026-08-12 15:42:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful
+2026-08-12 15:42:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: FDA login complete
+2026-08-12 15:42:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Opening Mirakl in second tab
+2026-08-12 15:42:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New browser tab opened. Handle: 384607115824FB395DCB40F14F570EB1
+2026-08-12 15:42:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skthakur@kognivera.com
+2026-08-12 15:42:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-08-12 15:42:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-08-12 15:42:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-08-12 15:42:36 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required � check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed � continuing.
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Mirakl login complete. Tab handle: 384607115824FB395DCB40F14F570EB1
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 455D4FF3E1315D5B06856C3CACBCAB1F
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Setup complete. Browser has FDA (tab 1) and Mirakl (tab 2).
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_FBO_023: All page objects initialized
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_FBO_023: Suite user already mgowda@kognivera.com � no session swap needed
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_FBO_023 execution started
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Case ID      : TC_FBO_023
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 1             : 78078094107
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 2             : 7080901020316
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Quantity each     : 2
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Expected Total    : MXN$420.00
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 1: FDA Order Placement =====
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 455D4FF3E1315D5B06856C3CACBCAB1F
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-08-12 15:42:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Switched to FDA tab � verifying FDA home page
+2026-08-12 15:42:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-08-12 15:42:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBO_023_INFO.png
+2026-08-12 15:42:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pre-test: Clearing any leftover cart items
+2026-08-12 15:43:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/checkout/cart
+2026-08-12 15:44:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart is empty
+2026-08-12 15:44:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-08-12 15:44:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: Clicking search field '�Qu� est�s buscando?'
+2026-08-12 15:44:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Entering SKU 1: 78078094107
+2026-08-12 15:44:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: 78078094107
+2026-08-12 15:44:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Pressing Enter to search
+2026-08-12 15:44:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-08-12 15:44:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 1 78078094107 searched
+2026-08-12 15:44:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 5: Verifying Product Details Page for SKU 1
+2026-08-12 15:44:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 6: Verifying Agregar al carrito button enabled for SKU 1
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Add to Cart button enabled: true (attempt 1)
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBO_023_INFO.png
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 7: Increasing SKU 1 quantity to 2
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Aumentar (plus) button to increase quantity by 1
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Quantity increment clicked
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP quantity: 2
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 8: SKU 1 PDP quantity after increment: 2
+2026-08-12 15:44:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 1 quantity = 2 confirmed
+2026-08-12 15:44:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBO_023_INFO.png
+2026-08-12 15:44:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 9: Clicking Agregar al carrito for SKU 1
+2026-08-12 15:44:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Agregar al carrito button
+2026-08-12 15:44:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product Added To Cart
+2026-08-12 15:44:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 1 added to cart � qty=2
+2026-08-12 15:44:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-08-12 15:44:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 10: Clicking search field '�Qu� est�s buscando?'
+2026-08-12 15:44:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 11: Entering SKU 2: 7080901020316
+2026-08-12 15:44:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: 7080901020316
+2026-08-12 15:44:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 12: Pressing Enter to search
+2026-08-12 15:44:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-08-12 15:44:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 2 7080901020316 searched
+2026-08-12 15:44:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 13: Verifying Product Details Page for SKU 2
+2026-08-12 15:44:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 14: Verifying Agregar al carrito button enabled for SKU 2
+2026-08-12 15:44:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Add to Cart button enabled: true (attempt 1)
+2026-08-12 15:44:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBO_023_INFO.png
+2026-08-12 15:44:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 15: Increasing SKU 2 quantity to 2
+2026-08-12 15:44:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Aumentar (plus) button to increase quantity by 1
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Quantity increment clicked
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP quantity: 2
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 16: SKU 2 PDP quantity after increment: 2
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 2 quantity = 2 confirmed
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBO_023_INFO.png
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 17: Clicking Agregar al carrito for SKU 2
+2026-08-12 15:44:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Agregar al carrito button
+2026-08-12 15:44:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product Added To Cart
+2026-08-12 15:44:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU 2 added to cart � qty=2
+2026-08-12 15:44:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 2: Cart Validation =====
+2026-08-12 15:44:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 18: Clicking Mi carrito � opening cart
+2026-08-12 15:44:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating directly to cart page
+2026-08-12 15:45:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart page loaded and product visible
+2026-08-12 15:45:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart item count: 2
+2026-08-12 15:45:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 19: Cart item count: 2
+2026-08-12 15:45:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart contains 2 products
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart all product names: [Decorative Elephant Showpiece Figurines, Groeien 15watt LED Sconce Modern Transparent Indoor]
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 20: Cart product names: [Decorative Elephant Showpiece Figurines, Groeien 15watt LED Sconce Modern Transparent Indoor]
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart all quantities: [2, 2]
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 21: Cart quantities: [2, 2]
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart quantities � SKU1 qty=2 | SKU2 qty=2 � both verified
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart order total: $1,020.00
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 22: Order total: $1,020.00
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Order total verified � $1,020.00 (expected: MXN$1,020.00)
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBO_023_INFO.png
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 3: Checkout and Payment =====
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 23: Clicking Proceed to payment
+2026-08-12 15:45:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Proceed to payment button
+2026-08-12 15:45:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Window handles after clickProceedToPayment: 2
+2026-08-12 15:45:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 24: Clicking Siguiente on shipping page
+2026-08-12 15:45:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on shipping page (if present)
+2026-08-12 15:45:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Siguiente button not present � checkout already on payment step
+2026-08-12 15:45:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 25: Selecting Pago con Tarjeta Cr�dito/D�bito
+2026-08-12 15:45:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting Credit/Debit Card Payment option
+2026-08-12 15:46:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Credit card radio not present � assuming it is the only/default payment option
+2026-08-12 15:46:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 26-27: Clicking N�mero de tarjeta and entering card number
+2026-08-12 15:46:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering card number
+2026-08-12 15:46:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Card number digits to type: 16
+2026-08-12 15:46:40 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 1 failed: Expected condition failed: waiting for presence of element located by: By.xpath: //span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe (tried for 30 second(s) with 500 milliseconds interval)
+2026-08-12 15:47:12 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 2 failed: Expected condition failed: waiting for presence of element located by: By.xpath: //span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe (tried for 30 second(s) with 500 milliseconds interval)
+2026-08-12 15:47:44 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 3 failed: Expected condition failed: waiting for presence of element located by: By.xpath: //span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe (tried for 30 second(s) with 500 milliseconds interval)
+2026-08-12 15:48:16 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 4 failed: Expected condition failed: waiting for presence of element located by: By.xpath: //span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe (tried for 30 second(s) with 500 milliseconds interval)
+2026-08-12 15:48:49 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 5 failed: Expected condition failed: waiting for presence of element located by: By.xpath: //span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe (tried for 30 second(s) with 500 milliseconds interval)
+2026-08-12 15:48:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 455D4FF3E1315D5B06856C3CACBCAB1F
+2026-08-12 15:48:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-08-12 15:48:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @AfterMethod: FDA navigated back to home page
+2026-08-12 15:48:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 384607115824FB395DCB40F14F570EB1
+2026-08-12 15:48:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to Mirakl tab
+2026-08-12 15:48:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @AfterMethod: Mirakl navigated back to home dashboard
+2026-08-12 15:48:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 455D4FF3E1315D5B06856C3CACBCAB1F
+2026-08-12 15:48:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-08-12 15:48:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_FBO_023 @AfterClass: No session restore needed � suite user unchanged
+2026-08-12 15:48:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
+2026-08-12 15:48:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 400.6 s <<< FAILURE! -- in FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_023_Test
+[ERROR] FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_023_Test.tc_fbo_023_dual_product_qty2_return_refund -- Time elapsed: 359.7 s <<< FAILURE!
+java.lang.RuntimeException: Failed to type in iframe after 5 attempts
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPaymentPage.typeInIframeWithRetry(FDAPaymentPage.java:142)
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPaymentPage.enterCardNumber(FDAPaymentPage.java:62)
+	at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_023_Test.tc_fbo_023_dual_product_qty2_return_refund(TC_FBO_023_Test.java:314)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:102)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:91)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe (tried for 30 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPaymentPage.typeInIframeWithRetry(FDAPaymentPage.java:102)
+	... 33 more
+Caused by: org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe"}
+  (Session info: chrome=151.0.7922.108)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [dd2489794a7a78d9358ac39bca71c522, findElement {value=//span[@class='adyen-checkout__label__text'][normalize-space()='N�mero de tarjeta']/../following-sibling::div[1]//iframe, using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.108, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63499}, goog:processID: 27764, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63499/devtoo..., se:cdpVersion: 151.0.7922.108, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: dd2489794a7a78d9358ac39bca71c522
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:171)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:168)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:203)
+	... 34 more
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TC_FBO_023_Test.tc_fbo_023_dual_product_qty2_return_refund:314 � Runtime Failed to type in iframe after 5 attempts
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  06:48 min
+[INFO] Finished at: 2026-08-12T15:48:56+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.3.0:test (default-test) on project FDA_Mirakl_and_API_Automation: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\Users\ShubhamKumarThakur\git\FDA_Mirakl_and_API_Automation\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

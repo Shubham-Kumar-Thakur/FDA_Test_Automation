@@ -1,0 +1,12 @@
+[    3836ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/customer/account/:621
+[    3837ms] [LOG] undefined @ https://mcstaging.fahorro.com/customer/account/:621
+[    4702ms] [LOG] Fingerprint already sent @ https://mcstaging.fahorro.com/customer/account/:621
+[    7754ms] Uncaught TypeError: Cannot read properties of null (reading 'cancelled')
+    at a.finish (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:29558)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:2400)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4336)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:17448)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4260)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4473)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:5506)
+    at <anonymous> (https://bam.nr-data.net/1/NRJS-df86b166cb1c30a043b?a=1036878683&v=1216.487a282&to=YFNbNhRSV0pSVUdQX1kZeAESWlZXHFVGSkRYW1wQSVJaWlxDXU0fXlhdBx4%3D&rst=7094&ck=1&ref=https://mcstaging.fahorro.com/customer/account/&ap=1052&be=2675&fe=6929&dc=2806&af=err,xhr,stn,ins,spa&perf=%7B%22timing%22:%7B%22of%22:1785420461265,%22n%22:0,%22u%22:2329,%22r%22:3,%22ue%22:2331,%22re%22:670,%22f%22:670,%22dn%22:670,%22dne%22:670,%22c%22:670,%22ce%22:670,%22rq%22:672,%22rp%22:2215,%22rpe%22:2302,%22dl%22:2364,%22di%22:2799,%22ds%22:2800,%22de%22:2806,%22dc%22:6920,%22l%22:6921,%22le%22:6958%7D,%22navigation%22:%7B%22rc%22:1%7D%7D&at=TBRYQFxIREQ%3D&jsonp=NREUM.setToken:0:6)

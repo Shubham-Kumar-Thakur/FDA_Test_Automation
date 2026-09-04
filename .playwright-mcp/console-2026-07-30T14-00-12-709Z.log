@@ -1,0 +1,26 @@
+[    1505ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/:863
+[    1505ms] [LOG] undefined @ https://mcstaging.fahorro.com/:863
+[    2330ms] [LOG] Fingerprint already sent @ https://mcstaging.fahorro.com/:863
+[    8070ms] Uncaught TypeError: Cannot read properties of null (reading 'cancelled')
+    at a.finish (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:29558)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:2400)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4336)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:17448)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4260)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4473)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:5506)
+    at <anonymous> (https://bam.nr-data.net/1/NRJS-df86b166cb1c30a043b?a=1036878683&v=1216.487a282&to=YFNbNhRSV0pSVUdQX1kZeAESWlZXHFVeSh9eWF0HHhxQV1dTSw%3D%3D&rst=7471&ck=1&ref=https://mcstaging.fahorro.com/&ap=1827&be=508&fe=7386&dc=536&af=err,xhr,stn,ins,spa&perf=%7B%22timing%22:%7B%22of%22:1785420012729,%22n%22:0,%22u%22:227,%22ue%22:227,%22f%22:5,%22dn%22:11,%22dne%22:43,%22c%22:44,%22s%22:65,%22ce%22:86,%22rq%22:87,%22rp%22:131,%22rpe%22:210,%22dl%22:243,%22di%22:535,%22ds%22:536,%22de%22:537,%22dc%22:7383,%22l%22:7383,%22le%22:7395%7D,%22navigation%22:%7B%7D%7D&at=TBRYQFxIREQ%3D&jsonp=NREUM.setToken:0:6)
+[  188156ms] [WARNING] Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading @ https://mcstaging.fahorro.com/diamond-eye-combo-pack-monthly-color-contact-lenses113-3a9e5b2b.html:1217
+[  188342ms] [LOG] Will not send fingerprint @ https://mcstaging.fahorro.com/diamond-eye-combo-pack-monthly-color-contact-lenses113-3a9e5b2b.html:1217
+[  188342ms] [LOG] undefined @ https://mcstaging.fahorro.com/diamond-eye-combo-pack-monthly-color-contact-lenses113-3a9e5b2b.html:1217
+[  188749ms] [LOG] Fingerprint already sent @ https://mcstaging.fahorro.com/diamond-eye-combo-pack-monthly-color-contact-lenses113-3a9e5b2b.html:1217
+[  191749ms] [WARNING] Fallback to JQueryUI Compat activated. Your store is missing a dependency for a jQueryUI widget. Identifying and addressing the dependency will drastically improve the performance of your site. @ https://mcstaging.fahorro.com/diamond-eye-combo-pack-monthly-color-contact-lenses113-3a9e5b2b.html:1217
+[  195130ms] Uncaught TypeError: Cannot read properties of null (reading 'cancelled')
+    at a.finish (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:29558)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:2400)
+    at <anonymous> (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4336)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:1:17448)
+    at r (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4260)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:4473)
+    at n.exports (https://js-agent.newrelic.com/nr-spa-1216.min.js:0:5506)
+    at <anonymous> (https://bam.nr-data.net/1/NRJS-df86b166cb1c30a043b?a=1036878683&v=1216.487a282&to=YFNbNhRSV0pSVUdQX1kZeAESWlZXHFVSTVFbWV5NFkFWXUZVRxZGXlNO&rst=12710&ck=1&ref=https://mcstaging.fahorro.com/diamond-eye-combo-pack-monthly-color-contact-lenses113-3a9e5b2b.html&ap=2626&be=4145&fe=12408&dc=4193&af=err,xhr,stn,ins,spa&perf=%7B%22timing%22:%7B%22of%22:1785420194582,%22n%22:0,%22u%22:3144,%22ue%22:3144,%22f%22:18,%22dn%22:18,%22dne%22:18,%22c%22:18,%22ce%22:18,%22rq%22:22,%22rp%22:3104,%22rpe%22:3247,%22dl%22:3825,%22di%22:4191,%22ds%22:4192,%22de%22:4194,%22dc%22:12395,%22l%22:12397,%22le%22:12431%7D,%22navigation%22:%7B%7D%7D&at=TBRYQFxIREQ%3D&jsonp=NREUM.setToken:0:6)
