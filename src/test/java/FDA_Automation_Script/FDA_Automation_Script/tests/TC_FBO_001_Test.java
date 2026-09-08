@@ -55,7 +55,7 @@ public class TC_FBO_001_Test extends BaseClass {
         LoggerUtility.info("All page objects initialized for TC_FBO_001");
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 3P seller order placement and full fulfilment lifecycle: FDA -> Mirakl -> Shipment -> Delivery")
     public void tc_fbo_001_place_order_3p_seller_full_fulfillment() throws InterruptedException {
 

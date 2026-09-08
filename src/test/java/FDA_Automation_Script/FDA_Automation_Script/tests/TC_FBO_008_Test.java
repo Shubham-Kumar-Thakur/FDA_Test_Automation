@@ -122,7 +122,7 @@ public class TC_FBO_008_Test extends BaseClass {
         }
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2 products qty=1 each from 1 3P seller with PayPal payment → 2 Mirakl shipments → both Received")
     public void tc_fbo_008_two_products_qty1_paypal_one_seller_full_fulfillment() throws InterruptedException {
 

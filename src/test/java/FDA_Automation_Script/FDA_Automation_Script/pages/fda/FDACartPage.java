@@ -55,13 +55,17 @@ public class FDACartPage extends BasePage {
         // Refresh to bypass Magento FPC — ensures real server-side cart data is rendered
         driver.navigate().refresh();
 
-        // Disable implicit wait so the 30s WebDriverWait timeout is not dominated by 2-min implicit wait
+        // Disable implicit wait so the WebDriverWait timeout below is not dominated by 2-min implicit wait
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);
         boolean hasItems;
         try {
-            new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(60))
-                .until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(vaciarBtn));
-            hasItems = true;
+            // Race "has items" against "already empty" so an empty cart resolves in ~15s,
+            // not the full 60s it used to block waiting for a Vaciar carrito button that never appears
+            new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(15))
+                .until(org.openqa.selenium.support.ui.ExpectedConditions.or(
+                    org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(vaciarBtn),
+                    org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated(emptyMsg)));
+            hasItems = !driver.findElements(vaciarBtn).isEmpty();
         } catch (Exception e) {
             hasItems = false;
         } finally {

@@ -82,7 +82,7 @@ public class TC_FBO_002_Test extends BaseClass {
         LoggerUtility.info("All page objects initialized for TC_FBO_002");
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify dual-product 3P seller order: 2 SKUs → 2 Mirakl shipments (WEB-A, WEB-B) → full fulfillment lifecycle")
     public void tc_fbo_002_dual_product_3p_seller_full_fulfillment() throws InterruptedException {
 
