@@ -104,7 +104,7 @@ public class TC_FBO_030_Test extends BaseClass {
         }
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2 products qty=2 each by 1 3P seller → 2 Mirakl shipments → Accept both → Cancel WEB-A → WEB-A=Canceled, WEB-B=Awaiting shipment")
     public void tc_fbo_030_dual_product_qty2_cancel_one_shipment() throws InterruptedException {
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Single-test run: TC_FBS_005 only.
+  Usage: mvn test -DsuiteXmlFile=src/test/resources/testng_fbs005.xml
+-->
+
+<suite name="FDA Automation Suite - TC_FBS_005 Only" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TC_FBS_005: FBS 2 Products Qty=1 Each, 2 Different 3P Sellers Full Fulfillment
+         FDA 2 SKUs qty=1 each (Credit Card) → Mirakl splits into 2 shipments (WEB-A + WEB-B)
+         → each independently: Accept → Kibo (verify FBS) → Invoice Upload → DHL Tracking
+         → Mark as Shipped → Entregado → Received
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBS_005 - FBS Store 2 Products Diff Sellers Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test" />
+        </classes>
+    </test>
+
+</suite>

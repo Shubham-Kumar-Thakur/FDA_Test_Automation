@@ -127,7 +127,7 @@ public class TC_FBO_020_Test extends BaseClass {
     // @Test
     // ================================================================
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 1 SKU qty=1 from 3P seller → full fulfillment → return → compliance → full refund → Closed")
     public void tc_fbo_020_single_product_qty1_return_refund() throws InterruptedException {
 
