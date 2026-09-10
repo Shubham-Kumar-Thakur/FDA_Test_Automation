@@ -281,4 +281,68 @@ public class ConfigReader {
 	public String getFbs006InvoiceFilePath() {
 		return get("fbs006.invoice.file.path");
 	}
+
+	public String getFbs007Sku() {
+		return get("fbs007.sku");
+	}
+
+	public String getFbs007InvoiceFilePath() {
+		return get("fbs007.invoice.file.path");
+	}
+
+	public String getFbs008Sku1() {
+		return get("fbs008.sku1");
+	}
+
+	public String getFbs008Sku2() {
+		return get("fbs008.sku2");
+	}
+
+	public String getFbs008InvoiceFilePath() {
+		return get("fbs008.invoice.file.path");
+	}
+
+	public String getFbs009Sku() {
+		return get("fbs009.sku");
+	}
+
+	public String getFbs009InvoiceFilePath() {
+		return get("fbs009.invoice.file.path");
+	}
+
+	public String getFbs010Sku1() {
+		return get("fbs010.sku1");
+	}
+
+	public String getFbs010Sku2() {
+		return get("fbs010.sku2");
+	}
+
+	public String getFbs010InvoiceFilePath() {
+		return get("fbs010.invoice.file.path");
+	}
+
+	public String getFbs011Sku1() {
+		return get("fbs011.sku1");
+	}
+
+	public String getFbs011Sku2() {
+		return get("fbs011.sku2");
+	}
+
+	public String getFbs011InvoiceFilePath() {
+		return get("fbs011.invoice.file.path");
+	}
+
+	public String getFbs012Sku1() {
+		return get("fbs012.sku1");
+	}
+
+	public String getFbs012Sku2() {
+		return get("fbs012.sku2");
+	}
+
+	public String getFbs012InvoiceFilePath() {
+		return get("fbs012.invoice.file.path");
+	}
 }

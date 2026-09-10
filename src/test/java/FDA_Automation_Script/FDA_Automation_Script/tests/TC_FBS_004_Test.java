@@ -264,8 +264,11 @@ public class TC_FBS_004_Test extends BaseClass {
         LoggerUtility.info("Step 44: Clicking All Orders link");
         miraklOrdersPage.clickAllOrders();
 
-        // Steps 45-47: Search for order in Mirakl — retry every 60s up to 5 minutes for sync delay
-        String miraklSearchTerm = orderId + "WEB";
+        // Steps 45-47: Search for order in Mirakl — retry every 60s up to 5 minutes for sync delay.
+        // 1 3P seller = 1 shipment, so search directly with the "WEB-A" shipment ref rather than
+        // the generic "orderId+WEB" term (Kibo's externalId lookup below stays as plain "WEB" —
+        // Kibo's externalOrderId field never carries the Mirakl "-A" shipment suffix).
+        String miraklSearchTerm = orderId + "WEB-A";
         LoggerUtility.info("Step 45-46: Clicking Search field and entering Order ID: " + miraklSearchTerm);
         boolean orderFoundInMirakl = false;
         for (int attempt = 1; attempt <= 5; attempt++) {
@@ -297,7 +300,7 @@ public class TC_FBS_004_Test extends BaseClass {
 
         // Step 48-49: Click into detail → verify total
         LoggerUtility.info("Step 48: Clicking on the Order ID in the search result list");
-        miraklOrderDetailPage.clickOrderInList(orderId);
+        miraklOrderDetailPage.clickOrderInList(miraklSearchTerm);
         String miraklTotal = miraklOrderDetailPage.getOrderTotal();
         LoggerUtility.info("Step 49: Mirakl order total: " + miraklTotal + " | FDA order total: " + orderTotal);
         Assert.assertFalse(miraklTotal.isEmpty(), "Mirakl order total should be displayed");
@@ -399,7 +402,7 @@ public class TC_FBS_004_Test extends BaseClass {
         miraklOrdersPage.clickOrdersMenu();
         miraklOrdersPage.clickAllOrders();
         miraklOrdersPage.searchOrder(miraklSearchTerm);
-        miraklOrderDetailPage.clickOrderInList(orderId);
+        miraklOrderDetailPage.clickOrderInList(miraklSearchTerm);
         refreshAndWait(MIRAKL_ORDER_STATUS_LOCATOR);
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.INFO);
 
@@ -456,12 +459,36 @@ public class TC_FBS_004_Test extends BaseClass {
         LoggerUtility.info("Step 75: Clicking Confirm button");
         miraklOrderDetailPage.clickCustomFieldConfirmButton();
 
-        // Step 76: Verify status changes from Shipped to Received
-        String finalStatus = waitForMiraklStatus("Received", 6);
+        // Step 76: Verify status changes from Shipped to Received. The Entregado -> Received
+        // transition is processed asynchronously on the backend (same as the carrier-webhook-driven
+        // transitions in the FBO tests, which always sleep before polling) — a live run confirmed
+        // 6 rapid refreshes (~30s total, no pre-poll wait) isn't reliably enough time: the click
+        // sequence completed cleanly with no errors, yet status stayed "Shipped" through all 6
+        // checks. Give the backend a head start, then poll with more retries (same fix already
+        // applied in TC_FBS_006 after it hit the identical failure).
+        LoggerUtility.info("Waiting 30s for Entregado update to propagate before polling...");
+        Thread.sleep(30_000);
+        String finalStatus = waitForMiraklStatus("Received", 20);
         LoggerUtility.info("Step 76: Mirakl Status = " + finalStatus + " (expected 'Received')");
         Assert.assertEquals(finalStatus, "Received",
                 "Mirakl order status should change from 'Shipped' to 'Received'. Actual: " + finalStatus);
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.PASS);
+
+        // ============================================================
+        // PHASE 6: FDA — Re-verify order in Mis pedidos after Mirakl Received
+        // ============================================================
+
+        LoggerUtility.info("Switching to FDA tab to verify order in Mis pedidos after Received");
+        switchToFDATab();
+        fdaHomePage.navigateTo(config.getFdaUrl());
+        fdaHomePage.clickProfileIcon();
+        fdaHomePage.clickMyOrdersLink();
+        Assert.assertTrue(fdaOrderHistoryPage.isOrderHistoryDisplayed(), "Mis pedidos page not displayed after Received");
+        Assert.assertTrue(fdaOrderHistoryPage.isOrderPresent(orderId),
+                "Order ID " + orderId + " not found in FDA order history after Received");
+        String finalFdaStatus = fdaOrderHistoryPage.getOrderStatus(orderId);
+        LoggerUtility.info("Final FDA order status after Mirakl Received: " + finalFdaStatus);
+        ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.INFO);
 
         LoggerUtility.info("TC_FBS_004 execution completed successfully");
 

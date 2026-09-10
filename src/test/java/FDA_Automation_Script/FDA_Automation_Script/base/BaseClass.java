@@ -31,8 +31,12 @@ public class BaseClass {
         fdaTabHandle = driver.getWindowHandle();
         LoggerUtility.info("Browser launched. FDA tab handle: " + fdaTabHandle);
 
-        // 2. Open Mirakl in second tab and log in once for the entire suite
-        // (FDA login is deferred to @BeforeGroups("FBO")/@BeforeGroups("FBS") — see below)
+        // 2. Load the FDA storefront in the FDA tab first, so it never sits blank
+        // (login itself is still deferred to @BeforeGroups("FBO")/@BeforeGroups("FBS") — see below)
+        driver.get(config.getFdaUrl());
+        LoggerUtility.info("@BeforeSuite: FDA tab navigated to " + config.getFdaUrl());
+
+        // 3. Open Mirakl in second tab and log in once for the entire suite
         LoggerUtility.info("@BeforeSuite: Opening Mirakl in second tab");
         miraklTabHandle = DriverFactory.openNewTab();
         driver.get(config.getMiraklUrl());
@@ -40,7 +44,7 @@ public class BaseClass {
         miraklLoginPage.login(config.getMiraklUsername(), config.getMiraklPassword());
         LoggerUtility.info("@BeforeSuite: Mirakl login complete. Tab handle: " + miraklTabHandle);
 
-        // 3. Leave focus on FDA tab — every test starts on the FDA tab
+        // 4. Leave focus on FDA tab — every test starts on the FDA tab
         switchToFDATab();
         LoggerUtility.info("@BeforeSuite: Setup complete. Browser has FDA (tab 1) and Mirakl (tab 2).");
     }

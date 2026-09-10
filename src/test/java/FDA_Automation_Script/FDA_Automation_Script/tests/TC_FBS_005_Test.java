@@ -251,35 +251,29 @@ public class TC_FBS_005_Test extends BaseClass {
         miraklOrdersPage.clickOrdersMenu();
         miraklOrdersPage.clickAllOrders();
 
-        String miraklSearchTerm = orderId + "WEB";
-        String shipmentRefA     = orderId + "WEB-A";
-        String shipmentRefB     = orderId + "WEB-B";
+        String shipmentRefA = orderId + "WEB-A";
+        String shipmentRefB = orderId + "WEB-B";
+        String shipmentRefGeneric = orderId + "WEB";
 
         // Search for the order — retry every 60s up to 10 minutes for Mirakl sync delay.
-        // IMPORTANT (learned from TC_FBS_004): the generic search term ("orderId+WEB") is a
-        // substring match that's already satisfied the instant EITHER WEB-A or WEB-B alone
-        // appears — Mirakl does not create both shipment rows atomically. The loop must keep
-        // polling until BOTH shipmentRefA and shipmentRefB are individually confirmed present,
-        // not just the generic term.
-        LoggerUtility.info("Searching Mirakl for: " + miraklSearchTerm);
-        boolean orderFoundInMirakl = false;
+        // Search ONCE per attempt with the generic "orderId+WEB" term (it matches both "...WEB-A"
+        // and "...WEB-B" as a substring), then check the single resulting table for both suffixes.
+        // A prior revision searched directly with each specific shipment ref back-to-back in the
+        // same attempt (WEB-A immediately followed by WEB-B) with no generic search in between —
+        // confirmed via live run (on TC_FBS_006, same code shape) to leave the Mirakl search field
+        // holding both terms concatenated together, which never matches any row. One search per
+        // attempt avoids ever typing into the same field twice before it's reset by clickAllOrders().
         boolean shipmentAFound = false;
         boolean shipmentBFound = false;
         for (int attempt = 1; attempt <= 10; attempt++) {
-            LoggerUtility.info("Mirakl search attempt " + attempt + "/10 for: " + miraklSearchTerm);
-            miraklOrdersPage.searchOrder(miraklSearchTerm);
-            orderFoundInMirakl = miraklOrdersPage.hasSearchResults(miraklSearchTerm);
-            if (orderFoundInMirakl) {
-                shipmentAFound = miraklOrdersPage.hasSearchResults(shipmentRefA);
-                shipmentBFound = miraklOrdersPage.hasSearchResults(shipmentRefB);
-                LoggerUtility.info("Order found on attempt " + attempt
-                        + " — WEB-A present: " + shipmentAFound + ", WEB-B present: " + shipmentBFound);
-                if (shipmentAFound && shipmentBFound) {
-                    LoggerUtility.info("Both WEB-A and WEB-B confirmed present in Mirakl on attempt " + attempt);
-                    break;
-                }
-            } else {
-                LoggerUtility.info("Order not in Mirakl yet (attempt " + attempt + "/10)");
+            LoggerUtility.info("Mirakl search attempt " + attempt + "/10 for generic ref: " + shipmentRefGeneric);
+            miraklOrdersPage.searchOrder(shipmentRefGeneric);
+            shipmentAFound = miraklOrdersPage.hasSearchResults(shipmentRefA);
+            shipmentBFound = miraklOrdersPage.hasSearchResults(shipmentRefB);
+            LoggerUtility.info("Attempt " + attempt + " — WEB-A present: " + shipmentAFound + ", WEB-B present: " + shipmentBFound);
+            if (shipmentAFound && shipmentBFound) {
+                LoggerUtility.info("Both WEB-A and WEB-B confirmed present in Mirakl on attempt " + attempt);
+                break;
             }
             if (attempt < 10) {
                 LoggerUtility.info("Waiting 60 seconds before next search attempt...");
@@ -287,7 +281,6 @@ public class TC_FBS_005_Test extends BaseClass {
                 miraklOrdersPage.clickAllOrders();
             }
         }
-        Assert.assertTrue(orderFoundInMirakl, "Order " + miraklSearchTerm + " did not appear in Mirakl within 10 minutes");
         Assert.assertTrue(shipmentAFound, "Mirakl shipment WEB-A (Seller A) not found: " + shipmentRefA);
         Assert.assertTrue(shipmentBFound, "Mirakl shipment WEB-B (Seller B) not found: " + shipmentRefB);
         LoggerUtility.info("Both shipments verified — WEB-A (Seller A) and WEB-B (Seller B) present in Mirakl");
@@ -382,6 +375,22 @@ public class TC_FBS_005_Test extends BaseClass {
 
         runFbsFulfillmentFlow(shipmentRefA, urlShipmentA);
         runFbsFulfillmentFlow(shipmentRefB, urlShipmentB);
+
+        // ============================================================
+        // PHASE 5: FDA — Re-verify order in Mis pedidos after both shipments Received
+        // ============================================================
+
+        LoggerUtility.info("Switching to FDA tab to verify order in Mis pedidos after Received");
+        switchToFDATab();
+        fdaHomePage.navigateTo(config.getFdaUrl());
+        fdaHomePage.clickProfileIcon();
+        fdaHomePage.clickMyOrdersLink();
+        Assert.assertTrue(fdaOrderHistoryPage.isOrderHistoryDisplayed(), "Mis pedidos page not displayed after Received");
+        Assert.assertTrue(fdaOrderHistoryPage.isOrderPresent(orderId),
+                "Order ID " + orderId + " not found in FDA order history after Received");
+        String finalFdaStatus = fdaOrderHistoryPage.getOrderStatus(orderId);
+        LoggerUtility.info("Final FDA order status after Mirakl Received: " + finalFdaStatus);
+        ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.INFO);
 
         LoggerUtility.info("TC_FBS_005 execution completed successfully — WEB-A and WEB-B both Received");
 
@@ -495,7 +504,13 @@ public class TC_FBS_005_Test extends BaseClass {
         miraklOrderDetailPage.selectEntregadoYes();
         miraklOrderDetailPage.clickCustomFieldConfirmButton();
 
-        String finalStatus = waitForMiraklStatus("Received", 6);
+        // The Entregado -> Received transition is processed asynchronously on the backend — a
+        // live run of TC_FBS_004/006 confirmed 6 rapid refreshes with no pre-poll wait isn't
+        // reliably enough time even though the click sequence completes with no errors. Give the
+        // backend a head start, then poll with more retries.
+        LoggerUtility.info("Waiting 30s for Entregado update to propagate before polling [" + shipmentRef + "]...");
+        Thread.sleep(30_000);
+        String finalStatus = waitForMiraklStatus("Received", 20);
         LoggerUtility.info("Mirakl status after Entregado [" + shipmentRef + "]: " + finalStatus + " (expected 'Received')");
         Assert.assertEquals(finalStatus, "Received",
                 "Mirakl order status should change from 'Shipped' to 'Received' [" + shipmentRef + "]. Actual: " + finalStatus);

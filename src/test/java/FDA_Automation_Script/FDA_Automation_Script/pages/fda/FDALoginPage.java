@@ -2,6 +2,7 @@ package FDA_Automation_Script.FDA_Automation_Script.pages.fda;
 
 import FDA_Automation_Script.FDA_Automation_Script.pages.BasePage;
 import FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility;
+import FDA_Automation_Script.FDA_Automation_Script.utils.WaitUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -37,10 +38,46 @@ public class FDALoginPage extends BasePage {
     }
 
     public void login(String email, String password) {
+        waitForLoginFormReady();
         enterEmail(email);
         enterPassword(password);
         clickLoginButton();
         verifyLoginSuccess(email);
+    }
+
+    // Clicking "Iniciar sesion" is usually a client-side route change: the URL flips to
+    // customer/account/login before the form has actually finished rendering, so the browser shows
+    // a blank/white page for a moment while the email/password fields are present-but-unpainted in
+    // the DOM (same class of SPA race documented for search/PDP navigation). A hard refresh forces
+    // a clean, fully rendered login form before we start typing into it.
+    //
+    // A live run of the full FBS suite (2026-09-09) showed this URL navigation does not always
+    // happen: the first 6 login/logout cycles in that browser session each navigated to
+    // customer/account/login and refreshed fine, but the 7th cycle (deep into the session) never
+    // changed the URL at all, and hard-gating on fluentWaitForUrl's 2-minute timeout skipped every
+    // subsequent test. Racing both signals — URL change OR the email field already present, e.g.
+    // a quick-login variant that doesn't navigate — avoids blocking the whole login on a signal
+    // that isn't guaranteed to fire, while still forcing the hard refresh when the URL genuinely
+    // did change (preserving the original SPA-race fix for the normal case).
+    private void waitForLoginFormReady() {
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);
+        boolean urlChanged;
+        try {
+            new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(30))
+                    .until(d -> d.getCurrentUrl().contains("customer/account/login")
+                            || !d.findElements(EMAIL_FIELD).isEmpty());
+            urlChanged = driver.getCurrentUrl().contains("customer/account/login");
+        } catch (Exception e) {
+            LoggerUtility.warn("Neither login URL nor email field appeared within 30s after clicking "
+                    + "Iniciar sesion — proceeding to the long fluentWait below as a last resort");
+            urlChanged = false;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
+        }
+        if (urlChanged) {
+            driver.navigate().refresh();
+        }
+        WaitUtility.fluentWait(driver, EMAIL_FIELD);
     }
 
     // Magento re-renders the same login URL with an inline error on bad credentials instead of
