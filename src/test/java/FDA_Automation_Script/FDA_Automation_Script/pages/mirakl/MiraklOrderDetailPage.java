@@ -448,32 +448,17 @@ public class MiraklOrderDetailPage extends BasePage {
         // ghosted on top of the real "Order documents" panel underneath.
         try { Thread.sleep(2000); } catch (InterruptedException ignored) {}
         try {
-            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(5));
-            logVisibleMenuItemTexts();
-        } finally {
-            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
-        }
-        try {
             scrollToCenter(ADD_TRACKING_LINK);
             click(ADD_TRACKING_LINK);
         } catch (org.openqa.selenium.NoSuchElementException e) {
+            logVisibleMenuItemTexts();
             dumpElementsContainingIgnoreCase("track");
             dumpElementsContainingIgnoreCase("hip");
             dumpElementsContainingIgnoreCase("arrier");
             throw e;
         }
-        // Post-click diagnostic: the carrier/tracking-number widgets that appear after this
-        // click have never been captured live. Dump the resulting DOM + a dedicated screenshot
-        // (distinct filename so it isn't overwritten by the generic per-step INFO screenshot)
-        // so that if selectCarrier()/enterTrackingNumber() below still can't find their targets,
-        // the real markup is available without another full run.
+        // Give the tracking form time to render before capturing the confirmation screenshot.
         try { Thread.sleep(1000); } catch (InterruptedException ignored) {}
-        try {
-            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(5));
-            logVisibleMenuItemTexts();
-        } finally {
-            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
-        }
         ScreenshotUtility.captureScreenshot(driver, "TC_FBS_001_TRACKING_FORM_OPEN", ScreenshotUtility.INFO);
     }
 
