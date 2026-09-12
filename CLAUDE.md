@@ -19,7 +19,14 @@ Covers the full order lifecycle: FDA storefront → Kibo OMS (REST API) → Mira
 | Apache POI | 5.3.0 | Excel data utility |
 | Log4j2 | 2.24.3 | Logging |
 | Jackson | 2.18.2 | JSON serialization for REST Assured |
+| ExtentReports | 5.1.2 | HTML execution report (`ExecutionReport.html`) |
 | Maven | 3.x | Build + dependency management |
+
+## Build
+
+```bash
+mvn clean compile
+```
 
 ## Run Tests
 
@@ -67,8 +74,11 @@ mvn test -Dtest=TC_FBO_001_Test
 | `TC_FBO_030_Test` | 2 SKUs qty=2 each from **1 3P seller** → Mirakl accept WEB-A + WEB-B → 1-min wait → cancel WEB-A only → WEB-A=Canceled, WEB-B=Awaiting; resolves `offer_sku` via inline Mirakl API call; uses separate FDA account (`mgowda@kognivera.com`), `@BeforeClass`/`@AfterClass` swap sessions |
 | `TC_FBO_031_Test` | 2 SKUs qty=1 each from **2 different 3P sellers** → Mirakl accept WEB-A + WEB-B → 1-min wait → cancel WEB-A only using `order_line_id` format (`shipmentRefA + "-1"`) → WEB-A=Canceled, WEB-B=Awaiting; uses separate FDA account (`mgowda@kognivera.com`), `@BeforeClass`/`@AfterClass` swap sessions |
 | `TC_FBO_032_Test` | 2 SKUs qty=2 each from **2 different 3P sellers** → Mirakl accept WEB-A + WEB-B → 1-min wait → cancel WEB-A only using `order_line_id` format (`shipmentRefA + "-1"`) → WEB-A=Canceled, WEB-B=Awaiting; uses separate FDA account (`mgowda@kognivera.com`), `@BeforeClass`/`@AfterClass` swap sessions |
+| `TC_E2E_009_Test` | **Current implementation (as of the code in this repo) differs from the description below it in this table's earlier revisions — no Adobe Admin phase, no FDA login exists in the code.** Seller updates an offer's price via Excel import, verified end-to-end: Mirakl Seller → Mirakl Operator → FDA storefront PDP. Prompts interactively on stdin (`promptForPrice()`) for the new price before anything else runs (Enter with no input keeps the existing Excel price); writes it into the Excel file via `ExcelUtility.updatePrice()`. Reads Mirakl Seller/Operator login credentials from environment variables (`MIRAKL_SELLER_USERNAME/PASSWORD`, `MIRAKL_OPERATOR_USERNAME/PASSWORD`) via `requireEnv()` — never `config.properties`, never hardcoded. **`ADOBE_ADMIN_USERNAME/PASSWORD` and the `pages/adobe/` classes are not referenced anywhere in `TC_E2E_009_Test.java`** despite existing in the codebase and being documented elsewhere in this file — treat those as unused/legacy until wired back in. **Overrides `BaseClass.setupSuite()`** so Mirakl login goes straight to the Seller account, never the suite-default `mirakl.username`; only safe in its own isolated suite XML (`testng_e2e_009.xml`) — see [Known Issues](#known-issues). `MiraklLoginPage.login()` asserts a dashboard element (`Price and stock` nav, shared by both Seller and Operator UIs) is reached before returning, for both this TC's Seller and Operator logins. Flow: Seller notes Shop name + current offer price (searches by **Offer SKU**, not Product ID, via `MiraklOffersPage.searchBySku()`; waits for the grid via `waitForSingleResult()` — a genuine `WebDriverWait` poll, not `Thread.sleep` — and verifies the settled row's own Offer SKU matches before trusting it) → imports the Excel file via File Import → clicks Import, then polls the **"Track offer imports" report** (`MiraklFileImportPage.waitForImportCompletion()`, every 8s up to 2 min) for a terminal status and asserts **0 failed rows** (`getLatestImportFailedCount()`) — the transient "File imported" banner is checked only best-effort/non-blocking, since a real run (2026-09-10) showed it does not reliably appear before the form resets → re-searches by SKU (same explicit-wait pattern) and asserts the Seller price changed and matches the Excel price → separate Operator `ChromeDriver` session filters by Shop Name only (no Shop ID filter — no confirmed UI element for one has been identified), searches by SKU with the same explicit-wait pattern, polls up to 10× (30s apart) for the price to match → opens a **third, independent, incognito `ChromeDriver`** for the FDA storefront (never reuses Seller/Operator cookies) and **actively polls** (every 30s, up to a 10-minute SLA) searching by SKU and checking the PDP price, instead of a blind wait — throws a distinctly-worded `TIMEOUT:` error (not a normal assertion failure) if the SLA is exceeded — then also searches by Product Name, verifying PDP Name/SKU/Price against the Excel data each time (`PriceUtility.pricesEqual()`) |
 
 ## Project Structure
+
+Note the package path repeats the project name (`FDA_Automation_Script.FDA_Automation_Script`) — this is intentional/existing convention, not a typo; new classes must follow it or they won't resolve in `testng.xml` `<class name="...">` entries.
 
 ```
 src/
@@ -86,21 +96,29 @@ src/
         fda/
           FDAHomePage.java          ← Home, search, cart icon, profile icon, logout()
           FDALoginPage.java         ← Email/password login
-          FDAPDPPage.java           ← Product Details Page; increaseQuantity() clicks Aumentar plus button
+          FDAPDPPage.java           ← Product Details Page; increaseQuantity() clicks Aumentar plus button; getProductSku() added for TC_E2E_009
           FDACartPage.java          ← Cart validation, removeAllItems()
           FDAPaymentPage.java       ← Credit card checkout, handle3dsChallenge()
           FDAPayPalPage.java        ← PayPal sandbox login: waitForPageLoad → email → clickNextButton → password → clickLoginButton → clickCompletePayment; locators are Spanish-language (Siguiente, Iniciar sesión, Compra completa)
           FDASuccessPage.java       ← Order ID extraction
           FDAOrderHistoryPage.java  ← Mis pedidos
+          FDASearchResultsPage.java ← Search-results-grid presence check + click-through to PDP (TC_E2E_009 — name search can return a grid, not just a direct PDP redirect)
         kibo/
           KiboLoginPage.java        ← Kibo OMS login (not used in current suite — Kibo accessed via API)
           KiboOrdersPage.java       ← Navigation + search
           KiboOrderDetailPage.java  ← Status, Payments tab, Custom Data tab
         mirakl/
-          MiraklLoginPage.java      ← Mirakl login (called in @BeforeSuite)
+          MiraklLoginPage.java      ← Mirakl login (called in @BeforeSuite); `login()` asserts `isDashboardDisplayed()` (shared Seller/Operator "Price and stock" nav marker) before returning — login failures throw instead of being silently assumed successful; logout() added for TC_E2E_009 (not currently called — TC_E2E_009's `setupSuite()` override logs straight in as Seller instead of swapping; available for reuse by future multi-account Mirakl tests)
           MiraklOrdersPage.java     ← Navigation + search, hasSearchResults()
           MiraklOrderDetailPage.java ← Accept, getOrderStatus(), clickOrderInList()
           MiraklReturnPage.java     ← Return flow (used by TC_FBO_021)
+          MiraklOffersPage.java     ← Price and stock → Offers: search by SKU, Shop filter (Operator), price/product-name/shop-name getters, `waitForSingleResult()` explicit-wait grid poll (TC_E2E_009)
+          MiraklFileImportPage.java ← Price and stock → File import: upload Excel, select File Content = Offers, import status/ID, `waitForImportCompletion()`/`getLatestImportFailedCount()` polling the "Track offer imports" report (TC_E2E_009)
+          MiraklCatalogPage.java    ← Seller-side Product Imports + Catalog Management: SKU search, Valid/Invalid data detection, Fragile/MSI edit-and-save loop (TC_E2E_009)
+          MiraklOperatorCatalogPage.java ← Operator-side Product Imports: filter by Seller, bulk-select → More Actions → Edit Catalogs → FDA Catalog checkbox → Confirm, then Accept products popup (TC_E2E_009)
+        adobe/
+          AdobeAdminLoginPage.java  ← Adobe Commerce Admin login (3rd separate `ChromeDriver`, TC_E2E_009 only)
+          AdobeMiraklSyncPage.java  ← Admin Synchronization screen: verify Products import row, trigger "MCM Products Asynchronous Import (CM52-CM53-CM54)" (TC_E2E_009)
       utils/
         ConfigReader.java           ← Reads config.properties (singleton)
         DriverFactory.java          ← ThreadLocal WebDriver, openNewTab(), switchToTab()
@@ -110,6 +128,8 @@ src/
         ApiUtility.java             ← REST Assured — Kibo auth/find/shipments, Envioclick, Skydropx, Cancel
         ReturnApiUtility.java       ← Mirakl GET order-line-id + POST return (used by TC_FBO_020, 021, 022, 023, 026)
         ShipmentDetails.java        ← Immutable value object: shipmentNumber, deliveryPartner, tplShipmentId, carrierName, trackingNumber, miraklSuffix
+        ExcelUtility.java           ← POI reader for Mirakl offer file-import `.xlsx` (Data sheet, header-name column lookup); first real usage of the poi-ooxml dependency (TC_E2E_009)
+        PriceUtility.java           ← Normalizes currency-formatted price strings ("$100.00", "100,00") to BigDecimal for numeric equality comparisons (TC_E2E_009)
         ExtentManager.java          ← Singleton ExtentReports + per-thread ExtentTest; report at `target/surefire-reports/ExecutionReport.html`; do NOT use LoggerUtility inside this class (circular dependency)
         StepLogger.java             ← Optional structured step logger; step()/pass()/fail()/info() route through LoggerUtility only; screenshot() is the sole direct ExtentReports caller (images can't travel through log messages)
       tests/
@@ -137,6 +157,7 @@ src/
         TC_FBO_031_Test.java
         TC_FBO_032_Test.java
         TC_FBO_SPLIT_01_Test.java
+        TC_E2E_009_Test.java
     resources/
       config.properties             ← All URLs, credentials, API tokens
       log4j2.xml                    ← Log configuration
@@ -279,6 +300,11 @@ These are **private** methods duplicated in every test class — not in `BaseCla
 **Envioclick payload timestamps:**
 The `buildEnvioclickBody` helper hardcodes `timestamp`, `realPickupDate`, `arrivalDate`, and `realDeliveryDate` to old 2022 values. The Envioclick API does not validate these dates; only `status`, `idOrder`, `trackingCode`, `carrier`, and `myShipmentReference` are meaningful.
 
+## Known Issues
+
+**`TC_E2E_009` is listed in the main `testng.xml` (TEST 19) despite its documented isolation requirement.**
+`TC_E2E_009_Test` declares its own `@BeforeSuite setupSuite()` that logs Mirakl straight in as Seller (see catalog entry above). TestNG runs **every** `@BeforeSuite` method found across all classes in a suite once each, in undefined relative order — it does not replace `BaseClass.setupSuite()`. With `TC_E2E_009_Test` present in `testng.xml` alongside the other 24 TCs, both `BaseClass.setupSuite()` and `TC_E2E_009_Test.setupSuite()` fire at suite start, and whichever runs last determines the actual Mirakl session for the rest of the run — risking a broken Mirakl login for TC_FBO_001–032. Only `testng_e2e_009.xml` (which contains just this one class) is safe. Before running the full suite, verify `TC_E2E_009_Test` has been removed from `testng.xml`, or run it exclusively via `-DsuiteXmlFile=src/test/resources/testng_e2e_009.xml`.
+
 ## Adding New Test Cases
 
 1. Create new page objects in `pages/fda|kibo|mirakl/` extending `BasePage`
@@ -310,6 +336,7 @@ Do NOT commit this file to shared/public repositories.
 | `fda.username` | `BaseClass`, tests | Suite-level FDA login |
 | `fda.password` | `BaseClass`, tests | Suite-level FDA password |
 | `fda.sku` | Tests | Primary SKU for single-product tests |
+| `fda.split.skus` | `TC_FBO_SPLIT_01_Test` | Comma-separated list of 8 SKUs, split via `.split(",")` |
 | `fda.card.number` | `FDAPaymentPage` | Credit card number |
 | `fda.card.expiry` | `FDAPaymentPage` | Card expiry MM/YY |
 | `fda.card.cvv` | `FDAPaymentPage` | Card CVV |
@@ -334,3 +361,7 @@ Do NOT commit this file to shared/public repositories.
 | `cancel.shipment.cookie` | `ApiUtility` | Cookie for cancel shipment calls |
 | `return.service.url` | `ReturnApiUtility` | Return creation endpoint (Cookie-only auth) |
 | `return.service.cookie` | `ReturnApiUtility` | Cookie for return service calls |
+| `excel.offer.file.path` | `TC_E2E_009_Test` (raw `config.get()`), `ExcelUtility` | Absolute path to the Mirakl offer file-import `.xlsx` used by TC_E2E_009 |
+| `adobe.admin.url` | `TC_E2E_009_Test` (raw `config.get()`) | Adobe Commerce (Magento) Admin URL — URL only, not a credential; if blank, falls back to `fda.url` + `admin` (standard Magento admin path) |
+
+**TC_E2E_009 login credentials are NOT in `config.properties`** — by explicit design, they are read from environment variables at test-run time via a private `requireEnv(String)` helper in `TC_E2E_009_Test`, and are never written to any file: `MIRAKL_SELLER_USERNAME`, `MIRAKL_SELLER_PASSWORD`, `MIRAKL_OPERATOR_USERNAME`, `MIRAKL_OPERATOR_PASSWORD`, `ADOBE_ADMIN_USERNAME`, `ADOBE_ADMIN_PASSWORD`. Set them in the shell immediately before invoking Maven, e.g. (PowerShell) `$env:MIRAKL_SELLER_USERNAME='...'; mvn test -DsuiteXmlFile=...`.

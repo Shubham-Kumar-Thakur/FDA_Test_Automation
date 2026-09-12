@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Diagnostic single-TC override suite — runs the existing, already-working
+  TC_FBO_001 in isolation to check whether the @BeforeSuite Mirakl MFA /
+  Chrome-session-crash seen while running TC_E2E_009 is an environment-wide
+  issue or specific to the new test. Not part of the permanent suite.
+-->
+
+<suite name="FDA Automation Suite - TC_FBO_001 Diagnostic" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+    <test name="TC_FBO_001 - 3P Seller Order Full Fulfillment" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test" />
+        </classes>
+    </test>
+
+</suite>

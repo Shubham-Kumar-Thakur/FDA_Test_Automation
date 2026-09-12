@@ -300,4 +300,16 @@
         </classes>
     </test>
 
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 19 — TC_E2E_009: Seller Updates Offer Price via Excel Import
+         Mirakl Seller (old price) → Excel Import → Seller/Operator price verified
+         → FDA Search → PDP Price
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_E2E_009 - Seller Update Offer Price via Excel" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_009_Test" />
+        </classes>
+    </test>
+
 </suite>

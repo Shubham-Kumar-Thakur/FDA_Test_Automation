@@ -16,6 +16,8 @@ public class FDAPDPPage extends BasePage {
     private static final By INCREASE_QTY_BTN   = By.xpath("//button[@title='Aumentar']//i[@class='fas fa-plus']");
     private static final By PRODUCT_NAME        = By.xpath("//h1//span[@class='base' and @itemprop='name']");
     private static final By PRODUCT_PRICE       = By.xpath("//img[@class='currency-flag-image']/preceding-sibling::span[@class='price']");
+    // TODO: Verify locator against actual PDP DOM — standard Adobe Commerce "product attribute sku" block
+    private static final By PRODUCT_SKU         = By.xpath("//div[contains(@class,'product') and contains(@class,'attribute') and contains(@class,'sku')]//div[@class='value']");
     private static final By ADD_TO_CART_SUCCESS = By.cssSelector(
         "div.message-success, [data-ui-id='message-success'], " +
         "div.message.success, .page.messages .success, " +
@@ -103,6 +105,12 @@ public class FDAPDPPage extends BasePage {
         String price = getText(PRODUCT_PRICE);
         LoggerUtility.info("PDP product price: " + price);
         return price;
+    }
+
+    public String getProductSku() {
+        String sku = getText(PRODUCT_SKU);
+        LoggerUtility.info("PDP product SKU: " + sku);
+        return sku;
     }
 
     public boolean isDisplayed() {
