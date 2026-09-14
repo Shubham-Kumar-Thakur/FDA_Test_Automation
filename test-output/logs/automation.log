@@ -1,70 +1,90 @@
-2026-09-13 00:41:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login uses the Seller account from MIRAKL_SELLER_USERNAME/PASSWORD, not the suite default
-2026-09-13 00:41:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
-2026-09-13 00:41:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Browser launched. Mirakl tab handle: 51A8B719331ABB15A71C8B42ADB87805
-2026-09-13 00:41:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
-2026-09-13 00:41:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
-2026-09-13 00:41:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
-2026-09-13 00:41:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
-2026-09-13 00:41:21 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
-2026-09-13 00:41:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
-2026-09-13 00:41:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Mirakl login as Seller (skhullar+90764@kognivera.com) complete
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Setup complete (Operator/FDA login deferred to their own phases)
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009: All page objects initialized — Mirakl Seller session already established in @BeforeSuite, no session swap needed
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Started: tc_e2e_009_seller_update_offer_price_via_excel
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 execution started
-2026-09-13 00:41:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 0: Tester Input — New Offer Price =====
-2026-09-13 00:41:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-13 00:41:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='33.91', productName='null', productId='6009541008'}
-2026-09-13 00:41:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Tester-provided price for SKU ITUP008: 40.99
-2026-09-13 00:41:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: updated Offer Price for SKU 'ITUP008' to '40.99' in C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-13 00:41:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 1: Mirakl Seller — Note Shop, SKU, Current Price =====
-2026-09-13 00:41:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 51A8B719331ABB15A71C8B42ADB87805
-2026-09-13 00:41:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to Mirakl tab
-2026-09-13 00:41:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Reusing Mirakl Seller session established in @BeforeSuite: skhullar+90764@kognivera.com
-2026-09-13 00:41:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl — current Seller/Shop name: TEST_SELLERRR (raw heading: Welcome TEST_SELLERRR)
-2026-09-13 00:41:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: Captured Seller/Shop name: TEST_SELLERRR
-2026-09-13 00:41:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-13 00:41:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='40.99', productName='null', productId='6009541008'}
-2026-09-13 00:41:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Excel Offer SKU: ITUP008 | Product ID: 6009541008 | Excel price: 40.99
-2026-09-13 00:41:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> Offers
-2026-09-13 00:42:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Mirakl Offers for SKU: ITUP008
-2026-09-13 00:42:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching search-type dropdown from 'Product ID' to 'Offer SKU'
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed Offer SKU: ITUP008
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed price: MX$33.91
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed product name: OZiva Sugar Support Effervescent8
+2026-09-14 22:26:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login uses the Seller account from MIRAKL_SELLER_USERNAME/PASSWORD, not the suite default
+2026-09-14 22:26:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-14 22:26:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Browser launched. Mirakl tab handle: 319763A8E0CA0804CF734FC99C7A30D5
+2026-09-14 22:26:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-14 22:26:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-14 22:26:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-14 22:26:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-14 22:26:34 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-09-14 22:26:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-14 22:26:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Mirakl login as Seller (skhullar+90764@kognivera.com) complete
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Setup complete (FDA login deferred to its own phase)
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009: All page objects initialized — Mirakl Seller session already established in @BeforeSuite, no session swap needed
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Started: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 execution started
+2026-09-14 22:27:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 0: Tester Input — New Offer Price =====
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='5.7', productName='null', productId='6009541008'}
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Tester-provided price for SKU ITUP008: 5.70
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: updated Offer Price for SKU 'ITUP008' to '5.70' in C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 1: Mirakl Seller — Note Shop, SKU, Current Price =====
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 319763A8E0CA0804CF734FC99C7A30D5
+2026-09-14 22:27:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to Mirakl tab
+2026-09-14 22:27:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Reusing Mirakl Seller session established in @BeforeSuite: skhullar+90764@kognivera.com
+2026-09-14 22:27:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl — current Seller/Shop name: TEST_SELLERRR (raw heading: Welcome TEST_SELLERRR)
+2026-09-14 22:27:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: Captured Seller/Shop name: TEST_SELLERRR
+2026-09-14 22:27:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:27:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='5.7', productName='null', productId='6009541008'}
+2026-09-14 22:27:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Excel Offer SKU: ITUP008 | Product ID: 6009541008 | Excel price: 5.7
+2026-09-14 22:27:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> Offers
+2026-09-14 22:27:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Mirakl Offers for Product ID: 6009541008
+2026-09-14 22:27:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search-type dropdown already set to 'Product ID' — no change needed
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed Offer SKU: ITUP008
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed price: MX$5.70
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed product name: OZiva Sugar Support Effervescent8
 Bebé
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Current Seller offer price (before update): MX$33.91 | Product name: OZiva Sugar Support Effervescent8
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Current Seller offer price (before update): MX$5.70 | Product name: OZiva Sugar Support Effervescent8
 Bebé
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_009_INFO.png
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 2: Mirakl Seller — Import Offer File =====
-2026-09-13 00:42:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports
-2026-09-13 00:42:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading offer file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-13 00:42:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Steps 7-8: Selected offer Excel file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-13 00:42:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_009_INFO.png
-2026-09-13 00:42:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting File Content = Offers (was: )
-2026-09-13 00:42:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Import button
-2026-09-13 00:42:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl import status message: File imported
-2026-09-13 00:42:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 9: Transient import banner seen: File imported
-2026-09-13 00:42:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
-2026-09-13 00:44:41 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Failed: tc_e2e_009_seller_update_offer_price_via_excel
-2026-09-13 00:44:41 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Failure reason: invalid session id: session deleted as the browser has closed the connection
-from disconnected: unable to send message to renderer
-  (Session info: chrome=152.0.7977.84)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [df2394fbb38d9f4f991b781e183265fa, findElements {value=//table//tbody/tr[1]/td, using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.84, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64945}, goog:processID: 23984, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64945/devtoo..., se:cdpVersion: 152.0.7977.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: df2394fbb38d9f4f991b781e183265fa
-2026-09-13 00:44:41 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Failed: tc_e2e_009_seller_update_offer_price_via_excel
-2026-09-13 00:44:41 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Failure reason: invalid session id
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [df2394fbb38d9f4f991b781e183265fa, screenshot {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.84, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64945}, goog:processID: 23984, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64945/devtoo..., se:cdpVersion: 152.0.7977.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: df2394fbb38d9f4f991b781e183265fa
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_009_INFO.png
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 2: Mirakl Seller — Import Offer File =====
+2026-09-14 22:27:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports
+2026-09-14 22:27:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading offer file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:27:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Steps 7-8: Selected offer Excel file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:27:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_009_INFO.png
+2026-09-14 22:27:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting File Content = Offers (was: )
+2026-09-14 22:27:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Import button
+2026-09-14 22:27:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl import status message: File imported
+2026-09-14 22:27:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 9: Transient import banner seen: File imported
+2026-09-14 22:27:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:27:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 1) — retrying
+2026-09-14 22:27:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:27:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 2) — retrying
+2026-09-14 22:27:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:27:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 3) — retrying
+2026-09-14 22:28:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 4) — retrying
+2026-09-14 22:28:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 5) — retrying
+2026-09-14 22:28:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 6) — retrying
+2026-09-14 22:28:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 7) — retrying
+2026-09-14 22:28:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 8) — retrying
+2026-09-14 22:28:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 9) — retrying
+2026-09-14 22:28:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:28:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 10) — retrying
+2026-09-14 22:29:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:29:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 11) — retrying
+2026-09-14 22:29:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:29:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 12) — retrying
+2026-09-14 22:29:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:29:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 13) — retrying
+2026-09-14 22:29:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:29:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 14) — retrying
+2026-09-14 22:29:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:29:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import history row not yet visible (attempt 15) — retrying
+2026-09-14 22:29:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Diagnostic: dumped page source to test-output/logs/track_offer_imports_timeout.html
+2026-09-14 22:29:44 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Failed: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-14 22:29:44 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Failure reason: TIMEOUT: Import did not reach a terminal status within 120s — last seen status: ''
+2026-09-14 22:29:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/tc_e2e_009_seller_update_offer_price_via_excel_FAIL.png
+2026-09-14 22:29:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 319763A8E0CA0804CF734FC99C7A30D5
+2026-09-14 22:29:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to Mirakl tab
+2026-09-14 22:29:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @AfterMethod: Mirakl navigated back to home dashboard
+2026-09-14 22:29:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
+2026-09-14 22:29:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed

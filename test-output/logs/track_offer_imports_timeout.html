@@ -1,0 +1,3906 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="_csrf" content="87cd7253-ec70-4ee6-94a4-d79193de5f61">
+    <meta name="_csrf_header" content="X-XSRF-TOKEN">
+
+    
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/static/images/favicon-bcff959f37601940c5adb4fa5be56134.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-93a08e7d50979b6c680f5d356b1af8a6.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&amp;display=swap" rel="stylesheet">
+
+    <!--SirData tag-->
+    
+    
+    
+    <!--End of SirData tag-->
+
+    
+
+    
+
+    
+
+    
+
+
+    
+
+    
+
+    <link type="text/css" href="/static/css/footer-e3c8bd5d72491cb30e1c43e4fb056c56.css" media="screen, projection" rel="stylesheet">
+    <script type="text/javascript" src="/static/jquery/jquery.min-0ed1dbd9a7d3beb8c32b92f75581b3e4.js"></script>
+
+    
+
+    
+
+    
+    
+
+    <script type="text/javascript">
+        if (self === top) {
+            var antiClickjack = document.getElementById("antiClickjack");
+            antiClickjack.parentNode.removeChild(antiClickjack);
+        } else {
+            top.location = self.location;
+        }
+    </script>
+    
+
+    
+    <script>
+        /*<![CDATA[*/
+        var romaNavigationStyle =true;
+        var gatewayLanguage ="en";
+        var gatewayCountry ="IN";
+        var gatewayUserLocale = gatewayLanguage + '-' + gatewayCountry;
+        var gatewayOperatorTimezone = "America\/Mexico_City";
+        var gatewayLanguageDirection = "ltr";
+        /*]]>*/
+    </script>
+            
+            <title>File imports</title>
+            <script>
+        /**
+         * We disable the capability of the react-intl to share its context across the page (between the gateway and the app behind)
+         * This is necessary to prevent issues that may arise if the gateway uses a different version of `react` than the app behind it.
+         */
+        window.__REACT_INTL_BYPASS_GLOBAL_CONTEXT__ = true;
+
+        /**
+         * We want projects to know if the gateway will send a `gatewayReady` or not.
+         */
+        window.waitForGatewayToBeReady = true;
+    </script>
+            
+    
+    
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="_csrf" content="87cd7253-ec70-4ee6-94a4-d79193de5f61">
+    <meta name="_csrf_header" content="X-CSRF-TOKEN">
+
+    <link rel="shortcut icon" href="/mmp/static/images/favicon-0a96ea3d40f79c1bbb791a14fa531004.png" type="image/x-icon">
+
+
+    <link type="text/css" href="/mmp/static/jquery-ui/css/smoothness/jquery-ui-49d1c743e3805edecdf6d1a6f23a81cf.css" media="screen, projection" rel="stylesheet">
+    <link type="text/css" href="/mmp/static/jquery-ui/css/smoothness/jquery-ui.structure-9daa72bf5c1714152fa4d92090b17b5b.css" media="screen, projection" rel="stylesheet">
+    <link type="text/css" href="/mmp/static/jquery-ui/css/smoothness/jquery-ui.theme-fb96c8a95fad0e9a89a79fa96cb0d0e8.css" media="screen, projection" rel="stylesheet">
+
+    <link type="text/css" href="/mmp/static/lib/select2/select2-d0de635c80404a44406a83e48c0f24e1.css" media="screen, projection" rel="stylesheet">
+    <link type="text/css" href="/mmp/static/lib/toast/jquery.toast.min-be8a6c1b1899c2ce48fdfb2d46784d30.css" media="screen, projection" rel="stylesheet">
+    <link type="text/css" href="/mmp/static/lib/jstree/themes/mirakl/style-746c9dc870a9a006bf677dff5cbb567f.css" media="screen, projection" rel="stylesheet">
+    <link type="text/css" href="/mmp/static/lib/jstree/themes/mui-mirakl/style-c7bc3fbce6bcc1d2800ef1bbe066f539.css" media="screen, projection" rel="stylesheet">
+
+    <link type="text/css" href="/mmp/static/css/main-df51b558f94bc3c9159a54787113aeef.css" media="screen, projection" rel="stylesheet">
+
+    <link rel="stylesheet" href="/mmp/static/css/treetable/jquery.treetable-9f29f69d8a640b433a9a1a88a6952630.css">
+    <link rel="stylesheet" href="/mmp/static/css/dateTimePicker/dateTimePicker-dbd692111d95748e87ab305c08aa58f5.css">
+
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="/mmp/static/lib/html5shiv/html5shiv-0ce8f355891c26c28f057e195e97dcd5.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/mmp/static/lodash/lodash.min-3e975a964012cbecfcc9d695771baa0a.js"></script>
+    <script type="text/javascript" src="/mmp/static/jquery-ui/js/jquery-ui-c0267985b7818a95c73695dc59f76190.js"></script>
+    <script type="text/javascript" src="/mmp/static/jquery-ui/i18n/jquery.ui.datetimepicker-i18n-e81eb13115b67830e82bafd0fb24373a.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/jquery-file-upload/jquery.iframe-transport-c0c8c7b2bca58a09b87de25da3c7a3e9.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/jquery-file-upload/jquery.fileupload-69bcfd2e83461ead89ffde57542b1660.js"></script>
+    <script type="text/javascript" src="/mmp/static/jquery/jquery.scrollTo-1.4.4-304ecb724f19bd7f3a41a2f7e89b93f0.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/select2/select2-a59dc0ae5469d7c8b0d70c21f9bfc269.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/jstree/jquery.jstree-78a33d52b60b3ff57566cd17f772e5da.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/toast/jquery.toast.min-584cedfc9bca39eca2306b27803ae56d.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/jquery.mcitree-06bfcd7d9b968abe52faa86c6c7c6710.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/jquery.mmptree-a31ef386cbbcc4768be4d1a6025246b7.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/flot/jquery.flot-ae11dc77bf7d7b0d309becaf88360922.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/flot/jquery.flot.pie-c9d7c1e8512ac2ab895900f761454add.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/flot/jquery.flot.time-b9b481cd5abfa60259082e1458945c00.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/flot/jquery.flot.resize-5c369e00333089607f3e821ff33dc9a8.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/toChecklist/filter-list.min-d8fbefc7a9dd7e403dda433b8ab0edf3.js"></script>
+    <script type="text/javascript" src="/mmp/static/bootstrap3/js/bootstrap-894d79839facf38d9fd672bdbe57443d.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-functions-4cb690a3948a5532cf36042818911a89.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-discount-1c0b13833190b2665a90ffa4a11330f3.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-pricing-7b32d651608f3d850998b63d50d94ec7.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-offer-tax-amount-af40e6fc3fd987e8927ef8f9cb2f6ba8.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-offer-stock-2d86a0f71db3499c123d9c2941ce4e45.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-quote-af99a99a9812643aa78ca4bacadc8b60.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-translation-4d5b8f8c1772a653936c3f9c048fd140.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-datatable-bd0aee45544cc0344510964e2016dbed.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-export-c19c07772d0ab3d68b150d0807915b27.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-form-42c846313942e241c4ba60c4ef949165.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-string-6b990ab4769f61682cd00013976014ec.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-add-clear-into-input-e4cb143710e5a1d29cd8a1edb84daeec.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-email-722e1f0fa1444d5feb3a161ac03021af.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/clipboard.min-b87bea940f23c91b6b2aa98d25547336.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/jquery-ui-timepicker-c8a903f46b44fa9db1905dd2cf779220.js"></script>
+    <!--[if IE 9]>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-ie-fileupload-3f969a0dc38f95821117ff597ee43bfc.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="/mmp/static/js/jquery.cookie-0312782dcd2ce70f631d44578fd0997a.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/Autolinker-9c22742509ff02f605822228f38914bf.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/infinitescroll/jquery.infinitescroll-77205e77bdefc083a4c91bca7314aa5f.js"></script>
+    <script type="text/javascript" src="/mmp/static/lib/infinitescroll/bahaviours/local-ff7f31bf773feb2826013249aad6bde9.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/jquery.treetable-359fa0969b7aeef4bba07d4dac403a3e.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-treetable-c5a3a6544564536617688a422740465e.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-catalog-0595f1f42a6aeb67ff9a5e6f0c5cbfb3.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-navigation-tabs-ebdb262ac61c37e2d499d38bc7d55541.js"></script>
+    <script type="text/javascript" src="/mmp/static/js/mirakl-collapsible-d63f2b251145763be393e3c76af1a10b.js"></script>
+    
+    <script type="text/javascript" src="/mmp/static/lib/accounting/accounting-16619de17c5d3d3500c2c4c7be39fde1.js"></script>
+
+    <script>
+    /*<![CDATA[*/
+    var webAppBaseUrl = "\/mmp\/";
+
+    //standard error messages
+    var ajaxErrorMessage403 = "Unauthorized access";
+    var ajaxErrorMessage404 = "Page not found";
+    var ajaxErrorMessage500 = "We're sorry but an unexpected error occurred. The support team of the platform has been advised and the error will be corrected as soon as possible.";
+    var ajaxErrorMessageOther = "Something went wrong.";
+    var confirmNavigationMessage = "You have unsaved changes";
+    var confirmNavigationAjaxMessage = "You have unsaved changes, are you sure you want to leave the page without saving?";
+
+    var stringCollapseI18n = "Collapse";
+    var stringExpandI18n = "Expand";
+
+    
+    if (!window.console) {
+        var console = {
+            log : function(){},
+            warn : function(){},
+            error : function(){},
+            time : function(){},
+            timeEnd : function(){}
+        }
+    }
+
+    
+    var historyPushState = function (data, title, url) {
+        if (window.history.pushState) {
+            window.history.pushState(data, title, url);
+        } else {
+            window.history.go(url);
+        }
+    };
+
+    
+    var historyReplaceState = function (data, title, url) {
+        if (window.history.replaceState) {
+            window.history.replaceState(data, title, url);
+        } else {
+            window.history.go(url);
+        }
+    };
+
+    var currencies = {"CHF":{"name":"CHF","symbol":"Fr.","decimalPlaces":2},"HRK":{"name":"HRK","symbol":"Kn","decimalPlaces":2},"MXN":{"name":"MXN","symbol":"$","decimalPlaces":2},"GTQ":{"name":"GTQ","symbol":"Q","decimalPlaces":2},"CLP":{"name":"CLP","symbol":"$","decimalPlaces":0},"ZAR":{"name":"ZAR","symbol":"R","decimalPlaces":2},"TND":{"name":"TND","symbol":"\u062F.\u062A","decimalPlaces":3},"VND":{"name":"VND","symbol":"\u20AB","decimalPlaces":0},"AUD":{"name":"AUD","symbol":"AU$","decimalPlaces":2},"ILS":{"name":"ILS","symbol":"\u20AA","decimalPlaces":2},"IDR":{"name":"IDR","symbol":"Rp","decimalPlaces":2},"TRY":{"name":"TRY","symbol":"\u20BA","decimalPlaces":2},"IQD":{"name":"IQD","symbol":"\u062F.\u0639","decimalPlaces":3},"JOD":{"name":"JOD","symbol":"\u062F.\u0623","decimalPlaces":3},"AED":{"name":"AED","symbol":"AED","decimalPlaces":2},"HKD":{"name":"HKD","symbol":"$","decimalPlaces":2},"TWD":{"name":"TWD","symbol":"$","decimalPlaces":0},"RSD":{"name":"RSD","symbol":"\u0434\u0438\u043D","decimalPlaces":2},"EUR":{"name":"EUR","symbol":"\u20AC","decimalPlaces":2},"DKK":{"name":"DKK","symbol":"kr","decimalPlaces":2},"CAD":{"name":"CAD","symbol":"$","decimalPlaces":2},"MYR":{"name":"MYR","symbol":"RM","decimalPlaces":2},"BGN":{"name":"BGN","symbol":"\u043B\u0432.","decimalPlaces":2},"NOK":{"name":"NOK","symbol":"kr","decimalPlaces":2},"GEL":{"name":"GEL","symbol":"\u20BE","decimalPlaces":2},"RON":{"name":"RON","symbol":"Lei","decimalPlaces":2},"UYU":{"name":"UYU","symbol":"$","decimalPlaces":2},"MAD":{"name":"MAD","symbol":"DH","decimalPlaces":2},"LKR":{"name":"LKR","symbol":"\u0DBB\u0DD4","decimalPlaces":2},"NGN":{"name":"NGN","symbol":"\u20A6","decimalPlaces":2},"CZK":{"name":"CZK","symbol":"K\u010D","decimalPlaces":2},"OMR":{"name":"OMR","symbol":"\u0631.\u0639.","decimalPlaces":3},"PKR":{"name":"PKR","symbol":"Rs","decimalPlaces":2},"KES":{"name":"KES","symbol":"KSh","decimalPlaces":2},"SEK":{"name":"SEK","symbol":"kr","decimalPlaces":2},"UAH":{"name":"UAH","symbol":"\u20B4","decimalPlaces":2},"BHD":{"name":"BHD","symbol":"BHD","decimalPlaces":3},"ARS":{"name":"ARS","symbol":"$","decimalPlaces":2},"QAR":{"name":"QAR","symbol":"\u0631.\u0642","decimalPlaces":2},"SAR":{"name":"SAR","symbol":"\uFDFC","decimalPlaces":2},"INR":{"name":"INR","symbol":"\u20B9","decimalPlaces":2},"CNY":{"name":"CNY","symbol":"\u04B0","decimalPlaces":2},"THB":{"name":"THB","symbol":"\u0E3F","decimalPlaces":2},"UZS":{"name":"UZS","symbol":"\u043B\u0432","decimalPlaces":2},"KRW":{"name":"KRW","symbol":"\u20A9","decimalPlaces":0},"JPY":{"name":"JPY","symbol":"\u00A5","decimalPlaces":0},"PLN":{"name":"PLN","symbol":"z\u0142","decimalPlaces":2},"GBP":{"name":"GBP","symbol":"\u00A3","decimalPlaces":2},"HUF":{"name":"HUF","symbol":"Ft","decimalPlaces":2},"KWD":{"name":"KWD","symbol":"\u062F.\u0643","decimalPlaces":3},"PHP":{"name":"PHP","symbol":"\u20B1","decimalPlaces":2},"RUB":{"name":"RUB","symbol":"\u0026#xf158;","decimalPlaces":2},"COP":{"name":"COP","symbol":"$","decimalPlaces":2},"MGA":{"name":"MGA","symbol":"Ar","decimalPlaces":2},"USD":{"name":"USD","symbol":"$","decimalPlaces":2},"BAM":{"name":"BAM","symbol":"KM","decimalPlaces":2},"EGP":{"name":"EGP","symbol":"\u062C.\u0645","decimalPlaces":2},"SGD":{"name":"SGD","symbol":"$","decimalPlaces":2},"PEN":{"name":"PEN","symbol":"S\/.","decimalPlaces":2},"NZD":{"name":"NZD","symbol":"$","decimalPlaces":2},"BRL":{"name":"BRL","symbol":"R$","decimalPlaces":2}};
+
+    var formatCurrency = function (amount, currencyIsoCode) {
+        var format = "%s%v";
+
+        var negativeSignAtEnd = false;
+
+        // if the currency symbol is the same as the iso code we are adding a space in the pattern
+        if (format === "%s%v"
+            && currencies[currencyIsoCode].symbol === currencyIsoCode) {
+            format = "%s\u00A0%v"
+        } else if (format.startsWith('rtl-')) {
+            amount = Math.abs(amount);
+            format = format.substring(4, format.length);
+            negativeSignAtEnd = true;
+        }
+
+        var formattedMoney = accounting.formatMoney(amount,
+                currencies[currencyIsoCode].symbol, currencies[currencyIsoCode].decimalPlaces,
+                ",", ".",
+                format);
+
+        if (negativeSignAtEnd) {
+            formattedMoney += '-';
+        }
+
+        return formattedMoney.replace(currencies[currencyIsoCode].symbol,
+                '<span class="currency-symbol ' + currencyIsoCode + '">' + currencies[currencyIsoCode].symbol + '</span>');
+    };
+
+    var getCurrencyDecimalPlaces = function (currencyIsoCode) {
+        return currencies[currencyIsoCode].decimalPlaces;
+    };
+
+    var getCurrencySymbol = function (currencyIsoCode) {
+        return currencies[currencyIsoCode].symbol;
+    };
+
+    var parseNumber = function (value) {
+        return accounting.unformat(replaceDecimalSeparators(value));
+    };
+
+    var replaceDecimalSeparators = function (value) {
+        if (value !== undefined && "." === ',') {
+            return value.replace(/[.]/g, '').replace(/,/g, '.');
+        } else {
+            return value;
+        }
+    };
+
+    
+    if (navigator.userAgent.toLowerCase().indexOf("phantom") === -1) {
+        window.onpopstate = function (e) {
+            if (e.state != null && e.state.pushState) {
+                location.reload();
+            }
+        };
+    }
+
+    /*]]>*/
+</script>
+
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        var paginationParams = {
+            'sort': "dateCreated",
+            'order': "desc",
+            'max': 50,
+            'offset': null,
+            'nullableSort': false
+        };
+        /*]]>*/
+    </script>
+    
+    
+    <script>
+    /*<![CDATA[*/
+    var webAppBaseUrl = "\/mmp\/";
+
+    //standard error messages
+    var ajaxErrorMessage403 = "Unauthorized access";
+    var ajaxErrorMessage404 = "Page not found";
+    var ajaxErrorMessage500 = "We're sorry but an unexpected error occurred. The support team of the platform has been advised and the error will be corrected as soon as possible.";
+    var ajaxErrorMessageOther = "Something went wrong.";
+    var confirmNavigationMessage = "You have unsaved changes";
+    var confirmNavigationAjaxMessage = "You have unsaved changes, are you sure you want to leave the page without saving?";
+
+    var stringCollapseI18n = "Collapse";
+    var stringExpandI18n = "Expand";
+
+    
+    if (!window.console) {
+        var console = {
+            log : function(){},
+            warn : function(){},
+            error : function(){},
+            time : function(){},
+            timeEnd : function(){}
+        }
+    }
+
+    
+    var historyPushState = function (data, title, url) {
+        if (window.history.pushState) {
+            window.history.pushState(data, title, url);
+        } else {
+            window.history.go(url);
+        }
+    };
+
+    
+    var historyReplaceState = function (data, title, url) {
+        if (window.history.replaceState) {
+            window.history.replaceState(data, title, url);
+        } else {
+            window.history.go(url);
+        }
+    };
+
+    var currencies = {"CHF":{"name":"CHF","symbol":"Fr.","decimalPlaces":2},"HRK":{"name":"HRK","symbol":"Kn","decimalPlaces":2},"MXN":{"name":"MXN","symbol":"$","decimalPlaces":2},"GTQ":{"name":"GTQ","symbol":"Q","decimalPlaces":2},"CLP":{"name":"CLP","symbol":"$","decimalPlaces":0},"ZAR":{"name":"ZAR","symbol":"R","decimalPlaces":2},"TND":{"name":"TND","symbol":"\u062F.\u062A","decimalPlaces":3},"VND":{"name":"VND","symbol":"\u20AB","decimalPlaces":0},"AUD":{"name":"AUD","symbol":"AU$","decimalPlaces":2},"ILS":{"name":"ILS","symbol":"\u20AA","decimalPlaces":2},"IDR":{"name":"IDR","symbol":"Rp","decimalPlaces":2},"TRY":{"name":"TRY","symbol":"\u20BA","decimalPlaces":2},"IQD":{"name":"IQD","symbol":"\u062F.\u0639","decimalPlaces":3},"JOD":{"name":"JOD","symbol":"\u062F.\u0623","decimalPlaces":3},"AED":{"name":"AED","symbol":"AED","decimalPlaces":2},"HKD":{"name":"HKD","symbol":"$","decimalPlaces":2},"TWD":{"name":"TWD","symbol":"$","decimalPlaces":0},"RSD":{"name":"RSD","symbol":"\u0434\u0438\u043D","decimalPlaces":2},"EUR":{"name":"EUR","symbol":"\u20AC","decimalPlaces":2},"DKK":{"name":"DKK","symbol":"kr","decimalPlaces":2},"CAD":{"name":"CAD","symbol":"$","decimalPlaces":2},"MYR":{"name":"MYR","symbol":"RM","decimalPlaces":2},"BGN":{"name":"BGN","symbol":"\u043B\u0432.","decimalPlaces":2},"NOK":{"name":"NOK","symbol":"kr","decimalPlaces":2},"GEL":{"name":"GEL","symbol":"\u20BE","decimalPlaces":2},"RON":{"name":"RON","symbol":"Lei","decimalPlaces":2},"UYU":{"name":"UYU","symbol":"$","decimalPlaces":2},"MAD":{"name":"MAD","symbol":"DH","decimalPlaces":2},"LKR":{"name":"LKR","symbol":"\u0DBB\u0DD4","decimalPlaces":2},"NGN":{"name":"NGN","symbol":"\u20A6","decimalPlaces":2},"CZK":{"name":"CZK","symbol":"K\u010D","decimalPlaces":2},"OMR":{"name":"OMR","symbol":"\u0631.\u0639.","decimalPlaces":3},"PKR":{"name":"PKR","symbol":"Rs","decimalPlaces":2},"KES":{"name":"KES","symbol":"KSh","decimalPlaces":2},"SEK":{"name":"SEK","symbol":"kr","decimalPlaces":2},"UAH":{"name":"UAH","symbol":"\u20B4","decimalPlaces":2},"BHD":{"name":"BHD","symbol":"BHD","decimalPlaces":3},"ARS":{"name":"ARS","symbol":"$","decimalPlaces":2},"QAR":{"name":"QAR","symbol":"\u0631.\u0642","decimalPlaces":2},"SAR":{"name":"SAR","symbol":"\uFDFC","decimalPlaces":2},"INR":{"name":"INR","symbol":"\u20B9","decimalPlaces":2},"CNY":{"name":"CNY","symbol":"\u04B0","decimalPlaces":2},"THB":{"name":"THB","symbol":"\u0E3F","decimalPlaces":2},"UZS":{"name":"UZS","symbol":"\u043B\u0432","decimalPlaces":2},"KRW":{"name":"KRW","symbol":"\u20A9","decimalPlaces":0},"JPY":{"name":"JPY","symbol":"\u00A5","decimalPlaces":0},"PLN":{"name":"PLN","symbol":"z\u0142","decimalPlaces":2},"GBP":{"name":"GBP","symbol":"\u00A3","decimalPlaces":2},"HUF":{"name":"HUF","symbol":"Ft","decimalPlaces":2},"KWD":{"name":"KWD","symbol":"\u062F.\u0643","decimalPlaces":3},"PHP":{"name":"PHP","symbol":"\u20B1","decimalPlaces":2},"RUB":{"name":"RUB","symbol":"\u0026#xf158;","decimalPlaces":2},"COP":{"name":"COP","symbol":"$","decimalPlaces":2},"MGA":{"name":"MGA","symbol":"Ar","decimalPlaces":2},"USD":{"name":"USD","symbol":"$","decimalPlaces":2},"BAM":{"name":"BAM","symbol":"KM","decimalPlaces":2},"EGP":{"name":"EGP","symbol":"\u062C.\u0645","decimalPlaces":2},"SGD":{"name":"SGD","symbol":"$","decimalPlaces":2},"PEN":{"name":"PEN","symbol":"S\/.","decimalPlaces":2},"NZD":{"name":"NZD","symbol":"$","decimalPlaces":2},"BRL":{"name":"BRL","symbol":"R$","decimalPlaces":2}};
+
+    var formatCurrency = function (amount, currencyIsoCode) {
+        var format = "%s%v";
+
+        var negativeSignAtEnd = false;
+
+        // if the currency symbol is the same as the iso code we are adding a space in the pattern
+        if (format === "%s%v"
+            && currencies[currencyIsoCode].symbol === currencyIsoCode) {
+            format = "%s\u00A0%v"
+        } else if (format.startsWith('rtl-')) {
+            amount = Math.abs(amount);
+            format = format.substring(4, format.length);
+            negativeSignAtEnd = true;
+        }
+
+        var formattedMoney = accounting.formatMoney(amount,
+                currencies[currencyIsoCode].symbol, currencies[currencyIsoCode].decimalPlaces,
+                ",", ".",
+                format);
+
+        if (negativeSignAtEnd) {
+            formattedMoney += '-';
+        }
+
+        return formattedMoney.replace(currencies[currencyIsoCode].symbol,
+                '<span class="currency-symbol ' + currencyIsoCode + '">' + currencies[currencyIsoCode].symbol + '</span>');
+    };
+
+    var getCurrencyDecimalPlaces = function (currencyIsoCode) {
+        return currencies[currencyIsoCode].decimalPlaces;
+    };
+
+    var getCurrencySymbol = function (currencyIsoCode) {
+        return currencies[currencyIsoCode].symbol;
+    };
+
+    var parseNumber = function (value) {
+        return accounting.unformat(replaceDecimalSeparators(value));
+    };
+
+    var replaceDecimalSeparators = function (value) {
+        if (value !== undefined && "." === ',') {
+            return value.replace(/[.]/g, '').replace(/,/g, '.');
+        } else {
+            return value;
+        }
+    };
+
+    
+    if (navigator.userAgent.toLowerCase().indexOf("phantom") === -1) {
+        window.onpopstate = function (e) {
+            if (e.state != null && e.state.pushState) {
+                location.reload();
+            }
+        };
+    }
+
+    /*]]>*/
+</script>
+    <script type="text/javascript" src="/mmp/static/lib/select2/select2_locale_en-ee80568c73f2eb9cbf806d6b6dda45df.js"></script>
+
+
+            <style>
+        /* We temporarily add a class to the body when the sidebar is not ready */
+        .overflowHidden {
+            overflow: hidden;
+        }
+        #appMainContent {
+            /* Needed for some app like mcm */
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            /* As long as the content is not in the right place hide it */
+            visibility: hidden;
+        }
+        #fakeNav {
+            position: fixed;
+            inset: 0;
+            z-index: 9999999999;
+            display: flex;
+            flex-direction: row;
+        }
+        #fakeSidebar {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            #fakeSidebar {
+                z-index: 2;
+                display: block;
+                height: 100vh;
+                width: 56px;
+                background-color: #03182F;
+                box-shadow: rgba(15, 29, 77, 0.5) 0 10px 15px 0;
+            }
+        }
+        #fakeContent {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        #loaderContainer {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f8f8;
+        }
+        #fakeTopMenu {
+            z-index: 1;
+            background-color: #FFF;
+            box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+            height: 56px;
+            width: 100%;
+        }
+        @keyframes rotate{
+            0% {
+                transform: rotate(0);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        #loader {
+            animation: rotate 800ms linear infinite;
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            border: 0.25rem solid rgba(0,49,175,0.2);
+            border-top: 0.25rem solid #0031AF;
+        }
+    </style>
+            <script defer="defer" src="/static/react/single.877e193d.js"></script>
+            <script defer="defer" src="/static/react/mirakl.44cf6944.js"></script>
+            <script defer="defer" src="/static/react/95349.395b7cc2.js"></script>
+            <script defer="defer" src="/static/react/main.92dd3ac3.js"></script>
+    
+
+
+<style type="text/css" id="jstree-stylesheet">.jstree ul, .jstree li { display:block; margin:0 0 0 0; padding:0 0 0 0; list-style-type:none; } .jstree li { display:block; min-height:18px; white-space:nowrap; margin-left:18px; min-width:18px; } .jstree-rtl li { margin-left:0; margin-right:18px; } .jstree > ul > li { margin-left:0px; } .jstree-rtl > ul > li { margin-right:0px; } .jstree ins { display:inline-block; text-decoration:none; width:18px; height:18px; margin:0 0 0 0; padding:0; } .jstree a { display:inline-block; color:black; white-space:nowrap; text-decoration:none; padding:1px 2px; margin:0; } .jstree a:focus { outline: none; } .jstree a > .jstree-icon { margin-right:3px; } .jstree-rtl a > .jstree-icon { margin-left:3px; margin-right:0; } li.jstree-open > ul { display:block; } li.jstree-closed > ul { display:none; } .jstree .jstree-real-checkbox { display:none; } </style></head>
+<body class="overflowHidden">
+
+    <!-- fake navigation is outside of React, to render as fast as possible for the user to avoid blank screens
+    on page transitions with sidebar -->
+    <div id="fakeNav">
+        <div id="fakeSidebar" style="width: 280px;"></div>
+        <div id="fakeContent">
+            <div id="fakeTopMenu"></div>
+            <div id="loaderContainer">
+                <div id="loader"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="romaMenuContainer"></div>
+
+    <div id="appMainContent">
+        
+
+
+    <div id="page-content-wrapper-roma-style">
+        
+            <div class="mui-page-navigation mui-page-navigation-with-tabs mui-tabs mui-page-navigation-roma-style">
+                <div class="mui-page-navigation-header">
+                    <div id="pageTitleDiv" class="page-header apply-rtl">
+                        <span class="mui-page-navigation-title">
+                            
+                        </span>
+                        <h1>
+                            <span class="mui-page-navigation-title">
+                                <span>File imports</span>
+                            </span>
+                            <span class="mui-page-navigation-subtitle">
+                                
+                            </span>
+                        </h1>
+                    </div>
+                    <div id="headerActions" class="mui-page-navigation-action">
+                        
+                    </div>
+                </div>
+                <div>
+    <ul class="mui-page-navigation-tabs nav nav-tabs">
+    <li role="presentation" class="mui-page-navigation-nav-item">
+        <a href="/mmp/shop/import">Import file</a>
+    </li>
+
+    
+        <li role="presentation" class="mui-page-navigation-nav-item active">
+            <a href="/mmp/shop/offer/import/history">Track offer imports</a>
+        </li>
+    
+
+    <li role="presentation" class="mui-page-navigation-nav-item">
+        <a href="/mmp/shop/price/import/history">Track price imports</a>
+    </li>
+
+    <li role="presentation" class="mui-page-navigation-nav-item">
+        <a href="/mmp/shop/stock/import/history">Track stock imports</a>
+    </li>
+
+    <li role="presentation" class="mui-page-navigation-nav-item">
+        <a href="/mmp/shop/offer/import/deactivated-identifiers">Deactivated identifiers</a>
+    </li>
+
+</ul>
+</div>
+            </div>
+        
+        
+
+        <div id="wrap">
+            <div></div>
+
+            <div id="messages-msg-bar" class=""></div>
+
+            <div id="main">
+    <div class="sidebar-left">
+        <div id="sidebarFilter">
+    
+    <div id="historyImportFilterMsg-msg-bar"></div>
+
+    <div class="filters">
+        <form action="/mmp/shop/offer/import/history/search" class="form-filter" m:on-success="'function(){addFormToHistory(\'.form-filter\'); scrollAtTopOfWindow();}'" onsubmit=" if(!window.onSubmitDebouncedOTE3LP) {window.onSubmitDebouncedOTE3LP =  _.debounce(function(that){ var elementToDisable = $(that).find('button[type=submit], input[type=submit]');elementToDisable.attr('disabled', true);var params = null;var processData;var contentType;if(!FormData) {params = $(that).serialize();} else {processData = false;contentType = false;params = new FormData(that);removeEmptyFilesInFormData(that, params);}jQuery.ajax({type:'POST', traditional: true, data: params, processData: processData, contentType: contentType,  url:'/mmp/shop/offer/import/history/search', complete:function(data,textStatus,jqXHR){ if(typeof elementToDisable !== 'undefined'){ elementToDisable.attr('disabled', false); } }, success:function(data,textStatus,jqXHR){  updateElements(jqXHR, data, function(){}, function(){addFormToHistory('.form-filter'); scrollAtTopOfWindow();}); }, error:function(XMLHttpRequest,textStatus,errorThrown){} }); event.stopPropagation(); return false; }, 500, {'leading': true, 'trailing': false}); }window.onSubmitDebouncedOTE3LP(this);return false;">
+            <div class="panel panel-default">
+                <div class="panel-heading filters-head">
+    <h2>Filter</h2>
+</div>
+
+                <div class="panel-body filters-body">
+                    <div>
+    <div class="form-group">
+    
+        
+        
+            <div class="control-label" data-toggle="tooltip">
+                
+                        <label for="filename"><!--
+                        --><span>Filename</span><!--
+                        --><!--
+                        --><!--
+                    --></label>
+                
+                
+            </div>
+    
+    <div data-toggle="tooltip" class="null">
+        <input class="form-control" id="filename" type="text" name="filename" value="">
+    </div>
+    
+        
+    
+</div>
+    <div class="form-group">
+
+    <div class="control-label">
+        <label for="from">Import date</label>
+    </div>
+
+    
+
+    <div>
+        <div class="input-group">
+            
+                
+                
+                    <span class="input-group-addon">from</span>
+                    <input type="text" id="from" class="form-control hasDatepicker" autocomplete="off" pattern="(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])/(?:0[1-9]|1[0-2])/(?:19|20)[0-9]{2}" value="">
+                    <input type="hidden" id="from-alt" name="from" value="">
+                    <span class="input-group-addon trigger-datepicker glyphicon glyphicon-calendar"></span>
+                
+            
+        </div>
+    </div>
+
+    
+        
+    
+
+    
+
+    <script>
+        /*<![CDATA[*/
+        $(function () {
+            enableDatePicker("from",
+                    "en_IN",
+                    "en",
+                    null,
+                    null,
+                    null)
+        });
+        /*]]>*/
+    </script>
+</div>
+    <div>
+
+    
+
+    
+
+    <div>
+        <div class="input-group">
+            
+                
+                
+                    <span class="input-group-addon">to</span>
+                    <input type="text" id="to" class="form-control hasDatepicker" autocomplete="off" pattern="(?:0[1-9]|1[0-9]|2[0-9]|3[0-1])/(?:0[1-9]|1[0-2])/(?:19|20)[0-9]{2}" value="">
+                    <input type="hidden" id="to-alt" name="to" value="">
+                    <span class="input-group-addon trigger-datepicker glyphicon glyphicon-calendar"></span>
+                
+            
+        </div>
+    </div>
+
+    
+        
+    
+
+    
+
+    <script>
+        /*<![CDATA[*/
+        $(function () {
+            enableDatePicker("to",
+                    "en_IN",
+                    "en",
+                    true,
+                    null,
+                    null)
+        });
+        /*]]>*/
+    </script>
+</div>
+    <div class="form-group">
+
+    <div class="control-label">
+        <label for="status">Status</label>
+        
+    </div>
+
+    <div>
+        <select id="status" class="form-control" name="status">
+            <option value="">Nothing selected</option>
+
+            
+            <option value="WAITING_SYNCHRONIZATION_PRODUCT">Waiting for product creation</option>
+
+            
+            <option value="WAITING">Pending</option>
+
+            
+            <option value="RUNNING">Being processed</option>
+
+            
+            <option value="COMPLETE">Import complete</option>
+
+            
+            <option value="FAILED">Failed</option>
+        </select>
+    </div>
+    
+        
+    
+</div>
+    
+        <div class="form-group">
+
+    <div class="control-label">
+        <label for="mode">
+            Mode
+            
+        </label>
+    </div>
+
+    
+
+    <div>
+        <select class="form-control" id="mode" name="mode">
+
+            <option value="">Nothing selected</option>
+
+            <option value="NORMAL">Normal</option>
+
+            <option value="REPLACE">Replacement</option>
+       </select>
+
+        
+    </div>
+
+    
+</div>
+    
+    <div class="form-group">
+
+    <div class="control-label">
+        <label for="origin">Origin</label>
+        
+    </div>
+
+    <div>
+        <select id="origin" class="form-control" name="origin">
+            <option value="">Nothing selected</option>
+
+            
+            <option value="RETRIEVE_GROUP">File Transfer</option>
+
+            
+            <option value="API">API</option>
+
+            
+            <option value="FRONT">File Import</option>
+
+            
+            <option value="PENDING_OFFERS">Pending offers</option>
+        </select>
+    </div>
+    
+        
+    
+</div>
+</div>
+                </div>
+
+                <div class="panel-footer filters-footer">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            
+    <a href="/mmp/shop/offer/import/history" class="btn btn btn-default">
+        <span class="icon-right-offset glyphicon glyphicon-remove"></span>
+        <span>Clear</span>
+    </a>
+
+                        </div>
+                        <div class="btn-group">
+                            
+    <button type="submit" class="btn btn-primary" value="Refresh" id="refreshButton">
+        <span class="icon-right-offset glyphicon glyphicon-refresh"></span>
+        <span>Refresh</span>
+    </button>
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+    </div>
+
+    <div class="content-fluid">
+        <div id="offersImportTable">
+
+        
+    <div id="offersTableMsg-msg-bar"></div>
+
+
+
+        <div class="panel panel-default content datatable">
+
+            <script>
+                /*<![CDATA[*/
+                
+                var filter = {"filename":null,"shopUuid":null,"from":null,"to":null,"status":null,"mode":null,"origin":null,"platformModels":null};
+                cleanObject(filter);
+                /*]]>*/
+            </script>
+
+            <script type="text/javascript">
+        /*<![CDATA[*/
+        var paginationParams = {
+            'sort': "dateCreated",
+            'order': "desc",
+            'max': 50,
+            'offset': null,
+            'nullableSort': false
+        };
+        /*]]>*/
+    </script>
+
+            <div class="panel-heading datatable-toolbar">
+                <div class="mui-spacer"></div>
+                
+
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        var paginationParams = {
+            'sort': "dateCreated",
+            'order': "desc",
+            'max': 50,
+            'offset': null,
+            'nullableSort': false
+        };
+        /*]]>*/
+    </script>
+
+    
+
+    
+    <form autocomplete="off">
+
+        <div role="toolbar" class="mui-paginate btn-toolbar">
+
+            
+                
+    <div class="btn-group">
+        <select name="pageSize" class="form-control m-writable" onchange="onPageSizeChange(this.value,'/mmp/shop/offer/import/history/search')">
+            
+                <option value="50" selected="selected">50</option>
+            
+                <option value="100">100</option>
+            
+                
+            
+        </select>
+    </div>
+    <div class="btn-group">
+        <span class="mui-paginate-text">on 51 results</span>
+    </div>
+
+            
+
+            
+    <div class="btn-group">
+        
+
+        
+
+        
+
+        <button type="button" class="btn btn-default m-writable active" data-page="1" data-url="/mmp/shop/offer/import/history/search" onclick="onPageChange(this.getAttribute('data-page'),this.getAttribute('data-url'))">
+            <span>1</span>
+        </button><button type="button" class="btn btn-default m-writable" data-page="2" data-url="/mmp/shop/offer/import/history/search" onclick="onPageChange(this.getAttribute('data-page'),this.getAttribute('data-url'))">
+            <span>2</span>
+        </button>
+
+        
+
+        
+
+        <button type="button" class="btn btn-default m-writable" data-page="2" data-url="/mmp/shop/offer/import/history/search" onclick="onPageChange(this.getAttribute('data-page'), this.getAttribute('data-url'))">
+            <span aria-hidden="true" class="fa fa-angle-right"></span>
+        </button>
+    </div>
+
+        </div>
+
+    </form>
+
+
+                
+    <div class="btn-group btn-group-export-results">
+        
+
+        <button class="btn btn-primary tip m-writable" type="button" role="button" onclick="doExport('/mmp/shop/offer/import/history/export', false, false);" data-original-title="Export">
+                <span class="mui-button-icon mui-button-icon-only">
+                    <span aria-hidden="true" class="fa fa-arrow-circle-o-down"></span>
+                </span>
+        </button>
+    </div>
+    <script>
+        function doExport(endpointUrl, withCustomFields, withToast) {
+            if (withCustomFields) {
+                onExportWithCustomFields(endpointUrl);
+            } else {
+                onExport(endpointUrl);
+            }
+
+            if (withToast) {
+                showExportToast("Export in progress. Do not leave the page or request a new export until the download is complete.", 'bottom-center');
+            }
+            return false;
+        }
+    </script>
+
+            </div>
+
+            <div class="mirakl-table-overflowed">
+                <div class="hidden">
+    <!--[if IE 9]>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+         $(function () {
+             var expr = new RegExp('/td>[ \t\r\n\v\f]*<td', 'g');
+             $('tbody').html($('tbody').html().replace(expr, '/td><td'));
+          });
+    /*]]>*/
+    </script>
+<![endif]-->
+</div><table class="table table-striped table-bordered table-fixed" id="offersDatatable" style="min-width: 880px;">
+                    <thead class="datatable-head">
+                    <tr>
+
+                        <th class="cell-date-long">
+                            
+
+    <a class="pointer cell-sortable-wrap rollover" data-name="dateCreated" data-url="/mmp/shop/offer/import/history/search" onclick="onSortChange(this.getAttribute('data-name'), this.getAttribute('data-url'), this.getAttribute('data-ajax'), this.getAttribute('data-nullable'))" data-original-title="" title="">
+
+        <div class="cell-sortable-wrap-active">Created</div>
+
+        
+
+        <span class="glyphicon icon-left-offset small glyphicon-chevron-up">
+        </span>
+    </a>
+
+    
+
+
+
+                        </th>
+
+                        <th class="cell-fluid">
+                            
+
+    
+
+    <div>
+        <div>File name</div>
+        
+    </div>
+
+
+
+                        </th>
+
+                        <th class="cell-md">
+                            
+
+    <a class="pointer cell-sortable-wrap rollover" data-name="origin" data-url="/mmp/shop/offer/import/history/search" onclick="onSortChange(this.getAttribute('data-name'), this.getAttribute('data-url'), this.getAttribute('data-ajax'), this.getAttribute('data-nullable'))" data-original-title="" title="">
+
+        <div>Origin</div>
+
+        
+
+        
+    </a>
+
+    
+
+
+
+                        </th>
+
+                        <th class="cell-md">
+                            
+
+    <a class="pointer cell-sortable-wrap rollover" data-name="mode" data-url="/mmp/shop/offer/import/history/search" onclick="onSortChange(this.getAttribute('data-name'), this.getAttribute('data-url'), this.getAttribute('data-ajax'), this.getAttribute('data-nullable'))" data-original-title="" title="">
+
+        <div>Mode</div>
+
+        
+
+        
+    </a>
+
+    
+
+
+
+                        </th>
+
+                        <th class="cell-lg">
+                            
+
+    <a class="pointer cell-sortable-wrap rollover" data-name="status" data-url="/mmp/shop/offer/import/history/search" onclick="onSortChange(this.getAttribute('data-name'), this.getAttribute('data-url'), this.getAttribute('data-ajax'), this.getAttribute('data-nullable'))" data-original-title="" title="">
+
+        <div>Status</div>
+
+        
+
+        
+    </a>
+
+    
+
+
+
+                        </th>
+
+                        <th class="cell-xs">Errors</th>
+
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    
+
+                    <tr>
+                        
+
+                        <td>14/09/2026 - 10:57:30</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7292/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-0"></span>
+                                <div style="display: none" id="popover-0">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>14/09/2026 - 10:57:32
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>14/09/2026 - 10:57:35
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>14/09/2026 - 10:49:49</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7291/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-1"></span>
+                                <div style="display: none" id="popover-1">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>14/09/2026 - 10:49:51
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>14/09/2026 - 10:49:54
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>14/09/2026 - 10:40:54</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7290/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-2"></span>
+                                <div style="display: none" id="popover-2">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>14/09/2026 - 10:40:55
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>14/09/2026 - 10:40:57
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>12/09/2026 - 13:12:17</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7287/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-3"></span>
+                                <div style="display: none" id="popover-3">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>12/09/2026 - 13:12:17
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>12/09/2026 - 13:12:20
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 05:10:36</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7226/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-4"></span>
+                                <div style="display: none" id="popover-4">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 05:10:41
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 05:10:44
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 05:02:16</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7224/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-5"></span>
+                                <div style="display: none" id="popover-5">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 05:02:21
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 05:02:23
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 04:55:42</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7223/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-6"></span>
+                                <div style="display: none" id="popover-6">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 04:55:44
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 04:55:47
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 04:51:16</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7221/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-7"></span>
+                                <div style="display: none" id="popover-7">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 04:51:19
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 04:51:21
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 04:45:42</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7219/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-8"></span>
+                                <div style="display: none" id="popover-8">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 04:45:43
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 04:45:45
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 04:29:32</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7217/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-9"></span>
+                                <div style="display: none" id="popover-9">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 04:29:36
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 04:29:37
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 04:24:24</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7215/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-10"></span>
+                                <div style="display: none" id="popover-10">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 04:24:25
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 04:24:28
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 04:02:07</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7213/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-11"></span>
+                                <div style="display: none" id="popover-11">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 04:02:09
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 04:02:11
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 03:55:28</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7210/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-12"></span>
+                                <div style="display: none" id="popover-12">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 03:55:32
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 03:55:35
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 03:34:13</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7207/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-13"></span>
+                                <div style="display: none" id="popover-13">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 03:34:14
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 03:34:18
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 03:18:50</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7206/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-14"></span>
+                                <div style="display: none" id="popover-14">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 03:18:51
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 03:18:53
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 03:13:30</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7205/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-15"></span>
+                                <div style="display: none" id="popover-15">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 03:13:35
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 03:13:37
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 03:08:12</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7204/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-16"></span>
+                                <div style="display: none" id="popover-16">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 03:08:14
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 03:08:17
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 02:50:20</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7199/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-17"></span>
+                                <div style="display: none" id="popover-17">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 02:50:23
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 02:50:29
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 02:38:26</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7197/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-18"></span>
+                                <div style="display: none" id="popover-18">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 02:38:28
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 02:38:29
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 01:23:20</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7194/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-19"></span>
+                                <div style="display: none" id="popover-19">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 01:23:24
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 01:23:27
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 01:10:55</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7191/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-20"></span>
+                                <div style="display: none" id="popover-20">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 01:10:58
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 01:11:01
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 00:48:45</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7189/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-21"></span>
+                                <div style="display: none" id="popover-21">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 00:48:49
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 00:48:51
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>10/09/2026 - 00:30:29</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7186/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-22"></span>
+                                <div style="display: none" id="popover-22">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>10/09/2026 - 00:30:32
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>10/09/2026 - 00:30:34
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 23:14:38</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7180/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-23"></span>
+                                <div style="display: none" id="popover-23">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 23:14:40
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 23:14:41
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 23:08:55</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7178/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-24"></span>
+                                <div style="display: none" id="popover-24">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 23:08:59
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 23:09:02
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 10:11:09</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7158/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-25"></span>
+                                <div style="display: none" id="popover-25">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 10:11:12
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 10:11:16
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 10:02:15</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7155/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-26"></span>
+                                <div style="display: none" id="popover-26">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 10:02:16
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 10:02:18
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 09:54:08</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7153/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-27"></span>
+                                <div style="display: none" id="popover-27">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 09:54:11
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 09:54:14
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 05:12:35</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7140/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-28"></span>
+                                <div style="display: none" id="popover-28">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 05:12:38
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 05:12:40
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 04:57:56</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7137/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-29"></span>
+                                <div style="display: none" id="popover-29">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 04:57:57
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 04:57:59
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 04:33:43</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7134/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-30"></span>
+                                <div style="display: none" id="popover-30">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 04:33:47
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 04:33:48
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 04:29:07</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7133/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-31"></span>
+                                <div style="display: none" id="popover-31">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 04:29:10
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 04:29:12
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>09/09/2026 - 04:25:55</td>
+
+                        <td class="cell-nowrap">
+                            <a href="/mmp/shop/offer/import/history/download/offer/7132/input" data-original-title="Download the original file">offers-en_US-20260907024742.xlsx</a>
+                            
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-32"></span>
+                                <div style="display: none" id="popover-32">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>09/09/2026 - 04:25:55
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>09/09/2026 - 04:25:58
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>08/09/2026 - 05:23:19</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-33"></span>
+                                <div style="display: none" id="popover-33">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>08/09/2026 - 05:23:23
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>08/09/2026 - 05:23:24
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>08/09/2026 - 05:17:52</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-34"></span>
+                                <div style="display: none" id="popover-34">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>08/09/2026 - 05:17:53
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>08/09/2026 - 05:17:54
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:53:48</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-35"></span>
+                                <div style="display: none" id="popover-35">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:53:51
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:53:54
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:43:27</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-36"></span>
+                                <div style="display: none" id="popover-36">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:43:29
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:43:30
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:33:42</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-37"></span>
+                                <div style="display: none" id="popover-37">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:33:42
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:33:44
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:25:51</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-38"></span>
+                                <div style="display: none" id="popover-38">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:25:52
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:25:53
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:21:55</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-39"></span>
+                                <div style="display: none" id="popover-39">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:21:56
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:21:58
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:17:18</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-40"></span>
+                                <div style="display: none" id="popover-40">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:17:21
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:17:23
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:08:58</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-41"></span>
+                                <div style="display: none" id="popover-41">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:09:02
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:09:05
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 06:02:45</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-42"></span>
+                                <div style="display: none" id="popover-42">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 06:02:47
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 06:02:49
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 05:57:09</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-43"></span>
+                                <div style="display: none" id="popover-43">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 05:57:11
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 05:57:13
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 05:46:44</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-44"></span>
+                                <div style="display: none" id="popover-44">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 05:46:45
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 05:46:47
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 05:32:33</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-45"></span>
+                                <div style="display: none" id="popover-45">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 05:32:36
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 05:32:39
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>07/09/2026 - 02:50:07</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>offers-en_US-20260907024742.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-46"></span>
+                                <div style="display: none" id="popover-46">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 1</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>07/09/2026 - 02:50:12
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>07/09/2026 - 02:50:18
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>11/08/2026 - 06:11:05</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>products-and-offers-es_MX-20260811060842.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-47"></span>
+                                <div style="display: none" id="popover-47">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 0</li>
+                                        <li>Lines with errors: 1</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 0</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>11/08/2026 - 06:11:10
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>11/08/2026 - 06:11:13
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>11/08/2026 - 01:50:15</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>pending-offers-20260811015014.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>Pending offers</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-48"></span>
+                                <div style="display: none" id="popover-48">
+                                    <ul>
+                                        <li>Lines read: 2</li>
+                                        <li>Lines processed: 2</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 2</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>11/08/2026 - 01:50:18
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>11/08/2026 - 01:50:20
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        
+
+                        <td>11/08/2026 - 01:39:06</td>
+
+                        <td class="cell-nowrap">
+                            
+                            <span>products-and-offers-es_MX-20260811013358.xlsx</span>
+                        </td>
+
+                        <td>
+                            
+                            <span>File Import</span>
+                        </td>
+
+                        <td>
+                            <span>Normal</span>
+                        </td>
+
+                        <td>
+                            <span>Import complete</span>
+                                <span class="rollover-left pull-right glyphicon-pro circle_info" data-original-title="Process details" data-popover-content="#popover-49"></span>
+                                <div style="display: none" id="popover-49">
+                                    <ul>
+                                        <li>Lines read: 1</li>
+                                        <li>Lines processed: 1</li>
+                                        <li>Lines with errors: 0</li>
+                                        <li>Lines pending: 0</li>
+                                        <li>Offers added: 1</li>
+                                        <li>Offers updated: 0</li>
+                                        <li>Offers deleted: 0</li>
+                                        
+                                            <li>
+                                                Processing start time:
+                                                <br>11/08/2026 - 01:39:07
+                                            </li>
+                                            <li>
+                                                Processing end time:
+                                                <br>11/08/2026 - 01:39:08
+                                            </li>
+                                        
+                                    </ul>
+                                </div>
+                            
+                        </td>
+
+                        <td class="cell-icons">
+                            <div>
+
+                                
+                                
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody>
+                    
+                </table>
+            </div>
+
+            <div class="panel-footer datatable-toolbar">
+                <div class="mui-spacer"></div>
+                
+                    
+
+    <script type="text/javascript">
+        /*<![CDATA[*/
+        var paginationParams = {
+            'sort': "dateCreated",
+            'order': "desc",
+            'max': 50,
+            'offset': null,
+            'nullableSort': false
+        };
+        /*]]>*/
+    </script>
+
+    
+
+    
+    <form autocomplete="off">
+
+        <div role="toolbar" class="mui-paginate btn-toolbar">
+
+            
+                
+    <div class="btn-group">
+        <select name="pageSize" class="form-control m-writable" onchange="onPageSizeChange(this.value,'/mmp/shop/offer/import/history/search')">
+            
+                <option value="50" selected="selected">50</option>
+            
+                <option value="100">100</option>
+            
+                
+            
+        </select>
+    </div>
+    <div class="btn-group">
+        <span class="mui-paginate-text">on 51 results</span>
+    </div>
+
+            
+
+            
+    <div class="btn-group">
+        
+
+        
+
+        
+
+        <button type="button" class="btn btn-default m-writable active" data-page="1" data-url="/mmp/shop/offer/import/history/search" onclick="onPageChange(this.getAttribute('data-page'),this.getAttribute('data-url'))">
+            <span>1</span>
+        </button><button type="button" class="btn btn-default m-writable" data-page="2" data-url="/mmp/shop/offer/import/history/search" onclick="onPageChange(this.getAttribute('data-page'),this.getAttribute('data-url'))">
+            <span>2</span>
+        </button>
+
+        
+
+        
+
+        <button type="button" class="btn btn-default m-writable" data-page="2" data-url="/mmp/shop/offer/import/history/search" onclick="onPageChange(this.getAttribute('data-page'), this.getAttribute('data-url'))">
+            <span aria-hidden="true" class="fa fa-angle-right"></span>
+        </button>
+    </div>
+
+        </div>
+
+    </form>
+
+
+                    
+    <div class="btn-group btn-group-export-results">
+        
+
+        <button class="btn btn-primary tip m-writable" type="button" role="button" onclick="doExport('/mmp/shop/offer/import/history/export', false, false);" data-original-title="Export">
+                <span class="mui-button-icon mui-button-icon-only">
+                    <span aria-hidden="true" class="fa fa-arrow-circle-o-down"></span>
+                </span>
+        </button>
+    </div>
+    <script>
+        function doExport(endpointUrl, withCustomFields, withToast) {
+            if (withCustomFields) {
+                onExportWithCustomFields(endpointUrl);
+            } else {
+                onExport(endpointUrl);
+            }
+
+            if (withToast) {
+                showExportToast("Export in progress. Do not leave the page or request a new export until the download is complete.", 'bottom-center');
+            }
+            return false;
+        }
+    </script>
+
+                
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+        </div>
+    </div>
+
+
+<div id="generalPopup" class="modal fade">
+    <div id="popupContent"></div>
+</div>
+
+<div id="spinner" class="spinner" style="display:none;">Upload</div>
+
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="/mmp/static/lib/respond/respond.min-c8f918a3f4abbde3c79c6b19fd4b126f.js"></script>
+<![endif]-->
+<script type="text/javascript" src="/mmp/static/js/mirakl-upload-b3-functions-7ebee4f6291f9f161981ab22b5e60699.js"></script>
+<script type="text/javascript" src="/mmp/static/js/mirakl-2c8d9e4c5b157b5b6d2237ebf5ceca3c.js"></script>
+<script type="text/javascript" src="/mmp/static/js/mirakl-remote-autocomplete-cdcdde7a26aeea54b2ff3f854a8f64f1.js"></script>
+
+
+    </div>
+
+    <script>
+        // Let's check if the sidebar is collapsed are not to change the width if needed
+        const isSmallScreen = window.innerWidth <= 768;
+        const isSmallOrMediumScreen = window.innerWidth <= 1080;
+        const isSidebarCollapsed = window.localStorage.getItem('roma-sidebar_collapsed') ?? (isSmallOrMediumScreen && !isSmallScreen).toString();
+
+        if (isSidebarCollapsed === 'false') {
+            const sidebar = document.getElementById('fakeSidebar');
+            sidebar.style.width = '280px';
+        }
+    </script>
+
+
+
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"></div></body></html>

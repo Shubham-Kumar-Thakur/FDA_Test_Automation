@@ -1,0 +1,78 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\SakshiKhullar\Git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 5 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-09-14T16:30:22.204269100Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-14 22:00:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login uses the Seller account from MIRAKL_SELLER_USERNAME/PASSWORD, not the suite default
+Sep 14, 2026 10:00:50 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 14, 2026 10:00:50 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 152.0.7977.84. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-14 22:00:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-14 22:00:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Browser launched. Mirakl tab handle: CF489056F47F161C93CC356AD9F048A7
+2026-09-14 22:00:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-14 22:00:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-14 22:00:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-14 22:00:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-14 22:01:00 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-09-14 22:01:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-14 22:01:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Mirakl login as Seller (skhullar+90764@kognivera.com) complete
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Setup complete (Operator/FDA login deferred to their own phases)
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009: All page objects initialized — Mirakl Seller session already established in @BeforeSuite, no session swap needed
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Started: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 execution started
+2026-09-14 22:01:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 0: Tester Input — New Offer Price =====
+2026-09-14 22:01:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:01:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='40.99', productName='null', productId='6009541008'}
+
+TC_E2E_009 — Enter the new offer price for SKU 'ITUP008' (current Excel price: 40.99). Press Enter to keep it unchanged:
+New price: Sep 14, 2026 10:06:04 PM org.openqa.selenium.remote.http.WebSocket$Listener onError
+WARNING: Connection reset
+java.net.SocketException: Connection reset
+	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:401)
+	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:434)
+	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1178)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:841)
+	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:207)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:280)
+	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:233)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:782)
+	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:965)
+	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:1477)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:1422)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:1422)
+

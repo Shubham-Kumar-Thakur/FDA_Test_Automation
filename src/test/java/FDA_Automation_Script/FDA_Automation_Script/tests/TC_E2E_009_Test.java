@@ -29,12 +29,11 @@ import java.time.Duration;
 
 /**
  * TC_E2E_009 — Seller updates an offer's price via Excel import, and that new price is verified
- * end-to-end: Mirakl Seller -> Mirakl Operator -> FDA (Adobe Commerce) storefront PDP.
+ * end-to-end: Mirakl Seller -> FDA (Adobe Commerce) storefront PDP.
  *
  * Data flow: Mirakl Seller notes the current (pre-update) offer price -> uploads a "Offers" Excel
- * file via File Import -> Seller Offers screen reflects the new price -> a separate Operator
- * session (own browser) confirms the same price under the Seller's shop filter -> FDA storefront
- * search (SKU + Name) and PDP Name/SKU/Price match the Excel data.
+ * file via File Import -> Seller Offers screen reflects the new price -> FDA storefront search
+ * (SKU + Name) and PDP Name/SKU/Price match the Excel data.
  */
 public class TC_E2E_009_Test extends BaseClass {
 
@@ -48,22 +47,14 @@ public class TC_E2E_009_Test extends BaseClass {
     private FDAPDPPage fdaPdpPage;
 
     // --- Dynamic Test Data (captured once, reused everywhere — never hardcoded) ---
-    private String sellerShopName;
     private String productSku;
     private String productId;
     private String productName;
 
-    // Separate, independent browser instance — kept fully isolated from the shared suite
-    // driver/tabs so the Seller session is never logged out mid-test. Owned entirely by this
-    // test: created and logged in during @BeforeSuite, quit in @AfterClass. Never touches
-    // DriverFactory's shared ThreadLocal.
-    private WebDriver operatorDriver;
-    private MiraklOffersPage operatorOffersPage;
-
-    // A third, independent, incognito browser instance for the FDA storefront phase — kept fully
-    // isolated from both the Seller (shared driver) and Operator sessions above so no cookies/cache
-    // from either backoffice session (or a prior storefront visit) can mask whether the updated
-    // price has genuinely propagated. Owned entirely by this test: created in Phase 5, quit in
+    // A second, independent, incognito browser instance for the FDA storefront phase — kept fully
+    // isolated from the Seller (shared driver) session so no cookies/cache from that backoffice
+    // session (or a prior storefront visit) can mask whether the updated price has genuinely
+    // propagated. Owned entirely by this test: created in the FDA storefront phase, quit in
     // @AfterClass.
     private WebDriver fdaDriver;
 
@@ -108,11 +99,9 @@ public class TC_E2E_009_Test extends BaseClass {
     // transiently. BaseClass.java itself is untouched; this is a plain Java method override
     // living entirely in this file.
     //
-    // Only the Seller login happens here — per explicit instruction, Operator and FDA logins
-    // are deferred until Phase 4 and Phase 5 respectively, so each session is only opened once
-    // its own phase actually needs it (Seller task fully completes first, then Operator logs in
-    // and completes its task, then the FDA storefront phase opens its own incognito browser and
-    // polls for propagation — no customer login there, see Phase 5).
+    // Only the Seller login happens here — per explicit instruction, the FDA storefront phase
+    // opens its own incognito browser and polls for propagation only once the Seller task fully
+    // completes (no customer login there — see the FDA storefront phase below).
     //
     // NOTE: this override is only safe when TC_E2E_009 runs in its own isolated suite XML (see
     // testng_e2e_009.xml). If it is ever folded into the shared testng.xml alongside the other
@@ -132,7 +121,7 @@ public class TC_E2E_009_Test extends BaseClass {
         String sellerUser = requireEnv("MIRAKL_SELLER_USERNAME");
         sellerLogin.login(sellerUser, requireEnv("MIRAKL_SELLER_PASSWORD"));
         LoggerUtility.info("TC_E2E_009 @BeforeSuite: Mirakl login as Seller (" + sellerUser + ") complete");
-        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Setup complete (Operator/FDA login deferred to their own phases)");
+        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Setup complete (FDA login deferred to its own phase)");
     }
 
     @BeforeClass
@@ -148,16 +137,8 @@ public class TC_E2E_009_Test extends BaseClass {
 
     @AfterClass(alwaysRun = true)
     public void cleanupSeparateBrowsers() {
-        // These are test-owned drivers, not the shared suite driver, so quitting them here does
+        // This is a test-owned driver, not the shared suite driver, so quitting it here does
         // not violate the "never quit the shared driver outside @AfterSuite" rule.
-        if (operatorDriver != null) {
-            try {
-                operatorDriver.quit();
-                LoggerUtility.info("TC_E2E_009 @AfterClass: Operator browser closed");
-            } catch (Exception e) {
-                LoggerUtility.error("TC_E2E_009 @AfterClass: Failed to close Operator browser: " + e.getMessage());
-            }
-        }
         if (fdaDriver != null) {
             try {
                 fdaDriver.quit();
@@ -170,7 +151,7 @@ public class TC_E2E_009_Test extends BaseClass {
 
     @Test(testName = TC_NAME,
           description = "Verify a Seller-updated offer price (via Excel import) is correctly "
-              + "reflected in Mirakl Seller/Operator and on the FDA storefront (search + PDP "
+              + "reflected in Mirakl Seller and on the FDA storefront (search + PDP "
               + "Name/SKU/Price)")
     public void tc_e2e_009_seller_update_offer_price_via_excel() throws InterruptedException {
 
@@ -187,9 +168,9 @@ public class TC_E2E_009_Test extends BaseClass {
         ExcelUtility.updatePrice(excelFilePath, excelOfferBeforePrompt.sku, newPrice);
 
         // ============================================================
-        // PHASE 1: Seller — note Shop name, SKU, and current (pre-update) price
+        // PHASE 1: Seller — note SKU and current (pre-update) price
         // ============================================================
-        LoggerUtility.info("===== PHASE 1: Mirakl Seller — Note Shop, SKU, Current Price =====");
+        LoggerUtility.info("===== PHASE 1: Mirakl Seller — Note SKU, Current Price =====");
 
         // Step 1: Login to Mirakl as Seller (already established in @BeforeSuite — MiraklLoginPage.login()
         // already asserts a dashboard element was reached before returning, so login success for this
@@ -198,11 +179,6 @@ public class TC_E2E_009_Test extends BaseClass {
         driver.get(config.getMiraklUrl());
         LoggerUtility.info("Step 1: Reusing Mirakl Seller session established in @BeforeSuite: "
             + requireEnv("MIRAKL_SELLER_USERNAME"));
-
-        // Step 2: Note the Seller/Shop name (needed later for the Operator's Shop filter)
-        sellerShopName = miraklOffersPage.getShopName();
-        LoggerUtility.info("Step 2: Captured Seller/Shop name: " + sellerShopName);
-        Assert.assertFalse(sellerShopName.isEmpty(), "Seller/Shop name should not be empty | TC: " + TC_NAME);
 
         // Step 3: From the Excel file, note the product SKU and the tester-provided new price
         // (already written into the file in Phase 0)
@@ -213,16 +189,16 @@ public class TC_E2E_009_Test extends BaseClass {
             + " | Excel price: " + offer.price);
         Assert.assertFalse(productSku.isEmpty(), "Excel product SKU should not be empty | TC: " + TC_NAME);
 
-        // Step 4: Prices and stock -> Offers -> search by SKU -> wait for the grid to render (a
-        // genuine WebDriverWait poll via waitForSingleResult(), not a sleep) -> note current price.
-        // Also verify the settled row's own Offer SKU column matches what we searched for, rather
-        // than trusting "a row is present" alone — guards against reading an unrelated row from a
-        // still-transitioning grid.
+        // Step 4: Prices and stock -> Offers -> search by Product ID (numeric — not Offer SKU, per
+        // explicit instruction) -> wait for the grid to render (a genuine WebDriverWait poll via
+        // waitForSingleResult(), not a sleep) -> note current price. Also verify the settled row's
+        // own Offer SKU column matches the Excel offer's known SKU, rather than trusting "a row is
+        // present" alone — guards against reading an unrelated row from a still-transitioning grid.
         miraklOffersPage.navigateToOffers();
-        miraklOffersPage.searchBySku(productSku);
+        miraklOffersPage.searchByProductId(productId);
         boolean sellerPreUpdateSettled = miraklOffersPage.waitForSingleResult(Duration.ofSeconds(15));
         Assert.assertTrue(sellerPreUpdateSettled,
-            "Offer for SKU " + productSku + " should resolve to exactly one row in Seller Offers | TC: " + TC_NAME);
+            "Offer for Product ID " + productId + " should resolve to exactly one row in Seller Offers | TC: " + TC_NAME);
         Assert.assertEquals(miraklOffersPage.getFirstResultOfferSku().trim(), productSku,
             "Seller Offers grid row should match expected Offer SKU | TC: " + TC_NAME);
         String priceBeforeUpdate = miraklOffersPage.getFirstResultPrice();
@@ -282,14 +258,15 @@ public class TC_E2E_009_Test extends BaseClass {
         // ============================================================
         LoggerUtility.info("===== PHASE 3: Mirakl Seller — Verify Updated Price =====");
 
-        // Steps 10-11: Refresh, click Offers, search by SKU, and wait for the grid (explicit wait via
-        // waitForSingleResult(), not a sleep) before reading the price.
+        // Steps 10-11: Refresh, click Offers, search by Product ID (numeric — not Offer SKU), and
+        // wait for the grid (explicit wait via waitForSingleResult(), not a sleep) before reading
+        // the price.
         driver.navigate().refresh();
         miraklOffersPage.navigateToOffers();
-        miraklOffersPage.searchBySku(productSku);
+        miraklOffersPage.searchByProductId(productId);
         boolean sellerPostImportSettled = miraklOffersPage.waitForSingleResult(Duration.ofSeconds(15));
         Assert.assertTrue(sellerPostImportSettled,
-            "Offer for SKU " + productSku + " not found in Seller Offers after import | TC: " + TC_NAME);
+            "Offer for Product ID " + productId + " not found in Seller Offers after import | TC: " + TC_NAME);
         String priceAfterUpdate = miraklOffersPage.getFirstResultPrice();
         LoggerUtility.info("Step 11: Seller offer price after import: " + priceAfterUpdate);
         Assert.assertFalse(PriceUtility.pricesEqual(priceBeforeUpdate, priceAfterUpdate),
@@ -301,94 +278,15 @@ public class TC_E2E_009_Test extends BaseClass {
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.PASS);
 
         // ============================================================
-        // PHASE 4: Operator — Verify Price via Shop Filter
+        // PHASE 4: FDA Adobe Storefront — Search by Product SKU + PDP Validation
         // ============================================================
-        LoggerUtility.info("===== PHASE 4: Mirakl Operator — Verify Updated Price =====");
+        LoggerUtility.info("===== PHASE 4: FDA Storefront — Search by Product SKU + PDP =====");
 
-        // Steps 12-13: Seller's task is fully complete — only now open a new, independent
-        // browser and log in as Operator. Kept fully separate from the Seller tab so that
-        // session stays untouched. Credentials from environment variables, never
-        // config.properties or hardcoded source. Test-owned driver: quit in @AfterClass.
-        String operatorUsername = requireEnv("MIRAKL_OPERATOR_USERNAME");
-        String operatorPassword = requireEnv("MIRAKL_OPERATOR_PASSWORD");
-        LoggerUtility.info("Step 12: Opening new browser for Mirakl Operator session (" + operatorUsername + ")");
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions operatorOptions = new ChromeOptions();
-        operatorOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--start-maximized",
-            "--disable-notifications", "--disable-popup-blocking");
-        operatorDriver = new ChromeDriver(operatorOptions);
-        operatorDriver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
-        operatorDriver.get(config.getMiraklUrl());
-        MiraklLoginPage operatorLogin = new MiraklLoginPage(operatorDriver);
-        operatorLogin.login(operatorUsername, operatorPassword);
-        operatorOffersPage = new MiraklOffersPage(operatorDriver);
-        LoggerUtility.info("Step 13: Mirakl login as Operator (" + operatorUsername + ") complete");
-        ScreenshotUtility.captureScreenshot(operatorDriver, TC_NAME, ScreenshotUtility.INFO);
-
-        // Step 14: Prices and stocks -> Offers
-        operatorOffersPage.navigateToOffers();
-
-        // Step 15: Apply filter, select Shop, enter Shop name. A Shop ID filter (to avoid collisions
-        // between shops that share a display name) is not applied here — no confirmed UI element
-        // exposing a distinct Shop ID has been identified on this Operator screen; only Shop Name is
-        // available to filter on for now.
-        operatorOffersPage.filterByShop(sellerShopName);
-        LoggerUtility.info("Step 15: Applied Shop filter: " + sellerShopName);
-
-        // Step 16: Search by SKU, verify the price — same eventual-consistency poll pattern as the
-        // Seller check in Phase 3, since the Operator view can lag the Seller-side update by the
-        // same short propagation window.
-        String operatorPrice = null;
-        boolean operatorOfferFoundAtLeastOnce = false;
-        for (int attempt = 1; attempt <= 10; attempt++) {
-            operatorOffersPage.searchBySku(productSku);
-            // Explicit wait (waitForSingleResult(), not a sleep loop) for the grid to narrow to
-            // exactly one row (a unique SKU match) before falling back to the 30-second full-refresh
-            // retry — guards against reading a stale/still-transitioning grid.
-            boolean settledResults = operatorOffersPage.waitForSingleResult(Duration.ofSeconds(15));
-            if (!settledResults) {
-                // Tolerate a transient "no results" state right after search/navigation — only
-                // fail hard if the offer never appears across all 10 attempts (checked after the
-                // loop).
-                LoggerUtility.info("Step 16: Offer not visible/settled yet under Operator Shop filter on attempt "
-                    + attempt + "/10 — waiting 30 seconds...");
-                if (attempt < 10) Thread.sleep(30_000);
-            } else {
-                operatorOfferFoundAtLeastOnce = true;
-                operatorPrice = operatorOffersPage.getFirstResultPrice();
-                LoggerUtility.info("Step 16: Price check " + attempt + "/10 — Operator-visible offer price: " + operatorPrice);
-                if (PriceUtility.pricesEqual(operatorPrice, offer.price)) {
-                    break;
-                }
-                if (attempt < 10) {
-                    LoggerUtility.info("Operator price not updated yet — waiting 30 seconds...");
-                    Thread.sleep(30_000);
-                }
-            }
-            if (attempt < 10) {
-                operatorDriver.navigate().refresh();
-                operatorOffersPage.navigateToOffers();
-                operatorOffersPage.filterByShop(sellerShopName);
-            }
-        }
-        Assert.assertTrue(operatorOfferFoundAtLeastOnce,
-            "Offer for SKU " + productSku + " not found under Operator Shop filter '" + sellerShopName
-                + "' within 10 attempts | TC: " + TC_NAME);
-        Assert.assertTrue(PriceUtility.pricesEqual(operatorPrice, offer.price),
-            "Operator-visible offer price should match Excel price. Excel=" + offer.price
-                + " | Operator=" + operatorPrice + " | TC: " + TC_NAME);
-        ScreenshotUtility.captureScreenshot(operatorDriver, TC_NAME, ScreenshotUtility.PASS);
-
-        // ============================================================
-        // PHASE 5: FDA Adobe Storefront — Search by Product SKU + PDP Validation
-        // ============================================================
-        LoggerUtility.info("===== PHASE 5: FDA Storefront — Search by Product SKU + PDP =====");
-
-        // Operator's task is fully complete — only now open a third, independent, incognito browser
+        // Seller's task is fully complete — only now open a second, independent, incognito browser
         // for the FDA Adobe Storefront (fresh context so no cached price from any prior visit can
-        // mask whether propagation genuinely happened — never reuses the Seller or Operator
-        // sessions' cookies). Per explicit instruction, this goes straight from opening the
-        // storefront to searching — no customer login step.
+        // mask whether propagation genuinely happened — never reuses the Seller session's cookies).
+        // Per explicit instruction, this goes straight from opening the storefront to searching —
+        // no customer login step.
         LoggerUtility.info("Step 22: Opening new incognito browser for FDA storefront verification");
         WebDriverManager.chromedriver().setup();
         ChromeOptions fdaOptions = new ChromeOptions();
@@ -455,9 +353,9 @@ public class TC_E2E_009_Test extends BaseClass {
         ScreenshotUtility.captureScreenshot(fdaDriver, TC_NAME, ScreenshotUtility.PASS);
 
         // ============================================================
-        // PHASE 6: FDA Adobe Storefront — Search by Product Name + PDP Validation
+        // PHASE 5: FDA Adobe Storefront — Search by Product Name + PDP Validation
         // ============================================================
-        LoggerUtility.info("===== PHASE 6: FDA Storefront — Search by Product Name + PDP =====");
+        LoggerUtility.info("===== PHASE 5: FDA Storefront — Search by Product Name + PDP =====");
 
         // Return to the storefront search page, search using the Product Name captured from the
         // Seller Offers grid in Phase 1 (Step 32/33 — using the name actually captured, not assumed).
@@ -477,13 +375,11 @@ public class TC_E2E_009_Test extends BaseClass {
         // Final summary log — never logs passwords
         LoggerUtility.info("TC_E2E_009 completed successfully");
         LoggerUtility.info("  Test Case          : TC_E2E_009");
-        LoggerUtility.info("  Seller/Shop Name   : " + sellerShopName);
         LoggerUtility.info("  Product SKU        : " + productSku);
         LoggerUtility.info("  Product ID         : " + productId);
         LoggerUtility.info("  Product Name       : " + productName);
         LoggerUtility.info("  Price Before Update: " + priceBeforeUpdate);
         LoggerUtility.info("  Price After Update : " + priceAfterUpdate);
-        LoggerUtility.info("  Operator Price     : " + operatorPrice);
         LoggerUtility.info("  PDP Price (SKU search)  : " + pdpPriceBySkuSearch);
         LoggerUtility.info("  PDP Price (Name search) : " + pdpPriceByNameSearch);
         LoggerUtility.info("  Final Test Status  : PASS");

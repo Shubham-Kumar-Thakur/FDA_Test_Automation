@@ -131,9 +131,38 @@ public class MiraklFileImportPage extends BasePage {
         return status;
     }
 
+    // Navigates directly to the history page URL instead of clicking the "Track offer imports"
+    // link. Root-caused via a real run's diagnostic page-source dump (2026-09-14,
+    // track_offer_imports_timeout.html): after jsClick() on TRACK_OFFER_IMPORTS_TAB, the page
+    // source showed we were still on the "File imports" landing page (/mmp/shop/import) — the
+    // synthetic JS click never triggered this React app's client-side route change (the link's
+    // confirmed href from that same dump is /mmp/shop/offer/import/history), so every subsequent
+    // findElements() call was searching the wrong page and eventually timed out. A direct
+    // driver.get() to the same href, built from the current origin, sidesteps the click entirely.
+    //
+    // A short explicit wait for the first data row follows the navigation. Root-caused via a
+    // second real run (2026-09-14): the confirmed history page is a legacy jQuery/DataTables
+    // screen (id="offersDatatable") whose <tbody> rows render a beat after driver.get() returns
+    // (the <thead> is present immediately, but the data row lags) — every one of 15 poll attempts
+    // in that run hit the empty-tbody race and logged "not yet visible", yet the diagnostic dump
+    // taken a moment after the final failure showed a fully populated row with a terminal
+    // "Import complete" status. This wait absorbs that race per-attempt instead of relying on the
+    // global implicit wait, which was observed returning empty results almost immediately rather
+    // than polling for the deciding 2 minutes.
     public void navigateToTrackOfferImports() {
         LoggerUtility.info("Navigating Mirakl: Price and stock -> File imports -> Track offer imports");
-        jsClick(TRACK_OFFER_IMPORTS_TAB);
+        java.net.URI currentUri = java.net.URI.create(driver.getCurrentUrl());
+        String historyUrl = currentUri.getScheme() + "://" + currentUri.getAuthority()
+            + "/mmp/shop/offer/import/history";
+        driver.get(historyUrl);
+        try {
+            new org.openqa.selenium.support.ui.WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(
+                    LATEST_IMPORT_ROW_CELLS));
+        } catch (org.openqa.selenium.TimeoutException e) {
+            // Tolerated here — the caller's own retry loop (waitForImportCompletion) already
+            // handles a still-empty table as a normal "not yet visible" state.
+        }
     }
 
     // Reads the latest (row 1) import history row's cell under the column whose header contains
