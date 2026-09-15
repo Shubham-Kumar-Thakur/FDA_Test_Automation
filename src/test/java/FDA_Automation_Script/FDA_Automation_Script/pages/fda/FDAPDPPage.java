@@ -16,8 +16,10 @@ public class FDAPDPPage extends BasePage {
     private static final By INCREASE_QTY_BTN   = By.xpath("//button[@title='Aumentar']//i[@class='fas fa-plus']");
     private static final By PRODUCT_NAME        = By.xpath("//h1//span[@class='base' and @itemprop='name']");
     private static final By PRODUCT_PRICE       = By.xpath("//img[@class='currency-flag-image']/preceding-sibling::span[@class='price']");
-    // TODO: Verify locator against actual PDP DOM — standard Adobe Commerce "product attribute sku" block
-    private static final By PRODUCT_SKU         = By.xpath("//div[contains(@class,'product') and contains(@class,'attribute') and contains(@class,'sku')]//div[@class='value']");
+    // Confirmed via a real run's diagnostic page-source dump (2026-09-15): the SKU is shown in the
+    // "Más información" (Additional Information) table as a <td data-th="SKU"> cell, not the
+    // originally-guessed "product attribute sku" div block.
+    private static final By PRODUCT_SKU         = By.xpath("//td[@data-th='SKU']");
     private static final By ADD_TO_CART_SUCCESS = By.cssSelector(
         "div.message-success, [data-ui-id='message-success'], " +
         "div.message.success, .page.messages .success, " +
@@ -108,18 +110,78 @@ public class FDAPDPPage extends BasePage {
     }
 
     public String getProductSku() {
-        String sku = getText(PRODUCT_SKU);
-        LoggerUtility.info("PDP product SKU: " + sku);
-        return sku;
+        // Confirmed via a real run (2026-09-15): PRODUCT_SKU's locator is an unconfirmed guess
+        // that doesn't match this PDP's real DOM, and the global 2-minute implicit wait turned
+        // that miss into a 2-minute stall before failing. Use a short implicit wait here instead
+        // so a genuine miss fails in seconds, and dump the live page source so the real SKU
+        // markup can be read off a live run instead of guessing further.
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        try {
+            String sku = getText(PRODUCT_SKU);
+            LoggerUtility.info("PDP product SKU: " + sku);
+            return sku;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            try {
+                java.nio.file.Files.writeString(
+                    java.nio.file.Path.of("test-output/logs/fda_pdp_sku_locator_missing.html"),
+                    driver.getPageSource());
+                LoggerUtility.info("Diagnostic: dumped page source to "
+                    + "test-output/logs/fda_pdp_sku_locator_missing.html");
+            } catch (Exception dumpFailure) {
+                LoggerUtility.error("Diagnostic page-source dump failed: " + dumpFailure.getMessage());
+            }
+            throw e;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
+        }
+    }
+
+    /**
+     * Looks up this specific seller's own offer price in the PDP's "other sellers" list. The main
+     * buy-box price (getProductPrice()) reflects the winning/cheapest offer among all 3P sellers
+     * for this product — per explicit instruction (2026-09-15), that is not necessarily this
+     * test's Seller (confirmed via a real Push-Offers-to-Empathy API response, 2026-09-15: this
+     * test's seller had "winner": false, priced above the winning offer). Returns null if no row
+     * matching sellerName is found (e.g. this seller IS the winning/default offer already shown
+     * as the main price, or the sidebar section genuinely isn't present for a single-seller
+     * product) — callers should treat that as "not found", not as an error.
+     *
+     * TODO: Verify against actual DOM — no confirmed locator yet for this sidebar/section. Finds
+     * the most specific (innermost) element whose own text is exactly the seller name, then reads
+     * the nearest ancestor container that also holds a price element.
+     */
+    public String getSellerOfferPrice(String sellerName) {
+        By sellerNameLeaf = By.xpath(
+            "//*[not(*) and normalize-space(text())='" + sellerName + "']");
+        java.util.List<org.openqa.selenium.WebElement> matches = driver.findElements(sellerNameLeaf);
+        if (matches.isEmpty()) {
+            LoggerUtility.info("Seller '" + sellerName + "' not found in an 'other sellers' section on this PDP");
+            return null;
+        }
+        try {
+            org.openqa.selenium.WebElement priceEl = matches.get(0).findElement(By.xpath(
+                "ancestor::*[.//*[contains(@class,'price')]][1]//*[contains(@class,'price')]"));
+            String price = priceEl.getText().trim();
+            LoggerUtility.info("PDP 'other sellers' price for '" + sellerName + "': " + price);
+            return price;
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            LoggerUtility.warn("Found seller name '" + sellerName + "' on PDP but no nearby price element — "
+                + "sidebar locator likely needs adjusting against real DOM");
+            return null;
+        }
     }
 
     public boolean isDisplayed() {
         try {
-            // Page navigated here via search — fluent wait for visibility (not just DOM presence)
-            WaitUtility.fluentWait(driver, ADD_TO_CART_BTN);
+            // Confirmed via a real run (2026-09-15): waiting on ADD_TO_CART_BTN as the "are we on
+            // a genuine PDP" signal breaks for unavailable/out-of-stock products, which render a
+            // "No disponible" button instead of the expected "Agregar al carrito" one (title
+            // wouldn't match). The product name heading renders regardless of availability, so
+            // it's a reliable PDP marker independent of stock status.
+            WaitUtility.fluentWait(driver, PRODUCT_NAME);
             return true;
         } catch (Exception e) {
-            LoggerUtility.error("PDP Add to Cart button not visible: " + e.getMessage());
+            LoggerUtility.error("PDP product name heading not visible: " + e.getMessage());
             return false;
         }
     }

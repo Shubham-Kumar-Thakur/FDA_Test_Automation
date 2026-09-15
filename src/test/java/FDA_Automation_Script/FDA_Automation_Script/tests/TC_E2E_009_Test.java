@@ -2,22 +2,20 @@ package FDA_Automation_Script.FDA_Automation_Script.tests;
 
 import FDA_Automation_Script.FDA_Automation_Script.base.BaseClass;
 import FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAHomePage;
+import FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDALoginPage;
 import FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPDPPage;
 import FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDASearchResultsPage;
 import FDA_Automation_Script.FDA_Automation_Script.pages.mirakl.MiraklFileImportPage;
 import FDA_Automation_Script.FDA_Automation_Script.pages.mirakl.MiraklLoginPage;
 import FDA_Automation_Script.FDA_Automation_Script.pages.mirakl.MiraklOffersPage;
+import FDA_Automation_Script.FDA_Automation_Script.utils.ApiUtility;
 import FDA_Automation_Script.FDA_Automation_Script.utils.DriverFactory;
 import FDA_Automation_Script.FDA_Automation_Script.utils.ExcelUtility;
 import FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility;
 import FDA_Automation_Script.FDA_Automation_Script.utils.PriceUtility;
 import FDA_Automation_Script.FDA_Automation_Script.utils.ScreenshotUtility;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import io.restassured.response.Response;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -43,20 +41,15 @@ public class TC_E2E_009_Test extends BaseClass {
     private MiraklOffersPage miraklOffersPage;
     private MiraklFileImportPage miraklFileImportPage;
     private FDAHomePage fdaHomePage;
+    private FDALoginPage fdaLoginPage;
     private FDASearchResultsPage fdaSearchResultsPage;
     private FDAPDPPage fdaPdpPage;
 
     // --- Dynamic Test Data (captured once, reused everywhere — never hardcoded) ---
+    private String sellerShopName;
     private String productSku;
     private String productId;
     private String productName;
-
-    // A second, independent, incognito browser instance for the FDA storefront phase — kept fully
-    // isolated from the Seller (shared driver) session so no cookies/cache from that backoffice
-    // session (or a prior storefront visit) can mask whether the updated price has genuinely
-    // propagated. Owned entirely by this test: created in the FDA storefront phase, quit in
-    // @AfterClass.
-    private WebDriver fdaDriver;
 
     // Reads TC_E2E_009's login test data from environment variables rather than
     // config.properties or hardcoded source constants, per explicit instruction for this TC.
@@ -73,7 +66,20 @@ public class TC_E2E_009_Test extends BaseClass {
     // Requires running mvn in a terminal that supports stdin (this framework already has a
     // human-in-the-loop precedent — see MiraklLoginPage.handleMfaIfRequired()). Pressing Enter
     // with no input keeps the price currently in the Excel file.
+    // Maven Surefire forks a separate JVM to run tests, and that forked process's stdin is
+    // claimed by Surefire's own fork-communication protocol — it is never connected to whatever
+    // is piped/redirected into the outer `mvn` command. Scanner/BufferedReader reads on
+    // System.in inside a Surefire-forked test therefore block forever no matter how stdin is fed
+    // to the outer process. `-Dtc.e2e.009.price=<value>` bypasses stdin entirely for `mvn test`
+    // runs; the interactive prompt below remains as a fallback for running this class directly
+    // (e.g. from an IDE) where stdin isn't intercepted by Surefire.
     private static String promptForPrice(String sku, String currentExcelPrice) {
+        String sysPropPrice = System.getProperty("tc.e2e.009.price");
+        if (sysPropPrice != null && !sysPropPrice.isBlank()) {
+            String trimmed = sysPropPrice.trim();
+            LoggerUtility.info("Price supplied via -Dtc.e2e.009.price for SKU " + sku + ": " + trimmed);
+            return trimmed;
+        }
         System.out.println();
         System.out.println("TC_E2E_009 — Enter the new offer price for SKU '" + sku
             + "' (current Excel price: " + currentExcelPrice + "). Press Enter to keep it unchanged:");
@@ -99,9 +105,9 @@ public class TC_E2E_009_Test extends BaseClass {
     // transiently. BaseClass.java itself is untouched; this is a plain Java method override
     // living entirely in this file.
     //
-    // Only the Seller login happens here — per explicit instruction, the FDA storefront phase
-    // opens its own incognito browser and polls for propagation only once the Seller task fully
-    // completes (no customer login there — see the FDA storefront phase below).
+    // Only the Seller login happens here — per explicit instruction, the FDA storefront is
+    // opened later in its own phase, once the Seller task fully completes and the propagation
+    // wait is done.
     //
     // NOTE: this override is only safe when TC_E2E_009 runs in its own isolated suite XML (see
     // testng_e2e_009.xml). If it is ever folded into the shared testng.xml alongside the other
@@ -121,7 +127,7 @@ public class TC_E2E_009_Test extends BaseClass {
         String sellerUser = requireEnv("MIRAKL_SELLER_USERNAME");
         sellerLogin.login(sellerUser, requireEnv("MIRAKL_SELLER_PASSWORD"));
         LoggerUtility.info("TC_E2E_009 @BeforeSuite: Mirakl login as Seller (" + sellerUser + ") complete");
-        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Setup complete (FDA login deferred to its own phase)");
+        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Setup complete (FDA storefront login deferred to its own phase)");
     }
 
     @BeforeClass
@@ -129,24 +135,11 @@ public class TC_E2E_009_Test extends BaseClass {
         miraklOffersPage = new MiraklOffersPage(driver);
         miraklFileImportPage = new MiraklFileImportPage(driver);
         fdaHomePage = new FDAHomePage(driver);
+        fdaLoginPage = new FDALoginPage(driver);
         fdaSearchResultsPage = new FDASearchResultsPage(driver);
         fdaPdpPage = new FDAPDPPage(driver);
         LoggerUtility.info("TC_E2E_009: All page objects initialized — Mirakl Seller session already "
             + "established in @BeforeSuite, no session swap needed");
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void cleanupSeparateBrowsers() {
-        // This is a test-owned driver, not the shared suite driver, so quitting it here does
-        // not violate the "never quit the shared driver outside @AfterSuite" rule.
-        if (fdaDriver != null) {
-            try {
-                fdaDriver.quit();
-                LoggerUtility.info("TC_E2E_009 @AfterClass: FDA storefront browser closed");
-            } catch (Exception e) {
-                LoggerUtility.error("TC_E2E_009 @AfterClass: Failed to close FDA storefront browser: " + e.getMessage());
-            }
-        }
     }
 
     @Test(testName = TC_NAME,
@@ -168,44 +161,61 @@ public class TC_E2E_009_Test extends BaseClass {
         ExcelUtility.updatePrice(excelFilePath, excelOfferBeforePrompt.sku, newPrice);
 
         // ============================================================
-        // PHASE 1: Seller — note SKU and current (pre-update) price
+        // PHASE 1: Seller — note Shop name, SKU, and current (pre-update) price
         // ============================================================
-        LoggerUtility.info("===== PHASE 1: Mirakl Seller — Note SKU, Current Price =====");
+        LoggerUtility.info("===== PHASE 1: Mirakl Seller — Note Shop, SKU, Current Price =====");
 
-        // Step 1: Login to Mirakl as Seller (already established in @BeforeSuite — MiraklLoginPage.login()
-        // already asserts a dashboard element was reached before returning, so login success for this
-        // session was already confirmed, not assumed).
+        // Step 1: Login to Mirakl as Seller (already established in @BeforeSuite)
         switchToMiraklTab();
         driver.get(config.getMiraklUrl());
         LoggerUtility.info("Step 1: Reusing Mirakl Seller session established in @BeforeSuite: "
             + requireEnv("MIRAKL_SELLER_USERNAME"));
+
+        // Step 2: Note the Seller/Shop name (captured for the test summary log)
+        sellerShopName = miraklOffersPage.getShopName();
+        LoggerUtility.info("Step 2: Captured Seller/Shop name: " + sellerShopName);
+        Assert.assertFalse(sellerShopName.isEmpty(), "Seller/Shop name should not be empty | TC: " + TC_NAME);
 
         // Step 3: From the Excel file, note the product SKU and the tester-provided new price
         // (already written into the file in Phase 0)
         ExcelUtility.OfferData offer = ExcelUtility.readFirstOffer(excelFilePath);
         productSku = offer.sku;
         productId = offer.productId;
-        LoggerUtility.info("Step 3: Excel Offer SKU: " + productSku + " | Product ID: " + productId
+        LoggerUtility.info("Step 3: Excel product SKU: " + productSku + " | Product ID: " + productId
             + " | Excel price: " + offer.price);
         Assert.assertFalse(productSku.isEmpty(), "Excel product SKU should not be empty | TC: " + TC_NAME);
+        Assert.assertFalse(productId == null || productId.isEmpty(),
+            "Excel Product ID should not be empty | TC: " + TC_NAME);
 
-        // Step 4: Prices and stock -> Offers -> search by Product ID (numeric — not Offer SKU, per
-        // explicit instruction) -> wait for the grid to render (a genuine WebDriverWait poll via
-        // waitForSingleResult(), not a sleep) -> note current price. Also verify the settled row's
-        // own Offer SKU column matches the Excel offer's known SKU, rather than trusting "a row is
-        // present" alone — guards against reading an unrelated row from a still-transitioning grid.
+        // Step 4: Prices and stock -> Offers -> search by Product ID -> note current price.
+        // Confirmed via a real run (2026-09-10): hasResults() only checks "row 1 exists" — right
+        // after a search fires, the grid can still be showing its previous unfiltered/paginated
+        // state (many rows) while the AJAX filter is in flight, and row 1 in that state can be a
+        // completely unrelated offer (observed: a different product entirely). Per explicit
+        // instruction, no Offer SKU/product-name comparison is used here — instead, wait for the
+        // grid to narrow to exactly one row, which only happens once the Product ID search has
+        // actually taken effect (a unique match), before trusting that row's price/name.
         miraklOffersPage.navigateToOffers();
         miraklOffersPage.searchByProductId(productId);
-        boolean sellerPreUpdateSettled = miraklOffersPage.waitForSingleResult(Duration.ofSeconds(15));
-        Assert.assertTrue(sellerPreUpdateSettled,
+        for (int attempt = 1; attempt <= 5; attempt++) {
+            if (miraklOffersPage.getResultsCount() == 1) {
+                break;
+            }
+            LoggerUtility.info("Step 4: Offers grid not yet narrowed to a single match for Product ID "
+                + productId + " (attempt " + attempt + "/5, saw " + miraklOffersPage.getResultsCount()
+                + " row(s)) — waiting 2 seconds...");
+            Thread.sleep(2_000);
+        }
+        Assert.assertEquals(miraklOffersPage.getResultsCount(), 1,
             "Offer for Product ID " + productId + " should resolve to exactly one row in Seller Offers | TC: " + TC_NAME);
-        Assert.assertEquals(miraklOffersPage.getFirstResultOfferSku().trim(), productSku,
-            "Seller Offers grid row should match expected Offer SKU | TC: " + TC_NAME);
         String priceBeforeUpdate = miraklOffersPage.getFirstResultPrice();
         productName = miraklOffersPage.getFirstResultProductName();
         LoggerUtility.info("Step 4: Current Seller offer price (before update): " + priceBeforeUpdate
             + " | Product name: " + productName);
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.INFO);
+
+        // Step 5: Wait 3 seconds
+        Thread.sleep(3_000);
 
         // ============================================================
         // PHASE 2: Seller — Import Excel Offer File
@@ -224,33 +234,25 @@ public class TC_E2E_009_Test extends BaseClass {
         // Step 9: File Content = Offers, click Import
         miraklFileImportPage.selectFileContent("Offers");
         miraklFileImportPage.clickImport();
-
-        // Best-effort only: a real run (2026-09-10) showed this transient success banner does not
-        // reliably appear before the page resets — so it's logged if present but never gates the
-        // test. The Track offer imports report polled below is the authoritative source of truth.
+        // The transient "File imported" banner is checked best-effort/non-blocking only — a real
+        // run (2026-09-10) showed it does not reliably appear before the form resets. The
+        // authoritative check is the "Track offer imports" report poll below.
         if (miraklFileImportPage.isImportStatusMessageDisplayed()) {
-            LoggerUtility.info("Step 9: Transient import banner seen: " + miraklFileImportPage.getImportStatusMessage());
+            LoggerUtility.info("Step 9: Import submitted — banner status: " + miraklFileImportPage.getImportStatusMessage());
         } else {
-            LoggerUtility.info("Step 9: Transient import banner not seen (not authoritative) — "
-                + "proceeding to poll the Track offer imports report");
+            LoggerUtility.info("Step 9: Import submitted — banner not observed (non-blocking, expected per known Mirakl UI timing)");
         }
+        ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.INFO);
 
-        // Capture the import job ID/reference if shown (best-effort — not all Mirakl versions
-        // expose one on this screen).
-        if (miraklFileImportPage.isImportIdDisplayed()) {
-            LoggerUtility.info("Step 9: Import ID: " + miraklFileImportPage.getImportId());
-        }
-
-        // Poll the Track offer imports report (not a blind wait) on a bounded interval until the
-        // latest import reaches a terminal status, then assert 0 failed rows — not just "overall
-        // success" — before trusting the price was actually updated.
+        // Wait until the import process actually completes — polls the "Track offer imports"
+        // report (every 8s, up to 2 min) for a terminal status, then asserts 0 failed rows.
         String importStatus = miraklFileImportPage.waitForImportCompletion(
             Duration.ofMinutes(2), Duration.ofSeconds(8));
-        LoggerUtility.info("Step 9: Import reached terminal status: " + importStatus);
-        int failedRowCount = miraklFileImportPage.getLatestImportFailedCount();
-        Assert.assertEquals(failedRowCount, 0,
-            "Import report should show 0 failed rows. Status=" + importStatus + " | Failed rows="
-                + failedRowCount + " | TC: " + TC_NAME);
+        LoggerUtility.info("Import reached terminal status: " + importStatus);
+        int failedCount = miraklFileImportPage.getLatestImportFailedCount();
+        Assert.assertEquals(failedCount, 0,
+            "Import should complete with 0 failed rows. Status=" + importStatus
+                + " | Failed=" + failedCount + " | TC: " + TC_NAME);
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.PASS);
 
         // ============================================================
@@ -258,13 +260,22 @@ public class TC_E2E_009_Test extends BaseClass {
         // ============================================================
         LoggerUtility.info("===== PHASE 3: Mirakl Seller — Verify Updated Price =====");
 
-        // Steps 10-11: Refresh, click Offers, search by Product ID (numeric — not Offer SKU), and
-        // wait for the grid (explicit wait via waitForSingleResult(), not a sleep) before reading
-        // the price.
+        // Steps 10-11: Refresh, click Offers, search the SKU, and check the price — checked only
+        // once per explicit instruction (no outer retry/wait loop), then proceed straight to the
+        // FDA storefront phase regardless of the outcome here.
         driver.navigate().refresh();
         miraklOffersPage.navigateToOffers();
         miraklOffersPage.searchByProductId(productId);
-        boolean sellerPostImportSettled = miraklOffersPage.waitForSingleResult(Duration.ofSeconds(15));
+        // Keep the short inner settle-check (no re-search, just re-reading the same result) so the
+        // one search attempt isn't read mid-AJAX-response — see Step 4 above for why.
+        boolean sellerPostImportSettled = false;
+        for (int settleAttempt = 1; settleAttempt <= 5; settleAttempt++) {
+            if (miraklOffersPage.getResultsCount() == 1) {
+                sellerPostImportSettled = true;
+                break;
+            }
+            if (settleAttempt < 5) Thread.sleep(2_000);
+        }
         Assert.assertTrue(sellerPostImportSettled,
             "Offer for Product ID " + productId + " not found in Seller Offers after import | TC: " + TC_NAME);
         String priceAfterUpdate = miraklOffersPage.getFirstResultPrice();
@@ -278,117 +289,94 @@ public class TC_E2E_009_Test extends BaseClass {
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.PASS);
 
         // ============================================================
-        // PHASE 4: FDA Adobe Storefront — Search by Product SKU + PDP Validation
+        // PHASE 3B: Push Offers to Empathy — REST API trigger
         // ============================================================
-        LoggerUtility.info("===== PHASE 4: FDA Storefront — Search by Product SKU + PDP =====");
+        LoggerUtility.info("===== PHASE 3B: Push Offers to Empathy (REST API) =====");
 
-        // Seller's task is fully complete — only now open a second, independent, incognito browser
-        // for the FDA Adobe Storefront (fresh context so no cached price from any prior visit can
-        // mask whether propagation genuinely happened — never reuses the Seller session's cookies).
-        // Per explicit instruction, this goes straight from opening the storefront to searching —
-        // no customer login step.
-        LoggerUtility.info("Step 22: Opening new incognito browser for FDA storefront verification");
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions fdaOptions = new ChromeOptions();
-        fdaOptions.addArguments("--incognito", "--no-sandbox", "--disable-dev-shm-usage", "--start-maximized",
-            "--disable-notifications", "--disable-popup-blocking");
-        fdaDriver = new ChromeDriver(fdaOptions);
-        fdaDriver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
-        fdaHomePage = new FDAHomePage(fdaDriver);
-        fdaSearchResultsPage = new FDASearchResultsPage(fdaDriver);
-        fdaPdpPage = new FDAPDPPage(fdaDriver);
-
-        // Poll the storefront (not a blind wait) until the updated price is reflected there, up to
-        // a max wait tuned to the known Mirakl -> Adobe Commerce reindex/cron SLA. A "no results
-        // yet" state is tolerated as part of this poll rather than treated as a hard failure — the
-        // product may not even be searchable until the sync completes. Timing out here throws a
-        // distinct "not propagated within SLA" error, separate from a normal assertion failure.
-        Duration storefrontSlaTimeout = Duration.ofMinutes(10);
-        Duration storefrontPollInterval = Duration.ofSeconds(30);
-        long storefrontDeadline = System.currentTimeMillis() + storefrontSlaTimeout.toMillis();
-        String storefrontPrice = null;
-        boolean pricePropagated = false;
-        int propagationAttempt = 0;
-        while (true) {
-            propagationAttempt++;
-            fdaHomePage.navigateTo(config.getFdaUrl());
-            fdaHomePage.enterSearchQuery(productSku);
-            fdaHomePage.pressSearchEnter();
-            if (fdaSearchResultsPage.isProductPresent(productSku)) {
-                fdaSearchResultsPage.openMatchingResult(productSku);
-                if (fdaPdpPage.isDisplayed()) {
-                    storefrontPrice = fdaPdpPage.getProductPrice();
-                    if (PriceUtility.pricesEqual(storefrontPrice, offer.price)) {
-                        pricePropagated = true;
-                        LoggerUtility.info("Step 28: Updated price propagated to FDA storefront after "
-                            + propagationAttempt + " check(s) — PDP price: " + storefrontPrice);
-                        break;
-                    }
-                    LoggerUtility.info("Step 28: Propagation check " + propagationAttempt
-                        + " — storefront PDP price not yet updated (saw: " + storefrontPrice + ")");
-                } else {
-                    LoggerUtility.info("Step 28: Propagation check " + propagationAttempt
-                        + " — product found in search but PDP not yet displayed");
-                }
-            } else {
-                LoggerUtility.info("Step 28: Propagation check " + propagationAttempt
-                    + " — product not yet present in FDA search results for SKU " + productSku);
-            }
-            if (System.currentTimeMillis() >= storefrontDeadline) {
-                throw new IllegalStateException("TIMEOUT: Updated price for SKU " + productSku
-                    + " did not propagate to the FDA storefront within the " + storefrontSlaTimeout.toMinutes()
-                    + "-minute SLA window (Excel price=" + offer.price + ", last seen storefront price="
-                    + storefrontPrice + ")");
-            }
-            Thread.sleep(storefrontPollInterval.toMillis());
-        }
-        Assert.assertTrue(pricePropagated,
-            "Updated price should have propagated to the FDA storefront | TC: " + TC_NAME);
-        LoggerUtility.info("Product confirmed present in Product SKU search results");
-        ScreenshotUtility.captureScreenshot(fdaDriver, TC_NAME, ScreenshotUtility.INFO);
-
-        // PDP is already open from the last (successful) propagation check above — verify Product
-        // Name, SKU, and Price on it directly.
-        String pdpPriceBySkuSearch = verifyProductDetailPage(productName, productSku, offer.price);
-        ScreenshotUtility.captureScreenshot(fdaDriver, TC_NAME, ScreenshotUtility.PASS);
+        // Triggers the Mirakl-side sync that propagates the Seller's updated offer price to the
+        // FDA storefront's catalog/search index (Empathy). GET, Cookie-only auth, no body —
+        // matches the cancelFullOrder/cancelShipment Cookie-only pattern in ApiUtility.
+        Response pushToEmpathyResponse = ApiUtility.pushOffersToEmpathy();
+        Assert.assertEquals(200, pushToEmpathyResponse.getStatusCode(),
+            "Push Offers to Empathy should return a 200 status. Actual=" + pushToEmpathyResponse.getStatusCode()
+                + " | TC: " + TC_NAME);
 
         // ============================================================
-        // PHASE 5: FDA Adobe Storefront — Search by Product Name + PDP Validation
+        // PHASE 4: FDA Storefront — Login, Search by Product Name, PLP + PDP Validation
         // ============================================================
-        LoggerUtility.info("===== PHASE 5: FDA Storefront — Search by Product Name + PDP =====");
+        LoggerUtility.info("===== PHASE 4: FDA Storefront — Login, Search by Product Name, PLP + PDP =====");
 
-        // Return to the storefront search page, search using the Product Name captured from the
-        // Seller Offers grid in Phase 1 (Step 32/33 — using the name actually captured, not assumed).
+        // Push Offers to Empathy (Phase 3B) already returned 200 — that's the deterministic signal
+        // the sync completed, so search immediately rather than blind-waiting on a fixed sleep.
+        fdaTabHandle = DriverFactory.openNewTab();
+        fdaHomePage.navigateTo(config.getFdaUrl());
+        fdaHomePage.clickProfileIcon();
+        fdaHomePage.clickLoginLink();
+        fdaLoginPage.login(config.getFdaUsername(), config.getFdaPassword());
+        Assert.assertTrue(fdaHomePage.isLoggedIn(), "FDA storefront login should succeed | TC: " + TC_NAME);
+        LoggerUtility.info("FDA storefront login successful");
+
+        // Search using the Product Name only, per explicit instruction (2026-09-15) — a Product ID
+        // search on this storefront was found to be unreliable (sometimes falls back to a generic,
+        // unrelated result set instead of the real match), whereas a Product Name search reliably
+        // surfaces a PLP grid to click through to the PDP.
         fdaHomePage.navigateTo(config.getFdaUrl());
         fdaHomePage.enterSearchQuery(productName);
         fdaHomePage.pressSearchEnter();
         Assert.assertTrue(fdaSearchResultsPage.isProductPresent(productName),
             "Product not found in FDA search results for name: " + productName + " | TC: " + TC_NAME);
         LoggerUtility.info("Product confirmed present in Product Name search results");
-        ScreenshotUtility.captureScreenshot(fdaDriver, TC_NAME, ScreenshotUtility.INFO);
+        ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.INFO);
 
-        // Open the PDP and verify Product Name, SKU, and Price again
+        // Check the price shown on the PLP (results grid) card. Per explicit instruction
+        // (2026-09-15): the price can lag behind propagation even after Push Offers to Empathy
+        // (Phase 3B) returns 200 — poll by refreshing and re-reading (scroll-into-view happens
+        // inside getResultItemPrice() itself) rather than a single one-shot check.
+        String plpPrice = null;
+        if (fdaSearchResultsPage.isResultsGridDisplayed()) {
+            fdaSearchResultsPage.scrollToTop();
+            boolean plpMatched = false;
+            for (int attempt = 1; attempt <= 5; attempt++) {
+                plpPrice = fdaSearchResultsPage.getResultItemPrice(productName);
+                plpMatched = PriceUtility.pricesEqual(plpPrice, offer.price);
+                if (plpMatched) {
+                    break;
+                }
+                LoggerUtility.info("PLP price not yet updated (attempt " + attempt + "/5, saw " + plpPrice
+                    + ", expected " + offer.price + ") — refreshing and retrying...");
+                Thread.sleep(3_000);
+                driver.navigate().refresh();
+            }
+            Assert.assertTrue(plpMatched, "PLP price should match the Seller-updated price after retries. "
+                + "Expected=" + offer.price + " | Last seen PLP=" + plpPrice + " | TC: " + TC_NAME);
+        } else {
+            LoggerUtility.info("Product Name search redirected straight to PDP — no PLP grid to check");
+        }
+
+        // Click through to the PDP and verify Product Name, SKU, and Price there too
         fdaSearchResultsPage.openMatchingResult(productName);
-        String pdpPriceByNameSearch = verifyProductDetailPage(productName, productSku, offer.price);
-        ScreenshotUtility.captureScreenshot(fdaDriver, TC_NAME, ScreenshotUtility.PASS);
+        String pdpPrice = verifyProductDetailPage(productName, productId, offer.price);
+        ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.PASS);
 
         // Final summary log — never logs passwords
         LoggerUtility.info("TC_E2E_009 completed successfully");
         LoggerUtility.info("  Test Case          : TC_E2E_009");
+        LoggerUtility.info("  Seller/Shop Name   : " + sellerShopName);
         LoggerUtility.info("  Product SKU        : " + productSku);
         LoggerUtility.info("  Product ID         : " + productId);
         LoggerUtility.info("  Product Name       : " + productName);
         LoggerUtility.info("  Price Before Update: " + priceBeforeUpdate);
         LoggerUtility.info("  Price After Update : " + priceAfterUpdate);
-        LoggerUtility.info("  PDP Price (SKU search)  : " + pdpPriceBySkuSearch);
-        LoggerUtility.info("  PDP Price (Name search) : " + pdpPriceByNameSearch);
+        LoggerUtility.info("  PLP Price          : " + plpPrice);
+        LoggerUtility.info("  PDP Price          : " + pdpPrice);
         LoggerUtility.info("  Final Test Status  : PASS");
     }
 
-    // Opens on whatever PDP is currently displayed and verifies Product Name, SKU, and Price
-    // against the expected values — shared by both the SKU-search and Name-search verification
-    // blocks in Phase 5/6 so the checks aren't duplicated.
-    private String verifyProductDetailPage(String expectedName, String expectedSku, String expectedPrice) {
+    // Opens on whatever PDP is currently displayed and verifies Product Name, SKU (Product ID),
+    // and Price against the expected values — shared by both the Product-SKU-search and
+    // Product-Name-search verification blocks in Phase 5/6 so the checks aren't duplicated.
+    private String verifyProductDetailPage(String expectedName, String expectedSku, String expectedPrice)
+            throws InterruptedException {
         Assert.assertTrue(fdaPdpPage.isDisplayed(), "PDP not displayed | TC: " + TC_NAME);
 
         String pdpProductName = fdaPdpPage.getProductName();
@@ -401,11 +389,47 @@ public class TC_E2E_009_Test extends BaseClass {
             "PDP SKU should equal expected Product SKU. Expected=" + expectedSku + " | PDP=" + pdpSku
                 + " | TC: " + TC_NAME);
 
-        String pdpPrice = fdaPdpPage.getProductPrice();
-        Assert.assertTrue(PriceUtility.pricesEqual(pdpPrice, expectedPrice),
-            "PDP Price should equal New Price. Expected=" + expectedPrice + " | PDP=" + pdpPrice
+        // The main buy-box price reflects the winning/cheapest offer among all 3P sellers for this
+        // product, which is not necessarily this test's Seller (per explicit instruction,
+        // 2026-09-15 — confirmed via a real Push-Offers-to-Empathy API response the same day where
+        // this test's seller had "winner": false, priced above the actual winning offer) — check
+        // the main price first, falling back to this seller's own offer in the PDP's "other
+        // sellers" list. The price can also lag behind propagation even after Push Offers to
+        // Empathy (Phase 3B) returns 200, same as the PLP check above — poll by refreshing and
+        // re-reading rather than a single one-shot check.
+        String pdpPrice = readPdpPriceForSeller(expectedPrice);
+        boolean pdpMatched = PriceUtility.pricesEqual(pdpPrice, expectedPrice);
+        for (int attempt = 1; !pdpMatched && attempt <= 5; attempt++) {
+            LoggerUtility.info("PDP price not yet updated (attempt " + attempt + "/5, saw " + pdpPrice
+                + ", expected " + expectedPrice + ") — refreshing and retrying...");
+            Thread.sleep(3_000);
+            driver.navigate().refresh();
+            Assert.assertTrue(fdaPdpPage.isDisplayed(), "PDP not displayed after refresh | TC: " + TC_NAME);
+            pdpPrice = readPdpPriceForSeller(expectedPrice);
+            pdpMatched = PriceUtility.pricesEqual(pdpPrice, expectedPrice);
+        }
+        Assert.assertTrue(pdpMatched,
+            "PDP Price (main buy-box or this seller's own offer) should equal New Price after retries. "
+                + "Expected=" + expectedPrice + " | Last seen PDP=" + pdpPrice + " | Seller=" + sellerShopName
                 + " | TC: " + TC_NAME);
 
+        return pdpPrice;
+    }
+
+    // Reads the main buy-box PDP price, falling back to this seller's own offer in the "other
+    // sellers" list if the main price doesn't match expectedPrice — see verifyProductDetailPage()
+    // for why (the winning/cheapest seller isn't necessarily this test's seller).
+    private String readPdpPriceForSeller(String expectedPrice) {
+        String pdpPrice = fdaPdpPage.getProductPrice();
+        if (!PriceUtility.pricesEqual(pdpPrice, expectedPrice)) {
+            String sellerOfferPrice = fdaPdpPage.getSellerOfferPrice(sellerShopName);
+            if (sellerOfferPrice != null) {
+                LoggerUtility.info("Main PDP price (" + pdpPrice + ") belongs to a different (winning) "
+                    + "seller — checking this test's own seller ('" + sellerShopName + "') offer instead: "
+                    + sellerOfferPrice);
+                pdpPrice = sellerOfferPrice;
+            }
+        }
         return pdpPrice;
     }
 }

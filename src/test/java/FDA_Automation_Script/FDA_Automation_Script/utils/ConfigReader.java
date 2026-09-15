@@ -129,4 +129,12 @@ public class ConfigReader {
 	public String getCancelShipmentCookie() {
 		return get("cancel.shipment.cookie");
 	}
+
+	public String getPushOffersToEmpathyUrl() {
+		return get("push.offers.to.empathy.url");
+	}
+
+	public String getPushOffersToEmpathyCookie() {
+		return get("push.offers.to.empathy.cookie");
+	}
 }

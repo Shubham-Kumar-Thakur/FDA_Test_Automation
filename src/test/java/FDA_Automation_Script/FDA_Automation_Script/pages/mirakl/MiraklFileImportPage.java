@@ -2,6 +2,7 @@ package FDA_Automation_Script.FDA_Automation_Script.pages.mirakl;
 
 import FDA_Automation_Script.FDA_Automation_Script.pages.BasePage;
 import FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility;
+import FDA_Automation_Script.FDA_Automation_Script.utils.WaitUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -17,6 +18,11 @@ public class MiraklFileImportPage extends BasePage {
     // Confirmed against live Seller dashboard left-nav (2026-09-07): submenu label is
     // "File imports" (plural), sibling of "Offers" and "Promotions" under "Price and stock".
     private static final By FILE_IMPORT_LINK = By.xpath("//span[normalize-space()='File imports']");
+    // Same "Price and stock" left-nav accordion trigger as MiraklOffersPage.PRICES_AND_STOCKS_MENU.
+    // Duplicated here (rather than shared) since these are separate page objects for separate
+    // screens — navigateToFileImport() needs it to re-open the accordion when it has collapsed.
+    private static final By PRICES_AND_STOCKS_MENU = By.xpath(
+        "//span[normalize-space()='Price and stock'] | //button[@id='priceAndStock']");
     // Confirmed against live "Import file" tab (2026-09-07): "Select file" is present but not
     // necessarily a <button> tag — matched by visible text on any clickable-looking element.
     // NOTE: not actually clicked (see clickSelectFile() below) — it triggers a native OS file
@@ -59,8 +65,15 @@ public class MiraklFileImportPage extends BasePage {
     // tolerant of column reordering, and a diagnostic page-source dump is written on failure so the
     // real header text can be read off a live run instead of guessing further.
     private static final By TRACK_OFFER_IMPORTS_TAB = By.xpath("//*[normalize-space()='Track offer imports']");
-    private static final By IMPORT_HISTORY_HEADERS = By.xpath("//table//thead//th | //table//tr[1]/th");
-    private static final By LATEST_IMPORT_ROW_CELLS = By.xpath("//table//tbody/tr[1]/td");
+    // Scoped to the confirmed report table id (table#offersDatatable — verified via a real
+    // timeout diagnostic dump, 2026-09-14). The previous page-wide //table//thead//th and
+    // //table//tbody/tr[1]/td locators matched ANY table on the page; if another table appears
+    // earlier in the DOM, the header and cell lists get built from different tables and the
+    // header-to-cell index alignment breaks, so the "status" column is never found — the report
+    // row itself was actually present and terminal ("Import complete") the whole time, but every
+    // poll attempt logged "not yet visible" until the 2-minute timeout.
+    private static final By IMPORT_HISTORY_HEADERS = By.xpath("//table[@id='offersDatatable']/thead//th");
+    private static final By LATEST_IMPORT_ROW_CELLS = By.xpath("//table[@id='offersDatatable']/tbody/tr[1]/td");
 
     // Any of these substrings appearing (case-insensitive) in the latest import row's status cell
     // is treated as a terminal (no-longer-processing) state.
@@ -73,7 +86,33 @@ public class MiraklFileImportPage extends BasePage {
 
     public void navigateToFileImport() {
         LoggerUtility.info("Navigating Mirakl: Price and stock -> File imports");
+        // Confirmed via a real run (2026-09-15): this used to click FILE_IMPORT_LINK blind, assuming
+        // the "Price and stock" left-nav submenu was still expanded from Phase 1's navigateToOffers()
+        // call — but searching/reading the Offers grid can collapse it in between, causing a
+        // NoSuchElementException here. Mirrors MiraklOffersPage.navigateToOffers()'s retry pattern:
+        // verify the link is actually present, (re)open the accordion if not, before clicking.
+        for (int attempt = 1; attempt <= 2; attempt++) {
+            if (isFileImportLinkPresent()) {
+                jsClick(FILE_IMPORT_LINK);
+                return;
+            }
+            LoggerUtility.info("'File imports' link not present (attempt " + attempt
+                + "/2) — (re)opening 'Price and stock' menu");
+            WaitUtility.fluentWait(driver, PRICES_AND_STOCKS_MENU);
+            jsClick(PRICES_AND_STOCKS_MENU);
+        }
+        // Final attempt — let a genuine failure surface with its normal exception if the link is
+        // still not there after retrying.
         jsClick(FILE_IMPORT_LINK);
+    }
+
+    private boolean isFileImportLinkPresent() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+        try {
+            return !driver.findElements(FILE_IMPORT_LINK).isEmpty();
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
+        }
     }
 
     // Intentionally NOT clicked in the test flow — kept only in case a future DOM change makes
@@ -171,13 +210,39 @@ public class MiraklFileImportPage extends BasePage {
     private String getLatestImportCellByHeader(String headerKeyword) {
         List<org.openqa.selenium.WebElement> headers = driver.findElements(IMPORT_HISTORY_HEADERS);
         List<org.openqa.selenium.WebElement> cells = driver.findElements(LATEST_IMPORT_ROW_CELLS);
+        List<String> headerTexts = new java.util.ArrayList<>();
+        for (org.openqa.selenium.WebElement h : headers) {
+            headerTexts.add("'" + rawText(h) + "'");
+        }
+        List<String> cellTexts = new java.util.ArrayList<>();
+        for (org.openqa.selenium.WebElement c : cells) {
+            cellTexts.add("'" + rawText(c) + "'");
+        }
+        LoggerUtility.info("Track offer imports — headers(" + headers.size() + ")=" + headerTexts
+            + " cells(" + cells.size() + ")=" + cellTexts);
         for (int i = 0; i < headers.size() && i < cells.size(); i++) {
-            if (headers.get(i).getText().trim().toLowerCase().contains(headerKeyword.toLowerCase())) {
-                return cells.get(i).getText().trim();
+            if (rawText(headers.get(i)).toLowerCase().contains(headerKeyword.toLowerCase())) {
+                return rawText(cells.get(i));
             }
         }
         throw new NoSuchElementException(
             "No column header containing '" + headerKeyword + "' found in Track offer imports table");
+    }
+
+    // WebElement.getText() returns "" for text WebDriver's visibility algorithm considers
+    // non-displayed, even when the DOM clearly has it (observed: this report's fixed-width
+    // table layout consistently returned empty getText() for header/cell text that a page-source
+    // dump showed present). textContent via JS reads the raw DOM text regardless of that
+    // visibility heuristic; getText() is tried first since it also normalizes whitespace/case
+    // for the common case, falling back to the JS read only when it comes back blank.
+    private String rawText(org.openqa.selenium.WebElement element) {
+        String viaGetText = element.getText().trim();
+        if (!viaGetText.isEmpty()) {
+            return viaGetText;
+        }
+        Object viaJs = ((org.openqa.selenium.JavascriptExecutor) driver)
+            .executeScript("return arguments[0].textContent;", element);
+        return viaJs == null ? "" : viaJs.toString().trim();
     }
 
     public String getLatestImportStatus() {
@@ -222,7 +287,14 @@ public class MiraklFileImportPage extends BasePage {
             attempt++;
             navigateToTrackOfferImports();
             try {
-                lastStatus = getLatestImportStatus();
+                // The Status cell's rawText() falls back to raw textContent (see rawText() above),
+                // which pulls in a hidden per-row tooltip block ("Lines read: null", "Lines with
+                // errors: null", etc.) that is present verbatim regardless of the actual status —
+                // confirmed via a real run (2026-09-15) where a genuinely "Pending" import was
+                // misreported as terminal because that boilerplate tooltip text contains the
+                // substring "errors", which matched the "error" terminal keyword. Only the first
+                // line is the actual visible status chip; match keywords against that alone.
+                lastStatus = getLatestImportStatus().split("\\r?\\n", 2)[0].trim();
                 String normalized = lastStatus.toLowerCase();
                 for (String keyword : TERMINAL_STATUS_KEYWORDS) {
                     if (normalized.contains(keyword)) {

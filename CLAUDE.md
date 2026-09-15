@@ -361,6 +361,8 @@ Do NOT commit this file to shared/public repositories.
 | `cancel.shipment.cookie` | `ApiUtility` | Cookie for cancel shipment calls |
 | `return.service.url` | `ReturnApiUtility` | Return creation endpoint (Cookie-only auth) |
 | `return.service.cookie` | `ReturnApiUtility` | Cookie for return service calls |
+| `push.offers.to.empathy.url` | `ApiUtility` | Push Offers to Empathy endpoint (TC_E2E_009) — GET, Cookie-only auth, no body; propagates a Seller's updated offer price to the FDA storefront's catalog index |
+| `push.offers.to.empathy.cookie` | `ApiUtility` | Cookie for Push Offers to Empathy calls |
 | `excel.offer.file.path` | `TC_E2E_009_Test` (raw `config.get()`), `ExcelUtility` | Absolute path to the Mirakl offer file-import `.xlsx` used by TC_E2E_009 |
 | `adobe.admin.url` | `TC_E2E_009_Test` (raw `config.get()`) | Adobe Commerce (Magento) Admin URL — URL only, not a credential; if blank, falls back to `fda.url` + `admin` (standard Magento admin path) |
 

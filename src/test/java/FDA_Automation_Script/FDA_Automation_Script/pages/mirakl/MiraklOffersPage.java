@@ -121,9 +121,35 @@ public class MiraklOffersPage extends BasePage {
         // round-trip completes, throwing StaleElementReferenceException. fluentWait polls until the
         // menu is genuinely visible/stable (and already ignores StaleElementReferenceException
         // while polling), so wait for it before the click instead of clicking blind.
-        WaitUtility.fluentWait(driver, PRICES_AND_STOCKS_MENU);
-        jsClick(PRICES_AND_STOCKS_MENU);
-        clickOffersLinkIfPresent();
+        //
+        // Confirmed via a real run (2026-09-15): clickOffersLinkIfPresent()'s "link disappeared ->
+        // assume already navigated" fallback is not always true — the submenu can simply collapse
+        // (click-outside/animation race) without ever navigating, leaving neither the submenu open
+        // nor the Offers grid reached. Trusting that assumption blindly left searchByProductId()
+        // waiting 2 minutes for a search dropdown that would never appear. Verify the Offers view
+        // was actually reached before returning, and retry the whole click sequence once if not.
+        for (int attempt = 1; attempt <= 2; attempt++) {
+            WaitUtility.fluentWait(driver, PRICES_AND_STOCKS_MENU);
+            jsClick(PRICES_AND_STOCKS_MENU);
+            clickOffersLinkIfPresent();
+            if (isOffersViewReached()) {
+                return;
+            }
+            LoggerUtility.info("Offers view not confirmed after navigation attempt " + attempt
+                + "/2" + (attempt < 2 ? " — retrying" : " — giving up, letting the caller's own wait fail loudly"));
+        }
+    }
+
+    // Cheap, fast presence check (short implicit wait, not the full 2-minute one) for whether the
+    // Offers search dropdown actually rendered — the real signal that navigateToOffers() succeeded,
+    // as opposed to assuming success just because the submenu link disappeared.
+    private boolean isOffersViewReached() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        try {
+            return !driver.findElements(SEARCH_TYPE_DROPDOWN).isEmpty();
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
+        }
     }
 
     // Confirmed via a real Operator run (2026-09-10): even the user-inspected exact locator for
@@ -368,8 +394,15 @@ public class MiraklOffersPage extends BasePage {
     }
 
     public String getFirstResultProductName() {
-        String name = getText(RESULTS_ROW_PRODUCT);
-        LoggerUtility.info("Mirakl Offers — displayed product name: " + name);
+        // Confirmed via a real run (2026-09-15): this cell's full text also includes a second
+        // line — a category/brand tag (e.g. "Bebé") shown directly under the product name in the
+        // grid (visible in the Offers screenshot) — which getText() picks up too. Only the first
+        // line is the actual product name; the FDA storefront PDP title doesn't carry that tag, so
+        // comparing the raw multi-line text against it always mismatched.
+        String rawName = getText(RESULTS_ROW_PRODUCT);
+        String name = rawName.split("\\r?\\n", 2)[0].trim();
+        LoggerUtility.info("Mirakl Offers — displayed product name: " + name
+            + (rawName.contains("\n") ? " (raw cell text: " + rawName.replace("\n", " | ") + ")" : ""));
         return name;
     }
 
