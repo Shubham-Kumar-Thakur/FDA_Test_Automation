@@ -26,16 +26,16 @@ import java.io.InputStreamReader;
 import java.time.Duration;
 
 /**
- * TC_E2E_009 — Seller updates an offer's price via Excel import, and that new price is verified
+ * TC_OU_009 — Seller updates an offer's price via Excel import, and that new price is verified
  * end-to-end: Mirakl Seller -> FDA (Adobe Commerce) storefront PDP.
  *
  * Data flow: Mirakl Seller notes the current (pre-update) offer price -> uploads a "Offers" Excel
  * file via File Import -> Seller Offers screen reflects the new price -> FDA storefront search
  * (SKU + Name) and PDP Name/SKU/Price match the Excel data.
  */
-public class TC_E2E_009_Test extends BaseClass {
+public class TC_OU_009_Test extends BaseClass {
 
-    private static final String TC_NAME = "TC_E2E_009";
+    private static final String TC_NAME = "TC_OU_009";
 
     // --- Page Objects (Seller / shared driver) ---
     private MiraklOffersPage miraklOffersPage;
@@ -51,13 +51,13 @@ public class TC_E2E_009_Test extends BaseClass {
     private String productId;
     private String productName;
 
-    // Reads TC_E2E_009's login test data from environment variables rather than
+    // Reads TC_OU_009's login test data from environment variables rather than
     // config.properties or hardcoded source constants, per explicit instruction for this TC.
     private static String requireEnv(String name) {
         String value = System.getenv(name);
         if (value == null || value.isBlank()) {
             throw new IllegalStateException("Environment variable " + name
-                + " is not set — required to run TC_E2E_009. Set it before launching the test run.");
+                + " is not set — required to run TC_OU_009. Set it before launching the test run.");
         }
         return value;
     }
@@ -70,18 +70,18 @@ public class TC_E2E_009_Test extends BaseClass {
     // claimed by Surefire's own fork-communication protocol — it is never connected to whatever
     // is piped/redirected into the outer `mvn` command. Scanner/BufferedReader reads on
     // System.in inside a Surefire-forked test therefore block forever no matter how stdin is fed
-    // to the outer process. `-Dtc.e2e.009.price=<value>` bypasses stdin entirely for `mvn test`
+    // to the outer process. `-Dtc.ou.009.price=<value>` bypasses stdin entirely for `mvn test`
     // runs; the interactive prompt below remains as a fallback for running this class directly
     // (e.g. from an IDE) where stdin isn't intercepted by Surefire.
     private static String promptForPrice(String sku, String currentExcelPrice) {
-        String sysPropPrice = System.getProperty("tc.e2e.009.price");
+        String sysPropPrice = System.getProperty("tc.ou.009.price");
         if (sysPropPrice != null && !sysPropPrice.isBlank()) {
             String trimmed = sysPropPrice.trim();
-            LoggerUtility.info("Price supplied via -Dtc.e2e.009.price for SKU " + sku + ": " + trimmed);
+            LoggerUtility.info("Price supplied via -Dtc.ou.009.price for SKU " + sku + ": " + trimmed);
             return trimmed;
         }
         System.out.println();
-        System.out.println("TC_E2E_009 — Enter the new offer price for SKU '" + sku
+        System.out.println("TC_OU_009 — Enter the new offer price for SKU '" + sku
             + "' (current Excel price: " + currentExcelPrice + "). Press Enter to keep it unchanged:");
         System.out.print("New price: ");
         try {
@@ -109,25 +109,25 @@ public class TC_E2E_009_Test extends BaseClass {
     // opened later in its own phase, once the Seller task fully completes and the propagation
     // wait is done.
     //
-    // NOTE: this override is only safe when TC_E2E_009 runs in its own isolated suite XML (see
-    // testng_e2e_009.xml). If it is ever folded into the shared testng.xml alongside the other
+    // NOTE: this override is only safe when TC_OU_009 runs in its own isolated suite XML (see
+    // testng_OfferUpdate.xml). If it is ever folded into the shared testng.xml alongside the other
     // 24 TCs, this override and the original BaseClass.setupSuite() (invoked via those other
     // classes) would both run in the same suite, logging into Mirakl on the shared tab twice.
     @BeforeSuite
     public void setupSuite() {
-        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login "
+        LoggerUtility.info("TC_OU_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login "
             + "uses the Seller account from MIRAKL_SELLER_USERNAME/PASSWORD, not the suite default");
 
         driver = DriverFactory.createDriver(false);
         miraklTabHandle = driver.getWindowHandle();
-        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Browser launched. Mirakl tab handle: " + miraklTabHandle);
+        LoggerUtility.info("TC_OU_009 @BeforeSuite: Browser launched. Mirakl tab handle: " + miraklTabHandle);
 
         driver.get(config.getMiraklUrl());
         MiraklLoginPage sellerLogin = new MiraklLoginPage(driver);
         String sellerUser = requireEnv("MIRAKL_SELLER_USERNAME");
         sellerLogin.login(sellerUser, requireEnv("MIRAKL_SELLER_PASSWORD"));
-        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Mirakl login as Seller (" + sellerUser + ") complete");
-        LoggerUtility.info("TC_E2E_009 @BeforeSuite: Setup complete (FDA storefront login deferred to its own phase)");
+        LoggerUtility.info("TC_OU_009 @BeforeSuite: Mirakl login as Seller (" + sellerUser + ") complete");
+        LoggerUtility.info("TC_OU_009 @BeforeSuite: Setup complete (FDA storefront login deferred to its own phase)");
     }
 
     @BeforeClass
@@ -138,7 +138,7 @@ public class TC_E2E_009_Test extends BaseClass {
         fdaLoginPage = new FDALoginPage(driver);
         fdaSearchResultsPage = new FDASearchResultsPage(driver);
         fdaPdpPage = new FDAPDPPage(driver);
-        LoggerUtility.info("TC_E2E_009: All page objects initialized — Mirakl Seller session already "
+        LoggerUtility.info("TC_OU_009: All page objects initialized — Mirakl Seller session already "
             + "established in @BeforeSuite, no session swap needed");
     }
 
@@ -148,7 +148,7 @@ public class TC_E2E_009_Test extends BaseClass {
               + "Name/SKU/Price)")
     public void tc_e2e_009_seller_update_offer_price_via_excel() throws InterruptedException {
 
-        LoggerUtility.info("TC_E2E_009 execution started");
+        LoggerUtility.info("TC_OU_009 execution started");
 
         // ============================================================
         // PHASE 0: Tester Input — ask for the new offer price and write it into the Excel file
@@ -296,7 +296,34 @@ public class TC_E2E_009_Test extends BaseClass {
         // Triggers the Mirakl-side sync that propagates the Seller's updated offer price to the
         // FDA storefront's catalog/search index (Empathy). GET, Cookie-only auth, no body —
         // matches the cancelFullOrder/cancelShipment Cookie-only pattern in ApiUtility.
-        Response pushToEmpathyResponse = ApiUtility.pushOffersToEmpathy();
+        // Confirmed via real runs (2026-09-15, 2026-09-16): this staging endpoint intermittently
+        // drops the TLS connection ("SSLHandshakeException: Remote host terminated the handshake")
+        // with no correlation to the request itself — a plain retry on the same call has cleanly
+        // succeeded every time this has been observed. ApiUtility itself is not modified (it's a
+        // protected utility class) — the retry lives here at the call site instead.
+        Response pushToEmpathyResponse = null;
+        RuntimeException lastPushToEmpathyFailure =
+            new IllegalStateException("Push Offers to Empathy never attempted");
+        for (int attempt = 1; attempt <= 3 && pushToEmpathyResponse == null; attempt++) {
+            try {
+                pushToEmpathyResponse = ApiUtility.pushOffersToEmpathy();
+            } catch (Exception e) {
+                // Confirmed via a real run (2026-09-16): REST Assured's underlying HTTP engine
+                // propagates the raw (checked) SSLHandshakeException uncaught — catching only
+                // RuntimeException let it slip straight past this retry on the first attempt.
+                // Catch Exception broadly here so any flavor of connection failure gets retried.
+                lastPushToEmpathyFailure = new RuntimeException(
+                    "Push Offers to Empathy failed: " + e.getMessage(), e);
+                LoggerUtility.warn("Push Offers to Empathy call failed on attempt " + attempt
+                    + "/3 (" + e.getMessage() + ") — retrying...");
+                if (attempt < 3) {
+                    Thread.sleep(3_000);
+                }
+            }
+        }
+        if (pushToEmpathyResponse == null) {
+            throw lastPushToEmpathyFailure;
+        }
         Assert.assertEquals(200, pushToEmpathyResponse.getStatusCode(),
             "Push Offers to Empathy should return a 200 status. Actual=" + pushToEmpathyResponse.getStatusCode()
                 + " | TC: " + TC_NAME);
@@ -359,8 +386,8 @@ public class TC_E2E_009_Test extends BaseClass {
         ScreenshotUtility.captureScreenshot(driver, TC_NAME, ScreenshotUtility.PASS);
 
         // Final summary log — never logs passwords
-        LoggerUtility.info("TC_E2E_009 completed successfully");
-        LoggerUtility.info("  Test Case          : TC_E2E_009");
+        LoggerUtility.info("TC_OU_009 completed successfully");
+        LoggerUtility.info("  Test Case          : TC_OU_009");
         LoggerUtility.info("  Seller/Shop Name   : " + sellerShopName);
         LoggerUtility.info("  Product SKU        : " + productSku);
         LoggerUtility.info("  Product ID         : " + productId);
@@ -378,6 +405,7 @@ public class TC_E2E_009_Test extends BaseClass {
     private String verifyProductDetailPage(String expectedName, String expectedSku, String expectedPrice)
             throws InterruptedException {
         Assert.assertTrue(fdaPdpPage.isDisplayed(), "PDP not displayed | TC: " + TC_NAME);
+        fdaPdpPage.scrollToDetails();
 
         String pdpProductName = fdaPdpPage.getProductName();
         Assert.assertEquals(pdpProductName.trim(), expectedName.trim(),

@@ -23,12 +23,6 @@ public class MiraklFileImportPage extends BasePage {
     // screens — navigateToFileImport() needs it to re-open the accordion when it has collapsed.
     private static final By PRICES_AND_STOCKS_MENU = By.xpath(
         "//span[normalize-space()='Price and stock'] | //button[@id='priceAndStock']");
-    // Confirmed against live "Import file" tab (2026-09-07): "Select file" is present but not
-    // necessarily a <button> tag — matched by visible text on any clickable-looking element.
-    // NOTE: not actually clicked (see clickSelectFile() below) — it triggers a native OS file
-    // dialog Selenium can't control.
-    private static final By SELECT_FILE_BUTTON = By.xpath(
-        "//*[self::button or self::label or self::div or self::span][normalize-space(.)='Select file']");
     // The native OS file-picker triggered by "Select file" is bypassed entirely —
     // Selenium sends the path straight to the underlying <input type="file">.
     private static final By FILE_INPUT = By.xpath("//input[@type='file']");
@@ -52,9 +46,6 @@ public class MiraklFileImportPage extends BasePage {
     // present on the page before Import is even clicked, causing a false-positive match that made
     // this check pass even when the import never actually ran.
     private static final By IMPORT_STATUS_MESSAGE = By.xpath("//*[contains(text(),'File imported')]");
-    // TODO: Verify locator — no distinct "import ID" was visible on this confirmation screen;
-    // "Track offer imports" (a separate tab) is where Mirakl shows historical import records/IDs.
-    private static final By IMPORT_ID = By.xpath("//td[contains(@class,'import-id')] | //span[contains(@class,'import-id')]");
 
     // "Track offer imports" is a sibling tab of "Import file" on the same File imports screen
     // (confirmed present in the real "Import file" screenshot, 2026-09-10) — this is the
@@ -113,14 +104,6 @@ public class MiraklFileImportPage extends BasePage {
         } finally {
             driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
         }
-    }
-
-    // Intentionally NOT clicked in the test flow — kept only in case a future DOM change makes
-    // the underlying <input type="file"> unreachable without it. Clicking "Select file" for real
-    // opens a native OS file dialog that Selenium cannot interact with or dismiss.
-    public void clickSelectFile() {
-        LoggerUtility.info("Clicking Select file button");
-        click(SELECT_FILE_BUTTON);
     }
 
     public void uploadOfferFile(String absoluteFilePath) {
@@ -326,20 +309,4 @@ public class MiraklFileImportPage extends BasePage {
         }
     }
 
-    public boolean isImportIdDisplayed() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        try {
-            return driver.findElement(IMPORT_ID).isDisplayed();
-        } catch (NoSuchElementException | StaleElementReferenceException e) {
-            return false;
-        } finally {
-            driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
-        }
-    }
-
-    public String getImportId() {
-        String id = getText(IMPORT_ID);
-        LoggerUtility.info("Mirakl import ID: " + id);
-        return id;
-    }
 }

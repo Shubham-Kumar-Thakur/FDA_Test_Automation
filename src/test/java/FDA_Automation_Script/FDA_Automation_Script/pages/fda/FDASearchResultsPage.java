@@ -88,8 +88,11 @@ public class FDASearchResultsPage extends BasePage {
             if (item.getText().trim().toLowerCase().contains(expectedText.toLowerCase())) {
                 // Per explicit instruction (2026-09-15): scroll the matching card into view before
                 // reading its price — this grid can lazy-render/lazy-price cards that are still
-                // off-screen.
-                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", item);
+                // off-screen. Centered (not top-aligned) so the card doesn't end up sitting under
+                // the storefront's sticky header — a top-aligned scroll here left the card there
+                // for a later openMatchingResult() click, which then got intercepted by the header
+                // (confirmed via a real run, 2026-09-16).
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", item);
                 String price = item.findElement(RESULT_ITEM_PRICE_RELATIVE).getText().trim();
                 LoggerUtility.info("FDA search result (PLP) price for '" + expectedText + "': " + price);
                 return price;
@@ -107,7 +110,17 @@ public class FDASearchResultsPage extends BasePage {
         List<WebElement> items = driver.findElements(RESULT_ITEM_LINKS);
         for (WebElement item : items) {
             if (item.getText().trim().toLowerCase().contains(expectedText.toLowerCase())) {
-                item.click();
+                // Center the card in the viewport before clicking — a top-aligned scroll (or
+                // whatever position the page happened to be left at by an earlier step) can leave
+                // the card sitting under the storefront's sticky header, which intercepts the
+                // click (confirmed via a real run, 2026-09-16).
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", item);
+                try {
+                    item.click();
+                } catch (org.openqa.selenium.ElementClickInterceptedException e) {
+                    LoggerUtility.warn("Search result click intercepted, retrying via JS click: " + e.getMessage());
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", item);
+                }
                 LoggerUtility.info("Clicked search result matching: " + expectedText);
                 return;
             }

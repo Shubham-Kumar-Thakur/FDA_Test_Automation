@@ -20,6 +20,14 @@ public class FDAPDPPage extends BasePage {
     // "Más información" (Additional Information) table as a <td data-th="SKU"> cell, not the
     // originally-guessed "product attribute sku" div block.
     private static final By PRODUCT_SKU         = By.xpath("//td[@data-th='SKU']");
+    // Confirmed via a real run's diagnostic page-source dump (2026-09-16): the "Detalles del
+    // producto" accordion panel that wraps PRODUCT_SKU is present in the DOM with the real value
+    // already in its raw HTML (aria-expanded/aria-hidden on the panel both already claim "open"),
+    // but the panel's CSS visibility is actually driven by an "active" class this Magento
+    // Luma/jQuery-UI-accordion widget adds on click — without it the panel (and PRODUCT_SKU inside
+    // it) renders with zero size, so WebElement.getText() legitimately returns "" no matter how
+    // long you poll or scroll. This is the collapsible trigger that toggles it.
+    private static final By ADDITIONAL_INFO_TRIGGER = By.id("collapsible-label-additional-title");
     private static final By ADD_TO_CART_SUCCESS = By.cssSelector(
         "div.message-success, [data-ui-id='message-success'], " +
         "div.message.success, .page.messages .success, " +
@@ -104,9 +112,57 @@ public class FDAPDPPage extends BasePage {
     }
 
     public String getProductPrice() {
+        // Scroll the price element into view before reading it — same rationale as
+        // scrollToDetails() below: elements can render with blank/stale text while off-screen.
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        try {
+            org.openqa.selenium.WebElement priceEl = driver.findElement(PRODUCT_PRICE);
+            ((org.openqa.selenium.JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block: 'center'});", priceEl);
+        } catch (org.openqa.selenium.NoSuchElementException ignored) {
+            // Not present yet — fall through to getText() below, which uses the standard
+            // 2-minute implicit wait and will throw its own clear error if it's genuinely missing.
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
+        }
         String price = getText(PRODUCT_PRICE);
         LoggerUtility.info("PDP product price: " + price);
         return price;
+    }
+
+    /**
+     * Scrolls to the "Detalles del producto" (SKU/details) section — confirmed via a real run
+     * (2026-09-16): this section renders below the fold, and reading the SKU while it's still
+     * off-screen intermittently returned blank text even though the locator itself was correct.
+     * No-op if the section isn't present yet — getProductSku()'s own poll handles that case.
+     */
+    public void scrollToDetails() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        try {
+            org.openqa.selenium.WebElement details = driver.findElement(PRODUCT_SKU);
+            ((org.openqa.selenium.JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block: 'center'});", details);
+            LoggerUtility.info("Scrolled PDP to product details/SKU section");
+            // Confirmed via a real run (2026-09-16): the panel's aria attributes already claim
+            // "open" in the raw DOM, but its actual CSS visibility depends on an "active" class
+            // this accordion widget only adds after a click — not present by default. Click the
+            // trigger whenever the SKU cell isn't actually rendered (zero size), rather than
+            // trusting aria-expanded/aria-hidden.
+            if (!details.isDisplayed()) {
+                LoggerUtility.info("Details table present in DOM but not visible — clicking "
+                    + "'Detalles del producto' accordion trigger to expand it");
+                try {
+                    org.openqa.selenium.WebElement trigger = driver.findElement(ADDITIONAL_INFO_TRIGGER);
+                    ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", trigger);
+                } catch (org.openqa.selenium.NoSuchElementException triggerMissing) {
+                    LoggerUtility.warn("Accordion trigger not found — leaving details section as-is");
+                }
+            }
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            LoggerUtility.info("PDP details/SKU section not present yet — relying on getProductSku()'s own wait");
+        } finally {
+            driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
+        }
     }
 
     public String getProductSku() {
@@ -117,10 +173,21 @@ public class FDAPDPPage extends BasePage {
         // markup can be read off a live run instead of guessing further.
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         try {
-            String sku = getText(PRODUCT_SKU);
+            // Confirmed via a real run (2026-09-16): the locator itself is correct (matches the
+            // "Detalles del producto" table dumped on 2026-09-15) but a single getText() right
+            // after landing on the PDP can return "" — the accordion/table hadn't finished
+            // rendering yet. Poll for non-blank text instead of trusting the first read.
+            String sku = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(org.openqa.selenium.NoSuchElementException.class)
+                .ignoring(org.openqa.selenium.StaleElementReferenceException.class)
+                .until(d -> {
+                    String text = d.findElement(PRODUCT_SKU).getText().trim();
+                    return text.isEmpty() ? null : text;
+                });
             LoggerUtility.info("PDP product SKU: " + sku);
             return sku;
-        } catch (org.openqa.selenium.NoSuchElementException e) {
+        } catch (org.openqa.selenium.NoSuchElementException | org.openqa.selenium.TimeoutException e) {
             try {
                 java.nio.file.Files.writeString(
                     java.nio.file.Path.of("test-output/logs/fda_pdp_sku_locator_missing.html"),
@@ -130,7 +197,8 @@ public class FDAPDPPage extends BasePage {
             } catch (Exception dumpFailure) {
                 LoggerUtility.error("Diagnostic page-source dump failed: " + dumpFailure.getMessage());
             }
-            throw e;
+            throw new org.openqa.selenium.NoSuchElementException(
+                "PDP SKU field never showed non-blank text within 15s: " + PRODUCT_SKU, e);
         } finally {
             driver.manage().timeouts().implicitlyWait(Duration.ofMinutes(2));
         }
