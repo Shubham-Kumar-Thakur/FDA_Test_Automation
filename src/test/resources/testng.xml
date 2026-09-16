@@ -301,6 +301,14 @@
     </test>
 
     <!-- ═══════════════════════════════════════════════════════════
+         TEST 19 — TC_OU_009: Seller Updates Offer Price via Excel Import
+         Mirakl Seller (old price) → Excel Import → Seller price verified
+         → FDA Search → PDP Price
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_OU_009 - Seller Update Offer Price via Excel" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test" />
          TEST 19 — TC_FBS_001-012: all FBS tests share one <test> block so FDA logs in once
          (@BeforeGroups("FBS")) before TC_FBS_001 and logs out once (@AfterGroups("FBS")) after
          TC_FBS_012 — TestNG re-runs group configuration methods at every <test> boundary, so

@@ -37,7 +37,12 @@ public abstract class BasePage {
     }
 
     protected String getText(By locator) {
-        return driver.findElement(locator).getText().trim();
+        try {
+            return driver.findElement(locator).getText().trim();
+        } catch (StaleElementReferenceException e) {
+            LoggerUtility.warn("StaleElementReferenceException on getText, retrying: " + locator);
+            return driver.findElement(locator).getText().trim();
+        }
     }
 
     protected String getAttribute(By locator, String attribute) {
@@ -54,6 +59,12 @@ public abstract class BasePage {
 
     protected void selectByVisibleText(By locator, String text) {
         new Select(driver.findElement(locator)).selectByVisibleText(text);
+    }
+
+    // Sends the absolute file path directly to a <input type="file"> element —
+    // standard Selenium approach, no native OS file-dialog automation needed.
+    protected void uploadFile(By locator, String absoluteFilePath) {
+        driver.findElement(locator).sendKeys(absoluteFilePath);
     }
 
     protected void scrollIntoView(By locator) {

@@ -146,6 +146,12 @@ public class ConfigReader {
 		return get("cancel.shipment.cookie");
 	}
 
+	public String getPushOffersToEmpathyUrl() {
+		return get("push.offers.to.empathy.url");
+	}
+
+	public String getPushOffersToEmpathyCookie() {
+		return get("push.offers.to.empathy.cookie");
 	public String getFbs001InvoiceFilePath() {
 		return get("fbs001.invoice.file.path");
 	}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Single-TC override suite for TC_OU_009 — run in isolation via:
+  mvn test -DsuiteXmlFile=src/test/resources/testng_OfferUpdate.xml
+  Mirrors the listener wiring of the main testng.xml.
+-->
+
+<suite name="FDA Automation Suite - TC_OU_009 Only" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+    <test name="TC_OU_009 - Seller Update Offer Price via Excel" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test" />
+        </classes>
+    </test>
+
+</suite>

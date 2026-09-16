@@ -1,0 +1,60 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\SakshiKhullar\Git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 5 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running TestSuite
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-09-15T11:12:53.702072600Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-15 16:42:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login uses the Seller account from MIRAKL_SELLER_USERNAME/PASSWORD, not the suite default
+Sep 15, 2026 4:43:02 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 15, 2026 4:43:02 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 152.0.7977.84. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-15 16:43:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-15 16:43:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Browser launched. Mirakl tab handle: DCC731A41AB5FFA7B81A9D0EA751BCDD
+2026-09-15 16:43:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-15 16:43:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-15 16:43:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-15 16:43:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-15 16:43:11 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-09-15 16:44:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-15 16:44:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Mirakl login as Seller (skhullar+90764@kognivera.com) complete
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Setup complete (FDA storefront login deferred to its own phase)
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009: All page objects initialized — Mirakl Seller session already established in @BeforeSuite, no session swap needed
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Started: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 execution started
+2026-09-15 16:44:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 0: Tester Input — New Offer Price =====
+2026-09-15 16:44:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-15 16:44:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='9.89', productName='null', productId='6009541008'}
+
+TC_E2E_009 — Enter the new offer price for SKU 'ITUP008' (current Excel price: 9.89). Press Enter to keep it unchanged:
+New price: 

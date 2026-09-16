@@ -32,7 +32,26 @@ public class FDAHomePage extends BasePage {
 
     public void clickProfileIcon() {
         LoggerUtility.info("Clicking Mi cuenta profile icon");
-        jsClick(PROFILE_ICON);
+        // Diagnostic only (2026-09-16): PROFILE_ICON stopped matching on a real run — dump the
+        // live header DOM on a genuine miss so the real current markup can be read off a live
+        // run instead of guessing again, same pattern as FDAPDPPage.getProductSku().
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(5));
+        try {
+            jsClick(PROFILE_ICON);
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            try {
+                java.nio.file.Files.writeString(
+                    java.nio.file.Path.of("test-output/logs/fda_profile_icon_missing.html"),
+                    driver.getPageSource());
+                LoggerUtility.info("Diagnostic: dumped page source to "
+                    + "test-output/logs/fda_profile_icon_missing.html");
+            } catch (Exception dumpFailure) {
+                LoggerUtility.error("Diagnostic page-source dump failed: " + dumpFailure.getMessage());
+            }
+            throw e;
+        } finally {
+            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
+        }
     }
 
     public void clickLoginLink() {

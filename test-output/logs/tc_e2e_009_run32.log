@@ -1,0 +1,212 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\SakshiKhullar\Git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 5 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[WARNING] useSystemClassLoader setting has no effect when not forking
+[WARNING] The parameter forkCount should likely not be 0. Forking a JVM for tests improves test accuracy. Ensure to have a <forkCount> >= 1.
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] Running TestSuite
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-09-14T16:39:53.162370Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-14 22:09:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Overriding BaseClass.setupSuite() — Mirakl login uses the Seller account from MIRAKL_SELLER_USERNAME/PASSWORD, not the suite default
+Sep 14, 2026 10:09:56 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 14, 2026 10:09:56 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 152.0.7977.84. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-14 22:09:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-14 22:09:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Browser launched. Mirakl tab handle: E4BCEA9A4C794C85D0861D3C84A3B04C
+2026-09-14 22:09:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-14 22:09:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-14 22:09:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-14 22:10:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-14 22:10:04 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-09-14 22:10:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-14 22:10:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-14 22:10:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-14 22:10:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Mirakl login as Seller (skhullar+90764@kognivera.com) complete
+2026-09-14 22:10:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 @BeforeSuite: Setup complete (Operator/FDA login deferred to their own phases)
+2026-09-14 22:10:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009: All page objects initialized — Mirakl Seller session already established in @BeforeSuite, no session swap needed
+2026-09-14 22:10:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-14 22:10:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Started: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-14 22:10:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-14 22:10:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_009 execution started
+2026-09-14 22:10:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 0: Tester Input — New Offer Price =====
+2026-09-14 22:10:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:10:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='40.99', productName='null', productId='6009541008'}
+
+TC_E2E_009 — Enter the new offer price for SKU 'ITUP008' (current Excel price: 40.99). Press Enter to keep it unchanged:
+New price: 2026-09-14 22:10:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No price entered — keeping existing Excel price: 40.99
+2026-09-14 22:10:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: updated Offer Price for SKU 'ITUP008' to '40.99' in C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:10:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 1: Mirakl Seller — Note Shop, SKU, Current Price =====
+2026-09-14 22:10:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: E4BCEA9A4C794C85D0861D3C84A3B04C
+2026-09-14 22:10:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to Mirakl tab
+2026-09-14 22:10:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Reusing Mirakl Seller session established in @BeforeSuite: skhullar+90764@kognivera.com
+2026-09-14 22:10:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl — current Seller/Shop name: TEST_SELLERRR (raw heading: Welcome TEST_SELLERRR)
+2026-09-14 22:10:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: Captured Seller/Shop name: TEST_SELLERRR
+2026-09-14 22:10:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel: read 1 offer row(s) from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:10:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Excel offer read from C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx: OfferData{sku='ITUP008', price='40.99', productName='null', productId='6009541008'}
+2026-09-14 22:10:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Excel Offer SKU: ITUP008 | Product ID: 6009541008 | Excel price: 40.99
+2026-09-14 22:10:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> Offers
+2026-09-14 22:10:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Mirakl Offers for SKU: ITUP008
+2026-09-14 22:10:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching search-type dropdown from 'Product ID' to 'Offer SKU'
+2026-09-14 22:10:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed Offer SKU: ITUP008
+2026-09-14 22:10:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed price: MX$40.99
+2026-09-14 22:10:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Offers — displayed product name: OZiva Sugar Support Effervescent8
+Bebé
+2026-09-14 22:10:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Current Seller offer price (before update): MX$40.99 | Product name: OZiva Sugar Support Effervescent8
+Bebé
+2026-09-14 22:10:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_009_INFO.png
+2026-09-14 22:10:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== PHASE 2: Mirakl Seller — Import Offer File =====
+2026-09-14 22:10:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports
+2026-09-14 22:10:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading offer file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:10:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Steps 7-8: Selected offer Excel file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-14 22:10:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_009_INFO.png
+2026-09-14 22:10:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting File Content = Offers (was: )
+2026-09-14 22:10:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Import button
+2026-09-14 22:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl import status message: File imported
+2026-09-14 22:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 9: Transient import banner seen: File imported
+2026-09-14 22:11:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl: Price and stock -> File imports -> Track offer imports
+2026-09-14 22:13:12 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Failed: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-14 22:13:12 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Failure reason: invalid session id: session deleted as the browser has closed the connection
+from disconnected: unable to send message to renderer
+  (Session info: chrome=152.0.7977.84)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5176fab71baa0e516a4ba463d28ec2dc, findElements {using=xpath, value=//table//tbody/tr[1]/td}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.84, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56370}, goog:processID: 11116, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56370/devtoo..., se:cdpVersion: 152.0.7977.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5176fab71baa0e516a4ba463d28ec2dc
+2026-09-14 22:13:12 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Failed: tc_e2e_009_seller_update_offer_price_via_excel
+2026-09-14 22:13:12 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Failure reason: invalid session id
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5176fab71baa0e516a4ba463d28ec2dc, screenshot {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.84, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56370}, goog:processID: 11116, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56370/devtoo..., se:cdpVersion: 152.0.7977.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5176fab71baa0e516a4ba463d28ec2dc
+EXTENT REPORT: target/surefire-reports/ExecutionReport.html
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:25 min
+[INFO] Finished at: 2026-09-14T22:13:13+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.3.0:test (default-test) on project FDA_Mirakl_and_API_Automation: 
+[ERROR] 
+[ERROR] Please refer to C:\Users\SakshiKhullar\Git\FDA_Test_Automation\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] Exception in provider
+[ERROR] org.apache.maven.surefire.booter.SurefireExecutionException: Exception in provider
+[ERROR] 	at org.apache.maven.plugin.surefire.InPluginVMSurefireStarter.runSuitesInProcess(InPluginVMSurefireStarter.java:93)
+[ERROR] 	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeProvider(AbstractSurefireMojo.java:1195)
+[ERROR] 	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeAfterPreconditionsChecked(AbstractSurefireMojo.java:1073)
+[ERROR] 	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.execute(AbstractSurefireMojo.java:907)
+[ERROR] 	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
+[ERROR] 	at org.apache.maven.plugin.DefaultMojosExecutionStrategy.execute(DefaultMojosExecutionStrategy.java:39)
+[ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
+[ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
+[ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:73)
+[ERROR] 	at org.apache.maven.lifecycle.internal.builder.singlethreaded.SingleThreadedBuilder.build(SingleThreadedBuilder.java:53)
+[ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleStarter.execute(LifecycleStarter.java:118)
+[ERROR] 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:261)
+[ERROR] 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
+[ERROR] 	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
+[ERROR] 	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:919)
+[ERROR] 	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:285)
+[ERROR] 	at org.apache.maven.cli.MavenCli.main(MavenCli.java:207)
+[ERROR] 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:362)
+[ERROR] 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+[ERROR] Caused by: org.openqa.selenium.NoSuchSessionException: invalid session id
+[ERROR] Build info: version: '4.25.0', revision: '8a8aea2337'
+[ERROR] System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+[ERROR] Driver info: org.openqa.selenium.chrome.ChromeDriver
+[ERROR] Command: [5176fab71baa0e516a4ba463d28ec2dc, screenshot {}]
+[ERROR] Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.84, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56370}, goog:processID: 11116, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56370/devtoo..., se:cdpVersion: 152.0.7977.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+[ERROR] Session ID: 5176fab71baa0e516a4ba463d28ec2dc
+[ERROR] 	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+[ERROR] 	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+[ERROR] 	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+[ERROR] 	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+[ERROR] 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+[ERROR] 	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+[ERROR] 	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+[ERROR] 	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+[ERROR] 	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+[ERROR] 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+[ERROR] 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:618)
+[ERROR] 	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:622)
+[ERROR] 	at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:334)
+[ERROR] 	at FDA_Automation_Script.FDA_Automation_Script.utils.ScreenshotUtility.captureScreenshot(ScreenshotUtility.java:26)
+[ERROR] 	at FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener.onTestFailure(TestNGListener.java:31)
+[ERROR] 	at org.testng.internal.TestListenerHelper.runTestListeners(TestListenerHelper.java:115)
+[ERROR] 	at org.testng.internal.invokers.TestInvoker.runTestResultListener(TestInvoker.java:285)
+[ERROR] 	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:1010)
+[ERROR] 	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+[ERROR] 	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+[ERROR] 	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+[ERROR] 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+[ERROR] 	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+[ERROR] 	at org.testng.TestRunner.run(TestRunner.java:614)
+[ERROR] 	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+[ERROR] 	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+[ERROR] 	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+[ERROR] 	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+[ERROR] 	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+[ERROR] 	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+[ERROR] 	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+[ERROR] 	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+[ERROR] 	at org.testng.TestNG.runSuites(TestNG.java:1112)
+[ERROR] 	at org.testng.TestNG.run(TestNG.java:1079)
+[ERROR] 	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:308)
+[ERROR] 	at org.apache.maven.surefire.testng.TestNGXmlTestSuite.execute(TestNGXmlTestSuite.java:71)
+[ERROR] 	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:113)
+[ERROR] 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+[ERROR] 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+[ERROR] 	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray2(ReflectionUtils.java:137)
+[ERROR] 	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:148)
+[ERROR] 	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:88)
+[ERROR] 	at org.apache.maven.plugin.surefire.InPluginVMSurefireStarter.runSuitesInProcess(InPluginVMSurefireStarter.java:91)
+[ERROR] 	... 28 more
+[ERROR] 
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

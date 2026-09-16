@@ -220,6 +220,37 @@ public class ApiUtility {
     }
 
     // ----------------------------------------------------------------
+    // Push Offers to Empathy (TC_E2E_009)
+    // ----------------------------------------------------------------
+
+    /**
+     * GET {push.offers.to.empathy.url} with Cookie auth (no body) — triggers the Mirakl-side
+     * price/offer sync that propagates a Seller's updated offer price to the FDA storefront's
+     * search/catalog index (Empathy). No Bearer token; matches the same Cookie-only auth
+     * pattern as cancelFullOrder/cancelShipment above.
+     * Returns the raw Response; caller asserts status code.
+     */
+    public static Response pushOffersToEmpathy() {
+        String url    = config.getPushOffersToEmpathyUrl();
+        String cookie = config.getPushOffersToEmpathyCookie();
+
+        LoggerUtility.info("========== Push Offers to Empathy ==========");
+        LoggerUtility.info("GET " + url);
+
+        Response response = given()
+                .header("Cookie", cookie)
+                .when()
+                .get(url)
+                .then()
+                .extract()
+                .response();
+
+        LoggerUtility.info("Push Offers to Empathy Status : " + response.getStatusCode());
+        LoggerUtility.info("Push Offers to Empathy Body   : " + response.getBody().asString());
+        return response;
+    }
+
+    // ----------------------------------------------------------------
     // Kibo Commerce API
     // ----------------------------------------------------------------
 
