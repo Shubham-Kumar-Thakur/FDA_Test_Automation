@@ -83,7 +83,7 @@ public class TC_FBO_021_Test extends BaseClass {
         LoggerUtility.info("All page objects initialized for TC_FBO_021");
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2-SKU 3P seller order: 2 shipments → full fulfillment → return → compliance → full refund → Closed")
     public void tc_fbo_021_dual_product_return_refund() throws InterruptedException {
 

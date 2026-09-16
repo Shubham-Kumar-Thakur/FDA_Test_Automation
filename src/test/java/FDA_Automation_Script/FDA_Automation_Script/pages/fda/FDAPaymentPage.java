@@ -117,18 +117,37 @@ public class FDAPaymentPage extends BasePage {
 				((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
 						iframe);
 				driver.switchTo().frame(iframe);
-				org.openqa.selenium.WebElement input;
+
+				// Select Adyen's real encrypted field by its data-fieldtype attribute
+				// (encryptedCardNumber / encryptedExpiryDate / encryptedSecurityCode), not by
+				// on-screen visibility alone. Adyen injects an invisible autofill-decoy <input>
+				// into the same iframe to trap browser autofill; that decoy commonly has
+				// opacity:0 with a real size/position, so isDisplayed() alone can still match it,
+				// silently swallowing sendKeys while the field the user actually sees stays empty.
+				// The decoy never carries data-fieldtype, so it's a reliable way to skip it.
+				driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);
 				try {
-					input = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(30))
-							.until(org.openqa.selenium.support.ui.ExpectedConditions
-									.elementToBeClickable(By.cssSelector("input:not([aria-hidden='true'])")));
-				} catch (Exception fallbackEx) {
-					// Adyen widget may keep all inputs aria-hidden until fully loaded — wait for
-					// any clickable input
-					input = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(60))
-							.until(org.openqa.selenium.support.ui.ExpectedConditions
-									.elementToBeClickable(By.cssSelector("input")));
+					new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(60))
+							.until(d -> {
+								try {
+									return !d.findElements(By.cssSelector("input[data-fieldtype]")).isEmpty()
+											|| d.findElements(By.tagName("input")).stream()
+													.anyMatch(org.openqa.selenium.WebElement::isDisplayed);
+								} catch (org.openqa.selenium.StaleElementReferenceException e) {
+									return false;
+								}
+							});
+				} finally {
+					driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
 				}
+				java.util.List<org.openqa.selenium.WebElement> tagged = driver
+						.findElements(By.cssSelector("input[data-fieldtype]"));
+				org.openqa.selenium.WebElement input = !tagged.isEmpty() ? tagged.get(0)
+						: driver.findElements(By.tagName("input")).stream()
+								.filter(org.openqa.selenium.WebElement::isDisplayed).findFirst()
+								.orElseThrow(() -> new org.openqa.selenium.NoSuchElementException(
+										"No input found in iframe: " + iframeLocator));
+
 				// JS click bypasses overlay/focus restrictions in Adyen iframes
 				((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", input);
 				if (clearFirst) {
@@ -137,6 +156,21 @@ public class FDAPaymentPage extends BasePage {
 					input.sendKeys(org.openqa.selenium.Keys.DELETE);
 				}
 				input.sendKeys(text);
+
+				// Verify the value actually stuck — a silently-swallowed keystroke (wrong input
+				// targeted, field not yet interactive) throws no exception, so sendKeys() alone
+				// is not a reliable success signal.
+				String actualValue = input.getAttribute("value");
+				String actualDigits = actualValue == null ? "" : actualValue.replaceAll("[^0-9]", "");
+				if (clearFirst) {
+					if (!actualDigits.equals(text)) {
+						throw new RuntimeException("Card field value mismatch after typing: expected "
+								+ text.length() + " digits, field now holds " + actualDigits.length());
+					}
+				} else if (actualValue == null || actualValue.trim().isEmpty()) {
+					throw new RuntimeException("Field is still empty after typing");
+				}
+
 				input.sendKeys(org.openqa.selenium.Keys.TAB);
 				driver.switchTo().defaultContent();
 				LoggerUtility.info("Iframe field typed on attempt " + attempt);
@@ -208,13 +242,23 @@ public class FDAPaymentPage extends BasePage {
 
 	public void clickPayPalButton() {
 		LoggerUtility.info("Clicking PayPal Pagar button");
-		// PayPal Smart Buttons render inside an iframe — try main DOM first, then iterate iframes
+		// PayPal Smart Buttons always render inside an iframe on this page — confirmed across
+		// every live run to date that the main-DOM locator never matches, so searching iframes
+		// first (instead of burning a fixed 60s wait on main DOM before falling back) avoids a
+		// guaranteed-to-fail wait on every PayPal checkout.
 		driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);
 		boolean clicked = false;
 		try {
-			// Try main DOM (30s)
 			try {
-				new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(60))
+				clicked = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(30))
+						.pollingEvery(java.time.Duration.ofMillis(500))
+						.until(d -> clickPayPalButtonInAnyIframe(d));
+			} catch (org.openqa.selenium.TimeoutException te) {
+				clicked = false;
+			}
+			if (!clicked) {
+				LoggerUtility.info("PayPal button not found in any iframe — trying main DOM");
+				new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(15))
 						.until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(PAYPAL_PAY_BTN));
 				((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
 						"arguments[0].scrollIntoView(true);", driver.findElement(PAYPAL_PAY_BTN));
@@ -222,30 +266,6 @@ public class FDAPaymentPage extends BasePage {
 						"arguments[0].click();", driver.findElement(PAYPAL_PAY_BTN));
 				clicked = true;
 				LoggerUtility.info("PayPal button found and clicked in main DOM");
-			} catch (Exception mainDomEx) {
-				LoggerUtility.warn("PayPal button not in main DOM — searching iframes. " +
-						mainDomEx.getMessage().split("\n")[0]);
-				driver.switchTo().defaultContent();
-				int iframeCount = driver.findElements(By.tagName("iframe")).size();
-				LoggerUtility.info("Searching " + iframeCount + " iframes on payment page");
-				for (int i = 0; i < iframeCount && !clicked; i++) {
-					try {
-						driver.switchTo().frame(i);
-						java.util.List<org.openqa.selenium.WebElement> btns = driver.findElements(PAYPAL_PAY_BTN);
-						if (!btns.isEmpty()) {
-							((org.openqa.selenium.JavascriptExecutor) driver)
-									.executeScript("arguments[0].scrollIntoView(true);", btns.get(0));
-							((org.openqa.selenium.JavascriptExecutor) driver)
-									.executeScript("arguments[0].click();", btns.get(0));
-							clicked = true;
-							LoggerUtility.info("PayPal button clicked inside iframe index " + i);
-						}
-					} catch (Exception iframeEx) {
-						LoggerUtility.warn("iframe[" + i + "] search failed: " + iframeEx.getClass().getSimpleName());
-					} finally {
-						try { driver.switchTo().defaultContent(); } catch (Exception ignored) {}
-					}
-				}
 			}
 		} finally {
 			driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
@@ -253,9 +273,33 @@ public class FDAPaymentPage extends BasePage {
 		}
 		if (!clicked) {
 			throw new RuntimeException(
-					"PayPal Pagar button not found in main DOM or any iframe after 30s wait");
+					"PayPal Pagar button not found in any iframe or main DOM after 45s");
 		}
 		LoggerUtility.info("PayPal Pagar button clicked — waiting for PayPal popup window");
+	}
+
+	private boolean clickPayPalButtonInAnyIframe(WebDriver d) {
+		d.switchTo().defaultContent();
+		int iframeCount = d.findElements(By.tagName("iframe")).size();
+		for (int i = 0; i < iframeCount; i++) {
+			try {
+				d.switchTo().frame(i);
+				java.util.List<org.openqa.selenium.WebElement> btns = d.findElements(PAYPAL_PAY_BTN);
+				if (!btns.isEmpty() && btns.get(0).isDisplayed()) {
+					((org.openqa.selenium.JavascriptExecutor) d)
+							.executeScript("arguments[0].scrollIntoView(true);", btns.get(0));
+					((org.openqa.selenium.JavascriptExecutor) d)
+							.executeScript("arguments[0].click();", btns.get(0));
+					LoggerUtility.info("PayPal button clicked inside iframe index " + i);
+					return true;
+				}
+			} catch (Exception iframeEx) {
+				LoggerUtility.warn("iframe[" + i + "] search failed: " + iframeEx.getClass().getSimpleName());
+			} finally {
+				try { d.switchTo().defaultContent(); } catch (Exception ignored) {}
+			}
+		}
+		return false;
 	}
 
 	public void handle3dsChallenge() {

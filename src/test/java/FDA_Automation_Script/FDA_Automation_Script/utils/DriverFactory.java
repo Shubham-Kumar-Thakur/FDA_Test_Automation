@@ -2,6 +2,7 @@ package FDA_Automation_Script.FDA_Automation_Script.utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -32,6 +33,8 @@ public class DriverFactory {
 				opts.addArguments("-headless");
 			opts.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--start-maximized", "--disable-notifications",
 					"--disable-popup-blocking");
+			// See Chrome branch below for why this is set — PageLoadStrategy is driver-agnostic.
+			opts.setPageLoadStrategy(PageLoadStrategy.EAGER);
 			driver = new FirefoxDriver(opts);
 		}
 		default -> {
@@ -41,6 +44,17 @@ public class DriverFactory {
 				opts.addArguments("--headless=new");
 			opts.addArguments("--no-sandbox", "--disable-dev-shm-usage", "--start-maximized", "--disable-notifications",
 					"--disable-popup-blocking");
+			// Default PageLoadStrategy (NORMAL) blocks every WebDriver command on a page until the
+			// browser considers it fully loaded — including slow/long-hanging third-party scripts
+			// that never really finish (confirmed live, 2026-09-09: the PayPal sandbox popup's
+			// analytics/fraud-detection scripts kept the page in a "loading" state for ~4 minutes on
+			// every PayPal checkout, so waitForPageLoad()'s own 60s WebDriverWait bound was silently
+			// overridden — the wait's polling condition itself was blocked at the browser level, not
+			// actually taking longer than 60s to individually evaluate). EAGER only waits for
+			// DOMContentLoaded, which is enough for our element-based waits (WaitUtility,
+			// WebDriverWait) to find what they need without being held hostage by background
+			// resources we don't care about.
+			opts.setPageLoadStrategy(PageLoadStrategy.EAGER);
 			driver = new ChromeDriver(opts);
 		}
 		}

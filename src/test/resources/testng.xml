@@ -309,6 +309,38 @@
         <classes>
             <class
                 name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test" />
+         TEST 19 — TC_FBS_001-012: all FBS tests share one <test> block so FDA logs in once
+         (@BeforeGroups("FBS")) before TC_FBS_001 and logs out once (@AfterGroups("FBS")) after
+         TC_FBS_012 — TestNG re-runs group configuration methods at every <test> boundary, so
+         one <test> per class caused a full FDA logout+login cycle between every FBS test
+         (confirmed via a live run on 2026-09-09; see CLAUDE.md).
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="TC_FBS_001-012 - FBS Store Full Fulfillment Suite" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test" />
         </classes>
     </test>
 

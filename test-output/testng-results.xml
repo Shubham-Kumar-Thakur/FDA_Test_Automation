@@ -1,56 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="12" passed="10" failed="2" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-26T14:13:13 IST" name="Default suite" finished-at="2026-08-26T14:15:36 IST" duration-ms="143194">
+  <suite started-at="2026-09-10T10:29:11 IST" name="FDA Automation Suite - FBS Only" finished-at="2026-09-10T12:19:55 IST" duration-ms="6644030">
     <groups>
+      <group name="FBS">
+        <method signature="TC_FBS_001_Test.tc_fbs_001_place_order_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test@2de23121]" name="tc_fbs_001_place_order_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test"/>
+        <method signature="TC_FBS_002_Test.tc_fbs_002_place_order_2products_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test@2f465398]" name="tc_fbs_002_place_order_2products_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test"/>
+        <method signature="TC_FBS_003_Test.tc_fbs_003_place_order_qty2_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test@175b9425]" name="tc_fbs_003_place_order_qty2_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test"/>
+        <method signature="TC_FBS_004_Test.tc_fbs_004_place_order_2products_qty2_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test@5609159b]" name="tc_fbs_004_place_order_2products_qty2_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test"/>
+        <method signature="TC_FBS_005_Test.tc_fbs_005_place_order_2products_diff_sellers_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test@394a2528]" name="tc_fbs_005_place_order_2products_diff_sellers_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test"/>
+        <method signature="TC_FBS_006_Test.tc_fbs_006_place_order_2products_diff_sellers_qty2_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test@3f56875e]" name="tc_fbs_006_place_order_2products_diff_sellers_qty2_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test"/>
+        <method signature="TC_FBS_007_Test.tc_fbs_007_place_order_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test@37f1104d]" name="tc_fbs_007_place_order_paypal_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test"/>
+        <method signature="TC_FBS_008_Test.tc_fbs_008_place_order_2products_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test@f2ff811]" name="tc_fbs_008_place_order_2products_paypal_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test"/>
+        <method signature="TC_FBS_009_Test.tc_fbs_009_place_order_qty2_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test@1d8bd0de]" name="tc_fbs_009_place_order_qty2_paypal_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test"/>
+        <method signature="TC_FBS_010_Test.tc_fbs_010_place_order_2products_qty2_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test@ba54932]" name="tc_fbs_010_place_order_2products_qty2_paypal_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test"/>
+        <method signature="TC_FBS_011_Test.tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test@236e3f4e]" name="tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test"/>
+        <method signature="TC_FBS_012_Test.tc_fbs_012_place_order_2products_diff_sellers_qty2_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" name="tc_fbs_012_place_order_2products_diff_sellers_qty2_paypal_fbs_full_fulfillment" class="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test"/>
+      </group> <!-- FBS -->
     </groups>
-    <test started-at="2026-08-26T14:13:13 IST" name="Default test" finished-at="2026-08-26T14:15:36 IST" duration-ms="143194">
-      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test">
-        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:12:32 IST" name="setupSuite" finished-at="2026-08-26T14:13:13 IST" duration-ms="40584" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setupSuite -->
-        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:13:13 IST" name="initPageObjects" finished-at="2026-08-26T14:13:13 IST" duration-ms="374" status="PASS">
+    <test started-at="2026-09-10T10:29:11 IST" name="TC_FBS_001 - FBS Store Order Full Fulfillment" finished-at="2026-09-10T10:37:05 IST" duration-ms="474289">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test@2de23121]" started-at="2026-09-10T10:29:11 IST" name="initPageObjects" finished-at="2026-09-10T10:29:11 IST" duration-ms="15" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initPageObjects -->
-        <test-method signature="tc_fbo_001_place_order_3p_seller_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:13:13 IST" name="tc_fbo_001_place_order_3p_seller_full_fulfillment" description="Verify 3P seller order placement and full fulfilment lifecycle: FDA -&gt; Mirakl -&gt; Shipment -&gt; Delivery" finished-at="2026-08-26T14:15:36 IST" duration-ms="142709" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchWindowException">
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test@2de23121]" started-at="2026-09-10T10:29:11 IST" name="loginForFBS" finished-at="2026-09-10T10:29:21 IST" duration-ms="9771" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_001_place_order_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test@2de23121]" started-at="2026-09-10T10:29:21 IST" name="tc_fbs_001_place_order_fbs_full_fulfillment" description="Verify FBS order placement and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T10:36:58 IST" duration-ms="456757" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_001_place_order_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test@2de23121]" started-at="2026-09-10T10:36:58 IST" name="navigateToHomePage" finished-at="2026-09-10T10:36:59 IST" duration-ms="1091" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test@2de23121]" started-at="2026-09-10T10:36:59 IST" name="logoutAfterFBS" finished-at="2026-09-10T10:37:05 IST" duration-ms="6292" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test -->
+    </test> <!-- TC_FBS_001 - FBS Store Order Full Fulfillment -->
+    <test started-at="2026-09-10T10:37:05 IST" name="TC_FBS_002 - FBS Store 2 Products Full Fulfillment" finished-at="2026-09-10T10:44:28 IST" duration-ms="442832">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test@2f465398]" started-at="2026-09-10T10:37:05 IST" name="initPageObjects" finished-at="2026-09-10T10:37:05 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test@2f465398]" started-at="2026-09-10T10:37:05 IST" name="loginForFBS" finished-at="2026-09-10T10:37:14 IST" duration-ms="8648" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_002_place_order_2products_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test@2f465398]" started-at="2026-09-10T10:37:14 IST" name="tc_fbs_002_place_order_2products_fbs_full_fulfillment" description="Verify FBS order placement (2 products, 1 3P seller) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T10:44:22 IST" duration-ms="427505" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_002_place_order_2products_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test@2f465398]" started-at="2026-09-10T10:44:22 IST" name="navigateToHomePage" finished-at="2026-09-10T10:44:23 IST" duration-ms="1089" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test@2f465398]" started-at="2026-09-10T10:44:23 IST" name="logoutAfterFBS" finished-at="2026-09-10T10:44:28 IST" duration-ms="5321" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test -->
+    </test> <!-- TC_FBS_002 - FBS Store 2 Products Full Fulfillment -->
+    <test started-at="2026-09-10T10:44:28 IST" name="TC_FBS_003 - FBS Store 1 Product Qty 2 Full Fulfillment" finished-at="2026-09-10T10:51:51 IST" duration-ms="442584">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test@175b9425]" started-at="2026-09-10T10:44:28 IST" name="initPageObjects" finished-at="2026-09-10T10:44:28 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test@175b9425]" started-at="2026-09-10T10:44:28 IST" name="loginForFBS" finished-at="2026-09-10T10:44:37 IST" duration-ms="8712" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_003_place_order_qty2_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test@175b9425]" started-at="2026-09-10T10:44:37 IST" name="tc_fbs_003_place_order_qty2_fbs_full_fulfillment" description="Verify FBS order placement (1 product qty=2, 1 3P seller) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T10:51:46 IST" duration-ms="428605" status="FAIL">
+          <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=151.0.7922.138)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [aacad05f89947ee4a1576c0bc791e117, get {url=https://mcstaging.fahorro.com/checkout/cart}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.138, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49684}, goog:processID: 38068, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49684/devtoo..., se:cdpVersion: 151.0.7922.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: aacad05f89947ee4a1576c0bc791e117]]>
+              <![CDATA[Order 4000305809WEB-A did not appear in Mirakl within 5 minutes expected [true] but found [false]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=151.0.7922.138)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [aacad05f89947ee4a1576c0bc791e117, get {url=https://mcstaging.fahorro.com/checkout/cart}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.138, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49684}, goog:processID: 38068, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49684/devtoo..., se:cdpVersion: 151.0.7922.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: aacad05f89947ee4a1576c0bc791e117
-at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:313)
-at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDACartPage.openAndRefreshCart(FDACartPage.java:210)
-at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test.tc_fbo_001_place_order_3p_seller_full_fulfillment(TC_FBO_001_Test.java:99)
+              <![CDATA[java.lang.AssertionError: Order 4000305809WEB-A did not appear in Mirakl within 5 minutes expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test.tc_fbs_003_place_order_qty2_fbs_full_fulfillment(TC_FBS_003_Test.java:237)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -79,19 +116,285 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tc_fbo_001_place_order_3p_seller_full_fulfillment -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:15:36 IST" name="navigateToHomePage" finished-at="2026-08-26T14:15:36 IST" duration-ms="9" status="PASS">
+        </test-method> <!-- tc_fbs_003_place_order_qty2_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test@175b9425]" started-at="2026-09-10T10:51:46 IST" name="navigateToHomePage" finished-at="2026-09-10T10:51:48 IST" duration-ms="2058" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage -->
-        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:15:36 IST" name="tearDownSuite" finished-at="2026-08-26T14:15:36 IST" duration-ms="215" status="PASS">
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test@175b9425]" started-at="2026-09-10T10:51:48 IST" name="logoutAfterFBS" finished-at="2026-09-10T10:51:51 IST" duration-ms="2824" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test -->
+    </test> <!-- TC_FBS_003 - FBS Store 1 Product Qty 2 Full Fulfillment -->
+    <test started-at="2026-09-10T10:51:51 IST" name="TC_FBS_004 - FBS Store 2 Products Qty 2 Each Full Fulfillment" finished-at="2026-09-10T10:59:54 IST" duration-ms="483500">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test@5609159b]" started-at="2026-09-10T10:51:51 IST" name="initPageObjects" finished-at="2026-09-10T10:51:51 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test@5609159b]" started-at="2026-09-10T10:51:51 IST" name="loginForFBS" finished-at="2026-09-10T10:51:59 IST" duration-ms="8408" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_004_place_order_2products_qty2_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test@5609159b]" started-at="2026-09-10T10:51:59 IST" name="tc_fbs_004_place_order_2products_qty2_fbs_full_fulfillment" description="Verify FBS order placement (2 products qty=2 each, 1 3P seller) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T10:59:47 IST" duration-ms="467581" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_004_place_order_2products_qty2_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test@5609159b]" started-at="2026-09-10T10:59:47 IST" name="navigateToHomePage" finished-at="2026-09-10T10:59:49 IST" duration-ms="2269" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test@5609159b]" started-at="2026-09-10T10:59:49 IST" name="logoutAfterFBS" finished-at="2026-09-10T10:59:54 IST" duration-ms="4922" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test -->
+    </test> <!-- TC_FBS_004 - FBS Store 2 Products Qty 2 Each Full Fulfillment -->
+    <test started-at="2026-09-10T10:59:54 IST" name="TC_FBS_005 - FBS Store 2 Products Diff Sellers Full Fulfillment" finished-at="2026-09-10T11:08:25 IST" duration-ms="510366">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test@394a2528]" started-at="2026-09-10T10:59:54 IST" name="initPageObjects" finished-at="2026-09-10T10:59:54 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test@394a2528]" started-at="2026-09-10T10:59:54 IST" name="loginForFBS" finished-at="2026-09-10T11:00:03 IST" duration-ms="8257" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_005_place_order_2products_diff_sellers_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test@394a2528]" started-at="2026-09-10T11:00:03 IST" name="tc_fbs_005_place_order_2products_diff_sellers_fbs_full_fulfillment" description="Verify FBS order placement (2 products qty=1 each, 2 different 3P sellers) and full fulfilment lifecycle for BOTH resulting Mirakl shipments (WEB-A + WEB-B): FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T11:08:19 IST" duration-ms="495944" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_005_place_order_2products_diff_sellers_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test@394a2528]" started-at="2026-09-10T11:08:19 IST" name="navigateToHomePage" finished-at="2026-09-10T11:08:20 IST" duration-ms="1181" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test@394a2528]" started-at="2026-09-10T11:08:20 IST" name="logoutAfterFBS" finished-at="2026-09-10T11:08:25 IST" duration-ms="4573" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test -->
+    </test> <!-- TC_FBS_005 - FBS Store 2 Products Diff Sellers Full Fulfillment -->
+    <test started-at="2026-09-10T11:08:25 IST" name="TC_FBS_006 - FBS Store 2 Products Diff Sellers Qty 2 Each Full Fulfillment" finished-at="2026-09-10T11:17:07 IST" duration-ms="522611">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test@3f56875e]" started-at="2026-09-10T11:08:25 IST" name="initPageObjects" finished-at="2026-09-10T11:08:25 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test@3f56875e]" started-at="2026-09-10T11:08:25 IST" name="loginForFBS" finished-at="2026-09-10T11:08:33 IST" duration-ms="8386" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_006_place_order_2products_diff_sellers_qty2_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test@3f56875e]" started-at="2026-09-10T11:08:33 IST" name="tc_fbs_006_place_order_2products_diff_sellers_qty2_fbs_full_fulfillment" description="Verify FBS order placement (2 products qty=2 each, 2 different 3P sellers) and full fulfilment lifecycle for BOTH resulting Mirakl shipments (WEB-A + WEB-B): FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T11:16:58 IST" duration-ms="504872" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_006_place_order_2products_diff_sellers_qty2_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test@3f56875e]" started-at="2026-09-10T11:16:58 IST" name="navigateToHomePage" finished-at="2026-09-10T11:17:00 IST" duration-ms="1662" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test@3f56875e]" started-at="2026-09-10T11:17:00 IST" name="logoutAfterFBS" finished-at="2026-09-10T11:17:07 IST" duration-ms="7153" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test -->
+    </test> <!-- TC_FBS_006 - FBS Store 2 Products Diff Sellers Qty 2 Each Full Fulfillment -->
+    <test started-at="2026-09-10T11:17:07 IST" name="TC_FBS_007 - FBS Store PayPal Payment Full Fulfillment" finished-at="2026-09-10T11:23:54 IST" duration-ms="406779">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test@37f1104d]" started-at="2026-09-10T11:17:07 IST" name="initPageObjects" finished-at="2026-09-10T11:17:07 IST" duration-ms="39" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test@37f1104d]" started-at="2026-09-10T11:17:07 IST" name="loginForFBS" finished-at="2026-09-10T11:17:19 IST" duration-ms="11790" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_007_place_order_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test@37f1104d]" started-at="2026-09-10T11:17:19 IST" name="tc_fbs_007_place_order_paypal_fbs_full_fulfillment" description="Verify FBS order placement (1 product qty=1, 1 3P seller, PayPal payment) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T11:23:46 IST" duration-ms="386502" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_007_place_order_paypal_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test@37f1104d]" started-at="2026-09-10T11:23:46 IST" name="navigateToHomePage" finished-at="2026-09-10T11:23:47 IST" duration-ms="1347" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test@37f1104d]" started-at="2026-09-10T11:23:47 IST" name="logoutAfterFBS" finished-at="2026-09-10T11:23:54 IST" duration-ms="6626" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test -->
+    </test> <!-- TC_FBS_007 - FBS Store PayPal Payment Full Fulfillment -->
+    <test started-at="2026-09-10T11:23:54 IST" name="TC_FBS_008 - FBS Store 2 Products PayPal Payment Full Fulfillment" finished-at="2026-09-10T11:35:27 IST" duration-ms="693320">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test">
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test@f2ff811]" started-at="2026-09-10T11:23:54 IST" name="loginForFBS" finished-at="2026-09-10T11:24:04 IST" duration-ms="9529" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test@f2ff811]" started-at="2026-09-10T11:23:54 IST" name="initPageObjects" finished-at="2026-09-10T11:23:54 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method signature="tc_fbs_008_place_order_2products_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test@f2ff811]" started-at="2026-09-10T11:24:04 IST" name="tc_fbs_008_place_order_2products_paypal_fbs_full_fulfillment" description="Verify FBS order placement (2 products, 1 3P seller, PayPal payment) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T11:35:19 IST" duration-ms="675269" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_008_place_order_2products_paypal_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test@f2ff811]" started-at="2026-09-10T11:35:19 IST" name="navigateToHomePage" finished-at="2026-09-10T11:35:21 IST" duration-ms="1772" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test@f2ff811]" started-at="2026-09-10T11:35:21 IST" name="logoutAfterFBS" finished-at="2026-09-10T11:35:27 IST" duration-ms="6311" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test -->
+    </test> <!-- TC_FBS_008 - FBS Store 2 Products PayPal Payment Full Fulfillment -->
+    <test started-at="2026-09-10T11:35:27 IST" name="TC_FBS_009 - FBS Store 1 Product Qty 2 PayPal Payment Full Fulfillment" finished-at="2026-09-10T11:46:35 IST" duration-ms="667778">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test@1d8bd0de]" started-at="2026-09-10T11:35:27 IST" name="initPageObjects" finished-at="2026-09-10T11:35:27 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test@1d8bd0de]" started-at="2026-09-10T11:35:27 IST" name="loginForFBS" finished-at="2026-09-10T11:35:41 IST" duration-ms="14007" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_009_place_order_qty2_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test@1d8bd0de]" started-at="2026-09-10T11:35:41 IST" name="tc_fbs_009_place_order_qty2_paypal_fbs_full_fulfillment" description="Verify FBS order placement (1 product qty=2, 1 3P seller, PayPal payment) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T11:46:25 IST" duration-ms="643030" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_009_place_order_qty2_paypal_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test@1d8bd0de]" started-at="2026-09-10T11:46:25 IST" name="navigateToHomePage" finished-at="2026-09-10T11:46:27 IST" duration-ms="1709" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test@1d8bd0de]" started-at="2026-09-10T11:46:27 IST" name="logoutAfterFBS" finished-at="2026-09-10T11:46:35 IST" duration-ms="8543" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test -->
+    </test> <!-- TC_FBS_009 - FBS Store 1 Product Qty 2 PayPal Payment Full Fulfillment -->
+    <test started-at="2026-09-10T11:46:35 IST" name="TC_FBS_010 - FBS Store 2 Products Qty 2 Each PayPal Payment Full Fulfillment" finished-at="2026-09-10T11:58:01 IST" duration-ms="686095">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test@ba54932]" started-at="2026-09-10T11:46:35 IST" name="initPageObjects" finished-at="2026-09-10T11:46:35 IST" duration-ms="27" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test@ba54932]" started-at="2026-09-10T11:46:35 IST" name="loginForFBS" finished-at="2026-09-10T11:46:49 IST" duration-ms="13279" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_010_place_order_2products_qty2_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test@ba54932]" started-at="2026-09-10T11:46:49 IST" name="tc_fbs_010_place_order_2products_qty2_paypal_fbs_full_fulfillment" description="Verify FBS order placement (2 products qty=2 each, 1 3P seller, PayPal payment) and full fulfilment lifecycle: FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T11:57:51 IST" duration-ms="662391" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_010_place_order_2products_qty2_paypal_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test@ba54932]" started-at="2026-09-10T11:57:51 IST" name="navigateToHomePage" finished-at="2026-09-10T11:57:53 IST" duration-ms="1509" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test@ba54932]" started-at="2026-09-10T11:57:53 IST" name="logoutAfterFBS" finished-at="2026-09-10T11:58:01 IST" duration-ms="8411" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test -->
+    </test> <!-- TC_FBS_010 - FBS Store 2 Products Qty 2 Each PayPal Payment Full Fulfillment -->
+    <test started-at="2026-09-10T11:58:01 IST" name="TC_FBS_011 - FBS Store 2 Products Diff Sellers PayPal Payment Full Fulfillment" finished-at="2026-09-10T12:07:55 IST" duration-ms="593334">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test">
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test@236e3f4e]" started-at="2026-09-10T11:58:01 IST" name="initPageObjects" finished-at="2026-09-10T11:58:01 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test@236e3f4e]" started-at="2026-09-10T11:58:01 IST" name="loginForFBS" finished-at="2026-09-10T11:58:14 IST" duration-ms="12224" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test@236e3f4e]" started-at="2026-09-10T11:58:14 IST" name="tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment" description="Verify FBS order placement (2 products qty=1 each, 2 different 3P sellers, PayPal payment) and full fulfilment lifecycle for BOTH resulting Mirakl shipments (WEB-A + WEB-B): FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T12:07:48 IST" duration-ms="573944" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[Mirakl status should be 'Awaiting shipment' after acceptance [4000305851WEB-A]. Actual: Mark as shipped expected [Awaiting shipment] but found [Mark as shipped]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: Mirakl status should be 'Awaiting shipment' after acceptance [4000305851WEB-A]. Actual: Mark as shipped expected [Awaiting shipment] but found [Mark as shipped]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertEqualsImpl(Assert.java:150)
+at org.testng.Assert.assertEquals(Assert.java:132)
+at org.testng.Assert.assertEquals(Assert.java:656)
+at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test.acceptShipment(TC_FBS_011_Test.java:495)
+at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test.tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment(TC_FBS_011_Test.java:371)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test@236e3f4e]" started-at="2026-09-10T12:07:48 IST" name="navigateToHomePage" finished-at="2026-09-10T12:07:51 IST" duration-ms="2931" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test@236e3f4e]" started-at="2026-09-10T12:07:51 IST" name="logoutAfterFBS" finished-at="2026-09-10T12:07:55 IST" duration-ms="3949" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test -->
+    </test> <!-- TC_FBS_011 - FBS Store 2 Products Diff Sellers PayPal Payment Full Fulfillment -->
+    <test started-at="2026-09-10T12:07:55 IST" name="TC_FBS_012 - FBS Store 2 Products Diff Sellers Qty 2 Each PayPal Payment Full Fulfillment" finished-at="2026-09-10T12:19:55 IST" duration-ms="720364">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T10:28:40 IST" name="setupSuite" finished-at="2026-09-10T10:29:11 IST" duration-ms="31027" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T12:07:55 IST" name="initPageObjects" finished-at="2026-09-10T12:07:55 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initPageObjects -->
+        <test-method is-config="true" signature="loginForFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T12:07:55 IST" name="loginForFBS" finished-at="2026-09-10T12:08:04 IST" duration-ms="8926" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginForFBS -->
+        <test-method signature="tc_fbs_012_place_order_2products_diff_sellers_qty2_paypal_fbs_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T12:08:04 IST" name="tc_fbs_012_place_order_2products_diff_sellers_qty2_paypal_fbs_full_fulfillment" description="Verify FBS order placement (2 products qty=2 each, 2 different 3P sellers, PayPal payment) and full fulfilment lifecycle for BOTH resulting Mirakl shipments (WEB-A + WEB-B): FDA -&gt; Mirakl Accept -&gt; Kibo (FBS) -&gt; Documents/Tracking -&gt; Shipped -&gt; Received" finished-at="2026-09-10T12:19:50 IST" duration-ms="706175" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fbs_012_place_order_2products_diff_sellers_qty2_paypal_fbs_full_fulfillment -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T12:19:50 IST" name="navigateToHomePage" finished-at="2026-09-10T12:19:51 IST" duration-ms="1046" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+        <test-method is-config="true" signature="logoutAfterFBS()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T12:19:51 IST" name="logoutAfterFBS" finished-at="2026-09-10T12:19:55 IST" duration-ms="4001" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- logoutAfterFBS -->
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test@36d585c]" started-at="2026-09-10T12:19:55 IST" name="tearDownSuite" finished-at="2026-09-10T12:19:56 IST" duration-ms="534" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownSuite -->
-      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test -->
+    </test> <!-- TC_FBS_012 - FBS Store 2 Products Diff Sellers Qty 2 Each PayPal Payment Full Fulfillment -->
+  </suite> <!-- FDA Automation Suite - FBS Only -->
 </testng-results>

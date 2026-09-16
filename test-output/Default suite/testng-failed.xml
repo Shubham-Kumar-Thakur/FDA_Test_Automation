@@ -3,15 +3,17 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test">
         <methods>
+          <include name="logoutAfterFBS"/>
           <include name="tearDownSuite"/>
-          <include name="tc_fbo_001_place_order_3p_seller_full_fulfillment"/>
           <include name="initPageObjects"/>
-          <include name="setupSuite"/>
+          <include name="tc_fbs_007_place_order_paypal_fbs_full_fulfillment"/>
+          <include name="loginForFBS"/>
           <include name="navigateToHomePage"/>
+          <include name="setupSuite"/>
         </methods>
-      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

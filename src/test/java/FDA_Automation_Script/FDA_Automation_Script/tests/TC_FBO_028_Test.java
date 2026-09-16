@@ -58,7 +58,7 @@ public class TC_FBO_028_Test extends BaseClass {
         LoggerUtility.info("TC_FBO_028: All page objects initialized");
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2-product 3P seller order placement and partial cancel: "
                       + "FDA (2 SKUs) → Mirakl Accept Both → Cancel Shipment A API → WEB-A=Canceled, WEB-B=Awaiting shipment")
     public void tc_fbo_028_partial_shipment_cancel_flow() throws InterruptedException {

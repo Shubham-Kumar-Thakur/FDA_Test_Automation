@@ -96,7 +96,7 @@ public class TC_FBO_005_Test extends BaseClass {
         LoggerUtility.info("TC_FBO_005 @AfterClass: No session change — suite manages the session");
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2 products qty=1 each from 2 different 3P sellers → 2 Mirakl shipments (WEB-A + WEB-B) → full fulfillment lifecycle")
     public void tc_fbo_005_dual_product_diff_sellers_qty1_full_fulfillment() throws InterruptedException {
 

@@ -100,7 +100,7 @@ public class TC_FBO_029_Test extends BaseClass {
         }
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 1 product qty=2 by 1 3P seller — seller cancels order: FDA → Mirakl Accept → Wait 1 min → Cancel Full Order API → Canceled")
     public void tc_fbo_029_qty2_seller_cancel_flow() throws InterruptedException {
 

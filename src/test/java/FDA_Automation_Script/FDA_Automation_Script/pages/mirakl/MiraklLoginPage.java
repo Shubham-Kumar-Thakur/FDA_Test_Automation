@@ -49,7 +49,7 @@ public class MiraklLoginPage extends BasePage {
         clickNext();
         enterPassword(password);
         clickSignIn();
-        handleMfaIfRequired();
+        handleMfaIfRequired(email);
         LoggerUtility.info("Switching To Mirakl");
         if (!isDashboardDisplayed()) {
             throw new IllegalStateException("Mirakl login did not land on a recognizable dashboard "
@@ -96,6 +96,7 @@ public class MiraklLoginPage extends BasePage {
     }
 
     private void handleMfaIfRequired() {
+    private void handleMfaIfRequired(String email) {
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
         boolean mfaShown;
         try {
@@ -107,7 +108,7 @@ public class MiraklLoginPage extends BasePage {
         if (!mfaShown) return;
 
         LoggerUtility.warn("Mirakl MFA verification required — check email '"
-            + "skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. "
+            + email + "' for OTP code, enter it in the browser window, then click Continue. "
             + "Test will wait up to 5 minutes...");
 
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);

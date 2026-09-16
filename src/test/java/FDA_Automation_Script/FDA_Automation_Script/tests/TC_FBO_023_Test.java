@@ -139,7 +139,7 @@ public class TC_FBO_023_Test extends BaseClass {
     // @Test
     // ================================================================
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2 SKUs qty=2 each from 1 3P seller → 2 Mirakl shipments (WEB-A + WEB-B) → full fulfillment → return qty=2 → compliance → full refund → Closed")
     public void tc_fbo_023_dual_product_qty2_return_refund() throws InterruptedException {
 

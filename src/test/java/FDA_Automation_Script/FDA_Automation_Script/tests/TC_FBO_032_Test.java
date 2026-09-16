@@ -104,7 +104,7 @@ public class TC_FBO_032_Test extends BaseClass {
         }
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 2 products qty=2 each from 2 different 3P sellers — "
                       + "FDA → Mirakl Accept WEB-A + WEB-B → Wait 1 min → Cancel Shipment WEB-A API "
                       + "→ WEB-A=Canceled, WEB-B=Awaiting shipment")

@@ -104,7 +104,7 @@ public class TC_FBO_003_Test extends BaseClass {
         }
     }
 
-    @Test(testName = TC_NAME,
+    @Test(testName = TC_NAME, groups = {"FBO"},
           description = "Verify 3P seller order: 1 product quantity 2 → full fulfillment lifecycle (FDA → Mirakl → Kibo → Delivery)")
     public void tc_fbo_003_single_product_qty2_full_fulfillment() throws InterruptedException {
 
