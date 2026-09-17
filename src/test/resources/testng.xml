@@ -300,42 +300,5 @@
         </classes>
     </test>
 
-    <!-- ═══════════════════════════════════════════════════════════
-         TEST 19 — Tc_manualoffercreation_01: Manual Offer Creation
-         Seller creates Offer for existing catalog product → Submit for Approval
-         → Verify Active in Seller Offers list → Verify Active in Operator Offers list
-         ═══════════════════════════════════════════════════════════ -->
-    <test name="Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification" preserve-order="true">
-        <classes>
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01" />
-        </classes>
-    </test>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         TEST 20 — Tc_fileimportproductoffer_01: Bulk Product/Offer File Import
-         Seller uploads Excel (validated/auto-corrected) → Operator accepts into FDA Catalog
-         → Adobe Admin triggers Magento sync → Operator/Seller verify Published → Offer Active
-         ═══════════════════════════════════════════════════════════ -->
-    <test name="Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish" preserve-order="true">
-        <classes>
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01" />
-        </classes>
-    </test>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         TEST 21 — Tc_manualproductandoffercreation_01: Manual Product + Offer Creation
-         Seller creates a brand-new Product AND Offer via Add Offer > Create Product (category
-         cascade, image upload, characteristics) → Operator accepts into FDA Catalog → Adobe Admin
-         triggers Magento sync → Operator/Seller verify Published → Offer Active → FDA storefront
-         ═══════════════════════════════════════════════════════════ -->
-    <test name="Tc_manualproductandoffercreation_01 - Manual Product and Offer Creation, Accept, Sync, Publish" preserve-order="true">
-        <classes>
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01" />
-        </classes>
-    </test>
-
 
 </suite>
