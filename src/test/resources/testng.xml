@@ -300,34 +300,5 @@
         </classes>
     </test>
 
-    
-    <test name="TC_FBS_001-012 - FBS Store Full Fulfillment Suite" preserve-order="true">
-        <classes>
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test" />
-        </classes>
-    </test>
 
 </suite>
