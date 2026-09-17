@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  FDA Automation Suite — Sequential Execution (one by one)
+  =========================================================
+  @BeforeSuite : Opens browser once before TC_FBO_001
+  @AfterSuite  : Closes browser once after TC_FBO_SPLIT_01
+
+  To run only TC_FBO_001  : comment out the second <test> block
+  To run only TC_FBO_SPLIT_01 : comment out the first  <test> block
+
+  Execution order: TC_FBO_001_Test → TC_FBO_SPLIT_01_Test
+-->
+
+<suite name="FDA Automation Suite" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener
+            class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 19 — Tc_manualoffercreation_01: Manual Offer Creation
+         Seller creates Offer for existing catalog product → Submit for Approval
+         → Verify Active in Seller Offers list → Verify Active in Operator Offers list
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01" />
+        </classes>
+    </test>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         TEST 20 — Tc_fileimportproductoffer_01: Bulk Product/Offer File Import
+         Seller uploads Excel (validated/auto-corrected) → Operator accepts into FDA Catalog
+         → Adobe Admin triggers Magento sync → Operator/Seller verify Published → Offer Active
+         ═══════════════════════════════════════════════════════════ -->
+    <test name="Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish" preserve-order="true">
+        <classes>
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01" />
+        </classes>
+    </test>
+
+
+</suite>

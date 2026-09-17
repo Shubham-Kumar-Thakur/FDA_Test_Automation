@@ -1,58 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-26T14:13:13 IST" name="Default suite" finished-at="2026-08-26T14:15:36 IST" duration-ms="143194">
+  <suite started-at="2026-09-17T12:55:06 IST" name="FDA Automation Suite" finished-at="2026-09-17T13:12:43 IST" duration-ms="1056642">
     <groups>
     </groups>
-    <test started-at="2026-08-26T14:13:13 IST" name="Default test" finished-at="2026-08-26T14:15:36 IST" duration-ms="143194">
-      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test">
-        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:12:32 IST" name="setupSuite" finished-at="2026-08-26T14:13:13 IST" duration-ms="40584" status="PASS">
+    <test started-at="2026-09-17T12:55:06 IST" name="Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification" finished-at="2026-09-17T12:56:41 IST" duration-ms="94901">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01">
+        <test-method is-config="true" signature="initAndLoginAsSeller()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01@2a798d51]" started-at="2026-09-17T12:55:06 IST" name="initAndLoginAsSeller" finished-at="2026-09-17T12:55:33 IST" duration-ms="26851" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initAndLoginAsSeller -->
+        <test-method signature="tc_manualoffercreation_01_seller_creates_offer_operator_verifies()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01@2a798d51]" started-at="2026-09-17T12:55:33 IST" name="tc_manualoffercreation_01_seller_creates_offer_operator_verifies" description="Verify a Seller can manually create an Offer for an existing catalog product in Mirakl, and that the Offer is visible and Active for both the Seller and the Operator" finished-at="2026-09-17T12:56:41 IST" duration-ms="67654" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_manualoffercreation_01_seller_creates_offer_operator_verifies -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01@2a798d51]" started-at="2026-09-17T12:56:41 IST" name="navigateToHomePage" finished-at="2026-09-17T12:56:41 IST" duration-ms="3" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01 -->
+    </test> <!-- Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification -->
+    <test started-at="2026-09-17T12:56:41 IST" name="Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish" finished-at="2026-09-17T13:12:07 IST" duration-ms="926377">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01">
+        <test-method is-config="true" signature="init()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01@689604d9]" started-at="2026-09-17T12:56:41 IST" name="init" finished-at="2026-09-17T12:56:41 IST" duration-ms="27" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- init -->
+        <test-method signature="tc_fileimportproductoffer_01_bulk_import_and_publish()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01@689604d9]" started-at="2026-09-17T12:56:41 IST" name="tc_fileimportproductoffer_01_bulk_import_and_publish" description="Verify a bulk product+offer Excel import is validated/auto-corrected, any invalid catalog data is corrected, the import is accepted by the Operator into the FDA Catalog, synced to Magento via Adobe Admin, ends with the product Published and the Offer Active, and finally appears correctly on the FDA storefront" finished-at="2026-09-17T13:12:07 IST" duration-ms="925893" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_fileimportproductoffer_01_bulk_import_and_publish -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01@689604d9]" started-at="2026-09-17T13:12:07 IST" name="navigateToHomePage" finished-at="2026-09-17T13:12:07 IST" duration-ms="0" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- navigateToHomePage -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01 -->
+    </test> <!-- Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish -->
+    <test started-at="2026-09-17T13:12:07 IST" name="Tc_manualproductandoffercreation_01 - Manual Product and Offer Creation, Accept, Sync, Publish" finished-at="2026-09-17T13:12:43 IST" duration-ms="35308">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01@145f66e3]" started-at="2026-09-17T12:55:04 IST" name="setupSuite" finished-at="2026-09-17T12:55:06 IST" duration-ms="2306" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupSuite -->
-        <test-method is-config="true" signature="initPageObjects()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:13:13 IST" name="initPageObjects" finished-at="2026-08-26T14:13:13 IST" duration-ms="374" status="PASS">
+        <test-method is-config="true" signature="init()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01@145f66e3]" started-at="2026-09-17T13:12:07 IST" name="init" finished-at="2026-09-17T13:12:07 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- initPageObjects -->
-        <test-method signature="tc_fbo_001_place_order_3p_seller_full_fulfillment()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:13:13 IST" name="tc_fbo_001_place_order_3p_seller_full_fulfillment" description="Verify 3P seller order placement and full fulfilment lifecycle: FDA -&gt; Mirakl -&gt; Shipment -&gt; Delivery" finished-at="2026-08-26T14:15:36 IST" duration-ms="142709" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchWindowException">
+        </test-method> <!-- init -->
+        <test-method signature="tc_manualproductandoffercreation_01_seller_creates_product_and_offer()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01@145f66e3]" started-at="2026-09-17T13:12:07 IST" name="tc_manualproductandoffercreation_01_seller_creates_product_and_offer" description="Verify a Seller can manually create a brand-new Product and Offer via Price and Stock &gt; Offers &gt; Add Offer &gt; Create Product, that the Operator can accept it into the FDA Catalog, that Adobe Admin syncs it to Magento, and that it ends up Published with an Active Offer, verified on the FDA storefront" finished-at="2026-09-17T13:12:43 IST" duration-ms="35078" status="FAIL">
+          <exception class="java.lang.NoSuchMethodError">
             <message>
-              <![CDATA[no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=151.0.7922.138)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [aacad05f89947ee4a1576c0bc791e117, get {url=https://mcstaging.fahorro.com/checkout/cart}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.138, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49684}, goog:processID: 38068, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49684/devtoo..., se:cdpVersion: 151.0.7922.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: aacad05f89947ee4a1576c0bc791e117]]>
+              <![CDATA['void FDA_Automation_Script.FDA_Automation_Script.pages.mirakl.MiraklOfferPage.selectProductCategory(java.lang.String[])']]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=151.0.7922.138)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [aacad05f89947ee4a1576c0bc791e117, get {url=https://mcstaging.fahorro.com/checkout/cart}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.138, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49684}, goog:processID: 38068, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49684/devtoo..., se:cdpVersion: 151.0.7922.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: aacad05f89947ee4a1576c0bc791e117
-at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:313)
-at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDACartPage.openAndRefreshCart(FDACartPage.java:210)
-at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test.tc_fbo_001_place_order_3p_seller_full_fulfillment(TC_FBO_001_Test.java:99)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+              <![CDATA[java.lang.NoSuchMethodError: 'void FDA_Automation_Script.FDA_Automation_Script.pages.mirakl.MiraklOfferPage.selectProductCategory(java.lang.String[])'
+at FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01.tc_manualproductandoffercreation_01_seller_creates_product_and_offer(Tc_manualproductandoffercreation_01.java:218)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
 at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
@@ -61,7 +65,7 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
 at org.testng.TestRunner.privateRun(TestRunner.java:739)
 at org.testng.TestRunner.run(TestRunner.java:614)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
@@ -79,19 +83,31 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
+          </exception> <!-- java.lang.NoSuchMethodError -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- tc_fbo_001_place_order_3p_seller_full_fulfillment -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:15:36 IST" name="navigateToHomePage" finished-at="2026-08-26T14:15:36 IST" duration-ms="9" status="PASS">
+        </test-method> <!-- tc_manualproductandoffercreation_01_seller_creates_product_and_offer -->
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01@145f66e3]" started-at="2026-09-17T13:12:43 IST" name="navigateToHomePage" finished-at="2026-09-17T13:12:43 IST" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage -->
-        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test@c0c2f8d]" started-at="2026-08-26T14:15:36 IST" name="tearDownSuite" finished-at="2026-08-26T14:15:36 IST" duration-ms="215" status="PASS">
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01@145f66e3]" started-at="2026-09-17T13:12:43 IST" name="tearDownSuite" finished-at="2026-09-17T13:12:43 IST" duration-ms="539" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownSuite -->
-      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01 -->
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01@689604d9]" started-at="2026-09-17T12:55:02 IST" name="setupSuite" finished-at="2026-09-17T12:55:04 IST" duration-ms="1413" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01 -->
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01@2a798d51]" started-at="2026-09-17T12:54:59 IST" name="setupSuite" finished-at="2026-09-17T12:55:02 IST" duration-ms="2913" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01 -->
+    </test> <!-- Tc_manualproductandoffercreation_01 - Manual Product and Offer Creation, Accept, Sync, Publish -->
+  </suite> <!-- FDA Automation Suite -->
 </testng-results>

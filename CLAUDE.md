@@ -19,6 +19,7 @@ Covers the full order lifecycle: FDA storefront → Kibo OMS (REST API) → Mira
 | Apache POI | 5.3.0 | Excel data utility |
 | Log4j2 | 2.24.3 | Logging |
 | Jackson | 2.18.2 | JSON serialization for REST Assured |
+| ExtentReports | 5.1.2 | HTML execution report (`target/surefire-reports/ExecutionReport.html`) |
 | Maven | 3.x | Build + dependency management |
 
 ## Run Tests
@@ -38,6 +39,8 @@ Run a single test class:
 ```bash
 mvn test -Dtest=TC_FBO_001_Test
 ```
+
+If `mvn` is not on PATH and there's no `mvnw` wrapper in this repo, compile/run directly against the local `.m2` repository jars with `javac`/`java` + `org.testng.TestNG -testclass <FQCN>` instead of trying to install Maven.
 
 ## Test Case Catalog
 
@@ -67,6 +70,11 @@ mvn test -Dtest=TC_FBO_001_Test
 | `TC_FBO_030_Test` | 2 SKUs qty=2 each from **1 3P seller** → Mirakl accept WEB-A + WEB-B → 1-min wait → cancel WEB-A only → WEB-A=Canceled, WEB-B=Awaiting; resolves `offer_sku` via inline Mirakl API call; uses separate FDA account (`mgowda@kognivera.com`), `@BeforeClass`/`@AfterClass` swap sessions |
 | `TC_FBO_031_Test` | 2 SKUs qty=1 each from **2 different 3P sellers** → Mirakl accept WEB-A + WEB-B → 1-min wait → cancel WEB-A only using `order_line_id` format (`shipmentRefA + "-1"`) → WEB-A=Canceled, WEB-B=Awaiting; uses separate FDA account (`mgowda@kognivera.com`), `@BeforeClass`/`@AfterClass` swap sessions |
 | `TC_FBO_032_Test` | 2 SKUs qty=2 each from **2 different 3P sellers** → Mirakl accept WEB-A + WEB-B → 1-min wait → cancel WEB-A only using `order_line_id` format (`shipmentRefA + "-1"`) → WEB-A=Canceled, WEB-B=Awaiting; uses separate FDA account (`mgowda@kognivera.com`), `@BeforeClass`/`@AfterClass` swap sessions |
+| `Tc_manualoffercreation_01` | Mirakl Seller manually creates an Offer for an existing catalog product (Price and Stock > Offers > Add Offer) with a unique Offer SKU/Shop SKU → Submit for Approval → verify success message and Active status in Seller Offers list → swap to Mirakl Operator account → verify same Offer is Active in Operator Offers list; uses TC-specific Mirakl Seller/Operator accounts (not `mirakl.username`/`mirakl.password`), `@BeforeClass`/`@AfterClass` swap sessions; **passwords are blank** — update `TC_SELLER_PASS`/`TC_OPERATOR_PASS` constants before running, re-blank before committing; runs in its own **independent browser session** — see "Standalone-browser test classes" below |
+| `Tc_fileimportproductoffer_01` | Seller bulk-uploads a combined product+offer Excel file (Price and stock > File imports) → `ExcelImportValidator` regenerates unique Product/Offer IDs and auto-corrects invalid rows before upload → Seller fixes any "Invalid data" rows in Catalog Management (Fragile/MSI) → Operator accepts every product into the FDA Catalog (Catalog Management > Edit Catalogs) → Adobe Admin triggers Magento sync → Operator/Seller verify each product reaches Published/Active → verified on FDA storefront (search by name, PDP name/price); every product from the Excel file is processed through all 7 phases independently — one product's failure never stops the rest, failures are collected and reported in a final summary/assertion; includes crash-recovery (`recoverDriverAndReLogin()`) for mid-run browser-session loss during long Mirakl-propagation polls; uses TC-specific `jnag.MiraklSeller.*`/`jnag.MiraklOperator.*`/`jnag.Adobe.*` credentials; runs in its own **independent browser session** — see "Standalone-browser test classes" below |
+| ~~`Tc_manualproductandoffercreation_01`~~ | **Source file no longer exists** (`.java` deleted from `tests/`) but `testng.xml` TEST 21 still references this class name — that `<test>` block will fail with a class-not-found error on any full-suite run until the stale block is removed. |
+
+**Standalone-browser test classes:** `Tc_manualoffercreation_01` and `Tc_fileimportproductoffer_01` each `@Override` `BaseClass.setupSuite()` to launch their own browser (`DriverFactory.createDriver(false)`) and skip the suite-default FDA/Mirakl login, instead reading `jnag.MiraklSeller.*`/`jnag.MiraklOperator.*`/`jnag.Adobe.*` from `config.properties`. Per explicit comments in each class, they must **only** be run standalone (`mvn test -Dtest=<ClassName>`), never as part of the full suite — `BaseClass.driver` is a shared `static` field and `DriverFactory` holds a single `ThreadLocal` driver, and TestNG fires every class's own `@BeforeSuite` once per suite run, so running these alongside the other TCs orphans Chrome processes and corrupts shared driver state for whichever class's `@BeforeSuite` runs last. **`testng.xml` currently includes both in the main suite anyway** (see "testng.xml execution order" below) — this is a live conflict in the current repo state, not a hypothetical; be aware before running `mvn clean test` unmodified. Additionally, TEST 21 (`Tc_manualproductandoffercreation_01`) in `testng.xml` points at a class that no longer exists in `tests/` — that block needs to be deleted or fixed before a full run will even load correctly.
 
 ## Project Structure
 
@@ -86,21 +94,29 @@ src/
         fda/
           FDAHomePage.java          ← Home, search, cart icon, profile icon, logout()
           FDALoginPage.java         ← Email/password login
-          FDAPDPPage.java           ← Product Details Page; increaseQuantity() clicks Aumentar plus button
+          FDAPDPPage.java           ← Product Details Page; increaseQuantity() clicks Aumentar plus button; getProductName()/getProductPrice()/getProductSku()/isDisplayed() added for storefront-verification TCs — getProductPrice() retries with a refresh since the Magento price-box can stay hidden during a sync gap and is logged, not asserted, when empty
           FDACartPage.java          ← Cart validation, removeAllItems()
           FDAPaymentPage.java       ← Credit card checkout, handle3dsChallenge()
           FDAPayPalPage.java        ← PayPal sandbox login: waitForPageLoad → email → clickNextButton → password → clickLoginButton → clickCompletePayment; locators are Spanish-language (Siguiente, Iniciar sesión, Compra completa)
           FDASuccessPage.java       ← Order ID extraction
           FDAOrderHistoryPage.java  ← Mis pedidos
+          FDASearchResultsPage.java ← Storefront search-results grid; isProductInResults()/clickProductInResults() by name substring match; locators unverified against live DOM
         kibo/
           KiboLoginPage.java        ← Kibo OMS login (not used in current suite — Kibo accessed via API)
           KiboOrdersPage.java       ← Navigation + search
           KiboOrderDetailPage.java  ← Status, Payments tab, Custom Data tab
         mirakl/
-          MiraklLoginPage.java      ← Mirakl login (called in @BeforeSuite)
+          MiraklLoginPage.java      ← Mirakl login (called in @BeforeSuite); logout() submits the /logout form via JS; waitForLoginFormOrRecover() retries Seller↔Operator session swaps; handleMfaIfRequired() can require a manual OTP entry (up to 10 min wait) — see "Mirakl login recovery + MFA" below
           MiraklOrdersPage.java     ← Navigation + search, hasSearchResults()
           MiraklOrderDetailPage.java ← Accept, getOrderStatus(), clickOrderInList()
           MiraklReturnPage.java     ← Return flow (used by TC_FBO_021)
+          MiraklOfferPage.java      ← Add Offer form (existing product) + Create Product sub-flow (category cascade, image upload, mandatory-characteristics checklist) + Offers-list verification; used by Tc_manualoffercreation_01/Tc_fileimportproductoffer_01
+          MiraklCatalogManagementPage.java ← Catalog Manager grid/detail page: search by SKU, Invalid/Valid data badges, Edit/Save, Fragile/MSI dropdowns; instant JS presence checks used throughout to avoid 2-min implicit-wait stalls
+          MiraklFileImportsPage.java ← Price and stock > File imports: file upload input, content-type dropdown, Import button (used by Tc_fileimportproductoffer_01)
+          MiraklProductImportsPage.java ← Catalog imports hub: Provider filter, select New-status rows, Edit Catalogs (assign FDA catalog), Accept/Confirm dialogs
+        adobe/
+          AdobeLoginPage.java       ← Adobe Commerce (Magento) admin login; UI is Spanish-language ("Ingresar")
+          AdobeSynchronizationPage.java ← Mirakl > System > Synchronization grid; triggers "Import in Magento" (MCM Products Asynchronous Import job)
       utils/
         ConfigReader.java           ← Reads config.properties (singleton)
         DriverFactory.java          ← ThreadLocal WebDriver, openNewTab(), switchToTab()
@@ -112,6 +128,7 @@ src/
         ShipmentDetails.java        ← Immutable value object: shipmentNumber, deliveryPartner, tplShipmentId, carrierName, trackingNumber, miraklSuffix
         ExtentManager.java          ← Singleton ExtentReports + per-thread ExtentTest; report at `target/surefire-reports/ExecutionReport.html`; do NOT use LoggerUtility inside this class (circular dependency)
         StepLogger.java             ← Optional structured step logger; step()/pass()/fail()/info() route through LoggerUtility only; screenshot() is the sole direct ExtentReports caller (images can't travel through log messages)
+        ExcelImportValidator.java   ← Validates/auto-corrects the combined product+offer import Excel ("Data" sheet: row0=labels, row1=technical keys, row2+=data); regenerateProductIds() rewrites unique Product ID/Shop SKU/UPC-EAN + Offer ID per run to avoid cross-run collisions; `msi` must stay true/false in the uploaded file (Yes/No is rejected by Mirakl at import time) while `is_fragile` is normalized to Si/No/Yes — do not conflate the two
       tests/
         TC_FBO_001_Test.java
         TC_FBO_002_Test.java
@@ -137,10 +154,12 @@ src/
         TC_FBO_031_Test.java
         TC_FBO_032_Test.java
         TC_FBO_SPLIT_01_Test.java
+        Tc_manualoffercreation_01.java
+        Tc_fileimportproductoffer_01.java
     resources/
       config.properties             ← All URLs, credentials, API tokens
       log4j2.xml                    ← Log configuration
-      testng.xml                    ← Suite definition (all 25 TCs, sequential)
+      testng.xml                    ← Suite definition (28 <test> blocks, sequential — see "testng.xml execution order" below); TEST 21 points at the deleted Tc_manualproductandoffercreation_01 class
 ```
 
 ## Output Artifacts
@@ -242,10 +261,15 @@ After `postEnvioclickEnTransito()`, Mirakl may show either `"Shipped"` or `"3PL 
 Call `ApiUtility.kiboSkipValidateItemsTask(token, shipmentNumber)` when staging SKUs have zero warehouse stock. This PUTs to `.../tasks/Validate%20Items%20In%20Stock/skipped` so the 3PL connector can proceed to generate a carrier label. Use it before polling for `deliveryPartner` / `3pl_shipmentId` if shipment data never populates.
 
 **testng.xml execution order:**
-Suite runs 24 TCs sequentially. Actual order:
-`001 → 002 → 003 → 004 → 005 → 006 → 007 → 008 → 009 → 010 → 011 → 012 → SPLIT_01 → 020 → 021 → 022 → 023 → 026 → 027 → 028 → 029 → 030 → 031 → 032`
-TC_FBO_SPLIT_01 runs **before** TC_FBO_020 (XML labels it "TEST 13").
+Suite has 28 `<test>` blocks sequentially. Actual order:
+`001 → 002 → 003 → 004 → 005 → 006 → 007 → 008 → 009 → 010 → 011 → 012 → SPLIT_01 → 020 → 021 → 022 → 023 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → Tc_manualoffercreation_01 → Tc_fileimportproductoffer_01 → Tc_manualproductandoffercreation_01 (TEST 21, class deleted)`
+TC_FBO_SPLIT_01 runs **before** TC_FBO_020 (XML labels it "TEST 13"). The last four blocks run after the FDA-order-lifecycle TCs (Mirakl catalog/offer creation, unrelated to that lifecycle).
 PayPal TCs (007–012): update `TC_PAYPAL_PASS` constant in each test class before running — password is intentionally left blank in committed code. Always re-blank (`TC_PAYPAL_PASS = ""`) before committing; TC_FBO_008–012 are especially at risk because they carry filled-in passwords locally.
+**Conflict:** the last four classes are documented in their own code comments as standalone-only (see "Standalone-browser test classes" in the Test Case Catalog above), yet `testng.xml` runs them in the same suite as everything else — running `mvn clean test` unmodified will fire multiple independent `@BeforeSuite` browser launches against the same shared driver state. If you need the full FDA-order-lifecycle suite to run cleanly, comment out (or move to a separate XML) the last four `<test>` blocks and run each with `-Dtest=<ClassName>` instead.
+**Broken reference:** TEST 21 (`Tc_manualproductandoffercreation_01`) has no corresponding `.java` file anymore — that class was deleted from `tests/`, but the stale `<test>` block was never removed from `testng.xml`. A full-suite run will fail on that block; remove it before running `mvn clean test` unmodified.
+
+**Mirakl login recovery + MFA (`MiraklLoginPage`):**
+`login()` first calls `waitForLoginFormOrRecover()`, which retries up to 4 times (forced JS logout + refresh between attempts) if the `#username` field doesn't appear — this happens when swapping Seller↔Operator sessions in the same browser (used by the standalone-browser TCs above). After credentials are submitted, `handleMfaIfRequired()` detects a "Verify Your Identity" screen and, if present, **blocks for up to 10 minutes waiting for a human to manually enter the OTP** sent to that account's email — this is not automatable and the test will stall until either the OTP is entered or the wait times out. Per code comments, the Operator account MFA has consistently timed out in practice while the Seller account MFA clears quickly; budget for manual intervention when running the standalone Mirakl TCs.
 
 **Cancel API auth (TC_FBO_027/028):**
 `ApiUtility.cancelFullOrder()` and `cancelShipment()` use **Cookie-only** auth — no Bearer token. The cookie values come from `config.getCancelOrderCookie()` and `config.getCancelShipmentCookie()` respectively. Do not add a Bearer header to these calls.
@@ -310,9 +334,11 @@ Do NOT commit this file to shared/public repositories.
 | `fda.username` | `BaseClass`, tests | Suite-level FDA login |
 | `fda.password` | `BaseClass`, tests | Suite-level FDA password |
 | `fda.sku` | Tests | Primary SKU for single-product tests |
+| `fda.split.skus` | `TC_FBO_SPLIT_01_Test` | Comma-separated 8 SKUs for the order-split test |
 | `fda.card.number` | `FDAPaymentPage` | Credit card number |
 | `fda.card.expiry` | `FDAPaymentPage` | Card expiry MM/YY |
 | `fda.card.cvv` | `FDAPaymentPage` | Card CVV |
+| `headless` | — | Present in `config.properties` but not currently read by any code — `DriverFactory.createDriver(boolean)` takes headless as a call-site parameter (all current call sites pass `false`), not from this key |
 | `kibo.url` | `ConfigReader` | Kibo OMS UI URL (not used in tests) |
 | `kibo.username` | `ConfigReader` | Kibo UI credentials (not used in tests) |
 | `kibo.password` | `ConfigReader` | Kibo UI credentials (not used in tests) |
@@ -334,3 +360,6 @@ Do NOT commit this file to shared/public repositories.
 | `cancel.shipment.cookie` | `ApiUtility` | Cookie for cancel shipment calls |
 | `return.service.url` | `ReturnApiUtility` | Return creation endpoint (Cookie-only auth) |
 | `return.service.cookie` | `ReturnApiUtility` | Cookie for return service calls |
+| `jnag.MiraklSeller.url/email/password` | `Tc_manualoffercreation_01`, `Tc_fileimportproductoffer_01` | TC-specific Mirakl Seller login, independent of `mirakl.username`/`mirakl.password` |
+| `jnag.MiraklOperator.email/password` | Same two standalone-browser TCs | TC-specific Mirakl Operator login |
+| `jnag.Adobe.url/username/password` | `Tc_fileimportproductoffer_01` | Adobe Commerce (Magento) admin login, used to trigger the "Import in Magento" sync |

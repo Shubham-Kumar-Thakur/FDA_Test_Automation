@@ -8,59 +8,21 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">143,194</td><td></td><td></td></tr>
+<tr><th colspan="8">FDA Automation Suite</th></tr>
+<tr><td><a href="#t0">Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">94,901</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">926,377</td><td></td><td></td></tr>
+<tr><td><a href="#t2">Tc_manualproductandoffercreation_01 - Manual Product and Offer Creation, Accept, Sync, Publish</a></td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">35,308</td><td></td><td></td></tr>
+<tr><th>Total</th><th class="num">2</th><th class="num">0</th><th class="num">0</th><th class="num attn">1</th><th class="num">1,056,586</th><th colspan="2"></th></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test</td><td><a href="#m0">tc_fbo_001_place_order_3p_seller_full_fulfillment</a></td><td rowspan="1">1787733793769</td><td rowspan="1">142709</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">FDA Automation Suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01</td><td><a href="#m0">tc_manualoffercreation_01_seller_creates_offer_operator_verifies</a></td><td rowspan="1">1789629933604</td><td rowspan="1">67654</td></tr></tbody>
+<tbody id="t1"><tr><th colspan="4">Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01</td><td><a href="#m1">tc_fileimportproductoffer_01_bulk_import_and_publish</a></td><td rowspan="1">1789630001616</td><td rowspan="1">925893</td></tr></tbody>
+<tbody id="t2"><tr><th colspan="4">Tc_manualproductandoffercreation_01 - Manual Product and Offer Creation, Accept, Sync, Publish &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01</td><td><a href="#m2">tc_manualproductandoffercreation_01_seller_creates_product_and_offer</a></td><td rowspan="1">1789630927973</td><td rowspan="1">35078</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test#tc_fbo_001_place_order_3p_seller_full_fulfillment</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
-from unknown error: web view not found
-  (Session info: chrome=151.0.7922.138)
-Build info: version: &apos;4.25.0&apos;, revision: &apos;8a8aea2337&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.11&apos;
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [aacad05f89947ee4a1576c0bc791e117, get {url=https://mcstaging.fahorro.com/checkout/cart}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.138, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49684}, goog:processID: 38068, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49684/devtoo..., se:cdpVersion: 151.0.7922.138, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: aacad05f89947ee4a1576c0bc791e117
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
-	at org.openqa.selenium.remote.RemoteWebDriver.get(RemoteWebDriver.java:313)
-	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDACartPage.openAndRefreshCart(FDACartPage.java:210)
-	at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_001_Test.tc_fbo_001_place_order_3p_seller_full_fulfillment(TC_FBO_001_Test.java:99)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:739)
-	at org.testng.TestRunner.run(TestRunner.java:614)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Tc_manualoffercreation_01 - Manual Offer Creation Seller and Operator Verification</h2><h3 id="m0">FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualoffercreation_01#tc_manualoffercreation_01_seller_creates_offer_operator_verifies</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Tc_fileimportproductoffer_01 - Bulk Import Product and Offer via File, Accept, Sync, Publish</h2><h3 id="m1">FDA_Automation_Script.FDA_Automation_Script.tests.Tc_fileimportproductoffer_01#tc_fileimportproductoffer_01_bulk_import_and_publish</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Tc_manualproductandoffercreation_01 - Manual Product and Offer Creation, Accept, Sync, Publish</h2><h3 id="m2">FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01#tc_manualproductandoffercreation_01_seller_creates_product_and_offer</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.NoSuchMethodError: &apos;void FDA_Automation_Script.FDA_Automation_Script.pages.mirakl.MiraklOfferPage.selectProductCategory(java.lang.String[])&apos;
+	at FDA_Automation_Script.FDA_Automation_Script.tests.Tc_manualproductandoffercreation_01.tc_manualproductandoffercreation_01_seller_creates_product_and_offer(Tc_manualproductandoffercreation_01.java:218)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+... Removed 25 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
