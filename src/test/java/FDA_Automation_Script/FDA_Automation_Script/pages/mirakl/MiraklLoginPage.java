@@ -95,7 +95,6 @@ public class MiraklLoginPage extends BasePage {
         }
     }
 
-    private void handleMfaIfRequired() {
     private void handleMfaIfRequired(String email) {
         driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(10));
         boolean mfaShown;

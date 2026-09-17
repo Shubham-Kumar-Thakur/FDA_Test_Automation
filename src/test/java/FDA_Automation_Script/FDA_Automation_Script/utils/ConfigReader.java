@@ -152,6 +152,7 @@ public class ConfigReader {
 
 	public String getPushOffersToEmpathyCookie() {
 		return get("push.offers.to.empathy.cookie");
+	}
 	public String getFbs001InvoiceFilePath() {
 		return get("fbs001.invoice.file.path");
 	}

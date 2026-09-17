@@ -1,38 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="1" name="Failed suite [FDA Automation Suite - FBS Only]">
-  <listeners>
-    <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener"/>
-    <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener"/>
-  </listeners>
-  <test thread-count="1" name="TC_FBS_003 - FBS Store 1 Product Qty 2 Full Fulfillment(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test">
         <methods>
-          <include name="tc_fbs_003_place_order_qty2_fbs_full_fulfillment"/>
-          <include name="logoutAfterFBS"/>
-          <include name="tearDownSuite"/>
           <include name="initPageObjects"/>
-          <include name="loginForFBS"/>
+          <include name="tearDownSuite"/>
           <include name="setupSuite"/>
+          <include name="tc_e2e_009_seller_update_offer_price_via_excel"/>
           <include name="navigateToHomePage"/>
         </methods>
-      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test -->
     </classes>
-  </test> <!-- TC_FBS_003 - FBS Store 1 Product Qty 2 Full Fulfillment(failed) -->
-  <test thread-count="1" name="TC_FBS_011 - FBS Store 2 Products Diff Sellers PayPal Payment Full Fulfillment(failed)">
-    <classes>
-      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test">
-        <methods>
-          <include name="logoutAfterFBS"/>
-          <include name="tearDownSuite"/>
-          <include name="tc_fbs_011_place_order_2products_diff_sellers_paypal_fbs_full_fulfillment"/>
-          <include name="initPageObjects"/>
-          <include name="loginForFBS"/>
-          <include name="setupSuite"/>
-          <include name="navigateToHomePage"/>
-        </methods>
-      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test -->
-    </classes>
-  </test> <!-- TC_FBS_011 - FBS Store 2 Products Diff Sellers PayPal Payment Full Fulfillment(failed) -->
-</suite> <!-- Failed suite [FDA Automation Suite - FBS Only] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="1" name="Failed suite [FDA Automation Suite - TC_OU_009 Only]">
+  <listeners>
+    <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener"/>
+    <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener"/>
+  </listeners>
+  <test thread-count="1" name="TC_OU_009 - Seller Update Offer Price via Excel(failed)">
+    <classes>
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test">
+        <methods>
+          <include name="initPageObjects"/>
+          <include name="tearDownSuite"/>
+          <include name="setupSuite"/>
+          <include name="tc_e2e_009_seller_update_offer_price_via_excel"/>
+          <include name="navigateToHomePage"/>
+        </methods>
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_OU_009_Test -->
+    </classes>
+  </test> <!-- TC_OU_009 - Seller Update Offer Price via Excel(failed) -->
+</suite> <!-- Failed suite [FDA Automation Suite - TC_OU_009 Only] -->
