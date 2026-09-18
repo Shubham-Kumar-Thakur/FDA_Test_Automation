@@ -1,0 +1,61 @@
+2026-09-18T04:38:55.585839Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-18T04:38:55.660870500Z main WARN Some custom `Core` Log4j plugins are not properly registered:
+	FDA_Automation_Script.FDA_Automation_Script.appenders.ExtentReportLog4j2Appender
+Please consider reporting this to the maintainers of these plugins.
+See https://logging.apache.org/log4j/2.x/manual/plugins.html#plugin-registry for details.
+2026-09-18 10:08:56 INFO  org.testng.internal.Utils - [TestNG] Running:
+  Command line suite
+
+2026-09-18 10:08:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: Skipping FDA login and suite-default Mirakl login — launching independent browser
+2026-09-18 10:08:57 INFO  io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 152.0.7977.82 (resolved driver for Chrome 152)
+2026-09-18 10:08:57 INFO  io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\JanviNag\.cache\selenium\chromedriver\win64\152.0.7977.82\chromedriver.exe
+Sep 18, 2026 10:08:59 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 18, 2026 10:08:59 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
+WARNING: Unable to find version of CDP to use for 152.0.7977.84. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.33.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-18 10:08:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-18 10:09:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: All page objects initialized
+2026-09-18 10:09:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PHASE 0: Excel Data Validation =====
+2026-09-18 10:09:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Product Excel: Shop SKU=05137238, Name=bedsheet, Brand=DIVA CUP
+2026-09-18 10:09:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Offer Excel: Offer SKU=QB137275, Product ID=05137238, Price=54, Quantity=400
+2026-09-18 10:09:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PART 1: Seller Product Import =====
+2026-09-18 10:09:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Logging in to Mirakl as Seller
+2026-09-18 10:09:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: jnag+2002@kognivera.com
+2026-09-18 10:09:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-18 10:09:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-18 10:09:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-18 10:09:08 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'jnag+2002@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-18 10:09:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_jnag_2002_kognivera_com_INFO.png
+2026-09-18 10:09:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for jnag+2002@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+jnag*****@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-18 10:19:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_TIMEOUT_jnag_2002_kognivera_com_FAIL.png
+2026-09-18 10:19:09 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA TIMEOUT page state for jnag+2002@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+jnag*****@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-18 10:19:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
+2026-09-18 10:19:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed
+
+===============================================
+Command line suite
+Total tests run: 1, Passes: 0, Failures: 1, Skips: 0
+===============================================
+

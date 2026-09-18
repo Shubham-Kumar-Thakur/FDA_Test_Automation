@@ -1,0 +1,68 @@
+2026-09-18T06:24:40.791736800Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-18T06:24:40.866115100Z main WARN Some custom `Core` Log4j plugins are not properly registered:
+	FDA_Automation_Script.FDA_Automation_Script.appenders.ExtentReportLog4j2Appender
+Please consider reporting this to the maintainers of these plugins.
+See https://logging.apache.org/log4j/2.x/manual/plugins.html#plugin-registry for details.
+2026-09-18 11:54:41 INFO  org.testng.internal.Utils - [TestNG] Running:
+  Command line suite
+
+2026-09-18 11:54:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: Skipping FDA login and suite-default Mirakl login — launching independent browser
+2026-09-18 11:54:42 INFO  io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 152.0.7977.82 (resolved driver for Chrome 152)
+2026-09-18 11:54:43 INFO  io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\JanviNag\.cache\selenium\chromedriver\win64\152.0.7977.82\chromedriver.exe
+Sep 18, 2026 11:54:46 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 18, 2026 11:54:46 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
+WARNING: Unable to find version of CDP to use for 152.0.7977.84. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.33.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-18 11:54:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-18 11:54:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: All page objects initialized
+2026-09-18 11:54:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PHASE 0: Excel Data Validation =====
+2026-09-18 11:54:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelImportValidator: C:\Users\JanviNag\Downloads\products-en_US-20260825221353.xlsx already has exactly one data row — nothing to remove
+2026-09-18 11:54:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelImportValidator: C:\Users\JanviNag\Downloads\offers-en_US-20260825224644.xlsx already has exactly one data row — nothing to remove
+2026-09-18 11:54:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Product Excel: Shop SKU=11487226, Name=bedsheet, Brand=DIVA CUP
+2026-09-18 11:54:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Offer Excel: Offer SKU=RH487263, Product ID=11487226, Price=54, Quantity=400
+2026-09-18 11:54:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PART 1: Seller Product Import =====
+2026-09-18 11:54:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Logging in to Mirakl as Seller
+2026-09-18 11:54:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: jnag+2002@kognivera.com
+2026-09-18 11:54:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-18 11:54:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-18 11:54:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-18 11:54:56 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'jnag+2002@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-18 11:54:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_jnag_2002_kognivera_com_INFO.png
+2026-09-18 11:54:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for jnag+2002@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+jnag*****@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-18 11:56:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-18 11:56:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-18 11:56:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-18 11:56:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 11:56:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 11:56:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Catalog Management for SKU: 11487226
+2026-09-18 11:56:32 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Primary identifier search field not found — trying broader fallback locator
+2026-09-18 11:56:32 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No search input found by any known locator on this page. All <input> elements present: []
+2026-09-18 11:56:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search control found
+2026-09-18 11:56:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_beforeSearch_INFO.png
+2026-09-18 11:56:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU entered: 11487226
+2026-09-18 11:56:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search executed
+2026-09-18 11:56:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_afterSearch_INFO.png
+2026-09-18 11:56:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 11487226 with status 'Published' present: true
+2026-09-18 11:56:40 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Product 11487226 is already Published from a prior run — regenerating fresh Product ID and Offer SKU before import
+2026-09-18 11:56:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelImportValidator: regenerated Product ID '11487226' -> '12800686'
+2026-09-18 11:56:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelImportValidator: regenerated Offer SKU 'RH487263' -> 'GY800723', product-id '11487226' -> '12800686'
+2026-09-18 11:56:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
+2026-09-18 11:56:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed
+
+===============================================
+Command line suite
+Total tests run: 1, Passes: 0, Failures: 1, Skips: 0
+===============================================
+

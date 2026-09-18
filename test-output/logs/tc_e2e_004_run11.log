@@ -1,0 +1,247 @@
+2026-09-18T06:38:05.539954Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-18T06:38:05.635662800Z main WARN Some custom `Core` Log4j plugins are not properly registered:
+	FDA_Automation_Script.FDA_Automation_Script.appenders.ExtentReportLog4j2Appender
+Please consider reporting this to the maintainers of these plugins.
+See https://logging.apache.org/log4j/2.x/manual/plugins.html#plugin-registry for details.
+2026-09-18 12:08:06 INFO  org.testng.internal.Utils - [TestNG] Running:
+  Command line suite
+
+2026-09-18 12:08:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: Skipping FDA login and suite-default Mirakl login — launching independent browser
+2026-09-18 12:08:07 INFO  io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 152.0.7977.82 (resolved driver for Chrome 152)
+2026-09-18 12:08:07 INFO  io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\JanviNag\.cache\selenium\chromedriver\win64\152.0.7977.82\chromedriver.exe
+Sep 18, 2026 12:08:09 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 18, 2026 12:08:09 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$4
+WARNING: Unable to find version of CDP to use for 152.0.7977.84. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.33.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-18 12:08:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-18 12:08:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: All page objects initialized
+2026-09-18 12:08:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PHASE 0: Excel Data Validation =====
+2026-09-18 12:08:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelImportValidator: C:\Users\JanviNag\Downloads\products-en_US-20260825221353.xlsx already has exactly one data row — nothing to remove
+2026-09-18 12:08:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelImportValidator: C:\Users\JanviNag\Downloads\offers-en_US-20260825224644.xlsx already has exactly one data row — nothing to remove
+2026-09-18 12:08:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Product Excel: Shop SKU=13426718, Name=bedsheet, Brand=DIVA CUP
+2026-09-18 12:08:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test — Offer Excel: Offer SKU=VJ426777, Product ID=13426718, Price=54, Quantity=400
+2026-09-18 12:08:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PART 1: Seller Product Import =====
+2026-09-18 12:08:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Logging in to Mirakl as Seller
+2026-09-18 12:08:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: jnag+2002@kognivera.com
+2026-09-18 12:08:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-18 12:08:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-18 12:08:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-18 12:08:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'jnag+2002@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-18 12:08:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_jnag_2002_kognivera_com_INFO.png
+2026-09-18 12:08:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for jnag+2002@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+jnag*****@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-18 12:08:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-18 12:08:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-18 12:08:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-18 12:08:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:09:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 12:09:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Catalog Management for SKU: 13426718
+2026-09-18 12:09:04 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Primary identifier search field not found — trying broader fallback locator
+2026-09-18 12:09:04 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No search input found by any known locator on this page. All <input> elements present: []
+2026-09-18 12:09:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search control found
+2026-09-18 12:09:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_beforeSearch_INFO.png
+2026-09-18 12:09:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU entered: 13426718
+2026-09-18 12:09:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search executed
+2026-09-18 12:09:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_afterSearch_INFO.png
+2026-09-18 12:09:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 13426718 with status 'Published' present: false
+2026-09-18 12:09:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: Navigating to Catalog > Product Imports
+2026-09-18 12:09:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Product Imports
+2026-09-18 12:09:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product Imports section opened
+2026-09-18 12:09:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No 'Shop product imports' hub card present — assuming this role/label variant landed directly on the per-product status grid
+2026-09-18 12:09:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Clicking Import Products
+2026-09-18 12:09:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Import Products
+2026-09-18 12:09:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Import Products' locator matched: BUTTON text='Import products' href=''
+2026-09-18 12:09:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Page URL after clicking Import Products: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/product/import
+2026-09-18 12:09:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Uploading Product Excel file, selecting File Content = Product, confirming
+2026-09-18 12:09:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading Product Excel file: C:\Users\JanviNag\Downloads\products-en_US-20260825221353.xlsx
+2026-09-18 12:09:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File input(s) found on page: 1
+2026-09-18 12:09:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product file attached and confirmed visible on page: products-en_US-20260825221353.xlsx
+2026-09-18 12:09:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No 'File Content' selector exists on the Import Products form (confirmed live — this endpoint is product-only by definition) — nothing to select, proceeding to Confirm
+2026-09-18 12:09:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:09:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Confirm on Import Products form
+2026-09-18 12:09:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:09:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 6: Refreshing page after product import confirmation
+2026-09-18 12:09:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 7-9: Navigating to Catalog Management, polling for Pending status for 13426718
+2026-09-18 12:09:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:09:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 12:09:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Catalog Management for SKU: 13426718
+2026-09-18 12:09:23 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Primary identifier search field not found — trying broader fallback locator
+2026-09-18 12:09:23 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No search input found by any known locator on this page. All <input> elements present: []
+2026-09-18 12:09:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search control found
+2026-09-18 12:09:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_beforeSearch_INFO.png
+2026-09-18 12:09:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU entered: 13426718
+2026-09-18 12:09:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search executed
+2026-09-18 12:09:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_afterSearch_INFO.png
+2026-09-18 12:09:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 13426718 with status 'Pending' present: false
+2026-09-18 12:09:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Waiting for Product status = Pending. Current attempt = 1/10. Present = false. Elapsed time = 0 seconds
+2026-09-18 12:09:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 13426718 — full row text (includes Related offers column): null
+2026-09-18 12:10:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:10:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 12:10:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'To review' tab not present on this page — staying on current/default tab
+2026-09-18 12:10:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Catalog Management for SKU: 13426718
+2026-09-18 12:10:01 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Primary identifier search field not found — trying broader fallback locator
+2026-09-18 12:10:01 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No search input found by any known locator on this page. All <input> elements present: []
+2026-09-18 12:10:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search control found
+2026-09-18 12:10:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_beforeSearch_INFO.png
+2026-09-18 12:10:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU entered: 13426718
+2026-09-18 12:10:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search executed
+2026-09-18 12:10:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_afterSearch_INFO.png
+2026-09-18 12:10:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 13426718 with status 'Pending' present: false
+2026-09-18 12:10:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Waiting for Product status = Pending. Current attempt = 2/10. Present = false. Elapsed time = 50 seconds
+2026-09-18 12:10:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:10:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 12:10:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'To review' tab not present on this page — staying on current/default tab
+2026-09-18 12:10:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Catalog Management for SKU: 13426718
+2026-09-18 12:10:52 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Primary identifier search field not found — trying broader fallback locator
+2026-09-18 12:10:52 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No search input found by any known locator on this page. All <input> elements present: []
+2026-09-18 12:10:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search control found
+2026-09-18 12:10:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_beforeSearch_INFO.png
+2026-09-18 12:10:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU entered: 13426718
+2026-09-18 12:10:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search executed
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_afterSearch_INFO.png
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 13426718 with status 'Pending' present: true
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Waiting for Product status = Pending. Current attempt = 3/10. Present = true. Elapsed time = 88 seconds
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PART 2: Product Validation =====
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 11: Opening uploaded Product 13426718
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking product name link for SKU: 13426718
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Waiting for product detail page to finish rendering before checking data state
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Valid data' badge matches (0): []
+2026-09-18 12:10:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Invalid data' badge matches (0): []
+2026-09-18 12:11:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Valid data' badge matches (2): [Valid data, Valid data]
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 12-13: Checking valid/invalid data state
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Invalid data' badge displayed: false
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 13: Product is already Valid data — no changes needed
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 17: Verifying final Product data state — expecting 2 Valid data badges (Master + PharmaAtoZ), 0 Invalid data
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Valid data' badge matches (2): [Valid data, Valid data]
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Invalid data' badge matches (0): []
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating back to Catalog Management list
+2026-09-18 12:11:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:11:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 12:11:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ===== TC_E2E_004_Test PART 3: Operator Product Approval =====
+2026-09-18 12:11:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 16: Logging in to Mirakl as Operator
+2026-09-18 12:11:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Logging out of Mirakl (submitting /logout form to fully invalidate session)
+2026-09-18 12:11:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl logout form submitted
+2026-09-18 12:11:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: jnag@Kognivera.com
+2026-09-18 12:11:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-18 12:11:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-18 12:11:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-18 12:11:14 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'jnag@Kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-18 12:11:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_jnag_Kognivera_com_INFO.png
+2026-09-18 12:11:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for jnag@Kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+****@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-18 12:12:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-18 12:12:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-18 12:12:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-18 12:12:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 19-21: Navigating to Catalog Management, applying Status=New / Brand=DIVA CUP filters
+2026-09-18 12:12:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:12:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Catalog Management section opened
+2026-09-18 12:12:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'To review' tab not present on this page — staying on current/default tab
+2026-09-18 12:12:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking 'Status' filter dropdown
+2026-09-18 12:12:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Status' filter — visible option-like elements: [Dashboard, Shops, Orders, Customer care, Messages, CatalogCatalog managementCatalog importsTemplatesProducts, Catalog management, Catalog imports, Templates, Products, Price and stock, Accounting, Payout, Settings, Ads, New (1,833), Accepted (27,296), Changes required (1), Pending verification (0), Rejected (2), Valid data (0), Invalid data (0), Pending media (0), Not synchronized (0), Synchronized (0), Synchronization error (0)]
+2026-09-18 12:12:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Status' option 'New' click diagnostic: tag=DIV hasCheckbox=true checkedAfterClick=true
+2026-09-18 12:12:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Status' filter panel — Apply/Confirm/Done-like buttons visible: []
+2026-09-18 12:12:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Status' filter set to: New
+2026-09-18 12:12:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking 'Brand' filter dropdown
+2026-09-18 12:12:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Brand' filter — visible option-like elements: [Dashboard, Shops, Orders, Customer care, Messages, CatalogCatalog managementCatalog importsTemplatesProducts, Catalog management, Catalog imports, Templates, Products, Price and stock, Accounting, Payout, Settings, Ads, New (1,833), Accepted (27,296), Changes required (1), Pending verification (0), Rejected (2), Valid data (1,050), Invalid data (783), Pending media (0), Not synchronized (1,833), Synchronized (0), Synchronization error (0), No brand (1,352), DIVA CUP (237), FIFA (151), 2015 GDL SMART DEVELOPMENT. (45), 3-A (16), BIO (11), ZYPRED (5), A-derma (2), Flor de Jaguar® (2), Enfagrow (2), AVIGAN (1), Kleen Bebe (1), ACC (1), ABBOTT (1), 3 CARROTS (1), ALLOC (1), Fuyang Wanchun Fornituro Co, Ltd. (1), Be Koool (1), mag seth 1.50 (1), ABASAGLAR (1)]
+2026-09-18 12:12:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Brand' option 'DIVA CUP' click diagnostic: tag=DIV hasCheckbox=true checkedAfterClick=true
+2026-09-18 12:12:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Brand' filter panel — Apply/Confirm/Done-like buttons visible: []
+2026-09-18 12:12:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 'Brand' filter set to: DIVA CUP
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 22: Verifying only Status='New' products are visible after filtering
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Visible grid rows NOT matching status 'New' (0): []
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching for shop SKU 13426718 within the filtered grid
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Catalog Management for SKU: 13426718
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search control found
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_beforeSearch_INFO.png
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - SKU entered: 13426718
+2026-09-18 12:12:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search executed
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MiraklCatalogManagement_afterSearch_INFO.png
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product 13426718 with status 'New' present: true
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Waiting for Product status = New. Current attempt = 1/10. Present = true. Elapsed time = 0 seconds
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 21-23: Selecting product, More Actions > Edit Catalogs
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting all products with status New
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking More Actions
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Edit Catalogs
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 24-27: Selecting FDA Catalog and confirming
+2026-09-18 12:12:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting FDA Catalog via 'Add to catalogs' combobox
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Add to catalogs options found: 33
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text=''
+2026-09-18 12:12:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text='Catalogo Prueba'
+2026-09-18 12:12:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility -   option text='FDA catalog'
+2026-09-18 12:12:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting catalog option: 'FDA catalog'
+2026-09-18 12:12:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Confirming catalog selection
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 28: Verifying the Accept button is clickable
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 29: Clicking Accept
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Accept
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 30: Verifying Accept Products confirmation popup
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Accept Products popup displayed: true
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 31: Confirming Accept Products
+2026-09-18 12:12:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Confirming Accept Products
+2026-09-18 12:12:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_E2E_004_Test_INFO.png
+2026-09-18 12:12:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 32: Verifying exact success message
+2026-09-18 12:12:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Accept Products confirmation message: Your changes were successful and will be processed as soon as possible.
+2026-09-18 12:12:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 33-34: Navigating to Catalog Management (not refreshing) and polling for status New -> Pending for 13426718
+2026-09-18 12:12:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Catalog > Catalog Management
+2026-09-18 12:14:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
+2026-09-18 12:14:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed
+
+===============================================
+Command line suite
+Total tests run: 1, Passes: 0, Failures: 1, Skips: 0
+===============================================
+
