@@ -1,0 +1,213 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\SakshiKhullar\Git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 6 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-09-21T10:59:34.791590100Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-21 16:29:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Starting browser + Mirakl Seller login ===
+Sep 21, 2026 4:29:47 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 153
+Sep 21, 2026 4:29:47 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 153.0.8010.52. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-21 16:29:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-21 16:29:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-21 16:29:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-21 16:29:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-21 16:29:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-21 16:29:57 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-21 16:29:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
+2026-09-21 16:29:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+skhu**********@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-21 16:30:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-21 16:30:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-21 16:30:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-21 16:30:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Mirakl Seller login complete ===
+2026-09-21 16:30:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 0: UPDATE OFFER PRICE IN EXCEL ====================
+2026-09-21 16:30:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: read offer row 2 — offerSku=ITUP008, productId=6009541008, price=34.0
+2026-09-21 16:30:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer read from Excel — Offer SKU: ITUP008, Product ID: 6009541008, current Excel price: 34.0
+2026-09-21 16:30:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New offer price supplied via -Dtc.ou009.price=56.0
+2026-09-21 16:30:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New offer price to apply: 56.0
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: updated row 2 price -> 56.0
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: saved updated price to C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Excel price updated to 56.0 for Offer SKU ITUP008
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: MIRAKL SELLER — CAPTURE EXISTING OFFER ====================
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl logged-in account/shop name (best-effort): 
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Seller/Shop name: 
+2026-09-21 16:30:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-21 16:30:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-21 16:30:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching Offers list search filter to Product ID via URL
+2026-09-21 16:32:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers list search filter set to Product ID
+2026-09-21 16:32:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Offers list for Product ID: 6009541008
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID search committed. Current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer?select-search=PRODUCT_ID&sort=product%2CASC&limit=25&search=6009541008
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Visible offer row count: 1
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers returned for Product ID 6009541008: 1
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Exactly one offer returned for Product ID 6009541008
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 5: MX$34.00
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 2: OZiva Sugar Support Effervescent8
+Bebé
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Captured current offer price: MX$34.00, product name: OZiva Sugar Support Effervescent8
+Bebé
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE1_CAPTURED_INFO.png
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: IMPORT UPDATED OFFER FILE ====================
+2026-09-21 16:32:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Price and stock > File imports
+2026-09-21 16:32:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File imports section opened
+2026-09-21 16:32:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history baseline (top row before this execution's upload): 18/09/2026 - 13:31:55 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 18/09/2026 - 13:31:59 Processing end time: 18/09/2026 - 13:32:01
+2026-09-21 16:32:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Returning to Price and stock > File imports to perform the upload
+2026-09-21 16:32:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Price and stock > File imports
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File imports section opened
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading import file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File attached, input value: C:\fakepath\offers-en_US-20260907024742.xlsx
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting 'OFFERS' file content type
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File Content control found
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File Content control enabled
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Available File Content options: [text='', value='OFFERS', selected=true, enabled=true] [text='', value='OFFERS_AND_PRODUCTS', selected=false, enabled=true] [text='', value='PRICES', selected=false, enabled=true] [text='', value='STOCKS', selected=false, enabled=true]
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selected File Content option by value: OFFERS
+2026-09-21 16:32:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selection verified
+2026-09-21 16:32:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import button found
+2026-09-21 16:32:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import button clicked
+2026-09-21 16:33:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer Excel import submitted
+2026-09-21 16:33:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE2_IMPORT_SUBMITTED_INFO.png
+2026-09-21 16:33:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Verifying Offer Excel import actually succeeded (not just that Import was clicked)
+2026-09-21 16:33:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No client-side error banner shown after Import click
+2026-09-21 16:33:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening 'Track offer imports' history to confirm the job's real server-recorded status
+2026-09-21 16:33:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Most recent Offer import history row (confirmed changed from pre-upload baseline): 21/09/2026 - 05:02:56 offers-en_US-20260907024742.xlsx File Import Normal Pending Lines read: null Lines processed: null Lines with errors: null Lines pending: null Offers added: null Offers updated: null Offers deleted: null
+2026-09-21 16:33:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history row still processing — rechecking: 21/09/2026 - 05:02:56 offers-en_US-20260907024742.xlsx File Import Normal Pending Lines read: null Lines processed: null Lines with errors: null Lines pending: null Offers added: null Offers updated: null Offers deleted: null
+2026-09-21 16:33:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history row still processing — rechecking: 21/09/2026 - 05:02:56 offers-en_US-20260907024742.xlsx File Import Normal Being processed Lines read: null Lines processed: null Lines with errors: null Lines pending: null Offers added: null Offers updated: null Offers deleted: null Processing start time: 21/09/2026 - 05:03:01 Processing end time: n/a
+2026-09-21 16:33:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history row still processing — rechecking: 21/09/2026 - 05:02:56 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 05:03:01 Processing end time: 21/09/2026 - 05:03:05
+2026-09-21 16:33:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history confirms no failure indicator — import accepted for processing: 21/09/2026 - 05:02:56 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 05:03:01 Processing end time: 21/09/2026 - 05:03:05
+2026-09-21 16:33:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer import reached a terminal, non-failed state
+2026-09-21 16:33:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE2_IMPORT_VERIFIED_INFO.png
+2026-09-21 16:33:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3: VERIFY UPDATED PRICE IN MIRAKL ====================
+2026-09-21 16:33:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-21 16:33:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-21 16:33:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching Offers list search filter to Product ID via URL
+2026-09-21 16:33:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers list search filter set to Product ID
+2026-09-21 16:33:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Offers list for Product ID: 6009541008
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID search committed. Current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer?select-search=PRODUCT_ID&sort=product%2CASC&limit=25&search=6009541008
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 found in list
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 5: MX$56.00
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer price before update: MX$34.00, after update: MX$56.00, expected (Excel): 56.0
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Mirakl offer price updated and matches Excel: MX$56.00
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE3_PRICE_VERIFIED_PASS.png
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3B: PUSH UPDATED OFFER TO EMPATHY ====================
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy ==========
+2026-09-21 16:33:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-09-21 16:33:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-09-21 16:33:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[]}
+2026-09-21 16:33:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Push Offers to Empathy returned HTTP 200
+2026-09-21 16:33:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 4: FDA STOREFRONT VALIDATION ====================
+2026-09-21 16:33:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opened FDA storefront in new tab: EA758ABEDBA6966D253174A334EF1684
+2026-09-21 16:33:39 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: skhullar@kognivera.com
+2026-09-21 16:33:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-09-21 16:33:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
+2026-09-21 16:33:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for skhullar@kognivera.com
+2026-09-21 16:33:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA storefront login successful
+2026-09-21 16:33:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-21 16:33:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: OZiva Sugar Support Effervescent8
+Bebé
+2026-09-21 16:34:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-09-21 16:34:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No search result matched: OZiva Sugar Support Effervescent8
+Bebé
+2026-09-21 16:34:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Tearing down browser ===
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 276.3 s <<< FAILURE! -- in FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test
+[ERROR] FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test.tc_ou_009_seller_update_offer_price_via_excel -- Time elapsed: 221.0 s <<< FAILURE!
+java.lang.AssertionError: 
+Phase 4: Product 'OZiva Sugar Support Effervescent8
+Bebé' should appear in FDA search results expected [true] but found [false]
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.failNotEquals(Assert.java:1578)
+	at org.testng.Assert.assertTrue(Assert.java:57)
+	at FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test.tc_ou_009_seller_update_offer_price_via_excel(TC_OU_009_Test.java:211)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:102)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:91)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TC_OU_009_Test.tc_ou_009_seller_update_offer_price_via_excel:211 Phase 4: Product 'OZiva Sugar Support Effervescent8
+Bebé' should appear in FDA search results expected [true] but found [false]
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:42 min
+[INFO] Finished at: 2026-09-21T16:34:10+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.3.0:test (default-test) on project FDA_Mirakl_and_API_Automation: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\Users\SakshiKhullar\Git\FDA_Test_Automation\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

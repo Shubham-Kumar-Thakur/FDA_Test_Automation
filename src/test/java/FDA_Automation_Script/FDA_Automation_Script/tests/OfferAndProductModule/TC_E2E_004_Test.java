@@ -1,4 +1,4 @@
-package FDA_Automation_Script.FDA_Automation_Script.tests;
+package FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule;
 
 import FDA_Automation_Script.FDA_Automation_Script.base.BaseClass;
 import FDA_Automation_Script.FDA_Automation_Script.pages.adobe.AdobeLoginPage;

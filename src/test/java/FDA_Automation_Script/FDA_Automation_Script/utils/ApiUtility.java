@@ -540,4 +540,55 @@ public class ApiUtility {
         LoggerUtility.warn("Kibo field not found anywhere in order response: " + fieldKey);
         return "";
     }
+
+    // ----------------------------------------------------------------
+    // Push Offers to Empathy (TC_OU_009 Phase 3B)
+    // ----------------------------------------------------------------
+
+    /**
+     * GET {tc.ou009.push.offers.url} with Cookie-only auth — pushes Mirakl's latest offer/price data
+     * into FDA's search index (Empathy) so the storefront's PLP/PDP reflect a just-imported price
+     * change without waiting for the normal scheduled sync. Retries up to 3 times on a connection
+     * failure (the endpoint has shown intermittent TLS handshake resets in live runs); does not retry
+     * on a real non-200 HTTP response — caller asserts the status code.
+     */
+    public static Response pushOffersToEmpathy() {
+        String url = config.get("tc.ou009.push.offers.url");
+        String cookie = config.get("tc.ou009.push.offers.cookie");
+
+        LoggerUtility.info("========== Push Offers to Empathy ==========");
+        LoggerUtility.info("GET " + url);
+
+        Exception lastError = null;
+        for (int attempt = 1; attempt <= 3; attempt++) {
+            try {
+                Response response = given()
+                        .header("Cookie", cookie)
+                        .when()
+                        .get(url)
+                        .then()
+                        .extract()
+                        .response();
+                LoggerUtility.info("Push Offers to Empathy Status : " + response.getStatusCode());
+                LoggerUtility.info("Push Offers to Empathy Body   : " + response.getBody().asString());
+                return response;
+            } catch (Exception e) {
+                // Confirmed in past live runs against this same staging endpoint: the underlying
+                // HTTP engine can propagate a raw (checked) SSLHandshakeException uncaught — catching
+                // only RuntimeException lets an intermittent TLS handshake reset slip past on the
+                // first attempt instead of being retried. Catch broadly here for that reason.
+                lastError = e;
+                LoggerUtility.warn("Push Offers to Empathy connection attempt " + attempt + "/3 failed: " + e.getMessage());
+                if (attempt < 3) {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException ie) {
+                        Thread.currentThread().interrupt();
+                        break;
+                    }
+                }
+            }
+        }
+        throw new RuntimeException("Push Offers to Empathy failed after 3 attempts", lastError);
+    }
 }

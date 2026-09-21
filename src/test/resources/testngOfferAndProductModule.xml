@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  Offer and Product Module — isolated dual-browser suite.
+  Offer and Product Module — suite for the tests/OfferAndProductModule/ package.
 
-  Runs the TC_FBS_001 re-implementation in tests/module/.
-  Uses two independent Chrome instances (FDA browser + Mirakl browser).
-  Lifecycle: @BeforeSuite launches and logs in both browsers; @AfterSuite quits them.
-  No BaseClass inheritance — no group-level login/logout side-effects.
+  TC_E2E_004 (tests/OfferAndProductModule/TC_E2E_004_Test): full product+offer lifecycle — Seller
+  uploads a Product Excel, Operator approves via Catalog Management, Adobe Admin MCM sync, Offer
+  Excel import, offer verified Active, final FDA storefront PDP check. Extends BaseClass but
+  overrides @BeforeSuite (driver = DriverFactory.createDriver(false)) to skip FDA/Mirakl login
+  entirely — BaseClass itself is untouched. Uses config keys jnag.*/tc.e2e004.* (see
+  config.properties); the two Excel path values are hardcoded to a specific tester's Downloads
+  folder — update them for your machine before running.
+
+  TC_OU_009 (tests/OfferAndProductModule/TC_OU_009_Test): Seller updates an offer's price via Excel
+  import, validated on the FDA storefront (PLP + PDP). Does NOT extend BaseClass — single Chrome
+  browser (via DualDriverManager) logged into Mirakl in its own @BeforeSuite; the FDA storefront is
+  opened in a new tab within that same browser during Phase 4, not a second browser. Uses config
+  keys tc.ou009.*. Pass -Dtc.ou009.price=<value> (required under Maven Surefire's forked JVM — see
+  TC_OU_009_Test.promptForPrice()'s own doc comment).
+
+  TC_E2E_004's driver comes from DriverFactory's ThreadLocal (inherited BaseClass @AfterSuite quits
+  it); TC_OU_009's driver comes from DualDriverManager (its own @AfterSuite quits it) — two separate,
+  non-conflicting driver-management paths, so running both in one suite is safe. Note that TestNG
+  fires every class's own @BeforeSuite once each before ANY test in the suite runs, regardless of
+  <test> block order: running this whole suite opens both browser windows up front, not lazily per
+  <test> block.
 
   Includes both framework listeners so ExtentReports and screenshots work as normal.
   TestNGListener and ExtentReportListener both null-check BaseClass.driver, so they
   operate safely when the test class does not extend BaseClass.
 
-  Usage: mvn test -DsuiteXmlFile=src/test/resources/testngOfferAndProductModule.xml
-  Run single class: mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.module.TC_FBS_001_Test
+  Usage (whole suite): mvn test -DsuiteXmlFile=src/test/resources/testngOfferAndProductModule.xml -Dtc.ou009.price=45
+  Run a single class: mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test
+                   or: mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test -Dtc.ou009.price=45
 -->
 
 <suite name="Offer and Product Module Suite" verbose="1" thread-count="1" preserve-order="true">
@@ -23,9 +41,15 @@
         <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
     </listeners>
 
-    <test name="TC_FBS_001 - FBS Order Lifecycle (Dual Browser)" preserve-order="true">
+    <test name="TC_E2E_004 - Product + Offer Import End-to-End" preserve-order="true">
         <classes>
-            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_FBS_001_Test" />
+            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test" />
+        </classes>
+    </test>
+
+    <test name="TC_OU_009 - Seller Update Offer Price via Excel Import" preserve-order="true">
+        <classes>
+            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test" />
         </classes>
     </test>
 
