@@ -135,15 +135,38 @@ public class FDAPDPPage extends BasePage {
         return waitForPriceToLoad(2, 5_000);
     }
 
+    // FIXED live (2026-09-21, TC_OU_009): document.querySelector(...) only ever inspects the FIRST
+    // "form.add-to-cart-form .price-box[data-role='priceBox']" match on the page and reads whatever
+    // ".price" node happens to be first inside it. Confirmed via a live run: this consistently
+    // resolved to a confident (non-empty, non-hidden) "$0.00" instead of the real, visibly-rendered
+    // price — i.e. it was reading a real DOM node, just the wrong one (either a stray/placeholder
+    // price node inside the same box, or a second add-to-cart form elsewhere on the page, e.g. a
+    // related/upsell product carousel). Rewritten to scan every visible matching box, prefer
+    // Magento's authoritative numeric `data-price-amount` attribute (immune to the "$55." / "00"
+    // text-node line-break splitting already seen on the PLP) over any single box's first ".price"
+    // text, and return the first NON-ZERO amount found across all boxes — falling back to ".price"
+    // text only if no box exposes a usable numeric amount.
     private String waitForPriceToLoad(int maxAttempts, long intervalMs) {
         for (int attempt = 1; attempt <= maxAttempts; attempt++) {
             Object result = ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
-                "var box = document.querySelector(\"form.add-to-cart-form .price-box[data-role='priceBox']\");"
-                + "if (!box) return null;"
-                + "if ((' ' + box.className + ' ').indexOf(' hidden ') !== -1) return null;"
-                + "var priceEl = box.querySelector('.price');"
-                + "var text = priceEl ? priceEl.textContent.trim() : box.innerText.trim();"
-                + "return text.length > 0 ? text : null;");
+                "var boxes = document.querySelectorAll(\"form.add-to-cart-form .price-box[data-role='priceBox']\");"
+                + "var textFallback = null;"
+                + "for (var i = 0; i < boxes.length; i++) {"
+                + "  var box = boxes[i];"
+                + "  if ((' ' + box.className + ' ').indexOf(' hidden ') !== -1) continue;"
+                + "  var amountEl = box.querySelector(\"[data-price-type='finalPrice'][data-price-amount]\")"
+                + "    || box.querySelector('[data-price-amount]');"
+                + "  if (amountEl) {"
+                + "    var amount = parseFloat(amountEl.getAttribute('data-price-amount'));"
+                + "    if (!isNaN(amount) && amount > 0) return amount.toFixed(2);"
+                + "  }"
+                + "  if (textFallback === null) {"
+                + "    var priceEl = box.querySelector('.price');"
+                + "    var text = priceEl ? priceEl.textContent.trim() : box.innerText.trim();"
+                + "    if (text.length > 0) textFallback = text;"
+                + "  }"
+                + "}"
+                + "return textFallback;");
             if (result != null) {
                 LoggerUtility.info("PDP product price resolved on attempt " + attempt + "/" + maxAttempts + ": " + result);
                 return result.toString();

@@ -15,6 +15,15 @@ public class MiraklLoginPage extends BasePage {
 	    private static final By NEXT_BUTTON    = By.xpath("//span[@id='submitLabel']");
 	    private static final By PASSWORD_FIELD = By.xpath("//input[@id='password']");
 	    private static final By SIGN_IN_BUTTON = By.xpath("//button[normalize-space()='Sign in']");
+	    // TODO: Verify against actual Mirakl MFA/OTP screen DOM — best-effort, same convention as the
+	    // rest of this file's locators. Scoped under the "Verify Your Identity" screen so it never
+	    // matches an unrelated input/button elsewhere on the page.
+	    private static final By MFA_CODE_INPUT = By.xpath(
+	        "//*[contains(normalize-space(.),'Verify Your Identity')]"
+	        + "//input[@type='text' or @type='tel' or @type='number' or not(@type)]");
+	    private static final By MFA_CONTINUE_BUTTON = By.xpath(
+	        "//*[contains(normalize-space(.),'Verify Your Identity')]"
+	        + "//button[contains(translate(normalize-space(.),'CONTINUE','continue'),'continue')]");
     public MiraklLoginPage(WebDriver driver) {
         super(driver);
     }
@@ -182,10 +191,37 @@ public class MiraklLoginPage extends BasePage {
             // (jnag+2002@...) completed quickly every time on an identical screen — not a code/UI
             // difference, most likely the Operator prompt arriving several minutes into the run when
             // attention has shifted elsewhere. More buffer time, not a logic change.
+            // Auto-click Continue, gated on REAL EVIDENCE the code was typed (per explicit user
+            // instruction) — never on a timer/cooldown. Evidence = a non-blank `value` on the OTP
+            // input. Tracks the last value it clicked for so a retry (user clears and retypes after
+            // a rejected code) triggers a fresh click instead of only ever firing once.
+            String[] lastClickedValue = {null};
             new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofMinutes(10))
-                .pollingEvery(java.time.Duration.ofSeconds(3))
-                .until(d -> d.findElements(
-                    By.xpath("//*[contains(normalize-space(.),'Verify Your Identity')]")).isEmpty());
+                .pollingEvery(java.time.Duration.ofSeconds(2))
+                .until(d -> {
+                    boolean stillOnMfaScreen = !d.findElements(
+                        By.xpath("//*[contains(normalize-space(.),'Verify Your Identity')]")).isEmpty();
+                    if (!stillOnMfaScreen) {
+                        return true;
+                    }
+                    java.util.List<org.openqa.selenium.WebElement> inputs = d.findElements(MFA_CODE_INPUT);
+                    if (!inputs.isEmpty()) {
+                        String value = inputs.get(0).getAttribute("value");
+                        if (value != null && !value.isBlank() && !value.equals(lastClickedValue[0])) {
+                            java.util.List<org.openqa.selenium.WebElement> buttons = d.findElements(MFA_CONTINUE_BUTTON);
+                            if (!buttons.isEmpty()) {
+                                LoggerUtility.info("OTP code entered (real evidence, not a timer) — clicking Continue.");
+                                lastClickedValue[0] = value;
+                                try {
+                                    buttons.get(0).click();
+                                } catch (Exception clickEx) {
+                                    LoggerUtility.warn("Auto-click Continue failed: " + clickEx.getMessage());
+                                }
+                            }
+                        }
+                    }
+                    return false;
+                });
             LoggerUtility.info("Mirakl MFA verification completed — continuing.");
         } catch (org.openqa.selenium.TimeoutException timeoutEx) {
             // Diagnostic (2026-09-11): widening 5->10 minutes made no difference — Operator MFA still

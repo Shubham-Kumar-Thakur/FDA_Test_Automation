@@ -1,12 +1,12 @@
-2026-09-21 17:02:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Starting browser + Mirakl Seller login ===
-2026-09-21 17:02:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
-2026-09-21 17:02:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
-2026-09-21 17:02:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
-2026-09-21 17:02:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
-2026-09-21 17:02:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
-2026-09-21 17:02:16 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
-2026-09-21 17:02:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
-2026-09-21 17:02:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
+2026-09-21 17:29:59 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Starting browser + Mirakl Seller login ===
+2026-09-21 17:30:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-21 17:30:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-21 17:30:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-21 17:30:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-21 17:30:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-21 17:30:18 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-21 17:30:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
+2026-09-21 17:30:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
 
 We've sent an email with your code to
 
@@ -17,153 +17,128 @@ Enter the code *
 Continue
 Didn't receive an email? Resend
 Copyright © 2026 Mirakl
-2026-09-21 17:02:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
-2026-09-21 17:02:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
-2026-09-21 17:02:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
-2026-09-21 17:02:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Mirakl Seller login complete ===
-2026-09-21 17:02:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 0: UPDATE OFFER PRICE IN EXCEL ====================
-2026-09-21 17:02:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: read offer row 2 — offerSku=ITUP008, productId=6009541008, price=45.0
-2026-09-21 17:02:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer read from Excel — Offer SKU: ITUP008, Product ID: 6009541008, current Excel price: 45.0
-2026-09-21 17:02:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New offer price supplied via -Dtc.ou009.price=55.0
-2026-09-21 17:02:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New offer price to apply: 55.0
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: updated row 2 price -> 55.0
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: saved updated price to C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Excel price updated to 55.0 for Offer SKU ITUP008
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: MIRAKL SELLER — CAPTURE EXISTING OFFER ====================
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl logged-in account/shop name (best-effort): 
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Seller/Shop name: 
-2026-09-21 17:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
-2026-09-21 17:02:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
-2026-09-21 17:02:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching Offers list search filter to Product ID via URL
-2026-09-21 17:02:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers list search filter set to Product ID
-2026-09-21 17:02:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Offers list for Product ID: 6009541008
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID search committed. Current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer?select-search=PRODUCT_ID&sort=product%2CASC&limit=25&search=6009541008
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Visible offer row count: 1
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers returned for Product ID 6009541008: 1
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Exactly one offer returned for Product ID 6009541008
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 5: MX$45.00
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 2: OZiva Sugar Support Effervescent8
+2026-09-21 17:30:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - OTP code entered (real evidence, not a timer) — clicking Continue.
+2026-09-21 17:30:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-21 17:30:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-21 17:30:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-21 17:30:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Mirakl Seller login complete ===
+2026-09-21 17:30:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 0: UPDATE OFFER PRICE IN EXCEL ====================
+2026-09-21 17:30:39 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: read offer row 2 — offerSku=ITUP008, productId=6009541008, price=444.0
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer read from Excel — Offer SKU: ITUP008, Product ID: 6009541008, current Excel price: 444.0
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New offer price supplied via -Dtc.ou009.price=89.9
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New offer price to apply: 89.9
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: updated row 2 price -> 89.9
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ExcelUtility: saved updated price to C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Excel price updated to 89.9 for Offer SKU ITUP008
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: MIRAKL SELLER — CAPTURE EXISTING OFFER ====================
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl logged-in account/shop name (best-effort): 
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Seller/Shop name: 
+2026-09-21 17:30:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-21 17:30:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-21 17:30:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching Offers list search filter to Product ID via URL
+2026-09-21 17:30:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers list search filter set to Product ID
+2026-09-21 17:30:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Offers list for Product ID: 6009541008
+2026-09-21 17:30:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID search committed. Current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer?select-search=PRODUCT_ID&sort=product%2CASC&limit=25&search=6009541008
+2026-09-21 17:30:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Visible offer row count: 1
+2026-09-21 17:30:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers returned for Product ID 6009541008: 1
+2026-09-21 17:30:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Exactly one offer returned for Product ID 6009541008
+2026-09-21 17:30:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 5: MX$444.00
+2026-09-21 17:30:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 2: OZiva Sugar Support Effervescent8
 Bebé
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Captured current offer price: MX$45.00, product name: OZiva Sugar Support Effervescent8
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE1_CAPTURED_INFO.png
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: IMPORT UPDATED OFFER FILE ====================
-2026-09-21 17:02:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Price and stock > File imports
-2026-09-21 17:02:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File imports section opened
-2026-09-21 17:03:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history baseline (top row before this execution's upload): 21/09/2026 - 05:09:32 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 05:09:36 Processing end time: 21/09/2026 - 05:09:38
-2026-09-21 17:03:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Returning to Price and stock > File imports to perform the upload
-2026-09-21 17:03:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Price and stock > File imports
-2026-09-21 17:03:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File imports section opened
-2026-09-21 17:03:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading import file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
-2026-09-21 17:03:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File attached, input value: C:\fakepath\offers-en_US-20260907024742.xlsx
-2026-09-21 17:03:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting 'OFFERS' file content type
-2026-09-21 17:03:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File Content control found
-2026-09-21 17:03:07 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File Content control enabled
-2026-09-21 17:03:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Available File Content options: [text='', value='OFFERS', selected=true, enabled=true] [text='', value='OFFERS_AND_PRODUCTS', selected=false, enabled=true] [text='', value='PRICES', selected=false, enabled=true] [text='', value='STOCKS', selected=false, enabled=true]
-2026-09-21 17:03:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selected File Content option by value: OFFERS
-2026-09-21 17:03:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selection verified
-2026-09-21 17:03:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import button found
-2026-09-21 17:03:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import button clicked
-2026-09-21 17:03:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer Excel import submitted
-2026-09-21 17:03:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE2_IMPORT_SUBMITTED_INFO.png
-2026-09-21 17:03:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Verifying Offer Excel import actually succeeded (not just that Import was clicked)
-2026-09-21 17:03:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No client-side error banner shown after Import click
-2026-09-21 17:03:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening 'Track offer imports' history to confirm the job's real server-recorded status
-2026-09-21 17:03:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Most recent Offer import history row (confirmed changed from pre-upload baseline): 21/09/2026 - 05:33:07 offers-en_US-20260907024742.xlsx File Import Normal Pending Lines read: null Lines processed: null Lines with errors: null Lines pending: null Offers added: null Offers updated: null Offers deleted: null
-2026-09-21 17:03:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history row still processing — rechecking: 21/09/2026 - 05:33:07 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 05:33:10 Processing end time: 21/09/2026 - 05:33:13
-2026-09-21 17:03:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history confirms no failure indicator — import accepted for processing: 21/09/2026 - 05:33:07 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 05:33:10 Processing end time: 21/09/2026 - 05:33:13
-2026-09-21 17:03:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer import reached a terminal, non-failed state
-2026-09-21 17:03:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE2_IMPORT_VERIFIED_INFO.png
-2026-09-21 17:03:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3: VERIFY UPDATED PRICE IN MIRAKL ====================
-2026-09-21 17:03:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
-2026-09-21 17:03:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
-2026-09-21 17:03:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching Offers list search filter to Product ID via URL
-2026-09-21 17:03:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers list search filter set to Product ID
-2026-09-21 17:03:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Offers list for Product ID: 6009541008
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID search committed. Current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer?select-search=PRODUCT_ID&sort=product%2CASC&limit=25&search=6009541008
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 found in list
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 5: MX$55.00
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer price before update: MX$45.00, after update: MX$55.00, expected (Excel): 55.0
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Mirakl offer price updated and matches Excel: MX$55.00
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE3_PRICE_VERIFIED_PASS.png
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3B: PUSH UPDATED OFFER TO EMPATHY ====================
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy ==========
-2026-09-21 17:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
-2026-09-21 17:03:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
-2026-09-21 17:03:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[{"sku":"6009541008","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":55.0,"special_price":55.0,"offerId":"37943","quantity":1000,"sellerRating":0.0,"eta":"2026-09-24","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday"],"holidays":[],"cut_off":"11:30 pm"}]}]}
-2026-09-21 17:03:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Push Offers to Empathy returned HTTP 200
-2026-09-21 17:03:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 4: FDA STOREFRONT VALIDATION ====================
-2026-09-21 17:03:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opened FDA storefront in new tab: 57CFD97BFCB201D73F041F3E6E3B962E
-2026-09-21 17:03:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: skhullar@kognivera.com
-2026-09-21 17:03:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
-2026-09-21 17:03:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
-2026-09-21 17:03:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for skhullar@kognivera.com
-2026-09-21 17:03:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA storefront login successful
-2026-09-21 17:03:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
-2026-09-21 17:03:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: OZiva Sugar Support Effervescent8
-2026-09-21 17:04:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search result found matching: OZiva Sugar Support Effervescent8
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Product found in FDA search results
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE4_SEARCH_RESULTS_INFO.png
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ---- PLP Validation ----
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP results grid displayed: true
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $45.
+2026-09-21 17:30:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Captured current offer price: MX$444.00, product name: OZiva Sugar Support Effervescent8
+2026-09-21 17:30:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE1_CAPTURED_INFO.png
+2026-09-21 17:30:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: IMPORT UPDATED OFFER FILE ====================
+2026-09-21 17:30:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Price and stock > File imports
+2026-09-21 17:31:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File imports section opened
+2026-09-21 17:31:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history baseline (top row before this execution's upload): 21/09/2026 - 05:51:43 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 05:51:43 Processing end time: 21/09/2026 - 05:51:46
+2026-09-21 17:31:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Returning to Price and stock > File imports to perform the upload
+2026-09-21 17:31:05 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Price and stock > File imports
+2026-09-21 17:31:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File imports section opened
+2026-09-21 17:31:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Uploading import file: C:\Users\SakshiKhullar\Downloads\offers-en_US-20260907024742.xlsx
+2026-09-21 17:31:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File attached, input value: C:\fakepath\offers-en_US-20260907024742.xlsx
+2026-09-21 17:31:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting 'OFFERS' file content type
+2026-09-21 17:31:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File Content control found
+2026-09-21 17:31:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - File Content control enabled
+2026-09-21 17:31:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Available File Content options: [text='', value='OFFERS', selected=true, enabled=true] [text='', value='OFFERS_AND_PRODUCTS', selected=false, enabled=true] [text='', value='PRICES', selected=false, enabled=true] [text='', value='STOCKS', selected=false, enabled=true]
+2026-09-21 17:31:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selected File Content option by value: OFFERS
+2026-09-21 17:31:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selection verified
+2026-09-21 17:31:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import button found
+2026-09-21 17:31:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Import button clicked
+2026-09-21 17:31:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer Excel import submitted
+2026-09-21 17:31:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE2_IMPORT_SUBMITTED_INFO.png
+2026-09-21 17:31:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Verifying Offer Excel import actually succeeded (not just that Import was clicked)
+2026-09-21 17:31:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No client-side error banner shown after Import click
+2026-09-21 17:31:14 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening 'Track offer imports' history to confirm the job's real server-recorded status
+2026-09-21 17:31:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Most recent Offer import history row (confirmed changed from pre-upload baseline): 21/09/2026 - 06:01:08 offers-en_US-20260907024742.xlsx File Import Normal Being processed Lines read: null Lines processed: null Lines with errors: null Lines pending: null Offers added: null Offers updated: null Offers deleted: null Processing start time: 21/09/2026 - 06:01:11 Processing end time: n/a
+2026-09-21 17:31:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history row still processing — rechecking: 21/09/2026 - 06:01:08 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 06:01:11 Processing end time: 21/09/2026 - 06:01:13
+2026-09-21 17:31:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer import history confirms no failure indicator — import accepted for processing: 21/09/2026 - 06:01:08 offers-en_US-20260907024742.xlsx File Import Normal Import complete Lines read: 1 Lines processed: 1 Lines with errors: 0 Lines pending: 0 Offers added: 0 Offers updated: 1 Offers deleted: 0 Processing start time: 21/09/2026 - 06:01:11 Processing end time: 21/09/2026 - 06:01:13
+2026-09-21 17:31:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer import reached a terminal, non-failed state
+2026-09-21 17:31:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE2_IMPORT_VERIFIED_INFO.png
+2026-09-21 17:31:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3: VERIFY UPDATED PRICE IN MIRAKL ====================
+2026-09-21 17:31:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-21 17:31:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-21 17:31:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching Offers list search filter to Product ID via URL
+2026-09-21 17:31:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers list search filter set to Product ID
+2026-09-21 17:31:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Searching Offers list for Product ID: 6009541008
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID search committed. Current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer?select-search=PRODUCT_ID&sort=product%2CASC&limit=25&search=6009541008
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 found in list
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer ITUP008 column 5: MX$89.90
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer price before update: MX$444.00, after update: MX$89.90, expected (Excel): 89.9
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Mirakl offer price updated and matches Excel: MX$89.90
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE3_PRICE_VERIFIED_PASS.png
+2026-09-21 17:31:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3B: PUSH UPDATED OFFER TO EMPATHY ====================
+2026-09-21 17:31:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy ==========
+2026-09-21 17:31:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-09-21 17:31:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-09-21 17:31:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[{"sku":"6009541008","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":89.9,"special_price":89.9,"offerId":"37943","quantity":1000,"sellerRating":0.0,"eta":"2026-09-24","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday"],"holidays":[],"cut_off":"11:30 pm"}]}]}
+2026-09-21 17:31:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Push Offers to Empathy returned HTTP 200
+2026-09-21 17:31:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 4: FDA STOREFRONT VALIDATION ====================
+2026-09-21 17:31:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opened FDA storefront in new tab: C16CC83162D5565FB0D97E42B53F6FDD
+2026-09-21 17:31:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: skhullar@kognivera.com
+2026-09-21 17:31:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-09-21 17:31:53 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
+2026-09-21 17:31:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for skhullar@kognivera.com
+2026-09-21 17:31:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA storefront login successful
+2026-09-21 17:32:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-21 17:32:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: OZiva Sugar Support Effervescent8
+2026-09-21 17:32:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search result found matching: OZiva Sugar Support Effervescent8
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Product found in FDA search results
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE4_SEARCH_RESULTS_INFO.png
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ---- PLP Validation ----
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP results grid displayed: true
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $444.
 00
-2026-09-21 17:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 1/5: $45.
+2026-09-21 17:32:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 1/5: $444.
 00
-2026-09-21 17:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $45.
+2026-09-21 17:32:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $444.
 00
-2026-09-21 17:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 2/5: $45.
+2026-09-21 17:32:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 2/5: $444.
 00
-2026-09-21 17:04:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $45.
+2026-09-21 17:32:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $444.
 00
-2026-09-21 17:04:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 3/5: $45.
+2026-09-21 17:32:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 3/5: $444.
 00
-2026-09-21 17:04:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $45.
+2026-09-21 17:32:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $444.
 00
-2026-09-21 17:04:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 4/5: $45.
+2026-09-21 17:32:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 4/5: $444.
 00
-2026-09-21 17:04:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $45.
+2026-09-21 17:32:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price for 'OZiva Sugar Support Effervescent8': $444.
 00
-2026-09-21 17:04:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 5/5: $45.
+2026-09-21 17:32:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price check attempt 5/5: $444.
 00
-2026-09-21 17:04:21 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price did not match updated price 55.0 within 5 attempts — non-blocking, proceeding to PDP (authoritative check)
-2026-09-21 17:04:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE4_PLP_INFO.png
-2026-09-21 17:04:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ---- PDP Validation ----
-2026-09-21 17:04:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicked search result matching: OZiva Sugar Support Effervescent8
-2026-09-21 17:04:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Add to Cart button visible: true
-2026-09-21 17:04:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product name resolved on attempt 2/6: OZiva Sugar Support Effervescent8
-2026-09-21 17:04:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP product name verified: OZiva Sugar Support Effervescent8
-2026-09-21 17:04:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP SKU (read via JS textContent): 6009541008
-2026-09-21 17:04:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP SKU/Product ID verified: 6009541008
-2026-09-21 17:04:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product price resolved on attempt 1/2: $0.00
-2026-09-21 17:04:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP price check attempt 1/5: $0.00
-2026-09-21 17:04:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product price resolved on attempt 1/2: $0.00
-2026-09-21 17:04:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP price check attempt 2/5: $0.00
-2026-09-21 17:04:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product price resolved on attempt 1/2: $0.00
-2026-09-21 17:04:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP price check attempt 3/5: $0.00
-2026-09-21 17:04:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product price resolved on attempt 1/2: $0.00
-2026-09-21 17:04:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP price check attempt 4/5: $0.00
-2026-09-21 17:04:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product price resolved on attempt 1/2: $0.00
-2026-09-21 17:04:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP price check attempt 5/5: $0.00
-2026-09-21 17:04:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Seller-specific offer row did not match either — scanning all PDP price elements for a value matching 55.0
-2026-09-21 17:04:40 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PriceUtility.parse could not parse 'MXN
-$55.
-00
-$18.33 x 3 meses sin intereses' (cleaned: '55.0018.333')
-2026-09-21 17:04:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Found a PDP price element matching expected 55.0: MXN
-$55.
-00
-2026-09-21 17:04:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP price verified: 55.00
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE4_PDP_VERIFIED_PASS.png
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== FINAL VALIDATION SUMMARY ====================
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Seller Name        : 
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product SKU        : 6009541008
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product ID         : 6009541008
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product Name       : OZiva Sugar Support Effervescent8
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Price Before Update: MX$45.00
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Price After Update : MX$55.00
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP Price          : $45.
-00
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Price          : 55.00
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009 execution completed successfully ===
-2026-09-21 17:04:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Tearing down browser ===
+2026-09-21 17:32:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP price did not match updated price 89.9 within 5 attempts — non-blocking, proceeding to PDP (authoritative check)
+2026-09-21 17:32:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE4_PLP_INFO.png
+2026-09-21 17:32:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ---- PDP Validation ----
+2026-09-21 17:32:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicked search result matching: OZiva Sugar Support Effervescent8
+2026-09-21 17:32:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Add to Cart button visible: true
+2026-09-21 17:32:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product name resolved on attempt 2/6: OZiva Sugar Support Effervescent8
+2026-09-21 17:32:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP product name verified: OZiva Sugar Support Effervescent8
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP SKU (read via JS textContent): 6009541008
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP SKU/Product ID verified: 6009541008
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP product price resolved on attempt 1/2: 89.90
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP price check attempt 1/5: 89.90
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP price verified: 89.90
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_OU_009_PHASE4_PDP_VERIFIED_PASS.png
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009 execution completed successfully ===
+2026-09-21 17:32:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_OU_009: Tearing down browser ===
