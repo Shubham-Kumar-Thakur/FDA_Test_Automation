@@ -31,12 +31,6 @@ import java.util.Set;
  * end-to-end: Mirakl Seller (Prices &amp; Stock -&gt; Offers / File imports) -&gt; Push Offers to
  * Empathy -&gt; FDA storefront (PLP + PDP).
  *
- * Architecture (matches this package's TC_FBS_001_Test convention): does NOT extend BaseClass — a
- * single independent Chrome browser (via DualDriverManager, same options as DriverFactory) is
- * launched and logged into Mirakl once in @BeforeSuite; the FDA storefront is opened in a NEW TAB
- * within that same browser during Phase 4 rather than a second browser, since Mirakl and FDA are
- * never interacted with concurrently in this flow (Mirakl phases run to completion first).
- *
  * Config keys (see config.properties "TC_OU_009" section): tc.ou009.mirakl.url/username/password,
  * tc.ou009.fda.url/username/password, tc.ou009.offer.excel.path, tc.ou009.push.offers.url/cookie.
  */
@@ -218,22 +212,9 @@ public class TC_OU_009_Test {
         Assert.assertTrue(fdaSearchResultsPage.isResultsGridDisplayed(), "Phase 4: PLP results grid should be displayed");
 
         boolean plpMatched = false;
-        String plpPriceText = "";
         for (int attempt = 1; attempt <= 5 && !plpMatched; attempt++) {
-            // A refresh mid-reindex can transiently drop the product out of the results grid
-            // entirely (not just show a stale price) — getResultItemPrice() then throws
-            // NoSuchElementException. Treat that the same as a price mismatch (keep retrying)
-            // instead of letting it escape and fail the test outright.
-            try {
-                plpPriceText = fdaSearchResultsPage.getResultItemPrice(productName);
-            } catch (org.openqa.selenium.NoSuchElementException e) {
-                plpPriceText = "";
-                LoggerUtility.info("PLP price check attempt " + attempt + "/5: product transiently missing from "
-                    + "results grid — treating as not-yet-updated");
-            }
-            if (!plpPriceText.isEmpty()) {
-                LoggerUtility.info("PLP price check attempt " + attempt + "/5: " + plpPriceText);
-            }
+            String plpPriceText = fdaSearchResultsPage.getResultItemPrice(productName);
+            LoggerUtility.info("PLP price check attempt " + attempt + "/5: " + plpPriceText);
             if (PriceUtility.matches(plpPriceText, newPrice)) {
                 plpMatched = true;
                 break;
@@ -281,7 +262,7 @@ public class TC_OU_009_Test {
             if (attempt < 5) sleep(3000);
         }
 
-        if (!pdpMatched && !shopName.isEmpty()) {
+        if (!pdpMatched) {
             LoggerUtility.info("Main PDP price did not match this seller's updated price — checking "
                 + "seller-specific offer row for '" + shopName + "'");
             String sellerPriceText = fdaPdpPage.getSellerOfferPrice(shopName);
@@ -291,38 +272,12 @@ public class TC_OU_009_Test {
                 pdpPriceValue = sellerPriceValue;
             }
         }
-        if (!pdpMatched) {
-            // Shop name lookup is unreliable (see FDAPDPPage.findAnyOfferPriceMatching()'s doc
-            // comment) — fall back to scanning every price-like element on the PDP for one that
-            // equals the expected updated price, regardless of which seller it belongs to.
-            LoggerUtility.info("Seller-specific offer row did not match either — scanning all PDP "
-                + "price elements for a value matching " + newPrice);
-            String anyMatchText = fdaPdpPage.findAnyOfferPriceMatching(newPrice);
-            double anyMatchValue = PriceUtility.parse(anyMatchText);
-            if (PriceUtility.matches(anyMatchValue, newPrice)) {
-                pdpMatched = true;
-                pdpPriceValue = anyMatchValue;
-            }
-        }
 
         Assert.assertTrue(pdpMatched,
             "Phase 4: PDP price (main or seller-specific) should match updated Excel price " + newPrice
                 + ". Last observed PDP price: " + PriceUtility.format(pdpPriceValue));
         LoggerUtility.info("PASS — PDP price verified: " + PriceUtility.format(pdpPriceValue));
         ScreenshotUtility.captureScreenshot(driver, TC_NAME + "_PHASE4_PDP_VERIFIED", ScreenshotUtility.PASS);
-
-        // =======================================================================
-        // FINAL VALIDATION SUMMARY
-        // =======================================================================
-        LoggerUtility.info("==================== FINAL VALIDATION SUMMARY ====================");
-        LoggerUtility.info("Seller Name        : " + shopName);
-        LoggerUtility.info("Product SKU        : " + pdpSku);
-        LoggerUtility.info("Product ID         : " + productId);
-        LoggerUtility.info("Product Name       : " + productName);
-        LoggerUtility.info("Price Before Update: " + preUpdatePrice);
-        LoggerUtility.info("Price After Update : " + postUpdatePrice);
-        LoggerUtility.info("PLP Price          : " + (plpPriceText.isEmpty() ? "(not matched)" : plpPriceText));
-        LoggerUtility.info("PDP Price          : " + PriceUtility.format(pdpPriceValue));
 
         LoggerUtility.info("=== TC_OU_009 execution completed successfully ===");
     }
