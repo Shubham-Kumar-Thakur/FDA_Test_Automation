@@ -1,0 +1,245 @@
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by org.fusesource.jansi.internal.JansiLoader in an unnamed module (file:/C:/Users/DarshanMK/.m2/wrapper/dists/apache-maven-3.9.9-bin/4nf9hui3q3djbarqar9g711ggc/apache-maven-3.9.9/lib/jansi-2.4.1.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::objectFieldOffset has been called by com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper (file:/C:/Users/DarshanMK/.m2/wrapper/dists/apache-maven-3.9.9-bin/4nf9hui3q3djbarqar9g711ggc/apache-maven-3.9.9/lib/guava-33.2.1-jre.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.common.util.concurrent.AbstractFuture$UnsafeAtomicHelper
+WARNING: sun.misc.Unsafe::objectFieldOffset will be removed in a future release
+WARNING: Final field _cipher in class org.sonatype.plexus.components.sec.dispatcher.DefaultSecDispatcher has been mutated reflectively by class org.eclipse.sisu.bean.BeanPropertyField in unnamed module @2d9d4f9d (file:/C:/Users/DarshanMK/.m2/wrapper/dists/apache-maven-3.9.9-bin/4nf9hui3q3djbarqar9g711ggc/apache-maven-3.9.9/lib/org.eclipse.sisu.inject-0.9.0.M3.jar)
+WARNING: Use --enable-final-field-mutation=ALL-UNNAMED to avoid a warning
+WARNING: Mutating final fields will be blocked in a future release unless final field mutation is enabled
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\DarshanMK\git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 4 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_015_Test
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+Sep 18, 2026 12:52:02 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 152
+Sep 18, 2026 12:52:02 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 152.0.7977.83. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-18T07:22:03.119844100Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-18T07:22:03.161069100Z main WARN Some custom `Core` Log4j plugins are not properly registered:
+	FDA_Automation_Script.FDA_Automation_Script.appenders.ExtentReportLog4j2Appender
+Please consider reporting this to the maintainers of these plugins.
+See https://logging.apache.org/log4j/2.x/manual/plugins.html#plugin-registry for details.
+2026-09-18 12:52:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
+2026-09-18 12:52:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched. FDA tab handle: 0019F771020146E63E120EBE4CD3F368
+2026-09-18 12:52:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: FDA tab navigated to https://mcstaging.fahorro.com/
+2026-09-18 12:52:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Opening Mirakl in second tab
+2026-09-18 12:52:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New browser tab opened. Handle: D6DFC2721138307BF1D91255798B893F
+2026-09-18 12:52:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: darshanmk@kognivera.com
+2026-09-18 12:52:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-18 12:52:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-18 12:52:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-18 12:52:10 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'darshanmk@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Mirakl login complete. Tab handle: D6DFC2721138307BF1D91255798B893F
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 0019F771020146E63E120EBE4CD3F368
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeSuite: Setup complete. Browser has FDA (tab 1) and Mirakl (tab 2).
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - All page objects initialized for TC_FBS_015
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeGroups(FBS): Logging in to FDA as darshanmk+1@kognivera.com
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 0019F771020146E63E120EBE4CD3F368
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-18 12:52:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Mi cuenta profile icon
+2026-09-18 12:52:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesion link
+2026-09-18 12:52:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: darshanmk+1@kognivera.com
+2026-09-18 12:52:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-09-18 12:52:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
+2026-09-18 12:52:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for darshanmk+1@kognivera.com
+2026-09-18 12:52:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @BeforeGroups(FBS): FDA login complete — session shared by all FBS tests
+2026-09-18 12:52:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to tab: 0019F771020146E63E120EBE4CD3F368
+2026-09-18 12:52:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switched to FDA tab
+2026-09-18 12:52:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_FBS_015: Starting — FDA session active from @BeforeGroups(FBS), Mirakl session active from suite setup
+2026-09-18 12:52:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-18 12:52:39 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_015_INFO.png
+2026-09-18 12:52:39 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pre-test: Clearing any leftover cart items
+2026-09-18 12:52:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/checkout/cart
+2026-09-18 12:52:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart is empty
+2026-09-18 12:52:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-18 12:52:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1: Clicking ¿Qué estás buscando? search field
+2026-09-18 12:52:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: Entering SKU: 4892828010
+2026-09-18 12:52:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: 4892828010
+2026-09-18 12:52:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Pressing Enter on the keyboard
+2026-09-18 12:52:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-09-18 12:52:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Verifying Product Details Page is displayed
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 5: Verifying Agregar al carrito button is enabled
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Add to Cart button enabled: true (attempt 1)
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 6: Verifying product quantity is 1
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP quantity: 1
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_015_INFO.png
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 7: Clicking plus button to increase quantity from 1 to 2
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Aumentar (plus) button to increase quantity by 1
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Quantity increment clicked
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP quantity: 2
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 8: Verifying product quantity is 2. Actual: 2
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_015_INFO.png
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 9: Clicking Agregar al carrito
+2026-09-18 12:52:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Agregar al carrito button
+2026-09-18 12:52:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product Added To Cart
+2026-09-18 12:52:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 10: Clicking Mi carrito cart icon
+2026-09-18 12:52:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating directly to cart page
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart page loaded and product visible
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart product name: RingEar10
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 11: Cart product name: RingEar10
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart quantity: 2
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 12: Cart quantity: 2 (expected '2')
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart order total: $200.00
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 13: Order total for 2 quantities: $200.00
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_015_INFO.png
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 14: Clicking Proceed to payment button
+2026-09-18 12:53:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Proceed to payment button
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Window handles after clickProceedToPayment (settled): 2
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Checkout stayed in original FDA window: 0019F771020146E63E120EBE4CD3F368
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 15: Clicking Siguiente button on the Shipping page
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on shipping page (if present)
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Siguiente button clicked
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 16: Selecting Pago con Tarjeta Crédito/Débito radio button
+2026-09-18 12:53:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting Credit/Debit Card Payment option
+2026-09-18 12:53:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Credit/Debit Card radio selected
+2026-09-18 12:53:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 17-18: Clicking Número de tarjeta field and entering card number
+2026-09-18 12:53:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering card number
+2026-09-18 12:53:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Card number digits to type: 16
+2026-09-18 12:53:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe field typed on attempt 1
+2026-09-18 12:53:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 19-20: Clicking Fecha de expiración field and entering expiration date
+2026-09-18 12:53:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering expiration date: 03/30
+2026-09-18 12:56:00 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 1 failed: invalid session id: session deleted as the browser has closed the connection
+2026-09-18 12:56:03 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Window handle stale (invalid session id) — switching to available window
+2026-09-18 12:56:03 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 2 failed: invalid session id
+2026-09-18 12:56:05 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Window handle stale (invalid session id) — switching to available window
+2026-09-18 12:56:05 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 3 failed: invalid session id
+2026-09-18 12:56:07 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Window handle stale (invalid session id) — switching to available window
+2026-09-18 12:56:07 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 4 failed: invalid session id
+2026-09-18 12:56:09 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Window handle stale (invalid session id) — switching to available window
+2026-09-18 12:56:09 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe attempt 5 failed: invalid session id
+2026-09-18 12:56:09 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @AfterMethod navigation warning: invalid session id
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '26.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5ee825d73318338d133112c6b55d04e7, switchToWindow {handle=0019F771020146E63E120EBE4CD3F368}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.83, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\DARSHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56075}, goog:processID: 25648, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56075/devtoo..., se:cdpVersion: 152.0.7977.83, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5ee825d73318338d133112c6b55d04e7
+2026-09-18 12:56:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @AfterGroups(FBS): Logging out of FDA after all FBS tests
+2026-09-18 12:56:09 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - @AfterGroups(FBS): logout warning: invalid session id
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '26.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5ee825d73318338d133112c6b55d04e7, switchToWindow {handle=0019F771020146E63E120EBE4CD3F368}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.83, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\DARSHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56075}, goog:processID: 25648, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56075/devtoo..., se:cdpVersion: 152.0.7977.83, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5ee825d73318338d133112c6b55d04e7
+2026-09-18 12:56:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
+2026-09-18 12:56:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 248.3 s <<< FAILURE! -- in FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_015_Test
+[ERROR] FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_015_Test.tc_fbs_015_place_order_qty2_fbs_full_fulfillment_and_return -- Time elapsed: 212.7 s <<< FAILURE!
+java.lang.RuntimeException: Failed to type in iframe after 5 attempts
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPaymentPage.typeInIframeWithRetry(FDAPaymentPage.java:238)
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPaymentPage.enterExpiry(FDAPaymentPage.java:79)
+	at FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_015_Test.tc_fbs_015_place_order_qty2_fbs_full_fulfillment_and_return(TC_FBS_015_Test.java:175)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1612)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:102)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:91)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.openqa.selenium.NoSuchSessionException: invalid session id
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '26.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [5ee825d73318338d133112c6b55d04e7, setTimeout {implicit=0}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.83, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\DARSHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:56075}, goog:processID: 25648, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:56075/devtoo..., se:cdpVersion: 152.0.7977.83, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 5ee825d73318338d133112c6b55d04e7
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.RemoteWebDriver$RemoteWebDriverOptions$RemoteTimeouts.implicitlyWait(RemoteWebDriver.java:960)
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPaymentPage.typeInIframeWithRetry(FDAPaymentPage.java:98)
+	... 33 more
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TC_FBS_015_Test.tc_fbs_015_place_order_qty2_fbs_full_fulfillment_and_return:175 » Runtime Failed to type in iframe after 5 attempts
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:27 min
+[INFO] Finished at: 2026-09-18T12:56:09+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.3.0:test (default-test) on project FDA_Mirakl_and_API_Automation: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\Users\DarshanMK\git\FDA_Test_Automation\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

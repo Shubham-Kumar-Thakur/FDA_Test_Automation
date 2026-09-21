@@ -3,13 +3,14 @@
 <!--
   FDA Automation Suite — Sequential Execution (one by one)
   =========================================================
+  FBO-only suite: runs all 24 TC_FBO_* <test> blocks sequentially. FBS tests do NOT run here —
+  they live exclusively in testng_fbs.xml (moved out 2026-09-16 so this suite and the FBS suite
+  stay fully independent; see CLAUDE.md).
   @BeforeSuite : Opens browser once before TC_FBO_001
-  @AfterSuite  : Closes browser once after TC_FBO_SPLIT_01
+  @AfterSuite  : Closes browser once after the last <test> block
 
-  To run only TC_FBO_001  : comment out the second <test> block
-  To run only TC_FBO_SPLIT_01 : comment out the first  <test> block
-
-  Execution order: TC_FBO_001_Test → TC_FBO_SPLIT_01_Test
+  Usage: mvn clean test (default suiteXmlFile) or mvn test -DsuiteXmlFile=src/test/resources/testng.xml
+  To run FBS tests: mvn test -DsuiteXmlFile=src/test/resources/testng_fbs.xml
 -->
 
 <suite name="FDA Automation Suite" verbose="1" thread-count="1" preserve-order="true">
@@ -297,42 +298,6 @@
         <classes>
             <class
                 name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBO_032_Test" />
-        </classes>
-    </test>
-
-    <!-- ═══════════════════════════════════════════════════════════
-         TEST 19 — TC_FBS_001-012: all FBS tests share one <test> block so FDA logs in once
-         (@BeforeGroups("FBS")) before TC_FBS_001 and logs out once (@AfterGroups("FBS")) after
-         TC_FBS_012 — TestNG re-runs group configuration methods at every <test> boundary, so
-         one <test> per class caused a full FDA logout+login cycle between every FBS test
-         (confirmed via a live run on 2026-09-09; see CLAUDE.md).
-         ═══════════════════════════════════════════════════════════ -->
-    <test name="TC_FBS_001-012 - FBS Store Full Fulfillment Suite" preserve-order="true">
-        <classes>
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_002_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_003_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_004_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_005_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_006_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_007_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_008_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_009_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_010_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test" />
-            <class
-                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test" />
         </classes>
     </test>
 

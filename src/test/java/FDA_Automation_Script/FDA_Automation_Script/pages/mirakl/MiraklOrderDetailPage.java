@@ -441,6 +441,22 @@ public class MiraklOrderDetailPage extends BasePage {
         }
     }
 
+    /**
+     * Returns true if an "Add tracking information" link is present within the given timeout.
+     * Used by TC_FBS_013's return flow to poll the page after the Return API call creates a
+     * return record — the browser's already-loaded order detail page doesn't reflect that new
+     * record (and its own "Add tracking information" prompt) until refreshed, and the backend
+     * needs a few seconds to propagate it even after a refresh.
+     */
+    public boolean isAddTrackingInformationLinkPresent(int timeoutSeconds) {
+        driver.manage().timeouts().implicitlyWait(java.time.Duration.ofSeconds(timeoutSeconds));
+        try {
+            return !driver.findElements(ADD_TRACKING_LINK).isEmpty();
+        } finally {
+            driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
+        }
+    }
+
     public void clickAddTrackingInformationLink() {
         LoggerUtility.info("Clicking Add tracking information link");
         // Let the upload-confirmation modal/toast finish fading out before inspecting the page —

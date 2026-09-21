@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  FBS-only suite: runs all TC_FBS_00X tests (currently 001-012) sequentially, without any of
+  FBS-only suite: runs all TC_FBS_00X tests (currently 001-017) sequentially, without any of
   the TC_FBO_* tests from the main testng.xml.
   Usage: mvn test -DsuiteXmlFile=src/test/resources/testng_fbs.xml
 
-  All 12 classes live in a single <test> block (not one <test> per class) so that
+  All 17 classes live in a single <test> block (not one <test> per class) so that
   @BeforeGroups("FBS")/@AfterGroups("FBS") in BaseClass fire exactly once for the whole run —
   TestNG re-runs group configuration methods at every <test> boundary, so splitting these into
   separate <test> tags caused FDA to log out and back in between every single TC_FBS test
@@ -22,11 +22,11 @@
     </listeners>
 
     <!-- ═══════════════════════════════════════════════════════════
-         TC_FBS_001-012: all FBS tests share one <test> block so FDA logs in once
+         TC_FBS_001-017: all FBS tests share one <test> block so FDA logs in once
          (@BeforeGroups("FBS")) before TC_FBS_001 and logs out once (@AfterGroups("FBS"))
-         after TC_FBS_012 — see comment above.
+         after TC_FBS_015 — see comment above.
          ═══════════════════════════════════════════════════════════ -->
-    <test name="TC_FBS_001-012 - FBS Store Full Fulfillment Suite" preserve-order="true">
+    <test name="TC_FBS_001-017 - FBS Store Full Fulfillment Suite" preserve-order="true">
         <classes>
             <class
                 name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_001_Test" />
@@ -52,6 +52,16 @@
                 name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_011_Test" />
             <class
                 name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_012_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_013_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_014_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_015_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_016_Test" />
+            <class
+                name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_FBS_017_Test" />
         </classes>
     </test>
 

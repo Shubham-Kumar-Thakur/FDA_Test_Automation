@@ -14,8 +14,12 @@ public class FDAPaymentPage extends BasePage {
 			"//span[@class='adyen-checkout__label__text'][normalize-space()='Número de tarjeta']/../following-sibling::div[1]//iframe");
 	private static final By EXPIRY_FIELD = By
 			.xpath("//span[normalize-space()='Fecha de expiración']/../following-sibling::div[1]//iframe");
+	// normalize-space() (not text()) to match CARD_NUMBER_FIELD/EXPIRY_FIELD above — text() requires
+	// an exact match with no extra whitespace or child nodes (e.g. a required-field asterisk or
+	// tooltip icon span), making it the one iframe locator of the three that could silently fail
+	// to find the label and, transitively, the CVV iframe itself.
 	private static final By CVV_FIELD = By
-			.xpath("//span[text()='Código de seguridad']/../following-sibling::div[1]//iframe");
+			.xpath("//span[normalize-space()='Código de seguridad']/../following-sibling::div[1]//iframe");
 	private static final By COMPLETE_PAY_BTN = By.xpath("//button[contains(text(),'Completar pago (MXN$')]");
 	// TODO: Verify PayPal locators against actual payment page DOM
 	private static final By PAYPAL_RADIO = By.xpath("//input[@id='paypal_express']/..//label[@for='paypal_express'] ");
@@ -148,6 +152,45 @@ public class FDAPaymentPage extends BasePage {
 								.orElseThrow(() -> new org.openqa.selenium.NoSuchElementException(
 										"No input found in iframe: " + iframeLocator));
 
+				// Wait for the resolved input to actually be clickable (visible + enabled) before
+				// touching it. The presence/isDisplayed check above only confirms the element
+				// exists in the DOM — Adyen's securedFields can render a field (e.g. the security
+				// code field) before it's enabled, commonly while it's still validating the card
+				// number just typed into a sibling field. Without this wait, a native sendKeys()
+				// on a not-yet-interactable element doesn't fail fast: ChromeDriver internally
+				// polls for interactability bounded by whatever implicit wait is active — which by
+				// this point has already been restored to the global 2-minute default in the
+				// finally block above — so a genuinely-not-yet-ready field silently burns a full 2
+				// minutes per retry attempt before throwing ElementNotInteractableException,
+				// confirmed live (2026-09-17, TC_FBS_013 CVV field: two consecutive attempts each
+				// failed at exactly 120s). Bounding this explicitly to 20s makes a real "never
+				// becomes interactable" case fail fast across retries instead, and still succeeds
+				// promptly once the field is genuinely just delayed rather than wrongly targeted.
+				driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);
+				try {
+					new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(20))
+							.until(org.openqa.selenium.support.ui.ExpectedConditions.elementToBeClickable(input));
+				} catch (org.openqa.selenium.TimeoutException te) {
+					// Diagnostic-only: if this still times out, the log should say why (disabled?
+					// zero-size? hidden via CSS?) instead of leaving another opaque "element not
+					// interactable" to re-diagnose blind on the next live run.
+					String diag;
+					try {
+						diag = "tag=" + input.getTagName() + " type=" + input.getAttribute("type")
+								+ " disabled=" + input.getAttribute("disabled")
+								+ " class=" + input.getAttribute("class")
+								+ " style=" + input.getAttribute("style")
+								+ " displayed=" + input.isDisplayed() + " enabled=" + input.isEnabled()
+								+ " size=" + input.getSize();
+					} catch (Exception diagEx) {
+						diag = "diagnostic read failed: " + diagEx.getClass().getSimpleName();
+					}
+					LoggerUtility.warn("Resolved input never became clickable within 20s (" + iframeLocator + "): " + diag);
+					throw te;
+				} finally {
+					driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
+				}
+
 				// JS click bypasses overlay/focus restrictions in Adyen iframes
 				((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", input);
 				if (clearFirst) {
@@ -193,6 +236,87 @@ public class FDAPaymentPage extends BasePage {
 			}
 		}
 		throw new RuntimeException("Failed to type in iframe after 5 attempts", lastEx);
+	}
+
+	// Reads back a payment field's current raw value without typing anything — used only by
+	// verifyAndReenterIfNeeded() below to detect a field that got silently wiped after it was
+	// already typed and verified.
+	private String readFieldValue(By iframeLocator) {
+		try {
+			driver.switchTo().defaultContent();
+			driver.manage().timeouts().implicitlyWait(java.time.Duration.ZERO);
+			org.openqa.selenium.WebElement iframe;
+			try {
+				iframe = new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(15))
+						.until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(iframeLocator));
+			} finally {
+				driver.manage().timeouts().implicitlyWait(java.time.Duration.ofMinutes(2));
+			}
+			driver.switchTo().frame(iframe);
+			java.util.List<org.openqa.selenium.WebElement> tagged = driver
+					.findElements(By.cssSelector("input[data-fieldtype]"));
+			org.openqa.selenium.WebElement input = !tagged.isEmpty() ? tagged.get(0)
+					: driver.findElements(By.tagName("input")).stream()
+							.filter(org.openqa.selenium.WebElement::isDisplayed).findFirst().orElse(null);
+			String value = input == null ? null : input.getAttribute("value");
+			driver.switchTo().defaultContent();
+			return value;
+		} catch (Exception e) {
+			try {
+				driver.switchTo().defaultContent();
+			} catch (Exception ignored) {
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * Re-checks all three payment fields immediately before submitting and re-types any that no
+	 * longer hold the expected value. Confirmed live (2026-09-17, TC_FBS_013): typing the card
+	 * number, then immediately moving to the expiry field, threw "target frame detached" on the
+	 * expiry iframe — evidence that Adyen's SecuredFields component asynchronously re-renders its
+	 * iframes shortly after a field completes (e.g. card-brand detection after a full card
+	 * number). That re-render can happen after typeInIframeWithRetry()'s own per-field "value
+	 * stuck" check already passed, silently wiping a field that tested fine moments earlier —
+	 * Completar pago then submits against a blank/stale card number with no visible error, and the
+	 * page just never navigates past #payment (no 3DS challenge, no failure message, no success
+	 * page). Call this right before clickCompletePayment().
+	 */
+	public void verifyAndReenterIfNeeded(String cardNumber, String expiry, String cvv) {
+		String expectedDigits = cardNumber.replaceAll("[^0-9]", "");
+		for (int round = 1; round <= 2; round++) {
+			boolean anyRetyped = false;
+
+			String cardVal = readFieldValue(CARD_NUMBER_FIELD);
+			String cardDigits = cardVal == null ? "" : cardVal.replaceAll("[^0-9]", "");
+			if (!cardDigits.equals(expectedDigits)) {
+				LoggerUtility.warn("Card number field no longer holds the expected value before submit (round "
+						+ round + ", found " + cardDigits.length() + " digits) — re-entering");
+				enterCardNumber(cardNumber);
+				anyRetyped = true;
+			}
+
+			String expiryVal = readFieldValue(EXPIRY_FIELD);
+			if (expiryVal == null || expiryVal.trim().isEmpty()) {
+				LoggerUtility.warn("Expiry field no longer holds a value before submit (round " + round
+						+ ") — re-entering");
+				enterExpiry(expiry);
+				anyRetyped = true;
+			}
+
+			String cvvVal = readFieldValue(CVV_FIELD);
+			if (cvvVal == null || cvvVal.trim().isEmpty()) {
+				LoggerUtility.warn("CVV field no longer holds a value before submit (round " + round
+						+ ") — re-entering");
+				enterCvv(cvv);
+				anyRetyped = true;
+			}
+
+			if (!anyRetyped) {
+				LoggerUtility.info("All payment fields confirmed intact before submit (round " + round + ")");
+				return;
+			}
+		}
 	}
 
 	public String getCompletePaymentButtonText() {

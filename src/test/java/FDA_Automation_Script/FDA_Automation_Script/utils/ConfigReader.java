@@ -345,4 +345,116 @@ public class ConfigReader {
 	public String getFbs012InvoiceFilePath() {
 		return get("fbs012.invoice.file.path");
 	}
+
+	public String getFbs013Sku() {
+		return get("fbs013.sku");
+	}
+
+	public String getFbs013CardNumber() {
+		return get("fbs013.card.number");
+	}
+
+	public String getFbs013CardExpiry() {
+		return get("fbs013.card.expiry");
+	}
+
+	public String getFbs013CardCvv() {
+		return get("fbs013.card.cvv");
+	}
+
+	public String getFbs013InvoiceFilePath() {
+		return get("fbs013.invoice.file.path");
+	}
+
+	public String getFbs014Sku1() {
+		return get("fbs014.sku1");
+	}
+
+	public String getFbs014Sku2() {
+		return get("fbs014.sku2");
+	}
+
+	public String getFbs014CardNumber() {
+		return get("fbs014.card.number");
+	}
+
+	public String getFbs014CardExpiry() {
+		return get("fbs014.card.expiry");
+	}
+
+	public String getFbs014CardCvv() {
+		return get("fbs014.card.cvv");
+	}
+
+	public String getFbs014InvoiceFilePath() {
+		return get("fbs014.invoice.file.path");
+	}
+
+	public String getFbs015Sku() {
+		return get("fbs015.sku");
+	}
+
+	public String getFbs015CardNumber() {
+		return get("fbs015.card.number");
+	}
+
+	public String getFbs015CardExpiry() {
+		return get("fbs015.card.expiry");
+	}
+
+	public String getFbs015CardCvv() {
+		return get("fbs015.card.cvv");
+	}
+
+	public String getFbs015InvoiceFilePath() {
+		return get("fbs015.invoice.file.path");
+	}
+
+	public String getFbs016Sku1() {
+		return get("fbs016.sku1");
+	}
+
+	public String getFbs016Sku2() {
+		return get("fbs016.sku2");
+	}
+
+	public String getFbs016CardNumber() {
+		return get("fbs016.card.number");
+	}
+
+	public String getFbs016CardExpiry() {
+		return get("fbs016.card.expiry");
+	}
+
+	public String getFbs016CardCvv() {
+		return get("fbs016.card.cvv");
+	}
+
+	public String getFbs016InvoiceFilePath() {
+		return get("fbs016.invoice.file.path");
+	}
+
+	public String getFbs017Sku1() {
+		return get("fbs017.sku1");
+	}
+
+	public String getFbs017Sku2() {
+		return get("fbs017.sku2");
+	}
+
+	public String getFbs017CardNumber() {
+		return get("fbs017.card.number");
+	}
+
+	public String getFbs017CardExpiry() {
+		return get("fbs017.card.expiry");
+	}
+
+	public String getFbs017CardCvv() {
+		return get("fbs017.card.cvv");
+	}
+
+	public String getFbs017InvoiceFilePath() {
+		return get("fbs017.invoice.file.path");
+	}
 }
