@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 2026-09-18 17:23:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: Skipping FDA login and suite-default Mirakl login — launching independent browser
 2026-09-18 17:23:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser launched: chrome
 2026-09-18 17:23:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test: All page objects initialized
@@ -539,3 +540,157 @@ Conveniencia | Offer SKU: YK417981 | Status: Active | Price: MX$28.00 | Quantity
 2026-09-18 17:38:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - TC_E2E_004_Test | PDP Name/Price     : bedsheet / $0.00
 2026-09-18 17:38:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Suite complete. Closing browser.
 2026-09-18 17:38:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Browser closed
+=======
+2026-09-18 11:18:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_FBS_001 OfferAndProductModule: Starting dual-browser suite setup ===
+2026-09-18 11:18:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test data loaded from: testdata/TC_FBS_001.properties
+2026-09-18 11:18:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Starting FDA Chrome browser (Browser 1)
+2026-09-18 11:18:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-18 11:18:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA page objects initialized (using fdaDriver)
+2026-09-18 11:18:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 1 (setup): Navigating FDA browser to https://mcstaging.fahorro.com/
+2026-09-18 11:18:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Logging in to FDA as mgowda@kognivera.com
+2026-09-18 11:18:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Mi cuenta profile icon
+2026-09-18 11:18:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesion link
+2026-09-18 11:18:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: mgowda@kognivera.com
+2026-09-18 11:18:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-09-18 11:18:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
+2026-09-18 11:18:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for mgowda@kognivera.com
+2026-09-18 11:18:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA login complete. Session will remain active for all tests.
+2026-09-18 11:18:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_001_SETUP_FDA_LOGIN_INFO.png
+2026-09-18 11:18:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Starting Mirakl Chrome browser (Browser 2)
+2026-09-18 11:18:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-18 11:18:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl page objects initialized (using miraklDriver)
+2026-09-18 11:18:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating Mirakl browser to https://farmaciasdelahorromx2-dev.mirakl.net/
+2026-09-18 11:18:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Logging in to Mirakl as skthakur@kognivera.com
+2026-09-18 11:18:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skthakur@kognivera.com
+2026-09-18 11:18:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-18 11:18:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-18 11:18:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-18 11:18:52 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skthakur@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 5 minutes...
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Mirakl login complete. Session will remain active for all tests.
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_001_SETUP_MIRAKL_LOGIN_INFO.png
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === Dual-browser setup complete. FDA (Browser 1) and Mirakl (Browser 2) logged in. ===
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Started: tc_fbs_001_place_order_fbs_full_fulfillment
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================================================
+2026-09-18 11:19:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: FDA ORDER PLACEMENT ====================
+2026-09-18 11:19:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-18 11:19:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 2: PASS — FDA Home page displayed
+2026-09-18 11:19:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_001_INFO.png
+2026-09-18 11:19:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/checkout/cart
+2026-09-18 11:19:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart is empty
+2026-09-18 11:19:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-18 11:19:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 3: Clicking ¿Qué estás buscando? search field
+2026-09-18 11:19:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 4: Entering SKU: 4892828052 and pressing Enter
+2026-09-18 11:19:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: 4892828052
+2026-09-18 11:19:39 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-09-18 11:19:39 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 5: Verifying Product Details Page is displayed
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Product Details Page displayed for SKU: 4892828052
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 6: Verifying Agregar al carrito button is enabled
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Add to Cart button enabled: true (attempt 1)
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Agregar al carrito button is enabled
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 7: Verifying product quantity is 1
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP quantity: 1
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Product quantity verified as 1
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_001_INFO.png
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 8: Clicking Agregar al carrito
+2026-09-18 11:19:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Agregar al carrito button
+2026-09-18 11:19:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Product Added To Cart
+2026-09-18 11:19:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Product added to cart
+2026-09-18 11:19:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 9-10: Clicking Mi carrito and opening cart page
+2026-09-18 11:19:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating directly to cart page
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart page loaded and product visible
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart product name: RingEar52
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 11: Cart product name: RingEar52
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Product name displayed in cart
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart quantity: 1
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 12: Cart quantity: 1
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Quantity verified as 1
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Cart order total: $100.00
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 13: FDA order total captured: $100.00
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA order total captured: $100.00
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_001_INFO.png
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 14: Clicking Proceed to payment
+2026-09-18 11:20:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Proceed to payment button
+2026-09-18 11:20:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:18 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:34 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA window handles after clickProceedToPayment: 1
+2026-09-18 11:20:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - No new checkout window detected within 20s — continuing on current window
+2026-09-18 11:20:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 15: Clicking Siguiente on the Shipping page
+2026-09-18 11:20:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on shipping page (if present)
+2026-09-18 11:20:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Siguiente button clicked
+2026-09-18 11:20:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 16: Selecting Pago con Tarjeta Crédito/Débito
+2026-09-18 11:20:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selecting Credit/Debit Card Payment option
+2026-09-18 11:20:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Credit/Debit Card radio selected
+2026-09-18 11:20:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 17: Entering card number: ************5454
+2026-09-18 11:20:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering card number
+2026-09-18 11:20:41 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Card number digits to type: 16
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe field typed on attempt 1
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 18: Entering expiration date: 03/30
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering expiration date: 03/30
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe field typed on attempt 1
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 19: Entering security code: ***
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering security code
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Iframe field typed on attempt 1
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Completar pago button text: Completar pago (MXN$100.00)
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 20: Completar pago button text: Completar pago (MXN$100.00)
+2026-09-18 11:20:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Completar pago button shows expected order total
+2026-09-18 11:20:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_FBS_001_INFO.png
+2026-09-18 11:20:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 21: Clicking Completar pago
+2026-09-18 11:20:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Completar pago button
+2026-09-18 11:20:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 3DS challenge detected, entering test password
+2026-09-18 11:20:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - 3DS challenge completed
+2026-09-18 11:20:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Step 22: Verifying order success page
+2026-09-18 11:21:02 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Test Failed: tc_fbs_001_place_order_fbs_full_fulfillment
+2026-09-18 11:21:02 ERROR FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Failure reason: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=152.0.7977.84)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [85f06310e1690f34185d34a13fb37534, getCurrentUrl {}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 152.0.7977.84, chrome: {chromedriverVersion: 152.0.7977.82 (d04cdb24d67b..., userDataDir: C:\Users\SHUBHA~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63270}, goog:processID: 11368, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63270/devtoo..., se:cdpVersion: 152.0.7977.84, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 85f06310e1690f34185d34a13fb37534
+2026-09-18 11:21:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_FBS_001 OfferAndProductModule: Tearing down dual-browser sessions ===
+2026-09-18 11:21:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA browser (Browser 1) closed
+2026-09-18 11:21:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl browser (Browser 2) closed
+2026-09-18 11:21:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === Dual-browser teardown complete ===
+>>>>>>> Stashed changes

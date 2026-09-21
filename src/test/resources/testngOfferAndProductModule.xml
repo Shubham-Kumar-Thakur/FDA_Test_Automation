@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Offer and Product Module — isolated dual-browser suite.
+
+  Runs the TC_FBS_001 re-implementation in tests/module/.
+  Uses two independent Chrome instances (FDA browser + Mirakl browser).
+  Lifecycle: @BeforeSuite launches and logs in both browsers; @AfterSuite quits them.
+  No BaseClass inheritance — no group-level login/logout side-effects.
+
+  Includes both framework listeners so ExtentReports and screenshots work as normal.
+  TestNGListener and ExtentReportListener both null-check BaseClass.driver, so they
+  operate safely when the test class does not extend BaseClass.
+
+  Usage: mvn test -DsuiteXmlFile=src/test/resources/testngOfferAndProductModule.xml
+  Run single class: mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.module.TC_FBS_001_Test
+-->
+
+<suite name="Offer and Product Module Suite" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+    <test name="TC_FBS_001 - FBS Order Lifecycle (Dual Browser)" preserve-order="true">
+        <classes>
+            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_FBS_001_Test" />
+        </classes>
+    </test>
+
+</suite>
