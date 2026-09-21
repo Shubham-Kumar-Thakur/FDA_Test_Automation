@@ -1,33 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-09-18T17:23:35 IST" name="Default suite" finished-at="2026-09-18T17:38:32 IST" duration-ms="897090">
+  <suite started-at="2026-09-21T18:09:49 IST" name="Offer and Product Module Suite" finished-at="2026-09-21T18:12:21 IST" duration-ms="151606">
     <groups>
     </groups>
-    <test started-at="2026-09-18T17:23:35 IST" name="Default test" finished-at="2026-09-18T17:38:32 IST" duration-ms="897090">
-      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test">
-        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test@223d2c72]" started-at="2026-09-18T17:23:31 IST" name="setupSuite" finished-at="2026-09-18T17:23:35 IST" duration-ms="3563" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setupSuite -->
-        <test-method is-config="true" signature="init()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test@223d2c72]" started-at="2026-09-18T17:23:35 IST" name="init" finished-at="2026-09-18T17:23:35 IST" duration-ms="477" status="PASS">
+    <test started-at="2026-09-21T18:09:49 IST" name="TC_E2E_004 - Product + Offer Import End-to-End" finished-at="2026-09-21T18:09:50 IST" duration-ms="599">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test">
+        <test-method is-config="true" signature="init()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test@510f3d34]" started-at="2026-09-21T18:09:50 IST" name="init" finished-at="2026-09-21T18:09:50 IST" duration-ms="16" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- init -->
-        <test-method signature="tc_e2e_004_product_import_and_offer_import_end_to_end()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test@223d2c72]" started-at="2026-09-18T17:23:35 IST" name="tc_e2e_004_product_import_and_offer_import_end_to_end" description="Verify a Seller can upload a Product Excel file, get it approved and Published by the Operator via Adobe MCM sync, then upload an Offer Excel file for that existing Product and verify the Offer becomes Active, with final verification on the FDA storefront" finished-at="2026-09-18T17:38:32 IST" duration-ms="896545" status="PASS">
+        <test-method signature="tc_e2e_004_product_import_and_offer_import_end_to_end()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test@510f3d34]" started-at="2026-09-21T18:09:50 IST" name="tc_e2e_004_product_import_and_offer_import_end_to_end" description="Verify a Seller can upload a Product Excel file, get it approved and Published by the Operator via Adobe MCM sync, then upload an Offer Excel file for that existing Product and verify the Offer becomes Active, with final verification on the FDA storefront" finished-at="2026-09-21T18:09:50 IST" duration-ms="65" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[TC_E2E_004_Test — Product Excel file does not exist or is not readable: C:\Users\JanviNag\Downloads\products-en_US-20260825221353.xlsx expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: TC_E2E_004_Test — Product Excel file does not exist or is not readable: C:\Users\JanviNag\Downloads\products-en_US-20260825221353.xlsx expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:111)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertTrue(Assert.java:57)
+at FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test.tc_e2e_004_product_import_and_offer_import_end_to_end(TC_E2E_004_Test.java:113)
+at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+at org.testng.TestRunner.privateRun(TestRunner.java:739)
+at org.testng.TestRunner.run(TestRunner.java:614)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+at org.testng.TestNG.runSuites(TestNG.java:1112)
+at org.testng.TestNG.run(TestNG.java:1079)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+]]>
+            </full-stacktrace>
+          </exception> <!-- java.lang.AssertionError -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tc_e2e_004_product_import_and_offer_import_end_to_end -->
-        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test@223d2c72]" started-at="2026-09-18T17:38:32 IST" name="navigateToHomePage" finished-at="2026-09-18T17:38:32 IST" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="navigateToHomePage()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test@510f3d34]" started-at="2026-09-21T18:09:50 IST" name="navigateToHomePage" finished-at="2026-09-21T18:09:50 IST" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- navigateToHomePage -->
-        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test@223d2c72]" started-at="2026-09-18T17:38:32 IST" name="tearDownSuite" finished-at="2026-09-18T17:38:33 IST" duration-ms="683" status="PASS">
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test -->
+    </test> <!-- TC_E2E_004 - Product + Offer Import End-to-End -->
+    <test started-at="2026-09-21T18:09:50 IST" name="TC_OU_009 - Seller Update Offer Price via Excel Import" finished-at="2026-09-21T18:12:21 IST" duration-ms="150932">
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test">
+        <test-method is-config="true" signature="setupMiraklSession()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test@ed7f8b4]" started-at="2026-09-21T18:09:18 IST" name="setupMiraklSession" finished-at="2026-09-21T18:09:49 IST" duration-ms="31904" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupMiraklSession -->
+        <test-method signature="tc_ou_009_seller_update_offer_price_via_excel()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test@ed7f8b4]" started-at="2026-09-21T18:09:50 IST" name="tc_ou_009_seller_update_offer_price_via_excel" description="Seller updates an offer&#039;s price via Excel import and validates it on the FDA storefront" finished-at="2026-09-21T18:12:21 IST" duration-ms="150591" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tc_ou_009_seller_update_offer_price_via_excel -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test@ed7f8b4]" started-at="2026-09-21T18:12:22 IST" name="tearDown" finished-at="2026-09-21T18:12:23 IST" duration-ms="1139" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test -->
+      <class name="FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test@510f3d34]" started-at="2026-09-21T18:09:15 IST" name="setupSuite" finished-at="2026-09-21T18:09:18 IST" duration-ms="2676" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupSuite -->
+        <test-method is-config="true" signature="tearDownSuite()[pri:0, instance:FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test@510f3d34]" started-at="2026-09-21T18:12:21 IST" name="tearDownSuite" finished-at="2026-09-21T18:12:22 IST" duration-ms="612" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownSuite -->
-      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.TC_E2E_004_Test -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test -->
+    </test> <!-- TC_OU_009 - Seller Update Offer Price via Excel Import -->
+  </suite> <!-- Offer and Product Module Suite -->
 </testng-results>
