@@ -123,6 +123,19 @@ public class MiraklLoginPage extends BasePage {
         }
     }
 
+    // TODO: Not verified against the live DOM (the #accountingMenu trigger's exact text content was
+    // never captured — see the class-doc note on forceLogout() above for why its own selector wasn't
+    // fully confirmed either). Best-effort read of the account-menu trigger's own visible text, which
+    // on most Mirakl shops/portals is the logged-in shop/operator name. Returns "" (never throws) if
+    // not found, so callers should treat this as informational logging, not an assertion target.
+    public String getLoggedInAccountName() {
+        Object text = ((JavascriptExecutor) driver).executeScript(
+            "var m = document.getElementById('accountingMenu'); return m ? m.textContent.trim() : '';");
+        String value = text == null ? "" : text.toString().trim();
+        LoggerUtility.info("Mirakl logged-in account/shop name (best-effort): " + value);
+        return value;
+    }
+
     private void sleep(long ms) {
         try {
             Thread.sleep(ms);

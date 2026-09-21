@@ -1829,8 +1829,19 @@ public class MiraklOfferPage extends BasePage {
     // Column order confirmed live: 1=checkbox, 2=Product, 3=Offer SKU, 4=Status, 5=Default price,
     // 6=Quantity, 7=Brand, 8=Condition, 9=Product SKU (rendered as "SKU: <value>"). No Logistics
     // column exists in this list — Logistics is only selected on the Add Offer form, not shown here.
+    // CONFIRMED live (2026-09-21, TC_OU_009): the "Product" cell's own getText() returns more than
+    // just the name — a second line carrying the product's category label (e.g. "Bebé") is stacked
+    // underneath it in the same cell, so a naive read produced
+    // "OZiva Sugar Support Effervescent8\nBebé". That embedded newline broke the FDA storefront
+    // search that consumes this value (Selenium's sendKeys() treats "\n" as pressing Enter mid-string,
+    // submitting a truncated query). Only the first non-empty line is the actual product name.
     public String getOfferProductName(String offerSku) {
-        return getOfferColumnText(offerSku, 2);
+        String raw = getOfferColumnText(offerSku, 2);
+        for (String line : raw.split("\\r?\\n")) {
+            String trimmed = line.trim();
+            if (!trimmed.isEmpty()) return trimmed;
+        }
+        return raw.trim();
     }
 
     public String getOfferSku(String offerSku) {
@@ -1859,6 +1870,17 @@ public class MiraklOfferPage extends BasePage {
 
     public String getOfferProductSku(String offerSku) {
         return getOfferColumnText(offerSku, 9);
+    }
+
+    // Added for TC_OU_009 Phase 1 — "Verify exactly one offer is returned" after a Product ID search.
+    // Reuses the same //tbody//tr row scope already proven throughout this class's offer-search
+    // methods above.
+    public int getVisibleOfferRowCount() {
+        Object count = ((JavascriptExecutor) driver).executeScript(
+            "return document.querySelectorAll('tbody tr').length;");
+        int rows = count == null ? 0 : ((Number) count).intValue();
+        LoggerUtility.info("Visible offer row count: " + rows);
+        return rows;
     }
 
     private String getOfferColumnText(String offerSku, int columnIndex) {
