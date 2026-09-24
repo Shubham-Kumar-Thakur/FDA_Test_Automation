@@ -1923,22 +1923,47 @@ public class MiraklOfferPage extends BasePage {
     // used by TC_EDD_001 to pick "any random product id for that seller" (Seller login already
     // scopes the Offers list to this seller's own offers, so the first row is sufficient). Column
     // indices reuse the same confirmed order documented above getOfferProductName().
+    // FIXED live (2026-09-24, TC_EDD_001): a one-shot read immediately after switching to the "All"
+    // tab consistently returned a <tbody><tr> with empty-string cell text — the grid's row element
+    // exists in the DOM before its async data fetch has actually populated the cells. Confirmed live:
+    // this silently cascaded into blank downstream searches (FDA storefront searched for "", the
+    // offer-edit click matched an arbitrary row via contains(.,'')) rather than failing loudly. Now
+    // polls (up to 10 attempts, 500ms apart) until the first row's Offer SKU cell is non-empty before
+    // returning — same "poll with short sleep, not a single instant read" pattern already used
+    // elsewhere in this codebase for async-populated data (e.g. FDAPDPPage.getProductPrice()).
+    // FIXED live (2026-09-24, TC_EDD_001): once a non-empty offerSku is found, re-fetching the
+    // product name/SKU via this class's own EXISTING, already-newline-safe getOfferProductName()/
+    // getOfferProductSku() getters (instead of a second bespoke JS read here) avoids duplicating —
+    // and getting wrong — the column-9/column-2 parsing they already handle correctly (confirmed
+    // live: a naive split("\\r?\\n")[0] on column 2 here left a category label glued onto the end of
+    // the name, e.g. "...Cookies (Diabetic Friendly)02Bebé", because the label/value aren't always
+    // newline-separated the way getOfferProductName()'s own fix assumes for every case — reusing the
+    // battle-tested getter is more robust than re-deriving the same value a second, subtly different
+    // way).
     public SelectedOffer selectRandomOfferForSeller() {
-        Object rowData = ((JavascriptExecutor) driver).executeScript(
-            "var row = document.querySelector('tbody tr');"
-            + "if (!row) return null;"
-            + "var cells = row.querySelectorAll('td');"
-            + "if (cells.length < 9) return null;"
-            + "return [cells[2].textContent.trim(), cells[8].textContent.trim(), cells[1].textContent.trim()];");
-        if (rowData == null) {
-            throw new RuntimeException("No offer rows found in the current Offers list — cannot select a random offer");
+        String offerSku = null;
+        for (int attempt = 1; attempt <= 10; attempt++) {
+            Object sku = ((JavascriptExecutor) driver).executeScript(
+                "var row = document.querySelector('tbody tr');"
+                + "if (!row) return null;"
+                + "var cells = row.querySelectorAll('td');"
+                + "if (cells.length < 9) return null;"
+                + "var s = cells[2].textContent.trim();"
+                + "return s.length ? s : null;");
+            if (sku != null) {
+                offerSku = sku.toString();
+                LoggerUtility.info("Offers grid row populated on attempt " + attempt + "/10 — Offer SKU: " + offerSku);
+                break;
+            }
+            LoggerUtility.info("Offers grid row not yet populated (attempt " + attempt + "/10) — retrying");
+            sleep(500);
         }
-        @SuppressWarnings("unchecked")
-        List<Object> parts = (List<Object>) rowData;
-        String offerSku = parts.get(0).toString();
-        String productSku = parts.get(1).toString();
-        String rawName = parts.get(2).toString();
-        String productName = rawName.split("\\r?\\n")[0].trim();
+        if (offerSku == null) {
+            throw new RuntimeException("Offers list row never populated a non-empty Offer SKU after 10 attempts — "
+                + "cannot select a random offer");
+        }
+        String productSku = getOfferProductSku(offerSku);
+        String productName = getOfferProductName(offerSku);
         LoggerUtility.info("Selected random offer — Offer SKU: " + offerSku + ", Product SKU: " + productSku
             + ", Product Name: " + productName);
         return new SelectedOffer(offerSku, productSku, productName);
@@ -1947,6 +1972,13 @@ public class MiraklOfferPage extends BasePage {
     public void openOfferForEdit(String offerSku) {
         LoggerUtility.info("Opening offer " + offerSku + " for edit");
         By row = By.xpath("//tbody//tr[contains(.,'" + offerSku + "')]");
+        // Short bounded wait before clicking — jsClick()'s own driver.findElement() would otherwise
+        // fall through to the shared 2-minute implicit wait if the row isn't immediately present
+        // (confirmed live: this is exactly what happened when offerSku was empty and matched
+        // unpredictably). Now that offerSku is guaranteed non-empty (see selectRandomOfferForSeller()
+        // above), this should resolve almost immediately; fails fast with a clear exception instead
+        // of a 2-minute hang if the row genuinely isn't there.
+        new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.presenceOfElementLocated(row));
         jsClick(row);
         // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — this form's anchor
         // locator is unconfirmed (see TODO above), so a wrong guess surfaces the real page structure

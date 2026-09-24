@@ -133,14 +133,14 @@ public class TC_EDD_001_Test {
             String workingDaysText = miraklShopSettingsPage.getWorkingDaysText();
             String nonWorkingDaysText = miraklShopSettingsPage.getNonWorkingDaysText();
             String holidaysText = miraklShopSettingsPage.getHolidaysText();
-            String businessStartText = miraklShopSettingsPage.getBusinessStartTimeText();
-            String businessEndText = miraklShopSettingsPage.getBusinessEndTimeText();
+            String businessHoursText = miraklShopSettingsPage.getBusinessHoursText();
 
             workingDays = EddCalculator.parseWorkingDays(workingDaysText);
             nonWorkingDays = EddCalculator.parseDates(nonWorkingDaysText);
             holidays = EddCalculator.parseDates(holidaysText);
-            businessStartTime = EddCalculator.parseTime(businessStartText);
-            businessEndTime = EddCalculator.parseTime(businessEndText);
+            LocalTime[] businessHours = EddCalculator.parseTimeRange(businessHoursText);
+            businessStartTime = businessHours[0];
+            businessEndTime = businessHours[1];
 
             LoggerUtility.info("Business Calendar captured — Working Days: " + workingDays + ", Non-Working Days: "
                 + nonWorkingDays + ", Holidays: " + holidays + ", Business Start: " + businessStartTime

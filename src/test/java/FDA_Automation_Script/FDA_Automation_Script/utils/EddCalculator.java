@@ -202,4 +202,40 @@ public class EddCalculator {
             return null;
         }
     }
+
+    /**
+     * Parses a combined "Business Hours" string (e.g. "Business Hours (Mexico Time - GMT-6)9:00 AM -
+     * 6:00 PM") containing two times — start and end — by finding every time-pattern match in the
+     * string rather than just the first (unlike parseTime()). Returns a 2-element array
+     * {startTime, endTime}, either of which may be null if fewer than 2 matches were found.
+     */
+    public static LocalTime[] parseTimeRange(String rawText) {
+        LocalTime[] result = new LocalTime[2];
+        if (rawText == null || rawText.isBlank()) {
+            LoggerUtility.warn("EddCalculator.parseTimeRange: blank input");
+            return result;
+        }
+        Matcher m = TIME_PATTERN.matcher(rawText.trim());
+        int index = 0;
+        while (m.find() && index < 2) {
+            int hour = Integer.parseInt(m.group(1));
+            int minute = Integer.parseInt(m.group(2));
+            String meridiem = m.group(3);
+            if (meridiem != null) {
+                boolean pm = meridiem.equalsIgnoreCase("PM");
+                if (pm && hour < 12) hour += 12;
+                if (!pm && hour == 12) hour = 0;
+            }
+            try {
+                result[index] = LocalTime.of(hour, minute);
+            } catch (Exception e) {
+                LoggerUtility.warn("EddCalculator.parseTimeRange: invalid hour/minute for match " + index
+                    + " in '" + rawText + "'");
+            }
+            index++;
+        }
+        LoggerUtility.info("EddCalculator.parseTimeRange: parsed '" + rawText + "' as start="
+            + result[0] + ", end=" + result[1]);
+        return result;
+    }
 }

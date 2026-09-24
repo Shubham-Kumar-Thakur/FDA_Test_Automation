@@ -1,12 +1,12 @@
-2026-09-24 19:35:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Starting browser + Mirakl Seller login ===
-2026-09-24 19:35:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
-2026-09-24 19:35:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
-2026-09-24 19:35:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
-2026-09-24 19:35:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
-2026-09-24 19:36:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
-2026-09-24 19:36:03 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
-2026-09-24 19:36:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
-2026-09-24 19:36:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
+2026-09-24 22:36:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Starting browser + Mirakl Seller login ===
+2026-09-24 22:36:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-24 22:36:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-24 22:36:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-24 22:36:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-24 22:36:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-24 22:36:53 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-24 22:36:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
+2026-09-24 22:36:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
 
 We've sent an email with your code to
 
@@ -17,22 +17,52 @@ Enter the code *
 Continue
 Didn't receive an email? Resend
 Copyright © 2026 Mirakl
-2026-09-24 19:36:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - OTP code entered (real evidence, not a timer) — clicking Continue.
-2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
-2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
-2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
-2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Mirakl Seller login complete ===
-2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: CAPTURE SELLER BUSINESS CALENDAR ====================
-2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Settings > Shop > Business Calendar
-2026-09-24 19:39:08 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PHASE 1 failed (discovery mode — continuing to later phases): invalid session id: session deleted as the browser has closed the connection
+2026-09-24 22:37:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - OTP code entered (real evidence, not a timer) — clicking Continue.
+2026-09-24 22:37:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-24 22:37:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-24 22:37:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-24 22:37:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Mirakl Seller login complete ===
+2026-09-24 22:37:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: CAPTURE SELLER BUSINESS CALENDAR ====================
+2026-09-24 22:37:13 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Settings > Shop > Business Calendar
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar tab opened
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar raw panel text (diagnostic): // Let's check if the sidebar is collapsed are not to change the width if needed
+        const isSmallScreen = window.innerWidth <= 768;
+        const isSmallOrMediumScreen = window.innerWidth <= 1080;
+        const isSidebarCollapsed = window.localStorage.getItem('roma-sidebar_collapsed') ?? (isSmallOrMediumScreen && !isSmallScreen).toString();
+
+        if (isSidebarCollapsed === 'false') {
+            const sidebar = document.getElementById('fakeSidebar');
+            sidebar.style.width = '280px';
+        }
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Working Days: 
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Non-Working Days: 
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Holidays: 
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Business Hours: 
+2026-09-24 22:37:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseWorkingDays: blank input
+2026-09-24 22:37:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: blank input
+2026-09-24 22:37:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: blank input
+2026-09-24 22:37:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseTimeRange: blank input
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar captured — Working Days: [], Non-Working Days: [], Holidays: [], Business Start: null, Business End (seller cut-off time): null
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE1_BUSINESS_CALENDAR_INFO.png
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: PICK RANDOM OFFER FOR SELLER ====================
+2026-09-24 22:37:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-24 22:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-24 22:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking 'All' tab (no 'Pending offers' tab exists — 'All' is the broadest view, includes not-yet-active offers)
+2026-09-24 22:37:28 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers grid row not yet populated (attempt 1/10) — retrying
+2026-09-24 22:37:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers grid row populated on attempt 2/10 — Offer SKU: S3256
+2026-09-24 22:37:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer S3256 column 9: SKU: 60095400091
+2026-09-24 22:37:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer S3256 column 2: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+Bebé
+2026-09-24 22:37:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selected random offer — Offer SKU: S3256, Product SKU: SKU: 60095400091, Product Name: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-24 22:37:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Selected offer for this run: Offer SKU=S3256, Product SKU=SKU: 60095400091, Product Name=Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-24 22:37:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening offer S3256 for edit
+2026-09-24 22:37:51 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PHASE 2 offer-edit-open failed (discovery mode — continuing): invalid session id: session deleted as the browser has closed the connection
 from disconnected: unable to send message to renderer
   (Session info: chrome=153.0.8010.53)
 Build info: version: '4.25.0', revision: '8a8aea2337'
 System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Command: [8d720ea0ff1e2c88e6bbf0b5517a2bb1, findElement {value=//span[normalize-space()='Settings'], using=xpath}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 153.0.8010.53, chrome: {chromedriverVersion: 153.0.8010.52 (78e5e45d4bb4..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57590}, goog:processID: 13040, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57590/devtoo..., se:cdpVersion: 153.0.8010.53, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 8d720ea0ff1e2c88e6bbf0b5517a2bb1
-2026-09-24 19:39:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: PICK RANDOM OFFER FOR SELLER ====================
-2026-09-24 19:39:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
-2026-09-24 19:39:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Tearing down browser ===
+Command: [3386e1cf9f48ca446817957e47f5e5e1, findElement {value=//form[contains(@id,'ffer')], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 153.0.8010.53, chrome: {chromedriverVersion: 153.0.8010.52 (78e5e45d4bb4..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:60644}, goog:processID: 27568, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60644/devtoo..., se:cdpVersion: 153.0.8010.53, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 3386e1cf9f48ca446817957e47f5e5e1
+2026-09-24 22:37:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Tearing down browser ===

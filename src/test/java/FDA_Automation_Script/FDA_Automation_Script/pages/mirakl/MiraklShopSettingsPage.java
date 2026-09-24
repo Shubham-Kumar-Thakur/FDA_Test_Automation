@@ -15,25 +15,35 @@ import java.time.Duration;
 // New page object for TC_EDD_001 — Mirakl Settings -> Shop -> Business Calendar tab. No existing
 // page object in this codebase covers this screen (confirmed via search across pages/mirakl/*.java).
 // CONFIRMED live (2026-09-24): SETTINGS_MENU and SHOP_SUBMENU are correct — a live run reached the
-// Shop settings page cleanly via these two locators. BUSINESS_CALENDAR_TAB is NOT correct — the same
-// run timed out (120s) waiting for it. TODO: Verify BUSINESS_CALENDAR_TAB and the field-label
-// locators below against the actual DOM once the diagnostic dump added in navigateToBusinessCalendar()
-// reveals the real tab label.
+// Shop settings page cleanly via these two locators, landing on
+// https://.../mmp/shop/account/shop with a "My Account" section listing tabs: Business calendar,
+// Contact Details, Bank Account Details, Billing information, Returns, Imports, CSV settings,
+// Circular economy (plus a "See more" to expand further). The diagnostic dump revealed the real tab
+// label is "Business calendar" (lowercase 'c') — the original BUSINESS_CALENDAR_TAB locator did an
+// exact-case match on "Business Calendar" and never matched, causing a silent 120s timeout. Fixed
+// below via a case-insensitive translate() match, same pattern already used in
+// MiraklOfferPage.SUBMIT_FOR_APPROVAL_BUTTON_FALLBACK. Field-label locators below are still TODO —
+// not yet reached live.
 public class MiraklShopSettingsPage extends BasePage {
 
     private static final By SETTINGS_MENU        = By.xpath("//span[normalize-space()='Settings']");
     private static final By SHOP_SUBMENU          = By.xpath("//a[contains(@id,'shop')] | //span[normalize-space()='Shop']");
     private static final By BUSINESS_CALENDAR_TAB = By.xpath(
-        "//*[self::button or self::a or self::span][normalize-space()='Business Calendar']");
+        "//*[self::button or self::a or self::span]"
+        + "[contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'business calendar')]");
 
     // Label-prefix matchers (same convention as MiraklOfferPage.setFieldByLabel/getFieldValueByLabel)
     // for the specific Business Calendar fields. Kept as raw-text reads (not typed getters) since the
     // exact widget type (checkbox list, calendar picker, plain text) for each is unknown pre-live-run.
+    // CONFIRMED live (2026-09-24, per user observation of the live screen): the real field labels are
+    // "Working Days", "Non-Working Days", "Holidays", and a single combined "Business Hours (Mexico
+    // Time - GMT-6)" field — NOT separate "Business Start Time"/"Business End Time" fields as
+    // originally guessed. See getBusinessHoursText() + EddCalculator.parseTimeRange() for the
+    // consolidated read.
     private static final String WORKING_DAYS_LABEL     = "working days";
     private static final String NON_WORKING_DAYS_LABEL = "non-working days|non working days";
     private static final String HOLIDAYS_LABEL         = "holidays";
-    private static final String BUSINESS_START_LABEL   = "business start time";
-    private static final String BUSINESS_END_LABEL     = "business end time";
+    private static final String BUSINESS_HOURS_LABEL   = "business hours";
 
     public MiraklShopSettingsPage(WebDriver driver) {
         super(driver);
@@ -59,6 +69,10 @@ public class MiraklShopSettingsPage extends BasePage {
         }
         jsClick(BUSINESS_CALENDAR_TAB);
         LoggerUtility.info("Business Calendar tab opened");
+        // Unconditional diagnostic — the field-label getters below are still best-effort/unconfirmed;
+        // logging the raw panel text here means a wrong guess is diagnosable from this same run's log
+        // instead of needing another MFA-gated live run just to see the real structure.
+        getBusinessCalendarRawText();
     }
 
     // Diagnostic dump — every visible button/link/span/list-item's text on the current page, for
@@ -100,12 +114,9 @@ public class MiraklShopSettingsPage extends BasePage {
         return getFieldTextByLabel(HOLIDAYS_LABEL, "Holidays");
     }
 
-    public String getBusinessStartTimeText() {
-        return getFieldTextByLabel(BUSINESS_START_LABEL, "Business Start Time");
-    }
-
-    public String getBusinessEndTimeText() {
-        return getFieldTextByLabel(BUSINESS_END_LABEL, "Business End Time");
+    /** Reads the single combined "Business Hours (Mexico Time - GMT-6)" field — contains both start and end time; parse with EddCalculator.parseTimeRange(). */
+    public String getBusinessHoursText() {
+        return getFieldTextByLabel(BUSINESS_HOURS_LABEL, "Business Hours");
     }
 
     // Best-effort label-prefix text read, same approach as MiraklOfferPage.getFieldValueByLabel() but

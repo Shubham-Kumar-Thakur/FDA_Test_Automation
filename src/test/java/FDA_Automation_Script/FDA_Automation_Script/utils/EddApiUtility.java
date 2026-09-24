@@ -6,9 +6,14 @@ import static io.restassured.RestAssured.given;
 
 // Independent REST utility for TC_EDD_001, mirroring ReturnApiUtility's pattern (small, single-purpose,
 // own raw config.get(...) calls) rather than extending the shared ApiUtility — keeps this independent
-// EDD flow decoupled from ApiUtility's tc.ou009.*-scoped pushOffersToEmpathy(). Response JSON field
-// names are unverified until a live run (no sample response was available at write time) — callers
-// should log the full body and treat structured assertions as best-effort until confirmed.
+// EDD flow decoupled from ApiUtility's tc.ou009.*-scoped pushOffersToEmpathy(). CONFIRMED live
+// (2026-09-24): both endpoints return HTTP 200. getShopBusinessDays() body is
+// {"message":"Calendars synced successfully","scope":"all"} — this is a SYNC TRIGGER, not a data
+// query; it does NOT return working days/non-working days/holidays/cut-off time/business hours at
+// all, contradicting the manual test case's expectation of reading that data back from this call.
+// pushOffersToEmpathy() body is {"code":200,"status":"Success","offers":[]}. Callers should assert
+// only HTTP 200 against these two calls; there is no calendar/offer data in either body to assert
+// against structurally.
 public class EddApiUtility {
 
     private static final ConfigReader config = ConfigReader.getInstance();
