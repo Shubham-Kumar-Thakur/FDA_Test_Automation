@@ -1,1 +1,26 @@
 2026-09-24 19:35:42 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Starting browser + Mirakl Seller login ===
+2026-09-24 19:35:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-24 19:35:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-24 19:35:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-24 19:35:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-24 19:36:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-24 19:36:03 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-24 19:36:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
+2026-09-24 19:36:03 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+skhu**********@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-24 19:36:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - OTP code entered (real evidence, not a timer) — clicking Continue.
+2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Mirakl Seller login complete ===
+2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: CAPTURE SELLER BUSINESS CALENDAR ====================
+2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Settings > Shop > Business Calendar
