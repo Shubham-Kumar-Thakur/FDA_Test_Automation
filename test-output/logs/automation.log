@@ -24,3 +24,15 @@ Copyright © 2026 Mirakl
 2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Mirakl Seller login complete ===
 2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: CAPTURE SELLER BUSINESS CALENDAR ====================
 2026-09-24 19:37:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Settings > Shop > Business Calendar
+2026-09-24 19:39:08 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PHASE 1 failed (discovery mode — continuing to later phases): invalid session id: session deleted as the browser has closed the connection
+from disconnected: unable to send message to renderer
+  (Session info: chrome=153.0.8010.53)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [8d720ea0ff1e2c88e6bbf0b5517a2bb1, findElement {value=//span[normalize-space()='Settings'], using=xpath}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 153.0.8010.53, chrome: {chromedriverVersion: 153.0.8010.52 (78e5e45d4bb4..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57590}, goog:processID: 13040, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57590/devtoo..., se:cdpVersion: 153.0.8010.53, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8d720ea0ff1e2c88e6bbf0b5517a2bb1
+2026-09-24 19:39:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: PICK RANDOM OFFER FOR SELLER ====================
+2026-09-24 19:39:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-24 19:39:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Tearing down browser ===
