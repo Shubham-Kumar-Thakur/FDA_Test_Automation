@@ -111,6 +111,7 @@ src/
         fda/
           FDAHomePage.java          ← Home, search, cart icon, profile icon, logout()
           FDALoginPage.java         ← Email/password login
+          FDASearchResultsPage.java ← PLP: isResultsGridDisplayed(), getResultItemPrice(), openMatchingResult() (added for TC_OU_009_Test)
           FDAPDPPage.java           ← Product Details Page; increaseQuantity() clicks Aumentar plus button
           FDACartPage.java          ← Cart validation, removeAllItems()
           FDAPaymentPage.java       ← Credit card checkout, handle3dsChallenge()
@@ -161,7 +162,7 @@ src/
         TC_FBO_030_Test.java
         TC_FBO_031_Test.java
         TC_FBO_032_Test.java
-        TC_FBO_SPLIT_01_Test.java   ← DELETED from working tree (uncommitted) but still referenced by testng.xml — see Test Case Catalog note
+        TC_FBO_SPLIT_01_Test.java   ← referenced by testng.xml's "TEST 13" block — see Test Case Catalog note
         TC_FBS_001_Test.java
         TC_FBS_002_Test.java
         TC_FBS_003_Test.java
@@ -177,8 +178,9 @@ src/
     resources/
       config.properties             ← All URLs, credentials, API tokens
       log4j2.xml                    ← Log configuration
-      testng.xml                    ← Suite definition (36 <test> blocks, sequential)
+      testng.xml                    ← Suite definition (25 <test> blocks, sequential — see "testng.xml execution order" below)
       testng_fbs.xml                 ← FBS-only suite: all TC_FBS_00X tests (currently 001-012), no TC_FBO_* tests
+      testngOfferAndProductModule.xml ← Runs OfferAndProductModule/TC_FBS_001_Test + TC_OU_009_Test (2 <test> blocks); not part of testng.xml or testng_fbs.xml
 ```
 
 ## Output Artifacts
@@ -331,7 +333,7 @@ Call `ApiUtility.kiboSkipValidateItemsTask(token, shipmentNumber)` when staging 
 **testng.xml execution order:**
 Suite runs 25 `<test>` blocks sequentially (TC_FBS_001–012 share a single `<test>` block — see FBS/FBO Group-Level Login for why). Actual order:
 `001 → 002 → 003 → 004 → 005 → 006 → 007 → 008 → 009 → 010 → 011 → 012 → SPLIT_01 → 020 → 021 → 022 → 023 → 026 → 027 → 028 → 029 → 030 → 031 → 032 → (FBS_001…FBS_012 in one shared <test> block)`
-TC_FBO_SPLIT_01 runs **before** TC_FBO_020 (XML labels it "TEST 13"). TC_FBS_001–012 run last; all twelve also live together in the shared `testng_fbs.xml` for FBS-only runs (see Run Tests above). Neither `TC_E2E_004_Test` nor the `OfferAndProductModule` package (`TC_FBS_001_Test`, `TC_OU_009_Test`) is referenced by `testng.xml` — they are separate, independently-run test classes (see "Offer & Product Automation (second module)" below).
+TC_FBO_SPLIT_01 runs **before** TC_FBO_020 (XML labels it "TEST 13"). TC_FBS_001–012 run last; all twelve also live together in the shared `testng_fbs.xml` for FBS-only runs (see Run Tests above). None of the three classes in `tests/OfferAndProductModule/` (`TC_FBS_001_Test`, `TC_OU_009_Test`, `TC_E2E_004_Test`) are referenced by `testng.xml` — they are separate, independently-run test classes (see "Offer & Product Automation (second module)" below).
 PayPal TCs (TC_FBO_007–012, TC_FBS_007–012): update `TC_PAYPAL_PASS` constant in each test class before running — password is intentionally left blank in committed code. Always re-blank (`TC_PAYPAL_PASS = ""`) before committing; TC_FBO_008–012 are especially at risk because they carry filled-in passwords locally.
 
 **Cancel API auth (TC_FBO_027/028):**
@@ -475,7 +477,7 @@ Do NOT commit this file to shared/public repositories.
 
 ## Offer & Product Automation (second module, separate from Order Lifecycle)
 
-A second, independent automation effort lives alongside the Order Lifecycle framework above. It targets Mirakl catalog/offer management (Seller + Operator roles) and Adobe Commerce (Magento) MCM sync, not the FDA order flow. None of these classes are wired into `testng.xml` or `testng_fbs.xml`, and **their source files still compile as part of every `mvn test` run** (Maven compiles all of `src/test/java` regardless of which suite XML runs) — see the blocking-build-issue callout under Test Case Catalog.
+A second, independent automation effort lives alongside the Order Lifecycle framework above. It targets Mirakl catalog/offer management (Seller + Operator roles) and Adobe Commerce (Magento) MCM sync, not the FDA order flow. All three classes live in `tests/OfferAndProductModule/`. None of these classes are wired into `testng.xml` or `testng_fbs.xml`, but **their source files still compile as part of every `mvn test` run** (Maven compiles all of `src/test/java` regardless of which suite XML runs) — a compile error in any of them will break every other suite's build too.
 
 **`tests/OfferAndProductModule/TC_FBS_001_Test.java`** — a from-scratch re-implementation of the order-lifecycle `TC_FBS_001` flow (same package name collision avoided: this one lives in the `tests.OfferAndProductModule` sub-package, not `tests`), but with a deliberately different architecture:
 - Does **not** extend `BaseClass` — no group-level login, no shared ThreadLocal driver.
@@ -483,7 +485,7 @@ A second, independent automation effort lives alongside the Order Lifecycle fram
 - Reads test data from its own `src/test/resources/testdata/TC_FBS_001.properties` via `TCFBS001TestDataReader`, isolated from `config.properties` — so this class and the order-lifecycle `TC_FBS_001_Test` never share configuration despite the same class/test name.
 - Run via `mvn test -DsuiteXmlFile=src/test/resources/testngOfferAndProductModule.xml` (its own single-class suite) or `mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_FBS_001_Test`.
 
-**`tests/TC_E2E_004_Test.java`** — a standalone (not `testng.xml`-referenced; run only via `mvn test -Dtest=TC_E2E_004_Test`) full product+offer lifecycle: Seller uploads a Product Excel (`MiraklProductImportsPage`) → Operator approves via Catalog Management (`MiraklCatalogManagementPage`) → Adobe Admin MCM sync (`AdobeLoginPage`, `AdobeSynchronizationPage.clickImportToMagento()`) → both roles verify Published status → Offer Excel import (`MiraklFileImportsPage`, with retry/regenerate-SKU logic) → offer verified Active (`MiraklOfferPage`) → final FDA storefront PDP check. Extends `BaseClass` but overrides `setupSuite()` to skip FDA/Mirakl login entirely (`BaseClass` itself is untouched). Uses `ExcelImportValidator` to validate/auto-correct/regenerate IDs in the combined product+offer import Excel. All its config keys (`jnag.*`, `tc.e2e004.*`) are present in `config.properties`, but the two Excel path values are hardcoded to a specific tester's `Downloads` folder — update them for your machine before running.
+**`tests/OfferAndProductModule/TC_E2E_004_Test.java`** — a standalone (not `testng.xml`-referenced; run via `mvn test -Dtest=TC_E2E_004_Test` or the fully-qualified `-Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_E2E_004_Test`) full product+offer lifecycle: Seller uploads a Product Excel (`MiraklProductImportsPage`) → Operator approves via Catalog Management (`MiraklCatalogManagementPage`) → Adobe Admin MCM sync (`AdobeLoginPage`, `AdobeSynchronizationPage.clickImportToMagento()`) → both roles verify Published status → Offer Excel import (`MiraklFileImportsPage`, with retry/regenerate-SKU logic) → offer verified Active (`MiraklOfferPage`) → final FDA storefront PDP check. Extends `BaseClass` but overrides `setupSuite()` to skip FDA/Mirakl login entirely (`BaseClass` itself is untouched). Uses `ExcelImportValidator` to validate/auto-correct/regenerate IDs in the combined product+offer import Excel. All its config keys (`jnag.*`, `tc.e2e004.*`) are present in `config.properties`, but the two Excel path values are hardcoded to a specific tester's `Downloads` folder — update them for your machine before running.
 
 **`tests/OfferAndProductModule/TC_OU_009_Test.java`** ("Offer Update") — Mirakl Seller updates an offer's price via Excel import, pushes the change to FDA's search index, then verifies the new price on the FDA storefront (PLP + PDP). Same architecture as this package's `TC_FBS_001_Test`: does **not** extend `BaseClass`, uses a single `DualDriverManager`-created Chrome instance logged into Mirakl in its own `@BeforeSuite` (`setupMiraklSession()`); the FDA storefront is opened in a **new tab within that same browser** during Phase 4 (not a second browser, since Mirakl and FDA phases never run concurrently). Flow: Phase 0 reads the offer Excel and prompts for a new price (`-Dtc.ou009.price=<value>`, required under Maven Surefire's forked JVM — stdin fallback for IDE/standalone runs) and writes it back via `ExcelUtility.updatePrice()`; Phase 1 captures the shop name and pre-update price/name from Mirakl Offers (search by Product ID, asserts exactly one result); Phase 2 uploads the Excel via `MiraklFileImportsPage` (Offers content type) and verifies the import reaches a terminal non-failed state; Phase 3 re-verifies the price changed and matches Excel; Phase 3B calls `ApiUtility.pushOffersToEmpathy()` (GET, cookie auth, retries 3x on connection failure, asserts HTTP 200); Phase 4 logs into FDA, searches by product name, checks the PLP price (non-blocking, 5 retries) then the PDP name/SKU/price (authoritative, with a seller-specific-offer-row fallback via `FDAPDPPage.getSellerOfferPrice()` if the PDP buy-box belongs to a different winning seller). Registered in `testngOfferAndProductModule.xml` alongside `TC_FBS_001_Test` as a second `<test>` block — run the whole suite via `mvn test -DsuiteXmlFile=src/test/resources/testngOfferAndProductModule.xml -Dtc.ou009.price=<value>`, or single-class via `mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.OfferAndProductModule.TC_OU_009_Test -Dtc.ou009.price=<value>`. Note: since TestNG fires every class's own `@BeforeSuite` once each before any test in the suite runs, running the combined suite opens all three browser windows (2 for `TC_FBS_001`, 1 for `TC_OU_009`) up front rather than lazily per `<test>` block.
 

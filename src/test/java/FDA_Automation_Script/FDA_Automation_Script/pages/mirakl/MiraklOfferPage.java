@@ -8,11 +8,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -1888,6 +1892,101 @@ public class MiraklOfferPage extends BasePage {
         String text = getText(column);
         LoggerUtility.info("Offer " + offerSku + " column " + columnIndex + ": " + text);
         return text;
+    }
+
+    // --- TC_EDD_001: select + edit an existing offer ---
+    // No existing capability in this class opens an existing offer for editing (confirmed — today's
+    // only offer-editing path is the Add Offer/Create Offer *creation* form, and price updates
+    // elsewhere in this codebase go through Excel import instead, see TC_OU_009_Test). The field
+    // read/write itself reuses the existing generic setFieldByLabel()/getFieldValueByLabel() helpers
+    // above rather than adding new single-field methods.
+    // TODO: Verify against actual DOM — opening/saving an existing offer's edit form has never been
+    // live-probed, unlike the rest of this class's confirmed locators.
+    private static final By EDIT_OFFER_FORM_ANCHOR = By.xpath("//form[contains(@id,'ffer')]");
+    private static final By SAVE_OFFER_EDIT_BUTTON = By.xpath(
+        "//button[contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save') "
+        + "or contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'update')]");
+
+    public static class SelectedOffer {
+        public final String offerSku;
+        public final String productSku;
+        public final String productName;
+
+        public SelectedOffer(String offerSku, String productSku, String productName) {
+            this.offerSku = offerSku;
+            this.productSku = productSku;
+            this.productName = productName;
+        }
+    }
+
+    // Reads the first visible row in the current Offers list and returns its identifying data —
+    // used by TC_EDD_001 to pick "any random product id for that seller" (Seller login already
+    // scopes the Offers list to this seller's own offers, so the first row is sufficient). Column
+    // indices reuse the same confirmed order documented above getOfferProductName().
+    public SelectedOffer selectRandomOfferForSeller() {
+        Object rowData = ((JavascriptExecutor) driver).executeScript(
+            "var row = document.querySelector('tbody tr');"
+            + "if (!row) return null;"
+            + "var cells = row.querySelectorAll('td');"
+            + "if (cells.length < 9) return null;"
+            + "return [cells[2].textContent.trim(), cells[8].textContent.trim(), cells[1].textContent.trim()];");
+        if (rowData == null) {
+            throw new RuntimeException("No offer rows found in the current Offers list — cannot select a random offer");
+        }
+        @SuppressWarnings("unchecked")
+        List<Object> parts = (List<Object>) rowData;
+        String offerSku = parts.get(0).toString();
+        String productSku = parts.get(1).toString();
+        String rawName = parts.get(2).toString();
+        String productName = rawName.split("\\r?\\n")[0].trim();
+        LoggerUtility.info("Selected random offer — Offer SKU: " + offerSku + ", Product SKU: " + productSku
+            + ", Product Name: " + productName);
+        return new SelectedOffer(offerSku, productSku, productName);
+    }
+
+    public void openOfferForEdit(String offerSku) {
+        LoggerUtility.info("Opening offer " + offerSku + " for edit");
+        By row = By.xpath("//tbody//tr[contains(.,'" + offerSku + "')]");
+        jsClick(row);
+        // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — this form's anchor
+        // locator is unconfirmed (see TODO above), so a wrong guess surfaces the real page structure
+        // via logFormGroupLabels() in well under a minute instead of burning a full 2-minute timeout.
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOfElementLocated(EDIT_OFFER_FORM_ANCHOR));
+        } catch (TimeoutException e) {
+            logFormGroupLabels("EDIT_OFFER_FORM_ANCHOR not found");
+            throw e;
+        }
+        logFormGroupLabels("Edit offer form opened");
+    }
+
+    // Diagnostic dump — every .form-group's leading label-ish text on the current page, for
+    // discovering the real "Lead Time to Ship" field label (and confirming the edit-form anchor)
+    // when the guessed locators don't match. Same convention as
+    // MiraklShopSettingsPage.logVisibleTabTexts().
+    private void logFormGroupLabels(String contextLabel) {
+        Object labels = ((JavascriptExecutor) driver).executeScript(
+            "var groups = document.querySelectorAll('.form-group');"
+            + "var out = [];"
+            + "for (var i = 0; i < groups.length && out.length < 80; i++) {"
+            + "  var t = groups[i].textContent.trim().split('\\n')[0].trim();"
+            + "  if (t) out.push(t);"
+            + "}"
+            + "return out.join(' | ');");
+        LoggerUtility.warn("DIAGNOSTIC (" + contextLabel + ") — .form-group label texts: " + labels);
+        LoggerUtility.warn("DIAGNOSTIC — current URL: " + driver.getCurrentUrl());
+    }
+
+    public void saveOfferEdit() {
+        LoggerUtility.info("Saving offer edit");
+        jsClick(SAVE_OFFER_EDIT_BUTTON);
+    }
+
+    public boolean isOfferEditSuccessful() {
+        boolean success = isDisplayed(SUCCESS_MESSAGE_BANNER);
+        LoggerUtility.info("Offer edit success banner displayed: " + success);
+        return success;
     }
 
     // --- Unique test data generation ---

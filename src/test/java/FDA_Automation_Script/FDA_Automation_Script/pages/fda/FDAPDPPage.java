@@ -221,6 +221,32 @@ public class FDAPDPPage extends BasePage {
         return value;
     }
 
+    // TODO: Verify locators against actual DOM — never live-probed yet (added for TC_EDD_001).
+    // Candidate XPaths cover common Spanish/English EDD label phrasing ("Entrega estimada", "Fecha
+    // de entrega", "Llega el", "Estimated delivery") plus a generic "delivery"/"entrega" fallback.
+    // Same JS document.evaluate/textContent pattern as getProductSku() above — visibility-independent
+    // read, since this value may live inside a JS-controlled-visibility accordion/widget like SKU does.
+    private static final String EDD_XPATH =
+        "//*[contains(translate(normalize-space(),'ENTREGA','entrega'),'entrega estimada')]"
+        + " | //*[contains(translate(normalize-space(),'ESTIMATEDDELIVERY','estimateddelivery'),'estimated delivery')]"
+        + " | //*[contains(normalize-space(),'Llega el')]"
+        + " | //*[contains(@class,'edd') or contains(@class,'delivery-date') or contains(@class,'estimated-delivery')]";
+
+    public String getEstimatedDeliveryDateText() {
+        Object edd = ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
+            "var candidates = document.evaluate(arguments[0], document, null, "
+            + "XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);"
+            + "for (var i = 0; i < candidates.snapshotLength; i++) {"
+            + "  var t = candidates.snapshotItem(i).textContent.trim();"
+            + "  if (t) return t;"
+            + "}"
+            + "return '';",
+            EDD_XPATH);
+        String value = edd == null ? "" : edd.toString().trim();
+        LoggerUtility.info("PDP Estimated Delivery Date (read via JS textContent): " + value);
+        return value;
+    }
+
     public boolean isDisplayed() {
         Object visible = ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
             "var el = document.evaluate(\"//div//button[@id='product-addtocart-button' and @title='Agregar al carrito']\", "
