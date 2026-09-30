@@ -80,6 +80,19 @@ public class FDASearchResultsPage extends BasePage {
         return false;
     }
 
+    // Added for TC_EDD_001's SKU-only search: an exact-SKU search should return exactly one match, and
+    // the PLP tile's visible text doesn't include the raw SKU (only name/price), so a text-contains
+    // match against the SKU string always fails even when the right (only) result is present. Opens
+    // whichever result is first, with no text-matching at all.
+    public void openFirstResult() {
+        List<WebElement> items = driver.findElements(RESULT_ITEMS);
+        if (items.isEmpty()) {
+            throw new org.openqa.selenium.NoSuchElementException("No search result items present to open");
+        }
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", items.get(0));
+        LoggerUtility.info("Clicked first search result (no text-matching)");
+    }
+
     public void clickProductInResults(String identifier) {
         for (WebElement el : driver.findElements(RESULT_ITEMS)) {
             String text = el.getText();

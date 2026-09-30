@@ -187,14 +187,23 @@ public class TC_EDD_001_Test {
         Assert.assertTrue(fdaHomePage.isLoggedIn(), "Phase 3: FDA login should succeed");
         LoggerUtility.info("PASS — FDA storefront login successful");
 
+        // Per explicit instruction: search FDA by SKU only, not product name.
+        String searchSku = stripSkuPrefix(selectedOffer.productSku);
         fdaHomePage.navigateTo(config.get("fda.url"));
-        fdaHomePage.enterSearchQuery(selectedOffer.productName);
+        fdaHomePage.enterSearchQuery(searchSku);
         fdaHomePage.pressSearchEnter();
 
-        Assert.assertTrue(fdaSearchResultsPage.isProductInResults(selectedOffer.productName),
-            "Phase 3: Product '" + selectedOffer.productName + "' should appear in FDA search results");
-        fdaSearchResultsPage.openMatchingResult(selectedOffer.productName);
-        Assert.assertTrue(fdaPdpPage.isDisplayed(), "Phase 3: PDP should be displayed after opening the search result");
+        // Per explicit instruction: an exact-SKU search should return exactly one match, so open
+        // whatever single result appears rather than text-matching against the SKU (PLP tiles show
+        // name/price, not the raw SKU, so a text-contains match against the SKU string always fails).
+        // Also handles the FDASearchResultsPage-documented case (see TC_FBO_001) where an exact-SKU
+        // search redirects straight to the PDP with no results grid at all.
+        if (fdaSearchResultsPage.isResultsGridDisplayed()) {
+            fdaSearchResultsPage.openFirstResult();
+        } else {
+            LoggerUtility.info("No results grid after SKU search — assuming it redirected straight to the PDP");
+        }
+        Assert.assertTrue(fdaPdpPage.isDisplayed(), "Phase 3: PDP should be displayed after searching by SKU '" + searchSku + "'");
 
         String initialEddText = fdaPdpPage.getEstimatedDeliveryDateText();
         ZonedDateTime referenceTimestampMx = ZonedDateTime.now(ZoneId.of("America/Mexico_City"));
@@ -386,6 +395,14 @@ public class TC_EDD_001_Test {
 
     private String normalizeForDateMatch(String value) {
         return value.toLowerCase(Locale.ROOT).replace(".", "").replaceAll("\\s+", " ").trim();
+    }
+
+    // Mirakl's Offers grid column text for Product SKU is scraped verbatim as e.g. "SKU: 60095400091"
+    // (the cell's own "SKU:" label is baked into the text) — strip that label so the FDA search box
+    // receives just the plain SKU value.
+    private String stripSkuPrefix(String rawSku) {
+        if (rawSku == null) return "";
+        return rawSku.replaceFirst("(?i)^\\s*sku\\s*:\\s*", "").trim();
     }
 
     private void sleep(long ms) {

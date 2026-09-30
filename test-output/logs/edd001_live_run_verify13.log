@@ -1,0 +1,242 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\SakshiKhullar\Git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 6 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-09-30T07:32:27.513295900Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-09-30T07:32:27.544304300Z main WARN Some custom `Core` Log4j plugins are not properly registered:
+	FDA_Automation_Script.FDA_Automation_Script.appenders.ExtentReportLog4j2Appender
+Please consider reporting this to the maintainers of these plugins.
+See https://logging.apache.org/log4j/2.x/manual/plugins.html#plugin-registry for details.
+2026-09-30 13:02:27 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Starting browser + Mirakl Seller login ===
+Sep 30, 2026 1:02:31 PM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 154
+Sep 30, 2026 1:02:31 PM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 154.0.8037.58. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-09-30 13:02:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-09-30 13:02:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-09-30 13:02:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-09-30 13:02:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-09-30 13:02:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-09-30 13:02:38 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-09-30 13:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
+2026-09-30 13:02:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+skhu**********@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-09-30 13:02:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - OTP code entered (real evidence, not a timer) — clicking Continue.
+2026-09-30 13:02:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-09-30 13:02:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-09-30 13:02:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-09-30 13:02:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Mirakl Seller login complete ===
+2026-09-30 13:02:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: CAPTURE SELLER BUSINESS CALENDAR ====================
+2026-09-30 13:02:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Settings > Shop > Business Calendar
+2026-09-30 13:03:09 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar tab opened
+2026-09-30 13:03:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Working Days: Sunday,Monday,Tuesday,Wednesday,Thursday,Friday
+2026-09-30 13:03:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Non-Working Days (weekly): Saturday
+2026-09-30 13:03:25 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC (getHolidaysText found nothing after 10s poll) — heading="Business holidays" | level0 innerHTML(first 500)=<h2 class="_6e782__sc-67pq6s-0 fqZoMg _6e782__sc-13ax7tw-0 hJCAFz">Business holidays</h2> ||| level1 innerHTML(first 500)=<div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hpzYSs"><h2 class="_6e782__sc-67pq6s-0 fqZoMg _6e782__sc-13ax7tw-0 hJCAFz">Business holidays</h2></div> ||| level2 innerHTML(first 500)=<div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 eXOJNz _6e782__sc-13ax7tw-1 cxDXQC"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hpzYSs"><h2 class="_6e782__sc-67pq6s-0 fqZoMg _6e782__sc-13ax7tw-0 hJCAFz">Business holidays</h2></div></div> ||| level3 innerHTML(first 500)=<div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hyqGdG"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 eXOJNz _6e782__sc-13ax7tw-1 cxDXQC"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hpzYSs"><h2 class="_6e782__sc-67pq6s-0 fqZoMg _6e782__sc-13ax7tw-0 hJCAFz">Business holidays</h2></div></div></div> ||| level4 innerHTML(first 500)=<div class="_6e782__sc-7gtqt3-0 bugaOg _6e782__sc-1p07n99-0 lknSHa"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hyqGdG"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 eXOJNz _6e782__sc-13ax7tw-1 cxDXQC"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hpzYSs"><h2 class="_6e782__sc-67pq6s-0 fqZoMg _6e782__sc-13ax7tw-0 hJCAFz">Business holidays</h2></div></div></div></div> ||| level5 innerHTML(first 500)=<div class="_6e782__sc-7gtqt3-0 eAcqSI _6e782__sc-1p07n99-0 iHqtTt"><div class="_6e782__sc-7gtqt3-0 bugaOg _6e782__sc-1p07n99-0 lknSHa"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hyqGdG"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 eXOJNz _6e782__sc-13ax7tw-1 cxDXQC"><div class="_6e782__sc-7gtqt3-0 hiOYbZ _6e782__sc-1p07n99-0 hpzYSs"><h2 class="_6e782__sc-67pq6s-0 fqZoMg _6e782__sc-13ax7tw-0 hJCAFz">Business holidays</h2></div></div></div></div></div>
+2026-09-30 13:03:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Holidays: (none configured)
+2026-09-30 13:03:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Business Hours: 12:30 am to 1:00 am
+2026-09-30 13:03:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseWorkingDays: parsed [WEDNESDAY, MONDAY, THURSDAY, FRIDAY, SUNDAY, TUESDAY] from 'Sunday,Monday,Tuesday,Wednesday,Thursday,Friday'
+2026-09-30 13:03:25 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: unrecognized date token 'Saturday'
+2026-09-30 13:03:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: parsed [] from 'Saturday'
+2026-09-30 13:03:25 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: blank input
+2026-09-30 13:03:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseTimeRange: parsed '12:30 am to 1:00 am' as start=00:30, end=01:00
+2026-09-30 13:03:25 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar captured — Working Days: [WEDNESDAY, MONDAY, THURSDAY, FRIDAY, SUNDAY, TUESDAY], Non-Working Days: [], Holidays: [], Business Start: 00:30, Business End (seller cut-off time): 01:00
+2026-09-30 13:03:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE1_BUSINESS_CALENDAR_INFO.png
+2026-09-30 13:03:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: PICK RANDOM OFFER FOR SELLER ====================
+2026-09-30 13:03:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-30 13:03:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-30 13:03:26 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking 'All' tab (no 'Pending offers' tab exists — 'All' is the broadest view, includes not-yet-active offers)
+2026-09-30 13:03:32 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers grid row not yet populated (attempt 1/10) — retrying
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers grid row populated on attempt 2/10 — Offer SKU: S3256
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer S3256 column 9: SKU: 60095400091
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer S3256 column 2: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+Bebé
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selected random offer — Offer SKU: S3256, Product SKU: SKU: 60095400091, Product Name: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Selected offer for this run: Offer SKU=S3256, Product SKU=SKU: 60095400091, Product Name=Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening offer for edit — Product ID: SKU: 60095400091
+2026-09-30 13:03:33 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking offer detail link: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-09-30 13:03:37 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC (Edit offer form opened) — .form-group label texts: Offer SKU | Condition | Description (in Spanish) | Stock quantity | Lead time to ship | Min order quantity | Max order quantity | Availability | Quantity alert | Internal description | Price information (in Spanish) | MDA Percentage | MDA Percentage | MSI | MSI | Logistics | Logistics
+2026-09-30 13:03:37 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC — current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-09-30 13:03:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Current Lead Time to Ship (kept for later): 3
+2026-09-30 13:03:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE2_OFFER_SELECTED_INFO.png
+2026-09-30 13:03:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3: FDA — CAPTURE INITIAL EDD ====================
+2026-09-30 13:03:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opened FDA storefront in new tab: A814C98379A206F9404594B06DC2874B
+2026-09-30 13:03:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: skhullar@kognivera.com
+2026-09-30 13:03:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-09-30 13:03:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
+2026-09-30 13:03:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for skhullar@kognivera.com
+2026-09-30 13:03:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA storefront login successful
+2026-09-30 13:03:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-09-30 13:03:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-30 13:03:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-09-30 13:04:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Search result found matching: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-30 13:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicked search result matching: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-09-30 13:04:06 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Add to Cart button visible: true
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 4/6 (read via JS textContent): Entrega estimada 5/Oct. a
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Initial PDP EDD: 'Entrega estimada 5/Oct. a', current Mexico timestamp: 2026-09-30T01:34:10.494081100-06:00[America/Mexico_City]
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE3_INITIAL_EDD_INFO.png
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 4: MIRAKL — UPDATE LEAD TIME TO SHIP ====================
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New Lead Time to Ship supplied via -Dtc.edd001.lead.time.to.ship=5
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New Lead Time to Ship to apply: 5
+2026-09-30 13:04:10 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-09-30 13:04:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-09-30 13:04:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening offer for edit — Product ID: SKU: 60095400091
+2026-09-30 13:04:17 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking offer detail link: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-09-30 13:04:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC (Edit offer form opened) — .form-group label texts: Offer SKU | Condition | Description (in Spanish) | Stock quantity | Lead time to ship | Min order quantity | Max order quantity | Availability | Quantity alert | Internal description | Price information (in Spanish) | MDA Percentage | MDA Percentage | MSI | MSI | Logistics | Logistics
+2026-09-30 13:04:20 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC — current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-09-30 13:04:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - lead time to ship pre-seeded on 1 field(s): 5
+2026-09-30 13:04:20 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Saving offer edit
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer edit success banner displayed: true (text: Offer updated)
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer Lead Time to Ship updated to 5
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE4_OFFER_UPDATED_PASS.png
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 5: CALCULATE EXPECTED EDD ====================
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: currentMxTime=01:34:10.494081100, businessEndTime=01:00, cutoffCrossed=true
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: referenceDate=2026-09-30, leadTimeToShip=5, MAX_DELIVERY_DAYS=2, deliveryDays=7, cutoffCrossed=true
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: Case B (cutoff crossed) — effectiveOrderDate=2026-10-01, counting starts at 2026-10-02
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: expected EDD = 2026-10-09
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Expected EDD calculated: 2026-10-09
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 6: VALIDATE SERVICE SYNCHRONIZATION ====================
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Get Shop Business Days ==========
+2026-09-30 13:04:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - POST https://catalog-api-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/fda/sync/shop-business-days
+2026-09-30 13:04:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Get Shop Business Days Status : 200
+2026-09-30 13:04:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Get Shop Business Days Body   : {"message":"Calendars synced successfully","scope":"all"}
+2026-09-30 13:04:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Shop Business Days response logged above — field-level assertions are best-effort until a live run confirms the real JSON shape (see EddApiUtility.getShopBusinessDays() doc comment)
+2026-09-30 13:04:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy (EDD) ==========
+2026-09-30 13:04:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-09-30 13:04:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-09-30 13:04:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[{"sku":"34320067801","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35823","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"20000300011","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":300.0,"special_price":300.0,"offerId":"35806","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"200000300011","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35814","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"6009541001","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35824","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"90000300016","locations":[]},{"sku":"6009541002","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35828","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"90000300015","locations":[]},{"sku":"90000300014","locations":[]},{"sku":"6009541005","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35833","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"6009541006","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35834","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"6009541003","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35829","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"6009541004","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"35831","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"6009541007","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"37940","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"6009541008","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":34.8,"special_price":34.8,"offerId":"37943","quantity":1000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"20000300013","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":300.0,"special_price":300.0,"offerId":"35813","quantity":2000,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"60095410090","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":400.0,"special_price":400.0,"offerId":"40716","quantity":1999,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]},{"sku":"60095410091","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":200.0,"special_price":200.0,"offerId":"40715","quantity":999,"sellerRating":0.0,"eta":"2026-10-03","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":3,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday","Sunday"],"holidays":["01-October-2026"],"cut_off":"1:00 am"}]}]}
+2026-09-30 13:04:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS (soft) — Both API validation calls completed
+2026-09-30 13:04:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE6_API_VALIDATION_INFO.png
+2026-09-30 13:04:48 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 7: FDA — VALIDATE UPDATED EDD ====================
+2026-09-30 13:05:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 1/6 (read via JS textContent): Entrega estimada 5/Oct. a
+2026-09-30 13:05:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 1/10: Entrega estimada 5/Oct. a
+2026-09-30 13:05:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 1/6 (read via JS textContent): Entrega estimada 5/Oct. a
+2026-09-30 13:05:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 2/10: Entrega estimada 5/Oct. a
+2026-09-30 13:05:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 1/6 (read via JS textContent): Entrega estimada 5/Oct. a
+2026-09-30 13:05:15 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 3/10: Entrega estimada 5/Oct. a
+2026-09-30 13:05:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Tearing down browser ===
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 175.7 s <<< FAILURE! -- in FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test
+[ERROR] FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test.tc_edd_001_estimated_delivery_date_validation -- Time elapsed: 143.4 s <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=154.0.8037.58)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [68c7e87519abad02b0c011a63793648d, executeScript {script=var primary = document.querySelector(arguments[0]);if (primary) { var pt = primary.textContent.trim(); if (pt) return pt; }var candidates = document.evaluate(arguments[1], document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);for (var i = 0; i < candidates.snapshotLength; i++) {  var t = candidates.snapshotItem(i).textContent.trim();  if (t) return t;}return '';, args=[.arrives-label, //*[not(*) and not(self::script) and not(self::style) and contains(translate(normalize-space(),'ENTREGA','entrega'),'entrega estimada')] | //*[not(*) and not(self::script) and not(self::style) and contains(translate(normalize-space(),'ESTIMATEDDELIVERY','estimateddelivery'),'estimated delivery')] | //*[not(*) and not(self::script) and not(self::style) and contains(normalize-space(),'Llega el')]]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.58, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59840}, goog:processID: 4780, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59840/devtoo..., se:cdpVersion: 154.0.8037.58, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 68c7e87519abad02b0c011a63793648d
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:190)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+	at org.openqa.selenium.remote.RemoteWebDriver.executeScript(RemoteWebDriver.java:476)
+	at FDA_Automation_Script.FDA_Automation_Script.pages.fda.FDAPDPPage.getEstimatedDeliveryDateText(FDAPDPPage.java:260)
+	at FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test.tc_edd_001_estimated_delivery_date_validation(TC_EDD_001_Test.java:282)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:739)
+	at org.testng.TestRunner.run(TestRunner.java:614)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.apache.maven.surefire.testng.TestNGExecutor.run(TestNGExecutor.java:155)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.executeSingleClass(TestNGDirectoryTestSuite.java:102)
+	at org.apache.maven.surefire.testng.TestNGDirectoryTestSuite.execute(TestNGDirectoryTestSuite.java:91)
+	at org.apache.maven.surefire.testng.TestNGProvider.invoke(TestNGProvider.java:137)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   TC_EDD_001_Test.tc_edd_001_estimated_delivery_date_validation:282 » NoSuchSession invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=154.0.8037.58)
+Build info: version: '4.25.0', revision: '8a8aea2337'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.11'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [68c7e87519abad02b0c011a63793648d, executeScript {script=var primary = document.querySelector(arguments[0]);if (primary) { var pt = primary.textContent.trim(); if (pt) return pt; }var candidates = document.evaluate(arguments[1], document, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);for (var i = 0; i < candidates.snapshotLength; i++) {  var t = candidates.snapshotItem(i).textContent.trim();  if (t) return t;}return '';, args=[.arrives-label, //*[not(*) and not(self::script) and not(self::style) and contains(translate(normalize-space(),'ENTREGA','entrega'),'entrega estimada')] | //*[not(*) and not(self::script) and not(self::style) and contains(translate(normalize-space(),'ESTIMATEDDELIVERY','estimateddelivery'),'estimated delivery')] | //*[not(*) and not(self::script) and not(self::style) and contains(normalize-space(),'Llega el')]]}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 154.0.8037.58, chrome: {chromedriverVersion: 154.0.8037.92 (334b65d254cc..., userDataDir: C:\Users\SAKSHI~1\AppData\L...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:59840}, goog:processID: 4780, networkConnectionEnabled: false, pageLoadStrategy: eager, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59840/devtoo..., se:cdpVersion: 154.0.8037.58, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:cmtgKey: true, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 68c7e87519abad02b0c011a63793648d
+[INFO] 
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  03:01 min
+[INFO] Finished at: 2026-09-30T13:05:23+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.3.0:test (default-test) on project FDA_Mirakl_and_API_Automation: There are test failures.
+[ERROR] 
+[ERROR] Please refer to C:\Users\SakshiKhullar\Git\FDA_Test_Automation\target\surefire-reports for the individual test results.
+[ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

@@ -169,28 +169,50 @@ public class MiraklShopSettingsPage extends BasePage {
     // to ever reach the table. Fixed by climbing successive parentElement levels from the heading and
     // checking each one's subtree for actual rows, stopping at the first level that has any — instead of
     // one fixed `closest()` guess.
+    // ROOT-CAUSED live (2026-09-30, TC_EDD_001, 2nd probe): climbing up to 6 ancestor levels from the
+    // heading (the previous fix) still found nothing — the diagnostic dump showed every one of those 6
+    // levels contains ONLY the same single-child wrapper chain down to the bare `<h2>`, no sibling
+    // content anywhere in that chain. So the actual holiday table is not reachable via ancestor-climbing
+    // from the heading at all — it must live elsewhere in the DOM (a sibling of some much higher
+    // ancestor, or a separate section entirely). Rather than keep guessing ancestor depth, this now
+    // falls back to a page-wide row search (no scope restriction) if the ancestor climb (widened to 8
+    // levels for extra margin) finds nothing — safe because this narrow Business Calendar tab has no
+    // other genuine data table on it (working days/non-working days are checkboxes, business hours are
+    // text inputs).
     public String getHolidaysText() {
         String value = "";
         for (int attempt = 1; attempt <= 10; attempt++) {
             Object result = ((JavascriptExecutor) driver).executeScript(
-                "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
+                // CONFIRMED live (2026-09-30, TC_EDD_001, 3rd probe): a found row's raw textContent is a
+                // single un-delimited blob like "thrusShop account holiday1/10/2026 (GMT-6)-" (day-name
+                // abbreviation + holiday-type label + date + timezone note, all concatenated with no
+                // separators) — passing that whole blob to EddCalculator.parseDates() (which only splits
+                // on ,/\n/; ) leaves it as one unparseable token. Extract just the d/m/yyyy-shaped date
+                // substring via regex per row instead of returning the raw blob.
+                "function rowsToText(scope) {"
+                + "  var rows = scope.querySelectorAll('table tbody tr, [role=\"row\"]');"
+                + "  var out = [];"
+                + "  var dateRe = /\\d{1,2}\\/\\d{1,2}\\/\\d{4}/;"
+                + "  for (var i = 0; i < rows.length; i++) {"
+                + "    var t = rows[i].textContent.trim();"
+                + "    if (!t) continue;"
+                + "    var m = t.match(dateRe);"
+                + "    out.push(m ? m[0] : t);"
+                + "  }"
+                + "  return out.join(';');"
+                + "}"
+                + "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
                 + "  .find(function(el) { return el.textContent.toLowerCase().indexOf('holiday') !== -1; });"
-                + "if (!heading) return '';"
-                + "var node = heading;"
-                + "for (var level = 0; level < 6; level++) {"
-                + "  node = node.parentElement;"
-                + "  if (!node) break;"
-                + "  var rows = node.querySelectorAll('table tbody tr, [role=\"row\"]');"
-                + "  if (rows.length > 0) {"
-                + "    var out = [];"
-                + "    for (var i = 0; i < rows.length; i++) {"
-                + "      var t = rows[i].textContent.trim();"
-                + "      if (t) out.push(t);"
-                + "    }"
-                + "    return out.join(';');"
+                + "if (heading) {"
+                + "  var node = heading;"
+                + "  for (var level = 0; level < 8; level++) {"
+                + "    node = node.parentElement;"
+                + "    if (!node) break;"
+                + "    var t = rowsToText(node);"
+                + "    if (t) return t;"
                 + "  }"
                 + "}"
-                + "return '';");
+                + "return rowsToText(document);");
             value = result == null ? "" : result.toString().trim();
             if (!value.isEmpty()) break;
             sleep(1000);
@@ -202,27 +224,24 @@ public class MiraklShopSettingsPage extends BasePage {
         return value;
     }
 
-    // Diagnostic dump — fires only when getHolidaysText() still found nothing after polling. Dumps
-    // either "no heading found at all" (locator/wording problem) or the HTML at each of the 6 climbed
-    // ancestor levels (structure problem — e.g. holidays render as chips/tags, not table rows, at any level).
+    // Diagnostic dump — fires only when getHolidaysText() still found nothing (ancestor climb AND the
+    // document-wide fallback). Dumps: all headings (locator/wording problem check), a document-wide
+    // count of table/row elements (confirms whether the fallback genuinely found zero anywhere), and any
+    // element whose own text contains "result" (Mirakl's holiday list pager, per this file's earlier
+    // "NaN results" note, is a plausible alternate anchor if the heading-based search is wrong entirely).
     private void logHolidaysDiagnostic() {
         Object diag = ((JavascriptExecutor) driver).executeScript(
-            "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
-            + "  .find(function(el) { return el.textContent.toLowerCase().indexOf('holiday') !== -1; });"
-            + "if (!heading) {"
-            + "  var allHeadings = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
-            + "    .map(function(el) { return el.textContent.trim(); }).filter(function(t) { return t; });"
-            + "  return 'NO_HEADING_CONTAINS_HOLIDAY — all headings on page: ' + allHeadings.join(' | ');"
-            + "}"
-            + "var node = heading;"
-            + "var out = [];"
-            + "for (var level = 0; level < 6; level++) {"
-            + "  node = node.parentElement;"
-            + "  if (!node) break;"
-            + "  out.push('level' + level + ' innerHTML(first 500)=' + node.innerHTML.substring(0, 500));"
-            + "}"
-            + "return 'heading=\"' + heading.textContent.trim() + '\" | ' + out.join(' ||| ');");
-        LoggerUtility.warn("DIAGNOSTIC (getHolidaysText found nothing after 10s poll) — " + diag);
+            "var allHeadings = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
+            + "  .map(function(el) { return el.textContent.trim(); }).filter(function(t) { return t; });"
+            + "var rowCount = document.querySelectorAll('table tbody tr, [role=\"row\"]').length;"
+            + "var resultEls = Array.from(document.querySelectorAll('*'))"
+            + "  .filter(function(el) { return el.children.length === 0"
+            + "    && el.textContent.toLowerCase().indexOf('result') !== -1; })"
+            + "  .map(function(el) { return el.textContent.trim(); }).slice(0, 10);"
+            + "return 'all headings: ' + allHeadings.join(' | ')"
+            + " + ' || document-wide table/row count: ' + rowCount"
+            + " + ' || leaf elements containing \"result\": ' + resultEls.join(' | ');");
+        LoggerUtility.warn("DIAGNOSTIC (getHolidaysText found nothing after 10s poll, ancestor climb + doc-wide fallback) — " + diag);
     }
 
     private void sleep(long ms) {

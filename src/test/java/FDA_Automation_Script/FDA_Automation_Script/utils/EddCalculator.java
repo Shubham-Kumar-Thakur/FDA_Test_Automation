@@ -134,6 +134,12 @@ public class EddCalculator {
 
     private static final DateTimeFormatter[] DATE_FORMATS = {
         DateTimeFormatter.ofPattern("yyyy-MM-dd"),
+        // CONFIRMED live (2026-09-30, TC_EDD_001): the Business Calendar holiday row's date is a
+        // single-digit-tolerant day-first format like "1/10/2026" (Oct 1, 2026) — "dd/MM/yyyy" and
+        // "MM/dd/yyyy" below both require exactly 2 digits per field and fail to parse a single-digit
+        // day/month at all (confirmed: LocalDate.parse threw for both against "1/10/2026"). "d/M/yyyy"
+        // (variable width) must come before both fixed-width patterns so it wins for this case.
+        DateTimeFormatter.ofPattern("d/M/yyyy"),
         DateTimeFormatter.ofPattern("dd/MM/yyyy"),
         DateTimeFormatter.ofPattern("MM/dd/yyyy"),
         DateTimeFormatter.ofPattern("d MMM yyyy", Locale.ENGLISH),
