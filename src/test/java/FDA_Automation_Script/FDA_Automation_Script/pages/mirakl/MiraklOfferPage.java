@@ -19,6 +19,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 // Locators below were verified against the live Mirakl DOM (farmaciasdelahorromx2-dev.mirakl.net,
@@ -2063,10 +2064,29 @@ public class MiraklOfferPage extends BasePage {
         }
     }
 
+    // ROOT-CAUSED live (2026-09-30, TC_EDD_001): this used to be a single isDisplayed(SUCCESS_MESSAGE_BANNER)
+    // check with no wait of its own — fine on the shared DriverFactory driver (2-minute implicit wait),
+    // but this class's driver comes from DualDriverManager, whose capabilities report `implicit: 0`.
+    // Confirmed live: the Confirm click and this check landed in the same log second every single run,
+    // so the banner (rendered async after the submit) never had a chance to appear before the check ran,
+    // permanently reporting false even once the Confirm button itself was clicked successfully. Now
+    // polls for up to 15s using the same non-empty-banner-text helper clickSubmitForApproval() uses.
     public boolean isOfferEditSuccessful() {
-        boolean success = isDisplayed(SUCCESS_MESSAGE_BANNER);
-        LoggerUtility.info("Offer edit success banner displayed: " + success);
-        return success;
+        long deadlineMs = System.currentTimeMillis() + 15_000;
+        while (System.currentTimeMillis() < deadlineMs) {
+            String bannerText = getVisibleNonEmptySuccessBannerText();
+            if (bannerText != null) {
+                boolean success = !bannerText.toLowerCase(Locale.ROOT).contains("error");
+                LoggerUtility.info("Offer edit success banner displayed: " + success + " (text: " + bannerText + ")");
+                return success;
+            }
+            sleep(300);
+        }
+        LoggerUtility.warn("Offer edit success banner displayed: false (no non-empty banner within 15s). "
+            + "Current page text (first 300 chars): "
+            + String.valueOf(((JavascriptExecutor) driver).executeScript(
+                "return document.body.innerText.substring(0, 300);")));
+        return false;
     }
 
     // --- Unique test data generation ---

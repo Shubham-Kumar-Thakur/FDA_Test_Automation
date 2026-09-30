@@ -2,18 +2,32 @@ package FDA_Automation_Script.FDA_Automation_Script.utils;
 
 import io.restassured.response.Response;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Set;
+
 import static io.restassured.RestAssured.given;
 
 // Independent REST utility for TC_EDD_001, mirroring ReturnApiUtility's pattern (small, single-purpose,
 // own raw config.get(...) calls) rather than extending the shared ApiUtility — keeps this independent
 // EDD flow decoupled from ApiUtility's tc.ou009.*-scoped pushOffersToEmpathy(). CONFIRMED live
-// (2026-09-24): both endpoints return HTTP 200. getShopBusinessDays() body is
-// {"message":"Calendars synced successfully","scope":"all"} — this is a SYNC TRIGGER, not a data
-// query; it does NOT return working days/non-working days/holidays/cut-off time/business hours at
-// all, contradicting the manual test case's expectation of reading that data back from this call.
-// pushOffersToEmpathy() body is {"code":200,"status":"Success","offers":[]}. Callers should assert
-// only HTTP 200 against these two calls; there is no calendar/offer data in either body to assert
-// against structurally.
+// (2026-09-24): getShopBusinessDays() body is {"message":"Calendars synced successfully","scope":"all"}
+// — this is a SYNC TRIGGER, not a data query; it does NOT return working days/non-working
+// days/holidays/cut-off time/business hours at all, contradicting the manual test case's expectation of
+// reading that data back from this call.
+// CORRECTED live (2026-09-30, TC_EDD_001): the doc comment used to claim pushOffersToEmpathy()'s body
+// is always {"code":200,"status":"Success","offers":[]} — that was only true when the catalog had no
+// synced offers yet. A live run with populated offers returned a full "offers" array, and each offer's
+// "locations[].holidays" carries the SAME holiday list (e.g. ["01-October-2026"]) across every offer
+// belonging to a given seller — i.e. this is shop-level holiday data, not per-offer. ROOT-CAUSED: this
+// is the AUTHORITATIVE holiday source — Mirakl's own Business Calendar UI page (scraped in Phase 1 by
+// MiraklShopSettingsPage) did NOT surface this same holiday in a live run, so EddCalculator's holiday
+// set was empty and the EDD calculation came out one business day early. extractHolidaysFromEmpathyResponse()
+// below pulls holidays from this response for use alongside (or instead of) the Business Calendar scrape.
 public class EddApiUtility {
 
     private static final ConfigReader config = ConfigReader.getInstance();

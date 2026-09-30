@@ -252,6 +252,10 @@ public class TC_EDD_001_Test {
         LoggerUtility.info("Shop Business Days response logged above — field-level assertions are best-effort "
             + "until a live run confirms the real JSON shape (see EddApiUtility.getShopBusinessDays() doc comment)");
 
+        // Per explicit instruction: give the Shop Business Days sync a moment to actually take effect
+        // server-side before pushing offers to Empathy, rather than calling it back-to-back.
+        sleep(5000);
+
         Response empathyResponse = EddApiUtility.pushOffersToEmpathy();
         softAssert.assertEquals(empathyResponse.getStatusCode(), 200,
             "Phase 6: Push Offers to Empathy should return HTTP 200. Body: " + empathyResponse.getBody().asString());
@@ -265,13 +269,20 @@ public class TC_EDD_001_Test {
 
         driver.switchTo().window(fdaTabHandle);
 
+        // Per explicit instruction: keep refreshing until the PDP actually shows the calculated
+        // expected EDD, rather than stopping as soon as ANY non-blank value different from the
+        // (often blank) initial read appears — that early-break condition was satisfied by stale
+        // leftover EDD text from a prior run/lead-time value, not the real post-update value.
         String updatedEddText = initialEddText;
-        for (int attempt = 1; attempt <= 5; attempt++) {
+        boolean formatMatch = false;
+        int maxAttempts = 10;
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
             driver.navigate().refresh();
             sleep(3000);
             updatedEddText = fdaPdpPage.getEstimatedDeliveryDateText();
-            LoggerUtility.info("Updated EDD check attempt " + attempt + "/5: " + updatedEddText);
-            if (!updatedEddText.isBlank() && !updatedEddText.equals(initialEddText)) {
+            LoggerUtility.info("Updated EDD check attempt " + attempt + "/" + maxAttempts + ": " + updatedEddText);
+            if (!updatedEddText.isBlank() && containsFormattedDate(updatedEddText, expectedEdd)) {
+                formatMatch = true;
                 break;
             }
         }
@@ -281,7 +292,6 @@ public class TC_EDD_001_Test {
             + expectedEdd + " — exact text-format matching against the calculated date is best-effort until "
             + "the real PDP date format is confirmed live; logged here for manual verification.");
 
-        boolean formatMatch = containsFormattedDate(updatedEddText, expectedEdd);
         softAssert.assertTrue(formatMatch,
             "Phase 7: PDP EDD text ('" + updatedEddText + "') should contain a recognizable representation of the "
                 + "calculated expected EDD (" + expectedEdd + ") — best-effort text-format check, refine once the "
