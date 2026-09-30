@@ -158,23 +158,79 @@ public class MiraklShopSettingsPage extends BasePage {
     // heading and returns its row text if one ever appears; returns "" (correctly, matching
     // EddCalculator's blank-input handling) for the current empty state. Re-probe against an account
     // with real holiday entries before trusting the row-parsing shape here.
+    // ROOT-CAUSED live (2026-09-30, TC_EDD_001, 1st probe): this account now has real holiday entries
+    // configured (unlike when the doc comment above was written — that "zero entries configured" state
+    // is stale), but a live run still returned "(none configured)". Adding a poll (below) found the
+    // heading fine, but a diagnostic dump of `heading.closest('section, div, form')` showed the
+    // container was JUST the bare `<h2>Business holidays</h2>` itself, with nothing else inside — the
+    // heading's immediate wrapper is a "title row" div holding only the heading, and the actual holiday
+    // table renders as a SIBLING of that wrapper, not a descendant of it. `closest()` walking up from
+    // the heading naturally stops at the first matching ancestor (the tight title wrapper) — too shallow
+    // to ever reach the table. Fixed by climbing successive parentElement levels from the heading and
+    // checking each one's subtree for actual rows, stopping at the first level that has any — instead of
+    // one fixed `closest()` guess.
     public String getHolidaysText() {
-        Object result = ((JavascriptExecutor) driver).executeScript(
-            "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
-            + "  .find(function(el) { return el.textContent.toLowerCase().indexOf('business holiday') !== -1; });"
-            + "if (!heading) return '';"
-            + "var container = heading.closest('section, div, form') || heading.parentElement;"
-            + "if (!container) return '';"
-            + "var rows = container.querySelectorAll('table tbody tr, [role=\"row\"]');"
-            + "var out = [];"
-            + "for (var i = 0; i < rows.length; i++) {"
-            + "  var t = rows[i].textContent.trim();"
-            + "  if (t) out.push(t);"
-            + "}"
-            + "return out.join(';');");
-        String value = result == null ? "" : result.toString().trim();
+        String value = "";
+        for (int attempt = 1; attempt <= 10; attempt++) {
+            Object result = ((JavascriptExecutor) driver).executeScript(
+                "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
+                + "  .find(function(el) { return el.textContent.toLowerCase().indexOf('holiday') !== -1; });"
+                + "if (!heading) return '';"
+                + "var node = heading;"
+                + "for (var level = 0; level < 6; level++) {"
+                + "  node = node.parentElement;"
+                + "  if (!node) break;"
+                + "  var rows = node.querySelectorAll('table tbody tr, [role=\"row\"]');"
+                + "  if (rows.length > 0) {"
+                + "    var out = [];"
+                + "    for (var i = 0; i < rows.length; i++) {"
+                + "      var t = rows[i].textContent.trim();"
+                + "      if (t) out.push(t);"
+                + "    }"
+                + "    return out.join(';');"
+                + "  }"
+                + "}"
+                + "return '';");
+            value = result == null ? "" : result.toString().trim();
+            if (!value.isEmpty()) break;
+            sleep(1000);
+        }
+        if (value.isEmpty()) {
+            logHolidaysDiagnostic();
+        }
         LoggerUtility.info("Business Calendar — Holidays: " + (value.isEmpty() ? "(none configured)" : value));
         return value;
+    }
+
+    // Diagnostic dump — fires only when getHolidaysText() still found nothing after polling. Dumps
+    // either "no heading found at all" (locator/wording problem) or the HTML at each of the 6 climbed
+    // ancestor levels (structure problem — e.g. holidays render as chips/tags, not table rows, at any level).
+    private void logHolidaysDiagnostic() {
+        Object diag = ((JavascriptExecutor) driver).executeScript(
+            "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
+            + "  .find(function(el) { return el.textContent.toLowerCase().indexOf('holiday') !== -1; });"
+            + "if (!heading) {"
+            + "  var allHeadings = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
+            + "    .map(function(el) { return el.textContent.trim(); }).filter(function(t) { return t; });"
+            + "  return 'NO_HEADING_CONTAINS_HOLIDAY — all headings on page: ' + allHeadings.join(' | ');"
+            + "}"
+            + "var node = heading;"
+            + "var out = [];"
+            + "for (var level = 0; level < 6; level++) {"
+            + "  node = node.parentElement;"
+            + "  if (!node) break;"
+            + "  out.push('level' + level + ' innerHTML(first 500)=' + node.innerHTML.substring(0, 500));"
+            + "}"
+            + "return 'heading=\"' + heading.textContent.trim() + '\" | ' + out.join(' ||| ');");
+        LoggerUtility.warn("DIAGNOSTIC (getHolidaysText found nothing after 10s poll) — " + diag);
+    }
+
+    private void sleep(long ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     // CONFIRMED live (2026-09-25, TC_EDD_001): "Open from"/"To" are two separate custom time-picker
