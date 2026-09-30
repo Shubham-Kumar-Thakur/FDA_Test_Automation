@@ -1512,11 +1512,21 @@ public class MiraklOfferPage extends BasePage {
     // Returns the first non-empty banner's own text (or null if none) — callers must inspect this
     // text for known error phrases themselves; presence/non-emptiness alone is not proof of success
     // (see clickSubmitForApproval()'s own root-cause note on why boolean-only used to false-positive).
+    // CONFIRMED live (2026-09-30, TC_EDD_001): a StaleElementReferenceException from el.getText() here
+    // aborted the whole offer-edit-success poll (isOfferEditSuccessful() propagated it up, Phase 4's
+    // caller caught it only as a generic "offer update failed" and never got a real success/failure
+    // verdict) — the Confirm click's own page re-render can replace/remove a banner element between
+    // driver.findElements() returning it and this method reading its text. Now skips a stale element
+    // and keeps checking the rest instead of letting the exception escape.
     private String getVisibleNonEmptySuccessBannerText() {
         for (WebElement el : driver.findElements(SUCCESS_MESSAGE_BANNER)) {
-            String text = el.getText().replace("×", "").trim();
-            if (!text.isEmpty()) {
-                return text;
+            try {
+                String text = el.getText().replace("×", "").trim();
+                if (!text.isEmpty()) {
+                    return text;
+                }
+            } catch (StaleElementReferenceException e) {
+                LoggerUtility.warn("Stale banner element while reading success text — skipping and re-polling");
             }
         }
         return null;

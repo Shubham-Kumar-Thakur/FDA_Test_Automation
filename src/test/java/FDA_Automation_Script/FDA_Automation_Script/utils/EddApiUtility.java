@@ -63,4 +63,31 @@ public class EddApiUtility {
         LoggerUtility.info("Push Offers to Empathy Body   : " + response.getBody().asString());
         return response;
     }
+
+    /**
+     * POST tc.edd001.buybox.url with the literal "{product-sku}" placeholder substituted for productSku,
+     * Cookie-only auth, empty body — matches the given curl exactly (curl defaults to POST when --data
+     * is present with no explicit -X). Expected to return the PDP's own estimatedDeliveryDate directly
+     * for this product, as an independent cross-check against the FDA storefront's own PDP text.
+     */
+    public static Response getBuybox(String productSku) {
+        String url = config.get("tc.edd001.buybox.url").replace("{product-sku}", productSku);
+        String cookie = config.get("tc.edd001.buybox.cookie");
+
+        LoggerUtility.info("========== Get Buybox (EDD) ==========");
+        LoggerUtility.info("POST " + url);
+
+        Response response = given()
+                .header("Cookie", cookie)
+                .body("")
+                .when()
+                .post(url)
+                .then()
+                .extract()
+                .response();
+
+        LoggerUtility.info("Get Buybox Status : " + response.getStatusCode());
+        LoggerUtility.info("Get Buybox Body   : " + response.getBody().asString());
+        return response;
+    }
 }

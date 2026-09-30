@@ -276,12 +276,34 @@ public class TC_EDD_001_Test {
         // =======================================================================
         LoggerUtility.info("==================== PHASE 7: FDA — VALIDATE UPDATED EDD ====================");
 
+        // Per explicit instruction: invoke the Buybox service (returns the PDP's own
+        // estimatedDeliveryDate directly for this SKU) BEFORE checking the FDA storefront PDP — an
+        // independent cross-check. Either this or the FDA PDP text check (below) matching is enough for
+        // Phase 7 to pass; both matching is also fine. Non-fatal on its own — a failure/exception here
+        // just means this cross-check didn't confirm anything, the FDA PDP check below still runs.
+        boolean buyboxMatch = false;
+        try {
+            Response buyboxResponse = EddApiUtility.getBuybox(searchSku);
+            if (buyboxResponse.getStatusCode() == 200) {
+                String buyboxEdd = buyboxResponse.jsonPath().getString("estimatedDeliveryDate");
+                LoggerUtility.info("Buybox estimatedDeliveryDate for SKU " + searchSku + ": " + buyboxEdd);
+                buyboxMatch = matchesExpectedEdd(buyboxEdd, expectedEdd);
+            } else {
+                LoggerUtility.warn("Buybox service returned non-200 status: " + buyboxResponse.getStatusCode());
+            }
+        } catch (Exception e) {
+            LoggerUtility.warn("Buybox service check failed (non-fatal, FDA PDP check still runs): " + e.getMessage());
+        }
+        LoggerUtility.info("Buybox EDD match: " + buyboxMatch);
+
         driver.switchTo().window(fdaTabHandle);
 
         // Per explicit instruction: keep refreshing until the PDP actually shows the calculated
         // expected EDD, rather than stopping as soon as ANY non-blank value different from the
         // (often blank) initial read appears — that early-break condition was satisfied by stale
         // leftover EDD text from a prior run/lead-time value, not the real post-update value.
+        // Per explicit instruction: if 2 refresh attempts in a row still haven't picked up the new EDD,
+        // re-invoke Push Offers to Empathy to nudge the sync again before continuing to refresh/check.
         String updatedEddText = initialEddText;
         boolean formatMatch = false;
         int maxAttempts = 10;
@@ -294,17 +316,29 @@ public class TC_EDD_001_Test {
                 formatMatch = true;
                 break;
             }
+            if (attempt % 2 == 0 && attempt < maxAttempts) {
+                LoggerUtility.info("PDP EDD still not updated after " + attempt + " refresh attempts — "
+                    + "re-invoking Push Offers to Empathy before continuing");
+                Response reEmpathyResponse = EddApiUtility.pushOffersToEmpathy();
+                LoggerUtility.info("Re-invoked Push Offers to Empathy status: " + reEmpathyResponse.getStatusCode());
+            }
         }
 
-        Assert.assertFalse(updatedEddText.isBlank(), "Phase 7: PDP should display an Estimated Delivery Date after the update");
+        if (updatedEddText.isBlank()) {
+            LoggerUtility.warn("Phase 7: PDP never displayed an Estimated Delivery Date after the update "
+                + "(not fatal on its own — Buybox match: " + buyboxMatch + ")");
+        }
         LoggerUtility.info("PASS — PDP shows an updated EDD: '" + updatedEddText + "'. Expected EDD (calculated): "
             + expectedEdd + " — exact text-format matching against the calculated date is best-effort until "
             + "the real PDP date format is confirmed live; logged here for manual verification.");
 
-        softAssert.assertTrue(formatMatch,
-            "Phase 7: PDP EDD text ('" + updatedEddText + "') should contain a recognizable representation of the "
-                + "calculated expected EDD (" + expectedEdd + ") — best-effort text-format check, refine once the "
-                + "real PDP date format is confirmed live");
+        // Per explicit instruction: either the Buybox service match OR the FDA PDP text match is enough
+        // to pass — both matching is also fine, neither matching is the only failure case.
+        boolean eddConfirmed = buyboxMatch || formatMatch;
+        softAssert.assertTrue(eddConfirmed,
+            "Phase 7: Neither the Buybox service (estimatedDeliveryDate match: " + buyboxMatch + ") nor the PDP "
+                + "EDD text ('" + updatedEddText + "', match: " + formatMatch + ") confirmed the calculated "
+                + "expected EDD (" + expectedEdd + ")");
 
         ScreenshotUtility.captureScreenshot(driver, TC_NAME + "_PHASE7_UPDATED_EDD", ScreenshotUtility.PASS);
 
@@ -357,6 +391,24 @@ public class TC_EDD_001_Test {
             }
         }
         throw new IllegalStateException("Could not find a new window handle for the FDA tab");
+    }
+
+    // Added for the Buybox service cross-check (Phase 7) — a JSON API field is far more likely to carry
+    // a clean ISO-8601 date (e.g. "2026-11-05" or "2026-11-05T00:00:00Z") than the PDP's free-form
+    // Spanish text, so this tries a plain LocalDate.parse() first (truncating to the first 10 chars to
+    // tolerate a datetime/timestamp value) and only falls back to containsFormattedDate()'s free-text
+    // matching if that fails — covers the case where the Buybox response's date field turns out to be
+    // some other unconfirmed format instead.
+    private boolean matchesExpectedEdd(String rawDateText, LocalDate expected) {
+        if (rawDateText == null || rawDateText.isBlank() || expected == null) return false;
+        String trimmed = rawDateText.trim();
+        try {
+            String datePart = trimmed.length() >= 10 ? trimmed.substring(0, 10) : trimmed;
+            return LocalDate.parse(datePart).equals(expected);
+        } catch (Exception ignored) {
+            // not a clean ISO date — fall through to free-text matching
+        }
+        return containsFormattedDate(trimmed, expected);
     }
 
     // Best-effort check for whether the raw PDP EDD text contains some recognizable representation of
