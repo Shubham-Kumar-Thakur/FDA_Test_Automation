@@ -1900,12 +1900,21 @@ public class MiraklOfferPage extends BasePage {
     // elsewhere in this codebase go through Excel import instead, see TC_OU_009_Test). The field
     // read/write itself reuses the existing generic setFieldByLabel()/getFieldValueByLabel() helpers
     // above rather than adding new single-field methods.
-    // TODO: Verify against actual DOM — opening/saving an existing offer's edit form has never been
-    // live-probed, unlike the rest of this class's confirmed locators.
+    // CONFIRMED live (2026-09-25, TC_EDD_001): the real edit form is <form id="editOfferForm" ...>,
+    // which this locator already matches correctly ("editOfferForm" contains the literal substring
+    // "ffer") — the anchor itself was never the problem. See openOfferForEdit()'s comment for the
+    // actual root cause (a row click that never navigated anywhere).
     private static final By EDIT_OFFER_FORM_ANCHOR = By.xpath("//form[contains(@id,'ffer')]");
+    // CONFIRMED live (2026-09-30, TC_EDD_001): a diagnostic button-text dump on this exact edit form
+    // showed no "save"/"update" button at all — the only form-submit-shaped control present was
+    // "Confirm" (the page's other buttons were all top-nav items: Orders, Customer care, Catalog, …).
+    // Added 'confirm' as a third candidate rather than replacing 'save'/'update' outright, since other
+    // Mirakl forms in this same class (see the TC_E2E_003 comment above SUCCESS_MESSAGE_BANNER) also
+    // use "Confirm" as their submit label, so this is consistent with the wider Mirakl UI convention.
     private static final By SAVE_OFFER_EDIT_BUTTON = By.xpath(
         "//button[contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save') "
-        + "or contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'update')]");
+        + "or contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'update') "
+        + "or contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'confirm')]");
 
     public static class SelectedOffer {
         public final String offerSku;
@@ -1969,20 +1978,31 @@ public class MiraklOfferPage extends BasePage {
         return new SelectedOffer(offerSku, productSku, productName);
     }
 
-    public void openOfferForEdit(String offerSku) {
-        LoggerUtility.info("Opening offer " + offerSku + " for edit");
-        By row = By.xpath("//tbody//tr[contains(.,'" + offerSku + "')]");
-        // Short bounded wait before clicking — jsClick()'s own driver.findElement() would otherwise
-        // fall through to the shared 2-minute implicit wait if the row isn't immediately present
-        // (confirmed live: this is exactly what happened when offerSku was empty and matched
-        // unpredictably). Now that offerSku is guaranteed non-empty (see selectRandomOfferForSeller()
-        // above), this should resolve almost immediately; fails fast with a clear exception instead
-        // of a 2-minute hang if the row genuinely isn't there.
-        new WebDriverWait(driver, Duration.ofSeconds(15)).until(ExpectedConditions.presenceOfElementLocated(row));
-        jsClick(row);
-        // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — this form's anchor
-        // locator is unconfirmed (see TODO above), so a wrong guess surfaces the real page structure
-        // via logFormGroupLabels() in well under a minute instead of burning a full 2-minute timeout.
+    // ROOT-CAUSED live (2026-09-25, TC_EDD_001, second verification run): the previous version
+    // matched the row by Offer SKU and then jsClick()'d the whole <tr> — confirmed via a standalone
+    // diagnostic probe that this never navigates anywhere (URL unchanged before/after the click,
+    // every single time). The grid only navigates via its product-name cell's real anchor link,
+    // <a href="/mmp/shop/offer/{internalId}">, e.g. /mmp/shop/offer/40726 — clicking anywhere else in
+    // the row (checkbox cell, other cells) is a no-op. EDIT_OFFER_FORM_ANCHOR itself was never wrong
+    // (confirmed live: the real form is <form id="editOfferForm">, which it already matches) — the
+    // wait always timed out because the click before it never actually opened any page.
+    // Matches by Product ID (productSku), not Offer SKU, per explicit instruction — the Offers grid's
+    // own search is scoped to PRODUCT_ID (visible in its URL: select-search=PRODUCT_ID), so Product ID
+    // is the identifier this grid is actually built around.
+    public void openOfferForEdit(String productSku) {
+        LoggerUtility.info("Opening offer for edit — Product ID: " + productSku);
+        By row = By.xpath("//tbody//tr[contains(.,'" + productSku + "')]");
+        // Short bounded wait before clicking — driver.findElement() would otherwise fall through to
+        // the shared 2-minute implicit wait if the row isn't immediately present.
+        WebElement rowEl = new WebDriverWait(driver, Duration.ofSeconds(15))
+            .until(ExpectedConditions.presenceOfElementLocated(row));
+        WebElement offerLink = rowEl.findElement(By.cssSelector("a[href*='/mmp/shop/offer/']"));
+        String href = offerLink.getAttribute("href");
+        LoggerUtility.info("Clicking offer detail link: " + href);
+        offerLink.click();
+        // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — fails fast with a
+        // clear exception (plus a form-group diagnostic dump) instead of a long hang if navigation
+        // didn't happen or the page structure changes again.
         try {
             new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOfElementLocated(EDIT_OFFER_FORM_ANCHOR));
@@ -2010,9 +2030,37 @@ public class MiraklOfferPage extends BasePage {
         LoggerUtility.warn("DIAGNOSTIC — current URL: " + driver.getCurrentUrl());
     }
 
+    // Diagnostic dump — every visible <button>/<input type=submit|button>/<a role=button> element's
+    // text (or value, for inputs) on the current page. Added live (2026-09-30, TC_EDD_001) after
+    // SAVE_OFFER_EDIT_BUTTON timed out for the full shared 2-minute implicit wait with no diagnostic
+    // captured — this lets a failing run surface the real save-control text/markup in the log instead
+    // of just a bare NoSuchElementException.
+    private void logButtonTexts(String contextLabel) {
+        Object buttons = ((JavascriptExecutor) driver).executeScript(
+            "var els = document.querySelectorAll('button, input[type=submit], input[type=button], a[role=button]');"
+            + "var out = [];"
+            + "for (var i = 0; i < els.length && out.length < 80; i++) {"
+            + "  var el = els[i];"
+            + "  var t = (el.tagName === 'INPUT' ? el.value : el.textContent).trim();"
+            + "  if (t) out.push(el.tagName + ':' + t);"
+            + "}"
+            + "return out.join(' | ');");
+        LoggerUtility.warn("DIAGNOSTIC (" + contextLabel + ") — button texts: " + buttons);
+        LoggerUtility.warn("DIAGNOSTIC — current URL: " + driver.getCurrentUrl());
+    }
+
     public void saveOfferEdit() {
         LoggerUtility.info("Saving offer edit");
-        jsClick(SAVE_OFFER_EDIT_BUTTON);
+        // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — fails fast with a
+        // button-text diagnostic dump instead of burning the full implicit wait on a wrong guess.
+        try {
+            WebElement saveButton = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(SAVE_OFFER_EDIT_BUTTON));
+            saveButton.click();
+        } catch (TimeoutException e) {
+            logButtonTexts("SAVE_OFFER_EDIT_BUTTON not found");
+            throw e;
+        }
     }
 
     public boolean isOfferEditSuccessful() {

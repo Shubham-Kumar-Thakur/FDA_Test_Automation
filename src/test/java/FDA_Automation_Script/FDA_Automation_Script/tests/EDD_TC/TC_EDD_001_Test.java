@@ -162,11 +162,13 @@ public class TC_EDD_001_Test {
         LoggerUtility.info("PASS — Selected offer for this run: Offer SKU=" + selectedOffer.offerSku
             + ", Product SKU=" + selectedOffer.productSku + ", Product Name=" + selectedOffer.productName);
 
-        // TEMPORARY DISCOVERY-MODE INSTRUMENTATION (see Phase 1's comment) — openOfferForEdit()'s
-        // locators are unverified; non-fatal here so Phase 3 (FDA) still runs in this same MFA cycle.
+        // TEMPORARY DISCOVERY-MODE INSTRUMENTATION (see Phase 1's comment) — kept non-fatal here so
+        // Phase 3 (FDA) still runs in this same MFA cycle even on an unexpected failure.
+        // FIXED live (2026-09-25): openOfferForEdit() now takes Product ID (productSku), not Offer
+        // SKU — see its own comment in MiraklOfferPage.java for why.
         String preUpdateLeadTimeText = "unknown (edit form not opened)";
         try {
-            miraklOfferPage.openOfferForEdit(selectedOffer.offerSku);
+            miraklOfferPage.openOfferForEdit(selectedOffer.productSku);
             preUpdateLeadTimeText = miraklOfferPage.getFieldValueByLabel("lead time to ship");
             LoggerUtility.info("Current Lead Time to Ship (kept for later): " + preUpdateLeadTimeText);
         } catch (Exception e) {
@@ -214,7 +216,7 @@ public class TC_EDD_001_Test {
         try {
             driver.switchTo().window(miraklTabHandle);
             miraklOfferPage.navigateToOffersSection();
-            miraklOfferPage.openOfferForEdit(selectedOffer.offerSku);
+            miraklOfferPage.openOfferForEdit(selectedOffer.productSku);
             miraklOfferPage.setFieldByLabel("lead time to ship", String.valueOf(newLeadTimeToShip));
             miraklOfferPage.saveOfferEdit();
             offerUpdateSucceeded = miraklOfferPage.isOfferEditSuccessful();
@@ -341,24 +343,39 @@ public class TC_EDD_001_Test {
     // Best-effort check for whether the raw PDP EDD text contains some recognizable representation of
     // the calculated expected date — tries a handful of common formats since the real PDP date format
     // is unconfirmed pre-live-run (see this class's Javadoc / EddCalculator's parser TODOs).
+    //
+    // CONFIRMED live (2026-09-25, TC_EDD_001): the real PDP format is "d/MMM." — e.g. "30/Sep." — day,
+    // slash, a 3-letter capitalized month abbreviation, trailing period. None of the original candidate
+    // formats covered this ("d MMMM"/"MMMM d" are full month names; "MMM d" has the wrong field order).
+    // Java's own es/es-MX locale data renders the abbreviated month as "sept" (no period, extra "t"),
+    // which doesn't match the site's "Sep." either — so instead of trying to guess the exact locale
+    // data the site uses, both the PDP text and every candidate are normalized (lowercased, periods
+    // stripped, whitespace collapsed) before comparing, and "d/MMM" is tried under both English and
+    // Spanish locales to cover either spelling.
     private boolean containsFormattedDate(String text, LocalDate date) {
         if (text == null || text.isBlank() || date == null) return false;
-        String lower = text.toLowerCase(Locale.ROOT);
+        String normalizedText = normalizeForDateMatch(text);
         DateTimeFormatter[] formats = {
             DateTimeFormatter.ofPattern("d/M/yyyy"),
             DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+            DateTimeFormatter.ofPattern("d/MMM", Locale.ENGLISH),
+            DateTimeFormatter.ofPattern("d/MMM", Locale.forLanguageTag("es")),
             DateTimeFormatter.ofPattern("d MMMM", Locale.forLanguageTag("es")),
             DateTimeFormatter.ofPattern("MMMM d", Locale.ENGLISH),
             DateTimeFormatter.ofPattern("MMM d", Locale.ENGLISH)
         };
         for (DateTimeFormatter fmt : formats) {
             try {
-                if (lower.contains(date.format(fmt).toLowerCase(Locale.ROOT))) return true;
+                if (normalizedText.contains(normalizeForDateMatch(date.format(fmt)))) return true;
             } catch (Exception ignored) {
                 // try next format
             }
         }
         return false;
+    }
+
+    private String normalizeForDateMatch(String value) {
+        return value.toLowerCase(Locale.ROOT).replace(".", "").replaceAll("\\s+", " ").trim();
     }
 
     private void sleep(long ms) {

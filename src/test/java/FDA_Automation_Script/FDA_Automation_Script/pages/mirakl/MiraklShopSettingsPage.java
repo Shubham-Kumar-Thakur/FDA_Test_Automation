@@ -32,18 +32,9 @@ public class MiraklShopSettingsPage extends BasePage {
         "//*[self::button or self::a or self::span]"
         + "[contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'business calendar')]");
 
-    // Label-prefix matchers (same convention as MiraklOfferPage.setFieldByLabel/getFieldValueByLabel)
-    // for the specific Business Calendar fields. Kept as raw-text reads (not typed getters) since the
-    // exact widget type (checkbox list, calendar picker, plain text) for each is unknown pre-live-run.
-    // CONFIRMED live (2026-09-24, per user observation of the live screen): the real field labels are
-    // "Working Days", "Non-Working Days", "Holidays", and a single combined "Business Hours (Mexico
-    // Time - GMT-6)" field — NOT separate "Business Start Time"/"Business End Time" fields as
-    // originally guessed. See getBusinessHoursText() + EddCalculator.parseTimeRange() for the
-    // consolidated read.
-    private static final String WORKING_DAYS_LABEL     = "working days";
-    private static final String NON_WORKING_DAYS_LABEL = "non-working days|non working days";
-    private static final String HOLIDAYS_LABEL         = "holidays";
-    private static final String BUSINESS_HOURS_LABEL   = "business hours";
+    // SUPERSEDED live (2026-09-25, TC_EDD_001): the 2026-09-24 note above assumed 4 separate
+    // text/value fields. A live diagnostic probe found the real structure is very different — see each
+    // getter below for its own confirmed markup. Kept only as history of what was originally guessed.
 
     public MiraklShopSettingsPage(WebDriver driver) {
         super(driver);
@@ -69,10 +60,23 @@ public class MiraklShopSettingsPage extends BasePage {
         }
         jsClick(BUSINESS_CALENDAR_TAB);
         LoggerUtility.info("Business Calendar tab opened");
-        // Unconditional diagnostic — the field-label getters below are still best-effort/unconfirmed;
-        // logging the raw panel text here means a wrong guess is diagnosable from this same run's log
-        // instead of needing another MFA-gated live run just to see the real structure.
-        getBusinessCalendarRawText();
+        waitForPanelDataToRender();
+    }
+
+    // CONFIRMED live (2026-09-25, TC_EDD_001): this panel renders in a waterfall, not a single paint —
+    // a diagnostic probe found the "Business holidays" heading/description text present after ~9s, but
+    // the actual data (the 7 working-day checkboxes, the Open from/To time inputs) still hadn't
+    // rendered even at that point — they only appeared by ~15s. Polling for real keyword TEXT (the
+    // earlier approach) is therefore not a reliable readiness signal for this page; poll for the actual
+    // interactive element (the first working-day checkbox) instead. Bounded and non-fatal — Phase 1's
+    // caller already treats this whole method as best-effort/discovery-mode.
+    private void waitForPanelDataToRender() {
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(30)).until(
+                ExpectedConditions.presenceOfElementLocated(By.cssSelector("[data-nameandlabel*='businessDays%3Ar']")));
+        } catch (TimeoutException e) {
+            LoggerUtility.warn("Business Calendar panel data (working-day checkboxes) never rendered after 30s");
+        }
     }
 
     // Diagnostic dump — every visible button/link/span/list-item's text on the current page, for
@@ -102,57 +106,93 @@ public class MiraklShopSettingsPage extends BasePage {
         return Boolean.TRUE.equals(result);
     }
 
+    // CONFIRMED live (2026-09-25, TC_EDD_001): "Working days per week" is a <fieldset> of 7 custom
+    // ARIA checkboxes (not native <input type="checkbox">), one per day — e.g.
+    // <div role="checkbox" aria-checked="true" data-nameandlabel="businessDays%3Ar4%3A%3A%3AMonday">.
+    // The day name is the last ":::"-delimited segment of the URL-decoded data-nameandlabel attribute;
+    // the fieldset's own top-level data-nameandlabel ("businessDays::Working days per week") has no
+    // ":::" segment and is naturally excluded by the split-length check. Live run showed Mon-Fri
+    // checked, Sun/Sat unchecked for this seller — returns comma-joined day names, which
+    // EddCalculator.parseWorkingDays() already consumes (English day names, comma-separated).
     public String getWorkingDaysText() {
-        return getFieldTextByLabel(WORKING_DAYS_LABEL, "Working Days");
+        return getDayCheckboxNames(true);
     }
 
+    // CONFIRMED live (2026-09-25, TC_EDD_001): there is no separate "Non-Working Days" UI section —
+    // it's the complement of the same 7-checkbox set read by getWorkingDaysText() (unchecked =
+    // non-working). Note this returns DAY NAMES (e.g. "Sunday,Saturday"), not calendar dates, even
+    // though TC_EDD_001_Test currently feeds this into EddCalculator.parseDates() (which expects
+    // dates) — that mismatch predates this fix and is a separate, not-yet-live-confirmed question of
+    // whether "non-working days" in EddCalculator's model means the weekly pattern's off-days or
+    // specific exception dates from the "Business holidays" list (see getHolidaysText()). Left for the
+    // caller to reconcile; this method itself now returns exactly what the live DOM shows.
     public String getNonWorkingDaysText() {
-        return getFieldTextByLabel(NON_WORKING_DAYS_LABEL, "Non-Working Days");
+        return getDayCheckboxNames(false);
     }
 
-    public String getHolidaysText() {
-        return getFieldTextByLabel(HOLIDAYS_LABEL, "Holidays");
-    }
-
-    /** Reads the single combined "Business Hours (Mexico Time - GMT-6)" field — contains both start and end time; parse with EddCalculator.parseTimeRange(). */
-    public String getBusinessHoursText() {
-        return getFieldTextByLabel(BUSINESS_HOURS_LABEL, "Business Hours");
-    }
-
-    // Best-effort label-prefix text read, same approach as MiraklOfferPage.getFieldValueByLabel() but
-    // also falling back to the container's own textContent (not just an input/textarea value) since
-    // this screen's fields may render as read-only labels/checkbox lists rather than editable inputs.
-    private String getFieldTextByLabel(String labelMatchers, String logName) {
-        String[] matchers = labelMatchers.toLowerCase().split("\\|");
+    private String getDayCheckboxNames(boolean checkedValue) {
         Object result = ((JavascriptExecutor) driver).executeScript(
-            "var matchers = arguments[0];"
-            + "var groups = document.querySelectorAll('.form-group, tr, li, div');"
-            + "for (var g = 0; g < groups.length; g++) {"
-            + "  var grp = groups[g];"
-            + "  var grpText = grp.textContent.trim().toLowerCase();"
-            + "  var matched = false;"
-            + "  for (var m = 0; m < matchers.length; m++) { if (grpText.indexOf(matchers[m]) === 0) { matched = true; break; } }"
-            + "  if (!matched) continue;"
-            + "  var el = grp.querySelector('input, textarea');"
-            + "  if (el && el.value) { return el.value; }"
-            + "  return grp.textContent.trim();"
+            "var boxes = document.querySelectorAll('[role=\"checkbox\"][data-nameandlabel*=\"businessDays\"]');"
+            + "var out = [];"
+            + "for (var i = 0; i < boxes.length; i++) {"
+            + "  var raw = decodeURIComponent(boxes[i].getAttribute('data-nameandlabel') || '');"
+            + "  var parts = raw.split(':::');"
+            + "  if (parts.length < 2) continue;"
+            + "  var dayName = parts[parts.length - 1];"
+            + "  var checked = boxes[i].getAttribute('aria-checked') === 'true';"
+            + "  if (checked === arguments[0]) out.push(dayName);"
             + "}"
-            + "return '';",
-            (Object) matchers);
+            + "return out.join(',');",
+            checkedValue);
         String value = result == null ? "" : result.toString().trim();
-        LoggerUtility.info("Business Calendar — " + logName + ": " + value);
+        LoggerUtility.info("Business Calendar — " + (checkedValue ? "Working Days" : "Non-Working Days (weekly)") + ": " + value);
         return value;
     }
 
-    // Diagnostic/fallback dump of the whole Business Calendar panel's raw text, for logging when the
-    // specific label-based getters above don't find a match — same diagnostic-dump convention already
-    // used in MiraklOrderDetailPage.
-    public String getBusinessCalendarRawText() {
-        Object text = ((JavascriptExecutor) driver).executeScript(
-            "var el = document.querySelector('main, .content, body');"
-            + "return el ? el.textContent.trim() : '';");
-        String value = text == null ? "" : text.toString().trim();
-        LoggerUtility.info("Business Calendar raw panel text (diagnostic): " + value);
+    // BEST-EFFORT, NOT LIVE-CONFIRMED for a populated case (2026-09-25, TC_EDD_001): the page has a
+    // "Business holidays" list ("You can set business holidays as working days or non-working days.")
+    // for date-specific exceptions to the weekly schedule above, with a "Results per page" pagination
+    // control — but this seller account has zero entries configured (confirmed live: the pager shows
+    // "NaN results", apparently a genuine Mirakl UI bug when the list is empty rather than a "0
+    // results" string). With no populated rows to inspect, this scans for a <table>/<tbody> near the
+    // heading and returns its row text if one ever appears; returns "" (correctly, matching
+    // EddCalculator's blank-input handling) for the current empty state. Re-probe against an account
+    // with real holiday entries before trusting the row-parsing shape here.
+    public String getHolidaysText() {
+        Object result = ((JavascriptExecutor) driver).executeScript(
+            "var heading = Array.from(document.querySelectorAll('h1,h2,h3,legend'))"
+            + "  .find(function(el) { return el.textContent.toLowerCase().indexOf('business holiday') !== -1; });"
+            + "if (!heading) return '';"
+            + "var container = heading.closest('section, div, form') || heading.parentElement;"
+            + "if (!container) return '';"
+            + "var rows = container.querySelectorAll('table tbody tr, [role=\"row\"]');"
+            + "var out = [];"
+            + "for (var i = 0; i < rows.length; i++) {"
+            + "  var t = rows[i].textContent.trim();"
+            + "  if (t) out.push(t);"
+            + "}"
+            + "return out.join(';');");
+        String value = result == null ? "" : result.toString().trim();
+        LoggerUtility.info("Business Calendar — Holidays: " + (value.isEmpty() ? "(none configured)" : value));
+        return value;
+    }
+
+    // CONFIRMED live (2026-09-25, TC_EDD_001): "Open from"/"To" are two separate custom time-picker
+    // combobox widgets, each backed by a real <input type="text" placeholder="hh:mm am/pm"> — e.g.
+    // <input id="businessHours.openFrom__trigger" value="10:30 am">. Reading both .value attributes
+    // and joining with " to " gives EddCalculator.parseTimeRange() (which just regex-scans for the
+    // first two "hh:mm am/pm" matches in the string, order-independent of separator) exactly what it
+    // needs — live run showed "10:30 am" / "11:00 am" for this seller.
+    public String getBusinessHoursText() {
+        Object result = ((JavascriptExecutor) driver).executeScript(
+            "var from = document.getElementById('businessHours.openFrom__trigger');"
+            + "var to = document.getElementById('businessHours.openUntil__trigger');"
+            + "var fromVal = from ? from.value.trim() : '';"
+            + "var toVal = to ? to.value.trim() : '';"
+            + "if (!fromVal && !toVal) return '';"
+            + "return fromVal + ' to ' + toVal;");
+        String value = result == null ? "" : result.toString().trim();
+        LoggerUtility.info("Business Calendar — Business Hours: " + value);
         return value;
     }
 }
