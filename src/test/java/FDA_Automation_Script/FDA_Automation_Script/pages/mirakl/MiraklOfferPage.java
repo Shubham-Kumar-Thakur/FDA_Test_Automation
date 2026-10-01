@@ -8,13 +8,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 // Locators below were verified against the live Mirakl DOM (farmaciasdelahorromx2-dev.mirakl.net,
@@ -1507,11 +1512,21 @@ public class MiraklOfferPage extends BasePage {
     // Returns the first non-empty banner's own text (or null if none) — callers must inspect this
     // text for known error phrases themselves; presence/non-emptiness alone is not proof of success
     // (see clickSubmitForApproval()'s own root-cause note on why boolean-only used to false-positive).
+    // CONFIRMED live (2026-09-30, TC_EDD_001): a StaleElementReferenceException from el.getText() here
+    // aborted the whole offer-edit-success poll (isOfferEditSuccessful() propagated it up, Phase 4's
+    // caller caught it only as a generic "offer update failed" and never got a real success/failure
+    // verdict) — the Confirm click's own page re-render can replace/remove a banner element between
+    // driver.findElements() returning it and this method reading its text. Now skips a stale element
+    // and keeps checking the rest instead of letting the exception escape.
     private String getVisibleNonEmptySuccessBannerText() {
         for (WebElement el : driver.findElements(SUCCESS_MESSAGE_BANNER)) {
-            String text = el.getText().replace("×", "").trim();
-            if (!text.isEmpty()) {
-                return text;
+            try {
+                String text = el.getText().replace("×", "").trim();
+                if (!text.isEmpty()) {
+                    return text;
+                }
+            } catch (StaleElementReferenceException e) {
+                LoggerUtility.warn("Stale banner element while reading success text — skipping and re-polling");
             }
         }
         return null;
@@ -1888,6 +1903,200 @@ public class MiraklOfferPage extends BasePage {
         String text = getText(column);
         LoggerUtility.info("Offer " + offerSku + " column " + columnIndex + ": " + text);
         return text;
+    }
+
+    // --- TC_EDD_001: select + edit an existing offer ---
+    // No existing capability in this class opens an existing offer for editing (confirmed — today's
+    // only offer-editing path is the Add Offer/Create Offer *creation* form, and price updates
+    // elsewhere in this codebase go through Excel import instead, see TC_OU_009_Test). The field
+    // read/write itself reuses the existing generic setFieldByLabel()/getFieldValueByLabel() helpers
+    // above rather than adding new single-field methods.
+    // CONFIRMED live (2026-09-25, TC_EDD_001): the real edit form is <form id="editOfferForm" ...>,
+    // which this locator already matches correctly ("editOfferForm" contains the literal substring
+    // "ffer") — the anchor itself was never the problem. See openOfferForEdit()'s comment for the
+    // actual root cause (a row click that never navigated anywhere).
+    private static final By EDIT_OFFER_FORM_ANCHOR = By.xpath("//form[contains(@id,'ffer')]");
+    // CONFIRMED live (2026-09-30, TC_EDD_001): a diagnostic button-text dump on this exact edit form
+    // showed no "save"/"update" button at all — the only form-submit-shaped control present was
+    // "Confirm" (the page's other buttons were all top-nav items: Orders, Customer care, Catalog, …).
+    // Added 'confirm' as a third candidate rather than replacing 'save'/'update' outright, since other
+    // Mirakl forms in this same class (see the TC_E2E_003 comment above SUCCESS_MESSAGE_BANNER) also
+    // use "Confirm" as their submit label, so this is consistent with the wider Mirakl UI convention.
+    private static final By SAVE_OFFER_EDIT_BUTTON = By.xpath(
+        "//button[contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'save') "
+        + "or contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'update') "
+        + "or contains(translate(normalize-space(),'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'confirm')]");
+
+    public static class SelectedOffer {
+        public final String offerSku;
+        public final String productSku;
+        public final String productName;
+
+        public SelectedOffer(String offerSku, String productSku, String productName) {
+            this.offerSku = offerSku;
+            this.productSku = productSku;
+            this.productName = productName;
+        }
+    }
+
+    // Reads the first visible row in the current Offers list and returns its identifying data —
+    // used by TC_EDD_001 to pick "any random product id for that seller" (Seller login already
+    // scopes the Offers list to this seller's own offers, so the first row is sufficient). Column
+    // indices reuse the same confirmed order documented above getOfferProductName().
+    // FIXED live (2026-09-24, TC_EDD_001): a one-shot read immediately after switching to the "All"
+    // tab consistently returned a <tbody><tr> with empty-string cell text — the grid's row element
+    // exists in the DOM before its async data fetch has actually populated the cells. Confirmed live:
+    // this silently cascaded into blank downstream searches (FDA storefront searched for "", the
+    // offer-edit click matched an arbitrary row via contains(.,'')) rather than failing loudly. Now
+    // polls (up to 10 attempts, 500ms apart) until the first row's Offer SKU cell is non-empty before
+    // returning — same "poll with short sleep, not a single instant read" pattern already used
+    // elsewhere in this codebase for async-populated data (e.g. FDAPDPPage.getProductPrice()).
+    // FIXED live (2026-09-24, TC_EDD_001): once a non-empty offerSku is found, re-fetching the
+    // product name/SKU via this class's own EXISTING, already-newline-safe getOfferProductName()/
+    // getOfferProductSku() getters (instead of a second bespoke JS read here) avoids duplicating —
+    // and getting wrong — the column-9/column-2 parsing they already handle correctly (confirmed
+    // live: a naive split("\\r?\\n")[0] on column 2 here left a category label glued onto the end of
+    // the name, e.g. "...Cookies (Diabetic Friendly)02Bebé", because the label/value aren't always
+    // newline-separated the way getOfferProductName()'s own fix assumes for every case — reusing the
+    // battle-tested getter is more robust than re-deriving the same value a second, subtly different
+    // way).
+    public SelectedOffer selectRandomOfferForSeller() {
+        String offerSku = null;
+        for (int attempt = 1; attempt <= 10; attempt++) {
+            Object sku = ((JavascriptExecutor) driver).executeScript(
+                "var row = document.querySelector('tbody tr');"
+                + "if (!row) return null;"
+                + "var cells = row.querySelectorAll('td');"
+                + "if (cells.length < 9) return null;"
+                + "var s = cells[2].textContent.trim();"
+                + "return s.length ? s : null;");
+            if (sku != null) {
+                offerSku = sku.toString();
+                LoggerUtility.info("Offers grid row populated on attempt " + attempt + "/10 — Offer SKU: " + offerSku);
+                break;
+            }
+            LoggerUtility.info("Offers grid row not yet populated (attempt " + attempt + "/10) — retrying");
+            sleep(500);
+        }
+        if (offerSku == null) {
+            throw new RuntimeException("Offers list row never populated a non-empty Offer SKU after 10 attempts — "
+                + "cannot select a random offer");
+        }
+        String productSku = getOfferProductSku(offerSku);
+        String productName = getOfferProductName(offerSku);
+        LoggerUtility.info("Selected random offer — Offer SKU: " + offerSku + ", Product SKU: " + productSku
+            + ", Product Name: " + productName);
+        return new SelectedOffer(offerSku, productSku, productName);
+    }
+
+    // ROOT-CAUSED live (2026-09-25, TC_EDD_001, second verification run): the previous version
+    // matched the row by Offer SKU and then jsClick()'d the whole <tr> — confirmed via a standalone
+    // diagnostic probe that this never navigates anywhere (URL unchanged before/after the click,
+    // every single time). The grid only navigates via its product-name cell's real anchor link,
+    // <a href="/mmp/shop/offer/{internalId}">, e.g. /mmp/shop/offer/40726 — clicking anywhere else in
+    // the row (checkbox cell, other cells) is a no-op. EDIT_OFFER_FORM_ANCHOR itself was never wrong
+    // (confirmed live: the real form is <form id="editOfferForm">, which it already matches) — the
+    // wait always timed out because the click before it never actually opened any page.
+    // Matches by Product ID (productSku), not Offer SKU, per explicit instruction — the Offers grid's
+    // own search is scoped to PRODUCT_ID (visible in its URL: select-search=PRODUCT_ID), so Product ID
+    // is the identifier this grid is actually built around.
+    public void openOfferForEdit(String productSku) {
+        LoggerUtility.info("Opening offer for edit — Product ID: " + productSku);
+        By row = By.xpath("//tbody//tr[contains(.,'" + productSku + "')]");
+        // Short bounded wait before clicking — driver.findElement() would otherwise fall through to
+        // the shared 2-minute implicit wait if the row isn't immediately present.
+        WebElement rowEl = new WebDriverWait(driver, Duration.ofSeconds(15))
+            .until(ExpectedConditions.presenceOfElementLocated(row));
+        WebElement offerLink = rowEl.findElement(By.cssSelector("a[href*='/mmp/shop/offer/']"));
+        String href = offerLink.getAttribute("href");
+        LoggerUtility.info("Clicking offer detail link: " + href);
+        offerLink.click();
+        // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — fails fast with a
+        // clear exception (plus a form-group diagnostic dump) instead of a long hang if navigation
+        // didn't happen or the page structure changes again.
+        try {
+            new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOfElementLocated(EDIT_OFFER_FORM_ANCHOR));
+        } catch (TimeoutException e) {
+            logFormGroupLabels("EDIT_OFFER_FORM_ANCHOR not found");
+            throw e;
+        }
+        logFormGroupLabels("Edit offer form opened");
+    }
+
+    // Diagnostic dump — every .form-group's leading label-ish text on the current page, for
+    // discovering the real "Lead Time to Ship" field label (and confirming the edit-form anchor)
+    // when the guessed locators don't match. Same convention as
+    // MiraklShopSettingsPage.logVisibleTabTexts().
+    private void logFormGroupLabels(String contextLabel) {
+        Object labels = ((JavascriptExecutor) driver).executeScript(
+            "var groups = document.querySelectorAll('.form-group');"
+            + "var out = [];"
+            + "for (var i = 0; i < groups.length && out.length < 80; i++) {"
+            + "  var t = groups[i].textContent.trim().split('\\n')[0].trim();"
+            + "  if (t) out.push(t);"
+            + "}"
+            + "return out.join(' | ');");
+        LoggerUtility.warn("DIAGNOSTIC (" + contextLabel + ") — .form-group label texts: " + labels);
+        LoggerUtility.warn("DIAGNOSTIC — current URL: " + driver.getCurrentUrl());
+    }
+
+    // Diagnostic dump — every visible <button>/<input type=submit|button>/<a role=button> element's
+    // text (or value, for inputs) on the current page. Added live (2026-09-30, TC_EDD_001) after
+    // SAVE_OFFER_EDIT_BUTTON timed out for the full shared 2-minute implicit wait with no diagnostic
+    // captured — this lets a failing run surface the real save-control text/markup in the log instead
+    // of just a bare NoSuchElementException.
+    private void logButtonTexts(String contextLabel) {
+        Object buttons = ((JavascriptExecutor) driver).executeScript(
+            "var els = document.querySelectorAll('button, input[type=submit], input[type=button], a[role=button]');"
+            + "var out = [];"
+            + "for (var i = 0; i < els.length && out.length < 80; i++) {"
+            + "  var el = els[i];"
+            + "  var t = (el.tagName === 'INPUT' ? el.value : el.textContent).trim();"
+            + "  if (t) out.push(el.tagName + ':' + t);"
+            + "}"
+            + "return out.join(' | ');");
+        LoggerUtility.warn("DIAGNOSTIC (" + contextLabel + ") — button texts: " + buttons);
+        LoggerUtility.warn("DIAGNOSTIC — current URL: " + driver.getCurrentUrl());
+    }
+
+    public void saveOfferEdit() {
+        LoggerUtility.info("Saving offer edit");
+        // Short bounded wait (not the shared 2-minute WaitUtility.fluentWait) — fails fast with a
+        // button-text diagnostic dump instead of burning the full implicit wait on a wrong guess.
+        try {
+            WebElement saveButton = new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.elementToBeClickable(SAVE_OFFER_EDIT_BUTTON));
+            saveButton.click();
+        } catch (TimeoutException e) {
+            logButtonTexts("SAVE_OFFER_EDIT_BUTTON not found");
+            throw e;
+        }
+    }
+
+    // ROOT-CAUSED live (2026-09-30, TC_EDD_001): this used to be a single isDisplayed(SUCCESS_MESSAGE_BANNER)
+    // check with no wait of its own — fine on the shared DriverFactory driver (2-minute implicit wait),
+    // but this class's driver comes from DualDriverManager, whose capabilities report `implicit: 0`.
+    // Confirmed live: the Confirm click and this check landed in the same log second every single run,
+    // so the banner (rendered async after the submit) never had a chance to appear before the check ran,
+    // permanently reporting false even once the Confirm button itself was clicked successfully. Now
+    // polls for up to 15s using the same non-empty-banner-text helper clickSubmitForApproval() uses.
+    public boolean isOfferEditSuccessful() {
+        long deadlineMs = System.currentTimeMillis() + 15_000;
+        while (System.currentTimeMillis() < deadlineMs) {
+            String bannerText = getVisibleNonEmptySuccessBannerText();
+            if (bannerText != null) {
+                boolean success = !bannerText.toLowerCase(Locale.ROOT).contains("error");
+                LoggerUtility.info("Offer edit success banner displayed: " + success + " (text: " + bannerText + ")");
+                return success;
+            }
+            sleep(300);
+        }
+        LoggerUtility.warn("Offer edit success banner displayed: false (no non-empty banner within 15s). "
+            + "Current page text (first 300 chars): "
+            + String.valueOf(((JavascriptExecutor) driver).executeScript(
+                "return document.body.innerText.substring(0, 300);")));
+        return false;
     }
 
     // --- Unique test data generation ---

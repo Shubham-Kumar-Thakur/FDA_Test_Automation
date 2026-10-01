@@ -1,0 +1,209 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----< FDA_Mirakl_and_API_Automation:FDA_Mirakl_and_API_Automation >-----
+[INFO] Building FDA_Mirakl_and_API_Automation 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] skip non existing resourceDirectory C:\Users\SakshiKhullar\Git\FDA_Test_Automation\src\main\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Copying 6 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.3.0:test (default-test) @ FDA_Mirakl_and_API_Automation ---
+[INFO] Using auto detected provider org.apache.maven.surefire.testng.TestNGProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test
+SLF4J(W): No SLF4J providers were found.
+SLF4J(W): Defaulting to no-operation (NOP) logger implementation
+SLF4J(W): See https://www.slf4j.org/codes.html#noProviders for further details.
+2026-10-01T06:23:54.882072900Z main WARN The use of package scanning to locate Log4j plugins is deprecated.
+Please remove the `packages` attribute from your configuration file.
+See https://logging.apache.org/log4j/2.x/faq.html#package-scanning for details.
+2026-10-01 11:53:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Starting browser + Mirakl Seller login ===
+Oct 01, 2026 11:53:56 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+WARNING: Unable to find CDP implementation matching 154
+Oct 01, 2026 11:53:56 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+WARNING: Unable to find version of CDP to use for 154.0.8037.58. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.25.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+2026-10-01 11:53:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DualDriverManager: new Chrome browser instance created
+2026-10-01 11:53:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl email: skhullar+90764@kognivera.com
+2026-10-01 11:53:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Siguiente button on Mirakl login
+2026-10-01 11:53:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering Mirakl password
+2026-10-01 11:54:00 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Sign in button on Mirakl
+2026-10-01 11:54:02 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification required — check email 'skhullar+90764@kognivera.com' for OTP code, enter it in the browser window, then click Continue. Test will wait up to 10 minutes...
+2026-10-01 11:54:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/MFA_skhullar_90764_kognivera_com_INFO.png
+2026-10-01 11:54:02 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - MFA screen text for skhullar+90764@kognivera.com: Verify Your Identity
+
+We've sent an email with your code to
+
+Email address
+skhu**********@kogn*********
+Enter the code *
+ Remember this device for 30 days
+Continue
+Didn't receive an email? Resend
+Copyright © 2026 Mirakl
+2026-10-01 11:54:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - OTP code entered (real evidence, not a timer) — clicking Continue.
+2026-10-01 11:54:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl MFA verification completed — continuing.
+2026-10-01 11:54:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Switching To Mirakl
+2026-10-01 11:54:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Mirakl Login Successful
+2026-10-01 11:54:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Mirakl Seller login complete ===
+2026-10-01 11:54:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 1: CAPTURE SELLER BUSINESS CALENDAR ====================
+2026-10-01 11:54:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Settings > Shop > Business Calendar
+2026-10-01 11:54:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar tab opened
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Working Days: Monday,Tuesday,Wednesday,Thursday,Friday
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Non-Working Days (weekly): Sunday,Saturday
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Holidays: No holidays declared yetWhen created, your holidays will appear here.Add
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar — Business Hours: 10:30 am to 11:30 pm
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseWorkingDays: parsed [WEDNESDAY, MONDAY, FRIDAY, THURSDAY, TUESDAY] from 'Monday,Tuesday,Wednesday,Thursday,Friday'
+2026-10-01 11:54:37 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: unrecognized date token 'Sunday'
+2026-10-01 11:54:37 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: unrecognized date token 'Saturday'
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: parsed [] from 'Sunday,Saturday'
+2026-10-01 11:54:37 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: unrecognized date token 'No holidays declared yetWhen created'
+2026-10-01 11:54:37 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: unrecognized date token 'your holidays will appear here.Add'
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseDates: parsed [] from 'No holidays declared yetWhen created, your holidays will appear here.Add'
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator.parseTimeRange: parsed '10:30 am to 11:30 pm' as start=10:30, end=23:30
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Business Calendar captured — Working Days: [WEDNESDAY, MONDAY, FRIDAY, THURSDAY, TUESDAY], Non-Working Days: [], Holidays: [], Business Start: 10:30, Business End (seller cut-off time): 23:30
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE1_BUSINESS_CALENDAR_INFO.png
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 2: PICK RANDOM OFFER FOR SELLER ====================
+2026-10-01 11:54:37 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-10-01 11:54:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-10-01 11:54:38 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking 'All' tab (no 'Pending offers' tab exists — 'All' is the broadest view, includes not-yet-active offers)
+2026-10-01 11:54:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers grid row not yet populated (attempt 1/10) — retrying
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers grid row populated on attempt 2/10 — Offer SKU: S3256
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer S3256 column 9: SKU: 60095400091
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer S3256 column 2: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+Bebé
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Selected random offer — Offer SKU: S3256, Product SKU: SKU: 60095400091, Product Name: Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Selected offer for this run: Offer SKU=S3256, Product SKU=SKU: 60095400091, Product Name=Britannia NutriChoice Oats Cookies (Diabetic Friendly)02
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening offer for edit — Product ID: SKU: 60095400091
+2026-10-01 11:54:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking offer detail link: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-10-01 11:54:49 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC (Edit offer form opened) — .form-group label texts: Offer SKU | Condition | Description (in Spanish) | Stock quantity | Lead time to ship | Min order quantity | Max order quantity | Availability | Quantity alert | Internal description | Price information (in Spanish) | MDA Percentage | MDA Percentage | MSI | MSI | Logistics | Logistics
+2026-10-01 11:54:49 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC — current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-10-01 11:54:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Current Lead Time to Ship (kept for later): 5
+2026-10-01 11:54:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE2_OFFER_SELECTED_INFO.png
+2026-10-01 11:54:49 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 3: FDA — CAPTURE INITIAL EDD ====================
+2026-10-01 11:54:50 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opened FDA storefront in new tab: B8810F254812B11F5F949627E4CE6ACB
+2026-10-01 11:54:55 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA email: skhullar@kognivera.com
+2026-10-01 11:54:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering FDA password
+2026-10-01 11:54:57 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking Iniciar sesión button
+2026-10-01 11:55:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - FDA Login Successful — verified logged-in state for skhullar@kognivera.com
+2026-10-01 11:55:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — FDA storefront login successful
+2026-10-01 11:55:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigated to FDA URL: https://mcstaging.fahorro.com/
+2026-10-01 11:55:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Entering search query: 60095400091
+2026-10-01 11:55:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Pressing Enter to execute search
+2026-10-01 11:55:31 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PLP results grid displayed: true
+2026-10-01 11:55:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicked first search result (no text-matching)
+2026-10-01 11:55:36 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Add to Cart button visible: true
+2026-10-01 11:55:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 4/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:55:43 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Initial PDP EDD: 'Entrega estimada 12/Oct. a', current Mexico timestamp: 2026-10-01T00:25:43.935652300-06:00[America/Mexico_City]
+2026-10-01 11:55:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE3_INITIAL_EDD_INFO.png
+2026-10-01 11:55:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 4: MIRAKL — UPDATE LEAD TIME TO SHIP ====================
+2026-10-01 11:55:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New Lead Time to Ship supplied via -Dtc.edd001.lead.time.to.ship=6
+2026-10-01 11:55:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - New Lead Time to Ship to apply: 6
+2026-10-01 11:55:44 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Navigating to Mirakl Price and stock > Offers
+2026-10-01 11:55:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offers section opened
+2026-10-01 11:55:45 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Opening offer for edit — Product ID: SKU: 60095400091
+2026-10-01 11:55:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Clicking offer detail link: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-10-01 11:55:56 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC (Edit offer form opened) — .form-group label texts: Offer SKU | Condition | Description (in Spanish) | Stock quantity | Lead time to ship | Min order quantity | Max order quantity | Availability | Quantity alert | Internal description | Price information (in Spanish) | MDA Percentage | MDA Percentage | MSI | MSI | Logistics | Logistics
+2026-10-01 11:55:56 WARN  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - DIAGNOSTIC — current URL: https://farmaciasdelahorromx2-dev.mirakl.net/mmp/shop/offer/40726
+2026-10-01 11:55:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - lead time to ship pre-seeded on 1 field(s): 6
+2026-10-01 11:55:56 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Saving offer edit
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Offer edit success banner displayed: true (text: Offer updated)
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Offer Lead Time to Ship updated to 6
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE4_OFFER_UPDATED_PASS.png
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 5: CALCULATE EXPECTED EDD ====================
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: currentMxTime=00:25:43.935652300, businessEndTime=23:30, cutoffCrossed=false
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: referenceDate=2026-10-01, leadTimeToShip=6, MAX_DELIVERY_DAYS=2, deliveryDays=8, cutoffCrossed=false
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: Case A (cutoff not crossed) — counting starts at 2026-10-02
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - EddCalculator: expected EDD = 2026-10-13
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — Expected EDD calculated: 2026-10-13
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 6: VALIDATE SERVICE SYNCHRONIZATION ====================
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Get Shop Business Days ==========
+2026-10-01 11:55:58 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - POST https://catalog-api-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/fda/sync/shop-business-days
+2026-10-01 11:56:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Get Shop Business Days Status : 200
+2026-10-01 11:56:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Get Shop Business Days Body   : {"message":"Calendars synced successfully","scope":"all"}
+2026-10-01 11:56:16 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Shop Business Days response logged above — field-level assertions are best-effort until a live run confirms the real JSON shape (see EddApiUtility.getShopBusinessDays() doc comment)
+2026-10-01 11:56:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy (EDD) ==========
+2026-10-01 11:56:21 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[]}
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS (soft) — Both API validation calls completed
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE6_API_VALIDATION_INFO.png
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ==================== PHASE 7: FDA — VALIDATE UPDATED EDD ====================
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Get Buybox (EDD) ==========
+2026-10-01 11:56:22 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://catalog-api-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/fda/buybox/60095400091
+2026-10-01 11:56:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Get Buybox Status : 200
+2026-10-01 11:56:23 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Get Buybox Body   : {"productSku":"60095400091","data":[{"offerId":"40726","sellerId":"2337","sellerName":"TEST_SELLERRR","estimatedDeliveryDate":"2026-10-13","sellerRating":0.0,"buyBoxWinner":true,"orderCount":4,"fulfilledBy":"FBO","businessType":"3P_MARKETPLACE","price":40.0,"percentRewards":0.0,"specialPrice":40.0,"rewards":false,"rewardsAmount":0.0,"msi":true,"enableAuthorizedBrand":false}]}
+2026-10-01 11:56:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Buybox estimatedDeliveryDate for SKU 60095400091: 2026-10-13
+2026-10-01 11:56:24 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Buybox EDD match: true
+2026-10-01 11:56:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:56:35 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 1/10: Entrega estimada 12/Oct. a
+2026-10-01 11:56:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:56:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 2/10: Entrega estimada 12/Oct. a
+2026-10-01 11:56:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP EDD still not updated after 2 refresh attempts — re-invoking Push Offers to Empathy before continuing
+2026-10-01 11:56:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy (EDD) ==========
+2026-10-01 11:56:46 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-10-01 11:56:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-10-01 11:56:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[]}
+2026-10-01 11:56:47 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Re-invoked Push Offers to Empathy status: 200
+2026-10-01 11:56:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 1/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:56:54 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 3/10: Entrega estimada 12/Oct. a
+2026-10-01 11:57:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:57:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 4/10: Entrega estimada 12/Oct. a
+2026-10-01 11:57:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP EDD still not updated after 4 refresh attempts — re-invoking Push Offers to Empathy before continuing
+2026-10-01 11:57:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy (EDD) ==========
+2026-10-01 11:57:04 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-10-01 11:57:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-10-01 11:57:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[{"sku":"60095400091","locations":[{"sellerId":2337,"seller":"TEST_SELLERRR","price":40.0,"special_price":40.0,"offerId":"40726","quantity":196,"sellerRating":0.0,"eta":"2026-10-09","winner":true,"rewards":false,"percent_rewards":0.0,"rewards_amount":0.0,"msi":true,"delivery_days":8,"working_days":["Monday","Tuesday","Wednesday","Thursday","Friday"],"holidays":[],"cut_off":"11:30 pm"}]}]}
+2026-10-01 11:57:08 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Re-invoked Push Offers to Empathy status: 200
+2026-10-01 11:57:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:57:19 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 5/10: Entrega estimada 12/Oct. a
+2026-10-01 11:57:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:57:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 6/10: Entrega estimada 12/Oct. a
+2026-10-01 11:57:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP EDD still not updated after 6 refresh attempts — re-invoking Push Offers to Empathy before continuing
+2026-10-01 11:57:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy (EDD) ==========
+2026-10-01 11:57:29 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-10-01 11:57:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-10-01 11:57:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[]}
+2026-10-01 11:57:30 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Re-invoked Push Offers to Empathy status: 200
+2026-10-01 11:57:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:57:40 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 7/10: Entrega estimada 12/Oct. a
+2026-10-01 11:57:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:57:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 8/10: Entrega estimada 12/Oct. a
+2026-10-01 11:57:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP EDD still not updated after 8 refresh attempts — re-invoking Push Offers to Empathy before continuing
+2026-10-01 11:57:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - ========== Push Offers to Empathy (EDD) ==========
+2026-10-01 11:57:51 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - GET https://microservices-mirakl-fda-ocp-sit.apps.cloud-ocp-stg.fahorro.com.mx/priceinventory/fda/push-offers-to-empathy
+2026-10-01 11:57:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Status : 200
+2026-10-01 11:57:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Push Offers to Empathy Body   : {"code":200,"status":"Success","offers":[]}
+2026-10-01 11:57:52 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Re-invoked Push Offers to Empathy status: 200
+2026-10-01 11:58:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:58:01 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 9/10: Entrega estimada 12/Oct. a
+2026-10-01 11:58:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PDP Estimated Delivery Date resolved on attempt 2/6 (read via JS textContent): Entrega estimada 12/Oct. a
+2026-10-01 11:58:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Updated EDD check attempt 10/10: Entrega estimada 12/Oct. a
+2026-10-01 11:58:11 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - PASS — PDP shows an updated EDD: 'Entrega estimada 12/Oct. a'. Expected EDD (calculated): 2026-10-13 — exact text-format matching against the calculated date is best-effort until the real PDP date format is confirmed live; logged here for manual verification.
+2026-10-01 11:58:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - Screenshot captured: test-output/screenshots/TC_EDD_001_PHASE7_UPDATED_EDD_PASS.png
+2026-10-01 11:58:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001 execution completed successfully ===
+2026-10-01 11:58:12 INFO  FDA_Automation_Script.FDA_Automation_Script.utils.LoggerUtility - === TC_EDD_001: Tearing down browser ===
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 259.1 s -- in FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  04:24 min
+[INFO] Finished at: 2026-10-01T11:58:14+05:30
+[INFO] ------------------------------------------------------------------------

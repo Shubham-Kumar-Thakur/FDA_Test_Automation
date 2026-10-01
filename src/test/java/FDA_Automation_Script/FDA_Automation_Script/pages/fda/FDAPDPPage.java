@@ -221,6 +221,64 @@ public class FDAPDPPage extends BasePage {
         return value;
     }
 
+    // CONFIRMED live (2026-09-25, TC_EDD_001): real markup is a Knockout-bound node —
+    // <div class="arrives-label" data-bind="text: arrivesLabel">Entrega estimada 30/Sep. a</div> —
+    // inside "shipping-methods-content _tag-estimated-delivery". Targeting arrives-label directly
+    // (not the surrounding "_tag-estimated-delivery" wrapper) matters: the wrapper's textContent also
+    // includes a sibling <a class="shipping-data"> with the delivery ADDRESS, so a wrapper-level match
+    // would silently concatenate the address onto the EDD text. Read via plain CSS querySelector, not
+    // XPath text-matching — see FALLBACK_EDD_XPATH's comment for why a text-contains XPath is unsafe here.
+    private static final String ARRIVES_LABEL_SELECTOR = ".arrives-label";
+
+    // BROKE live (2026-09-25, second TC_EDD_001 verification run): a `contains(normalize-space(), ...)`
+    // XPath run against `//*` matches every ANCESTOR of a real match too, because textContent bubbles
+    // up — <body> and <html> both contain "entrega estimada" as a substring of their full concatenated
+    // text (it's in there somewhere, along with every script/style tag's raw source). Since document
+    // order lists ancestors before descendants, the old code's "first non-empty text() in document
+    // order" loop returned <body>'s (or an even higher ancestor's) entire page text/JS blob instead of
+    // the real arrives-label div. Fix: restrict every alternative to leaf elements only (`not(*)`, i.e.
+    // no element children) so container/ancestor nodes can never match, and explicitly exclude
+    // script/style since their "children" are text nodes, not elements, so `not(*)` alone doesn't
+    // exclude them. This fallback is now only reached if ARRIVES_LABEL_SELECTOR finds nothing (markup
+    // change) — kept as a safety net, not the primary path.
+    private static final String FALLBACK_EDD_XPATH =
+        "//*[not(*) and not(self::script) and not(self::style)"
+        + " and contains(translate(normalize-space(),'ENTREGA','entrega'),'entrega estimada')]"
+        + " | //*[not(*) and not(self::script) and not(self::style)"
+        + " and contains(translate(normalize-space(),'ESTIMATEDDELIVERY','estimateddelivery'),'estimated delivery')]"
+        + " | //*[not(*) and not(self::script) and not(self::style) and contains(normalize-space(),'Llega el')]";
+
+    // CONFIRMED live (2026-09-25, TC_EDD_001): arrivesLabel is populated asynchronously by a Knockout
+    // binding after the shipping-methods-available component resolves — a one-shot read right after
+    // PDP load returns empty (same async-render class as getProductPrice()/getProductName() below).
+    // A live diagnostic probe confirmed the label text is present ~5s after PDP load with no refresh
+    // needed, so this uses getProductName()'s no-refresh bounded-poll pattern rather than price's
+    // refresh-based one.
+    public String getEstimatedDeliveryDateText() {
+        String value = "";
+        for (int attempt = 1; attempt <= 6; attempt++) {
+            Object edd = ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
+                "var primary = document.querySelector(arguments[0]);"
+                + "if (primary) { var pt = primary.textContent.trim(); if (pt) return pt; }"
+                + "var candidates = document.evaluate(arguments[1], document, null, "
+                + "XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);"
+                + "for (var i = 0; i < candidates.snapshotLength; i++) {"
+                + "  var t = candidates.snapshotItem(i).textContent.trim();"
+                + "  if (t) return t;"
+                + "}"
+                + "return '';",
+                ARRIVES_LABEL_SELECTOR, FALLBACK_EDD_XPATH);
+            value = edd == null ? "" : edd.toString().trim();
+            if (!value.isEmpty()) {
+                LoggerUtility.info("PDP Estimated Delivery Date resolved on attempt " + attempt + "/6 (read via JS textContent): " + value);
+                return value;
+            }
+            sleep(1000);
+        }
+        LoggerUtility.warn("PDP Estimated Delivery Date still empty after 6 attempts");
+        return value;
+    }
+
     public boolean isDisplayed() {
         Object visible = ((org.openqa.selenium.JavascriptExecutor) driver).executeScript(
             "var el = document.evaluate(\"//div//button[@id='product-addtocart-button' and @title='Agregar al carrito']\", "

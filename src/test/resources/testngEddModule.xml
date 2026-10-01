@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  EDD Module — suite for the tests/EDD_TC/ package.
+
+  TC_EDD_001 (tests/EDD_TC/TC_EDD_001_Test): a Mirakl seller's Business Calendar (working days, non-
+  working days, holidays, business hours) plus a per-offer Lead Time to Ship value drive the
+  Estimated Delivery Date shown on the FDA storefront PDP. Does NOT extend BaseClass — single Chrome
+  browser (via DualDriverManager) logged into Mirakl in its own @BeforeSuite; the FDA storefront is
+  opened in a new tab within that same browser. Uses config keys tc.edd001.*.
+  Pass -Dtc.edd001.lead.time.to.ship=<value> (required under Maven Surefire's forked JVM — see
+  TC_EDD_001_Test.promptForLeadTimeToShip()'s own doc comment).
+
+  Includes both framework listeners so ExtentReports and screenshots work as normal. TestNGListener
+  and ExtentReportListener both null-check BaseClass.driver, so they operate safely when the test
+  class does not extend BaseClass.
+
+  Usage (whole suite): mvn test -DsuiteXmlFile=src/test/resources/testngEddModule.xml -Dtc.edd001.lead.time.to.ship=3
+  Run a single class: mvn test -Dtest=FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test -Dtc.edd001.lead.time.to.ship=3
+-->
+
+<suite name="EDD Module Suite" verbose="1" thread-count="1" preserve-order="true">
+
+    <listeners>
+        <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.TestNGListener" />
+        <listener class-name="FDA_Automation_Script.FDA_Automation_Script.listeners.ExtentReportListener" />
+    </listeners>
+
+    <test name="TC_EDD_001 - Estimated Delivery Date Validation" preserve-order="true">
+        <classes>
+            <class name="FDA_Automation_Script.FDA_Automation_Script.tests.EDD_TC.TC_EDD_001_Test" />
+        </classes>
+    </test>
+
+</suite>
