@@ -65,23 +65,24 @@ public class EddApiUtility {
     }
 
     /**
-     * POST tc.edd001.buybox.url with the literal "{product-sku}" placeholder substituted for productSku,
-     * Cookie-only auth, empty body — matches the given curl exactly (curl defaults to POST when --data
-     * is present with no explicit -X). Expected to return the PDP's own estimatedDeliveryDate directly
-     * for this product, as an independent cross-check against the FDA storefront's own PDP text.
+     * GET tc.edd001.buybox.url with the literal "{product-sku}" placeholder substituted for productSku,
+     * Cookie-only auth. CORRECTED live (2026-09-30, TC_EDD_001): the given curl used --data '' (which
+     * implies POST by default), but a live run against POST got back HTTP 500 wrapping
+     * "HTTP 405 Method Not Allowed" / "NotAllowedException" — the service only accepts GET despite the
+     * curl's own flags. Expected to return the PDP's own estimatedDeliveryDate directly for this
+     * product, as an independent cross-check against the FDA storefront's own PDP text.
      */
     public static Response getBuybox(String productSku) {
         String url = config.get("tc.edd001.buybox.url").replace("{product-sku}", productSku);
         String cookie = config.get("tc.edd001.buybox.cookie");
 
         LoggerUtility.info("========== Get Buybox (EDD) ==========");
-        LoggerUtility.info("POST " + url);
+        LoggerUtility.info("GET " + url);
 
         Response response = given()
                 .header("Cookie", cookie)
-                .body("")
                 .when()
-                .post(url)
+                .get(url)
                 .then()
                 .extract()
                 .response();

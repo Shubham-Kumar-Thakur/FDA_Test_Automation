@@ -31,7 +31,9 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -285,7 +287,21 @@ public class TC_EDD_001_Test {
         try {
             Response buyboxResponse = EddApiUtility.getBuybox(searchSku);
             if (buyboxResponse.getStatusCode() == 200) {
-                String buyboxEdd = buyboxResponse.jsonPath().getString("estimatedDeliveryDate");
+                // CONFIRMED live (2026-10-01, TC_EDD_001): the real response shape nests
+                // estimatedDeliveryDate inside a "data" array (one entry per offer on this product), not
+                // at the top level — e.g. {"productSku":"...","data":[{"...","estimatedDeliveryDate":
+                // "2026-11-05","buyBoxWinner":true,...}]}. Prefer the entry with buyBoxWinner=true (the
+                // one actually shown on the PDP); fall back to data[0] if no entry is explicitly flagged.
+                List<Map<String, Object>> offers = buyboxResponse.jsonPath().getList("data");
+                String buyboxEdd = null;
+                if (offers != null && !offers.isEmpty()) {
+                    Map<String, Object> winner = offers.stream()
+                        .filter(o -> Boolean.TRUE.equals(o.get("buyBoxWinner")))
+                        .findFirst()
+                        .orElse(offers.get(0));
+                    Object edd = winner.get("estimatedDeliveryDate");
+                    buyboxEdd = edd == null ? null : edd.toString();
+                }
                 LoggerUtility.info("Buybox estimatedDeliveryDate for SKU " + searchSku + ": " + buyboxEdd);
                 buyboxMatch = matchesExpectedEdd(buyboxEdd, expectedEdd);
             } else {
